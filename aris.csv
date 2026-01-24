@@ -1,0 +1,132 @@
+# type (r[1-9];w;u),circuit,name,comment,QQ,ZZ,PBSB,ID,field,part (m/s),type / templates,divider / values,unit,comment,field,part (m/s),type / templates,divider / values,unit,comment,field,part (m/s),type / templates,divider / values,unit,comment,field,part (m/s),type / templates,divider / values,unit,comment
+# Configurazione Ottimizzata Ariston Cares S - v3.2 (Fix System Sync + Fiamma 3)
+
+# --- SYSTEM BROADCAST ---
+w,broadcast,ebus_reset,Reset ebus,,fe,2034,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+r,broadcast,cast_slave_addr,Cast slave address,,fe,203b,,,m,HEX,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+# Silenzia il messaggio di sincronizzazione frequente (ID corretto da 29 a 01)
+b,broadcast,system_sync,System Sync,00,fe,203a,29,ign,s,IGN:1,,,,,,,,,,,,,,,,,,,,,,,,,,
+
+#######################################################
+####      POLLING (CHIAMATA ATTIVA)                ####
+#######################################################
+
+# Stato Fiamma (Aggiunto valore 3=on)
+r,aris,stato_fiamma,Fiamma,31,3c,2000,0e11,val,s,UCH,0=off;1=on;3=off,,
+b,aris,caldaia_mode,Stato Operativo,37,fe,2010,c04b,val,s,UCH,1,,0=Inizializzazione;1=Stand-By;2=Riscaldamento;3=Sanitario;4=Bollitore;5=Post-Circolazione;8=Antigelo;23=Test;24=Comfort;36=Calibrazione;51=Pressione Bassa;52=No Fiamma,,,,,,
+
+# Pressione (Lettura su richiesta)
+r,aris,pressione_poll,Pressione (Poll),31,3c,2000,7547,val,s,UCH,10,bar,
+
+# Sanitario
+b,aris,dhw_temp_reale,Temp Reale Sanitario,37,fe,2010,6147,val,s,U3N,10,°C,,,,,,,
+
+# Componenti
+r,aris,fan_speed,Velocita Ventola,31,3c,2000,4013,val,s,UIN,,rpm,
+r,aris,power_level,Livello Potenza Attuale,31,3c,2000,6847,val,s,UIN,2560,kW,
+
+#######################################################
+####      BROADCAST (PASSIVO)                      ####
+#######################################################
+
+# Setpoint
+b,aris,temp_set_riscaldamento,Set Riscaldamento Utente,37,fe,2010,6047,val,s,UIN,10,°C,,,,,,
+b,aris,temp_sanitario_eco,Setpoint Sanitario Eco,37,fe,2010,6697,val,s,UIN,10,°C,,,,,,
+w,aris,temp_sanitario_set_bc,Set Sanitario (Broadcast),,fe,2020,6126,val,s,UIN,10,°C,,
+
+# Target Interni
+b,aris,temp_fiamma_target,Target Fiamma,37,fe,2010,d742,val,s,UIN,10,°C,,,,,,
+b,aris,temp_max_set,Max Setpoint,37,fe,2010,6397,val,s,UIN,10,°C,,,,,,
+b,aris,temp_target_mandata_int,Target Mandata Interno,37,fe,2010,de,val,s,UCH,1,°C,,,,,,
+
+# Temperature Reali
+b,aris,temp_flow_main,Temp Mandata Principale,37,fe,2010,6a96,val,s,UIN,10,°C,,,,,,
+b,aris,temp_return_main,Temp Ritorno Principale,37,fe,2010,6b96,val,s,UIN,10,°C,,,,,,
+b,aris,temp_exhaust,Temp Fumi,37,fe,2010,6d96,val,s,UIN,10,°C,,,,,,
+
+# Temperature Reali (EMBEDDED) - Corretto numero di virgole
+# skip1(6col) + skip2(6col) + val(6col)
+b,aris,temp_aux_probe,Temp Ausiliaria (Embedded),37,fe,2010,c194,skip1,s,HEX:2,,,,skip2,s,HEX:2,,,,val,s,UIN,10,°C,
+b,aris,temp_return_secondary,Temp Ritorno Sec (Embedded),37,fe,2010,c494,skip1,s,HEX:2,,,,skip2,s,HEX:2,,,,val,s,UIN,10,°C,
+
+# Diagnostica
+b,aris,modulazione_pompa,Modulazione Pompa,37,fe,2010,da46,val,s,UCH,,,
+b,aris,pressure_sensor_v,Sensore Pressione Volt,37,fe,2010,dc46,val,s,UIN,1000,V,,,,,,
+
+#######################################################
+####      ENERGY MANAGER / ZONE                    ####
+#######################################################
+
+# --- TEMPERATURA AMBIENTE ---
+b,aris,z1_room_temp,Zona 1 Temp Ambiente,70,fe,2010,7118,val,s,UIN,10,°C,
+
+# --- RICHIESTA CALORE ZONA 1 ---
+b,aris,z1_heat_request,Richiesta Calore Z1,70,fe,2000,c6,val,s,UCH,1,,,
+
+# --- SETPOINT ZONA ---
+b,aris,z1_setpoints,Setpoints Zona 1,37,fe,200f,6426,antifreeze,s,UIN,10,°C,,ign1,s,IGN:3,,,,day,s,UIN,10,°C,,ign2,s,IGN:3,,,,night,s,UIN,10,°C,
+r,aris,z1_setpoint_attuale,Set Attuale Z1,31,3c,200e,6571,val,s,UIN,10,°C,
+
+#######################################################
+####      ESTENSIONI                               ####
+#######################################################
+
+r,aris,boiler_life_time,Tempo Totale Caldaia,31,3c,2000,50d9,val,s,UIN,,min,
+r,aris,burner_heat_life_time,Tempo Bruciatore Risc,31,3c,2000,4bd1,val,s,UIN,10,h,
+r,aris,ignition_cycles,Cicli Accensione,31,3c,2000,42d8,val,s,UIN,,n,
+
+# Stati
+r,aris,heating_active,Attivazione Risc,31,3c,2000,0120,val,s,UCH,0=off;1=on,,
+r,aris,dhw_active,Attivazione Sanitario,31,3c,2000,0220,val,s,UCH,0=off;1=on,,
+r,aris,flame_heating_mode,Fiamma in Risc,31,3c,2000,0c19,val,s,UCH,0=off;1=on,,
+
+# Info Generali
+r,aris,boiler_type,Tipo Caldaia ID,31,3c,2000,c428,val,s,UCH,,,
+r,aris,nominal_power,Potenza Nominale,31,3c,2000,6829,val,s,UIN,256,kW,
+
+# Status Requests
+b,aris,status_request_1,Stato Richiesta 1,37,fe,2010,0191,val,s,UCH,,,,,,,
+b,aris,status_request_2,Stato Richiesta 2,37,fe,2010,0591,val,s,UCH,,,,,,,
+
+
+# --- ESTENSIONI DEDOTTE DA MIRA C GREEN ---
+
+# Funzione SRA (Auto)
+w,aris,sra_status,Stato Funzione Auto (SRA),,fe,2020,0520,val,s,UCH,0=off;1=on,,
+
+# Stati Istantanei (Broadcast) - Aggiornano i sensori immediatamente senza polling
+w,aris,heating_status_bc,Stato Risc (Broadcast),,fe,2020,0120,val,s,UCH,0=off;1=on,,
+w,aris,dhw_status_bc,Stato Sanitario (Broadcast),,fe,2020,0220,val,s,UCH,0=off;1=on,,
+
+# Offset Temperatura Esterna (se hai la sonda esterna)
+w,aris,ext_temp_offset,Offset Temp Esterna,,fe,2020,7426,val,s,SIN,10,°C,,
+
+# Tentativo lettura consumi interni (Spesso non funzionano su Cares S)
+r,aris,consumo_risc_kwh,Consumo Risc (Interno),31,3c,2000,8d50,val,s,UIN,1,kWh,
+r,aris,consumo_sanitario_kwh,Consumo Sanitario (Interno),31,3c,2000,8d51,val,s,UIN,1,kWh,
+
+# --- NUOVE AGGIUNTE DAI LOG ---
+# Temperatura Esterna (elimina errore "unknown" anche se non hai la sonda)
+b,aris,temp_esterna_bc,Temp Esterna (Broadcast),37,fe,2010,7647,val,s,SIN,10,°C,
+
+# Stato Fiamma (Lettura passiva - aggiorna il sensore senza chiedere continuamente)
+b,aris,flame_heating_mode_bc,Fiamma in Risc (Broadcast),37,fe,2010,0c19,val,s,UCH,0=off;1=on,,
+
+# Debug / Info Tecniche (Z1 Request Mode)
+b,aris,z1_req_mode_bc,Modo Richiesta Z1 (Broadcast),37,fe,200f,c679,val,s,UCH,,,
+r,aris,percentuale_fiamma,Modulazione Fiamma %,31,3c,2000,0208,val,s,UCH,2,%,
+
+
+# --- TEST RICERCA POTENZA SANITARIO ---
+
+# Test 1: Comando Valvola Gas (PWM) - Se questo sale (es. 40-100), stai consumando!
+r,aris,test_pwm_gas,Test PWM Gas,31,3c,2000,5608,val,s,UCH,,,
+
+# Test 2: Corrente Ionizzazione - Misura la fiamma vera (es. 5.0 - 15.0 uA)
+r,aris,test_corrente,Test Corrente Fiamma,31,3c,2000,6708,val,s,UIN,10,uA,
+
+# Test 3: Modulazione Percentuale (Registro Alternativo)
+r,aris,test_modulazione,Test Modulazione %,31,3c,2000,1622,val,s,UCH,2,%,
+
+# Test 4: Velocità Ventola (Registro Alternativo per Cares S)
+r,aris,test_ventola,Test Ventola RPM,31,3c,2000,4014,val,s,UIN,,rpm,
