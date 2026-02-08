@@ -1,58 +1,61 @@
-# ebusd Configuration for Ariston Cares S (and compatible)
+# Ariston Cares S ebusd Configuration 🛡️🔥
 
-This repository provides a highly optimized and tested `ebusd` configuration CSV file for **Ariston Cares S** boilers (also valid for similar entry-level models like **Chaffoteaux Inoa S**).
+[![GitHub Release](https://img.shields.io/github/v/release/Syax89/Ariston-Cares-S-Ebusd?style=for-the-badge)](https://github.com/Syax89/Ariston-Cares-S-Ebusd/releases)
+[![ebusd](https://img.shields.io/badge/ebusd-Compatible-blue?style=for-the-badge)](https://github.com/john30/ebusd)
 
-Unlike generic configurations, this file is tuned to solve common issues with "entry-level" Ariston boilers, such as fake sensor readings, missing pressure transducers, and "silent" DHW (Domestic Hot Water) setpoints.
+Highly optimized and tested `ebusd` configuration for **Ariston Cares S** boilers (and compatible models like **Chaffoteaux Inoa S**).
 
-## 🚀 Features
+## 🌟 Why this configuration?
 
-* **✅ Zero Errors:** Filtered out unsupported polling commands that cause "ERR: sent/read timeout" in logs.
-* **🔥 Real-time DHW Setpoint:** Captures the knob change instantly via Broadcast decoding (since polling is not supported).
-* **⚡ Correct Power Reading:** Fixed the kW calculation (using divisor 2560 instead of 10) to show real power (e.g., 5.5 kW instead of 1400 kW).
-* **🛠️ Hardware Specifics:**
-    * Disabled Digital Pressure Sensor (Cares S uses a simple ON/OFF switch).
-    * Disabled External Probe (prevents `3276.7 °C` error value).
-    * Corrected Flame Status (interprets status `3` as OFF/Post-circulation, not ON).
-* **🇮🇹 Italian Labels:** All sensors are named clearly in Italian (easily translatable).
+Generic Ariston CSV files often fail with entry-level boilers (Galileo platform). This configuration solves:
+*   **KW Power Fix**: Corrected power calculation using divisor 2560 (no more 1400kW readings).
+*   **Real-time DHW**: Captures Domestic Hot Water setpoint changes via passive broadcast (since polling is blocked by firmware).
+*   **Ghost Sensor Removal**: Disabled external probes and pressure sensors not physically present on Cares S to prevent log errors.
+*   **Flame Status Fix**: Correctly interprets status `3` as Post-circulation (OFF).
 
-## 📋 Prerequisities
+---
 
-* **Hardware:** An eBUS adapter (e.g., ebusd adapter v3/v5).
-* **Software:** [ebusd](https://github.com/john30/ebusd) installed (via Docker, HA Add-on, or native).
-* **Boiler:** Ariston Cares S, Chaffoteaux Inoa S, or similar "Galileo" platform entry-level boilers.
+## 🛠️ Hardware Requirements
 
-## ⚙️ Installation
+1.  **ebus Adapter**: [ebusd adapter v3 or v5](https://adapter.ebusd.eu/) is highly recommended.
+2.  **Connection**: Connect the adapter to the `eBUS` port on the boiler mainboard.
+3.  **Software**: A running instance of `ebusd`.
 
-1.  Download the `aris.csv` file from this repository.
-2.  Place it in your ebusd configuration folder (usually `/etc/ebusd/` or `/config/ebusd/`).
-3.  Configure your ebusd launch parameters to load this file. Example:
-    ```bash
-    ebusd --scanconfig=0 --configpath=/etc/ebusd --device=...
-    ```
-    *(Note: `--scanconfig=0` is recommended to force using this specific file if auto-discovery fails or loads a generic buggy file).*
+## ⚙️ Installation & Usage
 
-## 📊 Key Sensors Mapped
+### 1. Download
+Download `aris.csv` and `_templates.csv` to your ebusd configuration directory (e.g., `/etc/ebusd/`).
 
-| Sensor Name (CSV) | Description | Notes |
+### 2. Configure ebusd
+Add the following parameter to your ebusd startup config to force-load this file:
+```bash
+ebusd --scanconfig=0 --configpath=/etc/ebusd --device=/dev/ttyUSB0
+```
+*Note: Using `--scanconfig=0` prevents ebusd from loading generic, buggy files.*
+
+### 3. MQTT Integration (Home Assistant)
+If using the Home Assistant MQTT Discovery, ensure `mqtt-hassio.cfg` is present in your config path.
+
+---
+
+## 📊 Mapped Entities
+
+| Category | Sensor | Description |
 | :--- | :--- | :--- |
-| `stato_fiamma` | Flame Status | Correctly handles "3" as Post-circulation (OFF) |
-| `temp_sanitario` | DHW Output Temp | Broadcast (passive) reading |
-| `set_sanitario` | DHW Setpoint | **Broadcast only** (Polling not supported on this model) |
-| `livello_potenza` | Current Power (kW) | Precision fix (Divisor 2560) |
-| `modulazione_pompa`| Pump Duty Cycle | Raw value 0-255 (convert to % in HA) |
-| `caldaia_mode` | Operation Mode | Stand-by, Winter, Summer, Error codes |
+| **Status** | `stato_fiamma` | On/Off state of the burner |
+| **Status** | `caldaia_mode` | Operating mode (Stand-by, Heating, DHW) |
+| **Technical** | `power_level` | Real-time modulation power in **kW** |
+| **Technical** | `modulazione_pompa` | Pump duty cycle (0-255) |
+| **Heating** | `temp_flow_main` | Main flow temperature |
+| **Water** | `temp_sanitario` | Real DHW output temperature |
 
-## 🏠 Home Assistant Integration (MQTT)
+---
 
-This configuration works natively with Home Assistant via MQTT Discovery.
+## 🤝 Contributing
+Contributions, tests on different Ariston models, and log captures are welcome! Open an Issue or PR.
 
-**Tip for Pump Modulation:**
-The boiler sends raw 0-255 values. To see percentage in HA, add this to your `configuration.yaml`:
+## ⚖️ License
+MIT License. Free to use and modify.
 
-```yaml
-mqtt:
-  sensor:
-    - name: "Modulazione Pompa"
-      state_topic: "ebusd/aris/modulazione_pompa"
-      unit_of_measurement: "%"
-      value_template: "{{ (value_json['val'].value | float(0) / 2.55) | round(0) }}"
+---
+*Disclaimer: Use at your own risk. Incorrect eBUS commands can theoretically alter boiler parameters.*
