@@ -65,6 +65,7 @@
     "dhw_setpoint 6126 follows direct DHW setpoint edits",
     "zone1_current_setpoint_bc 6571 follows direct heating setpoint edits",
     "heating_setpoint_triplet 6047/6197/6297 is a structured target/state triple, not the direct user knob value",
+    "cross-source comparison suggests 6271/6371 likely represent day/night zone temperatures or comfort/reduced setpoints, while 6197 is a good candidate for computed target temperature",
     "current_power_level is likely useful and rises under load in live logs",
     "outdoor_temperature_bc value 3276.7 corresponds to raw ff7f and should be treated as invalid or sensor absent"
   ],
@@ -172,5 +173,75 @@
       },
       "interpretation": "sparser diagnostic/status block, also inactive in captured normal-operation logs"
     }
-  ]
+  },
+  "cross_source_hypotheses": {
+    "from_external_ariston_csvs": [
+      {
+        "register": "6271",
+        "suggested_meaning": "zone1_day_temperature or comfort setpoint",
+        "confidence": "medium",
+        "reason": "appears repeatedly in our dumps and is labeled as z1_day_temp in external Ariston/Chaffoteaux boiler CSVs"
+      },
+      {
+        "register": "6371",
+        "suggested_meaning": "zone1_night_temperature or reduced setpoint",
+        "confidence": "medium",
+        "reason": "appears repeatedly in our dumps and is labeled as z1_night_temp in external Ariston/Chaffoteaux boiler CSVs"
+      },
+      {
+        "register": "6197",
+        "suggested_meaning": "zone1_computed_target_temperature",
+        "confidence": "medium",
+        "reason": "fits the heating_setpoint_triplet family and is labeled as z1_target_temp in external boiler CSVs"
+      },
+      {
+        "register": "6471",
+        "suggested_meaning": "zone1_thermoreg_offset",
+        "confidence": "medium",
+        "reason": "strong semantic match in external Ariston/Chaffoteaux CSVs, but not directly visible in our current dumps"
+      },
+      {
+        "register": "6a71",
+        "suggested_meaning": "zone1_thermoreg_slope",
+        "confidence": "medium",
+        "reason": "strong semantic match in external boiler CSVs, divisor 100 appears consistent, but not directly visible in our current dumps"
+      },
+      {
+        "register": "6071",
+        "suggested_meaning": "zone1_water_max_temperature",
+        "confidence": "low",
+        "reason": "present in external boiler CSVs, but not directly visible in our current dumps"
+      },
+      {
+        "register": "6171",
+        "suggested_meaning": "zone1_water_min_temperature",
+        "confidence": "low",
+        "reason": "present in external boiler CSVs, but not directly visible in our current dumps"
+      },
+      {
+        "register": "c079",
+        "suggested_meaning": "zone1_thermoreg_type",
+        "confidence": "low",
+        "reason": "present in external boiler CSVs, but not directly visible in our current dumps"
+      },
+      {
+        "register": "c279",
+        "suggested_meaning": "zone1_room_temp_influence",
+        "confidence": "low",
+        "reason": "present in external boiler CSVs, but not directly visible in our current dumps"
+      },
+      {
+        "register": "c404",
+        "suggested_meaning": "current modulation candidate",
+        "confidence": "low",
+        "reason": "reported by another Ariston user as a useful live modulation register, but not yet seen in our dumps"
+      },
+      {
+        "register": "6329",
+        "suggested_meaning": "maximum heating power percent candidate",
+        "confidence": "low",
+        "reason": "reported on Genus One as max heating power percent, but not validated on Cares S"
+      }
+    ]
+  }
 }

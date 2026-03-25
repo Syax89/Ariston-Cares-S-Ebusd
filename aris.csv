@@ -181,6 +181,13 @@ r,aris,percentuale_fiamma,Modulazione Fiamma %,31,3c,2000,0208,val,s,UCH,2,%,
 # Ipotesi forte: famiglia stati/richieste/setpoint zona 1, non potenza istantanea.
 # Dettaglio dai dump: in `37 fe 20 0e 08`, i record `6271..6276` valgono ~190/230, `6371..6376` valgono ~160, e `6426` vale 50.
 # Questo sembra molto piu compatibile con curve/livelli/setpoint che con una misura di potenza del bruciatore.
+# Confronto con CSV esterni Ariston/Chaffoteaux suggerisce una semantica plausibile per la famiglia zona:
+# - `6271` ~ day temperature / comfort setpoint
+# - `6371` ~ night temperature / reduced setpoint
+# - `6197` ~ computed target temperature
+# - possibile famiglia ulteriore da CSV esterni: `6471` offset, `6a71` slope, `6071` max water temp, `6171` min water temp, `c079` thermoreg type, `c279` room temp influence
+#   ma questi registri non sono ancora visibili in modo diretto nei dump attuali, quindi restano solo come ipotesi cross-source.
+# Queste etichette sono utili come ipotesi, ma non ancora confermate abbastanza per promuovere nuove righe live.
 #
 # b,aris,z1_heating_active_bc,Candidato Stato Risc Z1,37,fe,200f,0120,val,s,UCH,0=off;1=on,,
 # b,aris,z1_req_0f23_bc,Candidato Richiesta Z1 0f23,37,fe,200f,0f23,val,s,UCH,,,
@@ -190,6 +197,14 @@ r,aris,percentuale_fiamma,Modulazione Fiamma %,31,3c,2000,0208,val,s,UCH,2,%,
 # `6271/6371` restano commentati: i dump confermano che esistono, ma il loro significato fisico non e ancora abbastanza solido per promuoverli live.
 # b,aris,z1_reg_6271_bc,Registro Z1 6271 (Broadcast),37,fe,200e,6271,val,s,UIN,10,,,
 # b,aris,z1_reg_6371_bc,Registro Z1 6371 (Broadcast),37,fe,200e,6371,val,s,UIN,10,,,
+# b,aris,zone1_day_temperature_bc,Zone 1 Day Temperature (Candidate),37,fe,200e,6271,val,s,SIN,10,°C,
+# b,aris,zone1_night_temperature_bc,Zone 1 Night Temperature (Candidate),37,fe,200e,6371,val,s,SIN,10,°C,
+# b,aris,zone1_thermoreg_offset_candidate,Zone 1 Thermoreg Offset (Candidate),31,3c,2000,6471,ign,s,IGN:1,,,,val,s,SIN,10,°C,
+# b,aris,zone1_thermoreg_slope_candidate,Zone 1 Thermoreg Slope (Candidate),31,3c,2000,6a71,ign,s,IGN:1,,,,val,s,UIN,100,,
+# b,aris,zone1_water_max_temp_candidate,Zone 1 Max Water Temp (Candidate),31,3c,2000,6071,ign,s,IGN:1,,,,val,s,SIN,10,°C,
+# b,aris,zone1_water_min_temp_candidate,Zone 1 Min Water Temp (Candidate),31,3c,2000,6171,ign,s,IGN:1,,,,val,s,SIN,10,°C,
+# b,aris,zone1_thermoreg_type_candidate,Zone 1 Thermoreg Type (Candidate),31,3c,2000,c079,ign,s,IGN:1,,,,val,s,UCH,,,
+# b,aris,zone1_room_temp_influence_candidate,Zone 1 Room Temp Influence (Candidate),31,3c,2000,c279,ign,s,IGN:1,,,,val,s,UCH,,,
 #
 # Scomposizione candidata dei frame osservati in dump2:
 #   37 fe 20 0f 0c 01 20 01 00 0f 23 00 00 10 23 00 00
@@ -236,3 +251,10 @@ r,aris,test_modulazione,Test Modulazione %,31,3c,2000,1622,val,s,UCH,2,%,
 
 # Test 4: Velocità Ventola (Registro Alternativo per Cares S)
 r,aris,test_ventola,Test Ventola RPM,31,3c,2000,4014,val,s,UIN,,rpm,
+
+# Cross-source experimental candidates from other Ariston/Chaffoteaux boiler CSVs:
+# `c404` is reported elsewhere as a possible current modulation register.
+# `6329` is reported on Genus One as maximum heating power percentage.
+# Keep these commented until validated on Cares S hardware.
+# r,aris,current_modulation_candidate,Current Modulation (Candidate),31,3c,2000,c404,ign,s,IGN:1,,,,val,s,UCH,,,
+# r,aris,max_heating_power_pct_candidate,Maximum Heating Power Percent (Candidate),31,3c,2000,6329,ign,s,IGN:1,,,,val,s,UIN,,pct,
