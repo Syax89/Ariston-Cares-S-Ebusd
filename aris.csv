@@ -218,6 +218,7 @@ b,aris,zone1_state_triplet_bc,Stato Z1 Triplet,37,fe,200f,0120,heating_request,s
 # ,,,,,,,,flag_da94,s,UIN,,,,flag_db94,s,UIN,,,,flag_dc94,s,UIN,,,
 # b,aris,diag_block_d,Diagnostica Block D,37,fe,2010,dd94,val1,s,UIN,,,
 # ,,,,,,,,flag_de94,s,UIN,,,,
+# Uso consigliato: tenere queste righe commentate in esercizio normale e confrontarle solo durante fault, reset, low-pressure o service mode.
 
 
 # EXPERIMENTAL power-search registers

@@ -117,5 +117,60 @@
       "confidence": "low",
       "next_test": "verify across repeated heating transitions"
     }
+  ],
+  "diagnostic_blocks": {
+    "diag_block_a": {
+      "family": "37/fe 2010 len16",
+      "layout": ["d346", "cf9c", "d995", "da95"],
+      "observed_values": {
+        "d346": [0],
+        "cf9c": [0],
+        "d995": [0],
+        "da95": [0]
+      },
+      "interpretation": "internal diagnostic/status flags, inactive in all captured normal-operation logs"
+    },
+    "diag_block_b": {
+      "family": "37/fe 2010 len16",
+      "layout": ["db95", "dc95", "dd95", "de95"],
+      "observed_values": {
+        "db95": [0],
+        "dc95": [0],
+        "dd95": [0],
+        "de95": [0]
+      },
+      "interpretation": "internal diagnostic/status flags, inactive in all captured normal-operation logs"
+    },
+    "diag_block_c": {
+      "family": "37/fe 2010 len16",
+      "layout": ["d994", "da94", "db94", "dc94"],
+      "observed_values": {
+        "d994": [0],
+        "da94": [0],
+        "db94": [0],
+        "dc94": [0]
+      },
+      "interpretation": "internal diagnostic/status flags, inactive in all captured normal-operation logs"
+    },
+    "diag_block_d": {
+      "family": "37/fe 2010 len8",
+      "layout": ["dd94", "de94"],
+      "observed_values": {
+        "dd94": [0],
+        "de94": [0]
+      },
+      "interpretation": "short diagnostic/status block, inactive in all captured normal-operation logs"
+    },
+    "diag_block_e": {
+      "family": "37/fe 2010 len16",
+      "layout": ["d394", "d494", "d594", "d694"],
+      "observed_values": {
+        "d394": [0],
+        "d494": [0],
+        "d594": [0],
+        "d694": [0]
+      },
+      "interpretation": "sparser diagnostic/status block, also inactive in captured normal-operation logs"
+    }
   ]
 }
