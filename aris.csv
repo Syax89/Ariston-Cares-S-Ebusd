@@ -50,7 +50,7 @@ b,aris,temp_sanitario_eco,Setpoint Sanitario Eco,37,fe,2010,6697,val,s,UIN,10,°
 # `6126` e confermato forte da dump3 come setpoint ACS diretto: valori osservati 42.0 -> 50.0 -> 42.0.
 w,aris,dhw_setpoint,Set Sanitario (Broadcast),,fe,2020,6126,val,s,UIN,10,°C,,
 # Variante passiva osservata nei dump3: `37 fe 20 20 04 61 26 xx xx`
-# b,aris,temp_sanitario_set_bc_passive,Set Sanitario (Broadcast Passivo),37,fe,2020,6126,val,s,UIN,10,°C,
+b,aris,dhw_setpoint_bc,Set Sanitario (Broadcast Passivo),37,fe,2020,6126,val,s,UIN,10,°C,
 
 # CONFIRMED - internal targets
 # Target Interni
@@ -184,6 +184,9 @@ r,aris,percentuale_fiamma,Modulazione Fiamma %,31,3c,2000,0208,val,s,UCH,2,%,
 # b,aris,z1_req_1023_bc,Candidato Richiesta Z1 1023,37,fe,200f,1023,val,s,UCH,,,
 # b,aris,z1_curve_6271_bc,Candidato Record Z1 6271,37,fe,200e,6271,val,s,UIN,10,,,
 # b,aris,z1_curve_6371_bc,Candidato Record Z1 6371,37,fe,200e,6371,val,s,UIN,10,,,
+# `6271/6371` restano commentati: i dump confermano che esistono, ma il loro significato fisico non e ancora abbastanza solido per promuoverli live.
+# b,aris,z1_reg_6271_bc,Registro Z1 6271 (Broadcast),37,fe,200e,6271,val,s,UIN,10,,,
+# b,aris,z1_reg_6371_bc,Registro Z1 6371 (Broadcast),37,fe,200e,6371,val,s,UIN,10,,,
 #
 # Scomposizione candidata dei frame osservati in dump2:
 #   37 fe 20 0f 0c 01 20 01 00 0f 23 00 00 10 23 00 00

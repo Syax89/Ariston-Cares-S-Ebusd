@@ -1,0 +1,121 @@
+{
+  "version": 1,
+  "source": "dump.pcapng, dump2.pcapng, dump3.pcapng plus live ebusd validation",
+  "validated_rows": {
+    "confirmed": [
+      "boiler_operating_mode",
+      "flame_state",
+      "request_status_1",
+      "request_status_2",
+      "dhw_setpoint",
+      "dhw_actual_temperature",
+      "heating_setpoint_triplet",
+      "max_heating_setpoint",
+      "internal_flow_target_temperature",
+      "main_flow_temperature",
+      "secondary_return_temperature",
+      "aux_probe_temperature",
+      "exhaust_temperature",
+      "pump_modulation",
+      "pressure_sensor_voltage",
+      "nominal_power_kw",
+      "zone1_current_setpoint",
+      "zone1_current_setpoint_bc",
+      "zone1_setpoints",
+      "zone1_room_temperature",
+      "zone1_request_mode_bc"
+    ],
+    "usable": [
+      "current_power_level",
+      "heating_active",
+      "heating_active_bc",
+      "heating_flame_mode",
+      "heating_flame_mode_bc",
+      "zone1_heat_request_raw",
+      "zone1_state_triplet_bc",
+      "outdoor_temperature_bc"
+    ],
+    "experimental": [
+      "legacy 2020 rows",
+      "power-search test registers",
+      "commented zone/diagnostic candidates"
+    ]
+  },
+  "dump_timeline": {
+    "dump1": [
+      { "mode": 1, "label": "standby" },
+      { "mode": 3, "label": "dhw" },
+      { "mode": 1, "label": "standby_return" }
+    ],
+    "dump2": [
+      { "mode": 1, "label": "standby" },
+      { "mode": 3, "label": "dhw" },
+      { "mode": 1, "label": "standby_return" },
+      { "mode": 2, "label": "heating" },
+      { "mode": 1, "label": "standby_return" }
+    ],
+    "dump3": [
+      { "mode": 1, "label": "standby" },
+      { "mode": 3, "label": "dhw" },
+      { "mode": 1, "label": "standby_with_setpoint_changes" }
+    ]
+  },
+  "strong_findings": [
+    "request_status_1 subfield 0191 flips only in heating mode in dump2",
+    "dhw_setpoint 6126 follows direct DHW setpoint edits",
+    "zone1_current_setpoint_bc 6571 follows direct heating setpoint edits",
+    "heating_setpoint_triplet 6047/6197/6297 is a structured target/state triple, not the direct user knob value",
+    "current_power_level is likely useful and rises under load in live logs",
+    "outdoor_temperature_bc value 3276.7 corresponds to raw ff7f and should be treated as invalid or sensor absent"
+  ],
+  "unknown_families": [
+    {
+      "family": "00/fe 203a/29",
+      "best_guess": "bus sync / heartbeat",
+      "confidence": "high",
+      "next_test": "none; treat as transport marker"
+    },
+    {
+      "family": "70/fe 203b and 03/fe 203b",
+      "best_guess": "address or discovery exchange",
+      "confidence": "medium",
+      "next_test": "compare cold starts with different attached devices"
+    },
+    {
+      "family": "37/fe 2010 7310 ff7f00",
+      "best_guess": "invalid or missing sensor sentinel",
+      "confidence": "high",
+      "next_test": "compare with an installed outdoor sensor"
+    },
+    {
+      "family": "37/fe 2010 d346..de95",
+      "best_guess": "diagnostic or internal flag blocks",
+      "confidence": "medium",
+      "next_test": "capture during fault/reset/service conditions"
+    },
+    {
+      "family": "70/fe 2000 6426 6271 6371",
+      "best_guess": "zone keyscan or key list",
+      "confidence": "medium",
+      "next_test": "check whether it changes after zone parameter edits"
+    },
+    {
+      "family": "03/fe 2001 + 37/fe 200e",
+      "best_guess": "zone config / curve / schedule family",
+      "confidence": "high",
+      "next_test": "change one zone parameter at a time and remap fields"
+    },
+    {
+      "family": "37/fe 2020 6126",
+      "best_guess": "passive DHW setpoint",
+      "confidence": "high",
+      "next_test": "observe during more DHW setpoint edits"
+    },
+    {
+      "family": "70/fe 2020 6271",
+      "best_guess": "short mirror of one zone register",
+      "confidence": "low",
+      "next_test": "verify across repeated heating transitions"
+    }
+  ]
+}

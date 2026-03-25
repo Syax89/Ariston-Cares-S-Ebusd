@@ -103,6 +103,21 @@ The file still contains some intentionally conservative or commented-out areas:
 
 These are useful for future reverse engineering, but they are not required for day-to-day monitoring.
 
+## Unknown families worth tracking
+
+These frame families are still not fully decoded, but they are no longer random noise.
+
+| Family | Example | Best guess | Confidence | Best next check |
+| :--- | :--- | :--- | :--- | :--- |
+| `00/fe 203a/29` | `00fe203a0129` | bus sync / heartbeat | high | treat as transport/system sync |
+| `70/fe 203b` + `03/fe 203b` | `75`, `29` | address / discovery exchange | medium | compare cold starts with different attached devices |
+| `37/fe 2010 7310 ff7f00` | `7310 ff7f 00` | invalid or missing sensor marker | high | compare with a real outdoor probe installed |
+| `37/fe 2010 d346..de95` | all-zero diagnostic blocks | internal diagnostic / flag blocks | medium | capture during fault, reset, low pressure, or service mode |
+| `70/fe 2000 6426 6271 6371` | `70fe200006642662716371` | zone keyscan / key list | medium | check if it changes with zone parameter edits |
+| `03/fe 2001` + `37/fe 200e` | `6271..6276`, `6371..6376`, `6426` | zone config / curve / schedule family | high | change one zone parameter at a time and remap fields |
+| `37/fe 2020 6126` | `61 26 xx xx` | passive DHW setpoint | high | already safe to observe live |
+| `70/fe 2020 6271` | `62 71 d2 00`, `62 71 e6 00` | short mirror of one zone register | low | verify during repeated heating transitions |
+
 ## Recommended MQTT entities to watch first
 
 If you want a practical starting point in MQTT / Home Assistant, watch these first:
