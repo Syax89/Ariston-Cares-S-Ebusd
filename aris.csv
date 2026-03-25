@@ -110,7 +110,8 @@ r,aris,heating_active,Attivazione Risc,31,3c,2000,0120,val,s,UCH,0=off;1=on,,
 b,aris,heating_active_bc,Attivazione Risc (Broadcast),03,fe,2000,0120,val,s,UCH,,,
 r,aris,dhw_active,Attivazione Sanitario,31,3c,2000,0220,val,s,UCH,0=off;1=on,,
 # Rilevato live come `on` anche con `flame_state=off`: piu probabile flag logico/enable heating che stato fiamma reale.
-r,aris,heating_flame_mode,Fiamma in Risc,31,3c,2000,0c19,val,s,UCH,0=off;1=on,,
+# Tenuto commentato per ridurre polling sperimentale; resta disponibile la variante passiva `heating_flame_mode_bc`.
+# r,aris,heating_flame_mode,Fiamma in Risc,31,3c,2000,0c19,val,s,UCH,0=off;1=on,,
 
 # CONFIRMED / EXPERIMENTAL mix
 # Info Generali
