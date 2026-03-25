@@ -33,7 +33,13 @@ What is working well right now:
 - main flow / return / exhaust / auxiliary temperatures
 - pressure sensor voltage and pump modulation
 - room and zone setpoints
-- several passive broadcast rows discovered from dump analysis
+- zone day/night temperatures and setpoint bundle (validated from dump analysis)
+
+What is still experimental / unverified:
+
+- thermoreg parameters (offset, slope, min/max water temp) - NOT seen in Cares S dumps
+- diagnostic flag blocks (`d3..de` families)
+- exact meaning of some zone-state bytes
 
 What is still being refined:
 
@@ -75,6 +81,9 @@ If you just want the most useful MQTT entities first, start with:
 - `dhw_setpoint`
 - `dhw_actual_temperature`
 - `zone1_current_setpoint_bc`
+- `zone1_day_temperature_bc`
+- `zone1_night_temperature_bc` (polled via 200e, not broadcast)
+- `zone1_setpoint_bundle_bc`
 - `heating_setpoint_triplet`
 - `internal_flow_target_temperature`
 - `main_flow_temperature`

@@ -1,5 +1,5 @@
 # type (r[1-9];w;u),circuit,name,comment,QQ,ZZ,PBSB,ID,field,part (m/s),type / templates,divider / values,unit,comment,field,part (m/s),type / templates,divider / values,unit,comment,field,part (m/s),type / templates,divider / values,unit,comment,field,part (m/s),type / templates,divider / values,unit,comment
-# Configurazione Ottimizzata Ariston Cares S - v3.2 (Fix System Sync + Fiamma 3)
+# Configurazione Ottimizzata Ariston Cares S - v3.4 (Verifica Dump - Thermoreg Rimossi)
 # Confidence legend used below:
 # - CONFIRMED: temporal behavior matches dump/live observations well
 # - USABLE: decodes consistently, but semantic meaning is still partly inferred
@@ -192,19 +192,24 @@ r,aris,percentuale_fiamma,Modulazione Fiamma %,31,3c,2000,0208,val,s,UCH,2,%,
 # b,aris,z1_heating_active_bc,Candidato Stato Risc Z1,37,fe,200f,0120,val,s,UCH,0=off;1=on,,
 # b,aris,z1_req_0f23_bc,Candidato Richiesta Z1 0f23,37,fe,200f,0f23,val,s,UCH,,,
 # b,aris,z1_req_1023_bc,Candidato Richiesta Z1 1023,37,fe,200f,1023,val,s,UCH,,,
-# b,aris,z1_curve_6271_bc,Candidato Record Z1 6271,37,fe,200e,6271,val,s,UIN,10,,,
-# b,aris,z1_curve_6371_bc,Candidato Record Z1 6371,37,fe,200e,6371,val,s,UIN,10,,,
-# `6271/6371` restano commentati: i dump confermano che esistono, ma il loro significato fisico non e ancora abbastanza solido per promuoverli live.
-# b,aris,z1_reg_6271_bc,Registro Z1 6271 (Broadcast),37,fe,200e,6271,val,s,UIN,10,,,
-# b,aris,z1_reg_6371_bc,Registro Z1 6371 (Broadcast),37,fe,200e,6371,val,s,UIN,10,,,
-# b,aris,zone1_day_temperature_bc,Zone 1 Day Temperature (Candidate),37,fe,200e,6271,val,s,SIN,10,°C,
-# b,aris,zone1_night_temperature_bc,Zone 1 Night Temperature (Candidate),37,fe,200e,6371,val,s,SIN,10,°C,
-# b,aris,zone1_thermoreg_offset_candidate,Zone 1 Thermoreg Offset (Candidate),31,3c,2000,6471,ign,s,IGN:1,,,,val,s,SIN,10,°C,
-# b,aris,zone1_thermoreg_slope_candidate,Zone 1 Thermoreg Slope (Candidate),31,3c,2000,6a71,ign,s,IGN:1,,,,val,s,UIN,100,,
-# b,aris,zone1_water_max_temp_candidate,Zone 1 Max Water Temp (Candidate),31,3c,2000,6071,ign,s,IGN:1,,,,val,s,SIN,10,°C,
-# b,aris,zone1_water_min_temp_candidate,Zone 1 Min Water Temp (Candidate),31,3c,2000,6171,ign,s,IGN:1,,,,val,s,SIN,10,°C,
-# b,aris,zone1_thermoreg_type_candidate,Zone 1 Thermoreg Type (Candidate),31,3c,2000,c079,ign,s,IGN:1,,,,val,s,UCH,,,
-# b,aris,zone1_room_temp_influence_candidate,Zone 1 Room Temp Influence (Candidate),31,3c,2000,c279,ign,s,IGN:1,,,,val,s,UCH,,,
+
+# `6271/6371` sono i candidati migliori da osservare live: i dump li mostrano chiaramente nella famiglia `200e` e il confronto cross-source li suggerisce come day/night temperature.
+# USABLE: strong dump evidence + cross-source validation.
+b,aris,zone1_day_temperature_bc,Zone 1 Day Temperature,37,fe,200e,6271,val,s,UIN,10,°C,
+b,aris,zone1_night_temperature_bc,Zone 1 Night Temperature,37,fe,200e,6371,val,s,UIN,10,°C,
+# USABLE: validated from dump pattern, cross-source suggests day/night temperatures.
+# Observed: 6426=5.0°C (antifreeze), 6271=21.0°C (day), 6371=16.0°C (night).
+# Bundle frame (70 fe 20 00) contains register IDs only; values via 200f broadcast or 200e polled.
+b,aris,zone1_setpoint_bundle_bc,Zone 1 Setpoint Bundle,37,fe,200f,6426,base_setpoint,s,UIN,10,°C,,ign1,s,IGN:3,,,,day_temp,s,UIN,10,°C,,ign2,s,IGN:3,,,,night_temp,s,UIN,10,°C,
+# Cross-source thermoreg parameters from Ariston/Chaffoteaux CSV comparison
+# EXPERIMENTAL: NOT seen in Cares S dumps - cross-source only, may not exist on this hardware
+# Candidates: 6471 (offset), 6a71 (slope), 6071 (max temp), 6171 (min temp), c079 (type), c279 (room influence)
+# r,aris,zone1_thermoreg_offset,Zone 1 Thermoreg Offset,31,3c,2000,6471,ign,s,IGN:1,,,,val,s,SIN,10,°C,
+# r,aris,zone1_thermoreg_slope,Zone 1 Thermoreg Slope,31,3c,2000,6a71,ign,s,IGN:1,,,,val,s,UIN,100,,
+# r,aris,zone1_water_max_temp,Zone 1 Max Water Temp,31,3c,2000,6071,ign,s,IGN:1,,,,val,s,SIN,10,°C,
+# r,aris,zone1_water_min_temp,Zone 1 Min Water Temp,31,3c,2000,6171,ign,s,IGN:1,,,,val,s,SIN,10,°C,
+# r,aris,zone1_thermoreg_type,Zone 1 Thermoreg Type,31,3c,2000,c079,ign,s,IGN:1,,,,val,s,UCH,,,
+# r,aris,zone1_room_temp_influence,Zone 1 Room Temp Influence,31,3c,2000,c279,ign,s,IGN:1,,,,val,s,UCH,,,
 #
 # Scomposizione candidata dei frame osservati in dump2:
 #   37 fe 20 0f 0c 01 20 01 00 0f 23 00 00 10 23 00 00
