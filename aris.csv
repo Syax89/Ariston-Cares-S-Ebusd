@@ -1,71 +1,98 @@
 # type (r[1-9];w;u),circuit,name,comment,QQ,ZZ,PBSB,ID,field,part (m/s),type / templates,divider / values,unit,comment,field,part (m/s),type / templates,divider / values,unit,comment,field,part (m/s),type / templates,divider / values,unit,comment,field,part (m/s),type / templates,divider / values,unit,comment
 # Configurazione Ottimizzata Ariston Cares S - v3.2 (Fix System Sync + Fiamma 3)
+# Confidence legend used below:
+# - CONFIRMED: temporal behavior matches dump/live observations well
+# - USABLE: decodes consistently, but semantic meaning is still partly inferred
+# - EXPERIMENTAL: still useful for observation, but meaning/value quality is not yet reliable
 
 # --- SYSTEM BROADCAST ---
 w,broadcast,ebus_reset,Reset ebus,,fe,2034,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 r,broadcast,cast_slave_addr,Cast slave address,,fe,203b,,,m,HEX,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-# Silenzia il messaggio di sincronizzazione frequente (ID corretto da 29 a 01)
-b,broadcast,system_sync,System Sync,00,fe,203a,29,ign,s,IGN:1,,,,,,,,,,,,,,,,,,,,,,,,,,
+# Messaggio visto nei dump (`00/fe/203a/29`), ma senza payload utile: lasciato commentato per evitare errori `invalid position`.
+# b,broadcast,system_sync,System Sync,00,fe,203a,29,ign,s,IGN:1,,,,,,,,,,,,,,,,,,,,,,,,,,
 
 #######################################################
 ####      POLLING (CHIAMATA ATTIVA)                ####
 #######################################################
 
-# Stato Fiamma (Aggiunto valore 3=on)
-r,aris,stato_fiamma,Fiamma,31,3c,2000,0e11,val,s,UCH,0=off;1=on;3=off,,
-b,aris,caldaia_mode,Stato Operativo,37,fe,2010,c04b,val,s,UCH,1,,0=Inizializzazione;1=Stand-By;2=Riscaldamento;3=Sanitario;4=Bollitore;5=Post-Circolazione;8=Antigelo;23=Test;24=Comfort;36=Calibrazione;51=Pressione Bassa;52=No Fiamma,,,,,,
+# CONFIRMED - flame state response (`70 3c 2000 0e11`), though `flame_heating_mode` below still has semantic overlap
+# Stato Fiamma (valore 3 = post-circolazione / off, visto nel dump come risposta `70 3c 2000 0e11`)
+r,aris,flame_state,Fiamma,31,3c,2000,0e11,val,s,UCH,0=off;1=on;3=off,,
+b,aris,boiler_operating_mode,Stato Operativo,37,fe,2010,c04b,val,s,UCH,1,,0=Inizializzazione;1=Stand-By;2=Riscaldamento;3=Sanitario;4=Bollitore;5=Post-Circolazione;8=Antigelo;23=Test;24=Comfort;36=Calibrazione;51=Pressione Bassa;52=No Fiamma,,,,,,
 
 # Pressione (Lettura su richiesta)
 r,aris,pressione_poll,Pressione (Poll),31,3c,2000,7547,val,s,UCH,10,bar,
 
+# CONFIRMED - DHW actual temperature
 # Sanitario
-b,aris,dhw_temp_reale,Temp Reale Sanitario,37,fe,2010,6147,val,s,U3N,10,°C,,,,,,,
+b,aris,dhw_actual_temperature,Temp Reale Sanitario,37,fe,2010,6147,val,s,U3N,10,°C,,,,,,,
 
 # Componenti
 r,aris,fan_speed,Velocita Ventola,31,3c,2000,4013,val,s,UIN,,rpm,
-r,aris,power_level,Livello Potenza Attuale,31,3c,2000,6847,val,s,UIN,2560,kW,
+r,aris,current_power_level,Livello Potenza Attuale,31,3c,2000,6847,val,s,UIN,2560,kW,
 
 #######################################################
 ####      BROADCAST (PASSIVO)                      ####
 #######################################################
+# Validati su dump.pcapng: 6047, 6147, c04b, d742, de, da46, dc46, 6426, 7118, c679, 7647
 
+# CONFIRMED / USABLE - heating setpoint family
 # Setpoint
-b,aris,temp_set_riscaldamento,Set Riscaldamento Utente,37,fe,2010,6047,val,s,UIN,10,°C,,,,,,
+# Versione semplice del setpoint heating, lasciata commentata per evitare duplicato con la tripletta completa sotto.
+# b,aris,temp_set_riscaldamento,Set Riscaldamento Utente,37,fe,2010,6047,val,s,UIN,10,°C,,,,,,
+# Nei dump, il frame completo osservato e `6047/6197/6297`:
+# - standby / sanitario: `6047=820`, `6197=650`, `6297=350`
+# - riscaldamento attivo: `6047=650`, `6197=650`, `6297=350`
+# Quindi `6047` e il sottocampo davvero dinamico dentro la tripletta, ma dump3 mostra che il setpoint heating diretto segue meglio `6571`.
+# In pratica: `6047/6197/6297` descrive una tripletta di stato/target heating, mentre `6571` sembra il valore utente piu diretto.
+b,aris,heating_setpoint_triplet,Set Riscaldamento Triplet,37,fe,2010,6047,primary_setpoint,s,UIN,10,°C,,skip1,s,IGN:3,,,,circuit_setpoint,s,UIN,10,°C,,skip2,s,IGN:3,,,,dhw_reference,s,UIN,10,°C,
 b,aris,temp_sanitario_eco,Setpoint Sanitario Eco,37,fe,2010,6697,val,s,UIN,10,°C,,,,,,
-w,aris,temp_sanitario_set_bc,Set Sanitario (Broadcast),,fe,2020,6126,val,s,UIN,10,°C,,
+# `6126` e confermato forte da dump3 come setpoint ACS diretto: valori osservati 42.0 -> 50.0 -> 42.0.
+w,aris,dhw_setpoint,Set Sanitario (Broadcast),,fe,2020,6126,val,s,UIN,10,°C,,
+# Variante passiva osservata nei dump3: `37 fe 20 20 04 61 26 xx xx`
+# b,aris,temp_sanitario_set_bc_passive,Set Sanitario (Broadcast Passivo),37,fe,2020,6126,val,s,UIN,10,°C,
 
+# CONFIRMED - internal targets
 # Target Interni
-b,aris,temp_fiamma_target,Target Fiamma,37,fe,2010,d742,val,s,UIN,10,°C,,,,,,
-b,aris,temp_max_set,Max Setpoint,37,fe,2010,6397,val,s,UIN,10,°C,,,,,,
-b,aris,temp_target_mandata_int,Target Mandata Interno,37,fe,2010,de,val,s,UCH,1,°C,,,,,,
+b,aris,flame_target_temperature,Target Fiamma,37,fe,2010,d742,val,s,UIN,10,°C,,,,,,
+b,aris,max_heating_setpoint,Max Setpoint,37,fe,2010,6397,val,s,UIN,10,°C,,,,,,
+b,aris,internal_flow_target_temperature,Target Mandata Interno,37,fe,2010,de,val,s,UCH,1,°C,,,,,,
 
+# CONFIRMED - measured temperatures
 # Temperature Reali
-b,aris,temp_flow_main,Temp Mandata Principale,37,fe,2010,6a96,val,s,UIN,10,°C,,,,,,
-b,aris,temp_return_main,Temp Ritorno Principale,37,fe,2010,6b96,val,s,UIN,10,°C,,,,,,
-b,aris,temp_exhaust,Temp Fumi,37,fe,2010,6d96,val,s,UIN,10,°C,,,,,,
+b,aris,main_flow_temperature,Temp Mandata Principale,37,fe,2010,6a96,val,s,UIN,10,°C,,,,,,
+b,aris,main_return_temperature,Temp Ritorno Principale,37,fe,2010,6b96,val,s,UIN,10,°C,,,,,,
+b,aris,exhaust_temperature,Temp Fumi,37,fe,2010,6d96,val,s,UIN,10,°C,,,,,,
 
-# Temperature Reali (EMBEDDED) - Corretto numero di virgole
-# skip1(6col) + skip2(6col) + val(6col)
-b,aris,temp_aux_probe,Temp Ausiliaria (Embedded),37,fe,2010,c194,skip1,s,HEX:2,,,,skip2,s,HEX:2,,,,val,s,UIN,10,°C,
-b,aris,temp_return_secondary,Temp Ritorno Sec (Embedded),37,fe,2010,c494,skip1,s,HEX:2,,,,skip2,s,HEX:2,,,,val,s,UIN,10,°C,
+# CONFIRMED - measured temperatures with embedded internal markers removed
+# Temperature Reali (EMBEDDED)
+# I primi campi sono marker/ID interni e vengono ignorati per mostrare solo il valore utile.
+b,aris,aux_probe_temperature,Temp Ausiliaria (Embedded),37,fe,2010,c194,ign1,s,IGN:2,,,,ign2,s,IGN:2,,,,val,s,UIN,10,°C,
+b,aris,secondary_return_temperature,Temp Ritorno Sec (Embedded),37,fe,2010,c494,ign1,s,IGN:2,,,,ign2,s,IGN:2,,,,val,s,UIN,10,°C,
 
+# CONFIRMED - diagnostics / sensor values
 # Diagnostica
-b,aris,modulazione_pompa,Modulazione Pompa,37,fe,2010,da46,val,s,UCH,,,
-b,aris,pressure_sensor_v,Sensore Pressione Volt,37,fe,2010,dc46,val,s,UIN,1000,V,,,,,,
+b,aris,pump_modulation,Modulazione Pompa,37,fe,2010,da46,val,s,UCH,,,
+b,aris,pressure_sensor_voltage,Sensore Pressione Volt,37,fe,2010,dc46,val,s,UIN,1000,V,,,,,,
 
 #######################################################
 ####      ENERGY MANAGER / ZONE                    ####
 #######################################################
 
+# CONFIRMED / USABLE - room and zone heating state family
 # --- TEMPERATURA AMBIENTE ---
-b,aris,z1_room_temp,Zona 1 Temp Ambiente,70,fe,2010,7118,val,s,UIN,10,°C,
+b,aris,zone1_room_temperature,Zona 1 Temp Ambiente,70,fe,2010,7118,val,s,UIN,10,°C,
 
 # --- RICHIESTA CALORE ZONA 1 ---
-b,aris,z1_heat_request,Richiesta Calore Z1,70,fe,2000,c6,val,s,UCH,1,,,
+# Il frame `c6 79` non e ancora interpretato semanticamente; esposto come raw per evitare numeri fuorvianti.
+b,aris,zone1_heat_request_raw,Richiesta Calore Z1 Raw,70,fe,2000,c6,val,s,HEX:1,,,,
 
 # --- SETPOINT ZONA ---
-b,aris,z1_setpoints,Setpoints Zona 1,37,fe,200f,6426,antifreeze,s,UIN,10,°C,,ign1,s,IGN:3,,,,day,s,UIN,10,°C,,ign2,s,IGN:3,,,,night,s,UIN,10,°C,
-r,aris,z1_setpoint_attuale,Set Attuale Z1,31,3c,200e,6571,val,s,UIN,10,°C,
+b,aris,zone1_setpoints,Setpoints Zona 1,37,fe,200f,6426,antifreeze,s,UIN,10,°C,,ign1,s,IGN:3,,,,day,s,UIN,10,°C,,ign2,s,IGN:3,,,,night,s,UIN,10,°C,
+# `6571` e confermato forte da dump3 come setpoint heating diretto: valori osservati 65.0 <-> 70.0.
+r,aris,zone1_current_setpoint,Set Attuale Z1,31,3c,200e,6571,val,s,UIN,10,°C,
+# Candidato passivo equivalente visto in dump3 durante il cambio setpoint: `37 fe 20 20 04 65 71 xx xx`
+b,aris,zone1_current_setpoint_bc,Set Attuale Z1 (Broadcast),37,fe,2020,6571,val,s,UIN,10,°C,
 
 #######################################################
 ####      ESTENSIONI                               ####
@@ -75,27 +102,43 @@ r,aris,boiler_life_time,Tempo Totale Caldaia,31,3c,2000,50d9,val,s,UIN,,min,
 r,aris,burner_heat_life_time,Tempo Bruciatore Risc,31,3c,2000,4bd1,val,s,UIN,10,h,
 r,aris,ignition_cycles,Cicli Accensione,31,3c,2000,42d8,val,s,UIN,,n,
 
+# CONFIRMED / USABLE - boiler and heating state family
 # Stati
+# `heating_active` e confermato forte dai dump: in dump2 compare anche come frame CRC-valido `03 fe 20 00 06 01 20 0f 23 10 23`
 r,aris,heating_active,Attivazione Risc,31,3c,2000,0120,val,s,UCH,0=off;1=on,,
+# Broadcast passivo osservato live anche fuori da `mode=2`; il valore non e booleano puro (visto `15`).
+b,aris,heating_active_bc,Attivazione Risc (Broadcast),03,fe,2000,0120,val,s,UCH,,,
 r,aris,dhw_active,Attivazione Sanitario,31,3c,2000,0220,val,s,UCH,0=off;1=on,,
-r,aris,flame_heating_mode,Fiamma in Risc,31,3c,2000,0c19,val,s,UCH,0=off;1=on,,
+r,aris,heating_flame_mode,Fiamma in Risc,31,3c,2000,0c19,val,s,UCH,0=off;1=on,,
 
+# CONFIRMED / EXPERIMENTAL mix
 # Info Generali
 r,aris,boiler_type,Tipo Caldaia ID,31,3c,2000,c428,val,s,UCH,,,
-r,aris,nominal_power,Potenza Nominale,31,3c,2000,6829,val,s,UIN,256,kW,
+r,aris,nominal_power_kw,Potenza Nominale,31,3c,2000,6829,val,s,UIN,256,kW,
+# USABLE - live logs suggest this may track actual burner power/modulation (`0.0004` idle, `6.9004`, `20.9004` under load)
 
+# CONFIRMED / USABLE - composite heating request/status family
 # Status Requests
-b,aris,status_request_1,Stato Richiesta 1,37,fe,2010,0191,val,s,UCH,,,,,,,
-b,aris,status_request_2,Stato Richiesta 2,37,fe,2010,0591,val,s,UCH,,,,,,,
+b,aris,request_status_1,Stato Richiesta 1,37,fe,2010,0191,val,s,UCH,,,,,,,
+b,aris,request_status_2,Stato Richiesta 2,37,fe,2010,0591,val,s,UCH,,,,,,,
+# Candidato commentato per futura scomposizione del gruppo 0191:
+# b,aris,status_request_1_flags,Candidato Flags Richiesta 1,37,fe,2010,0191,heating_request,s,UCH,0=off;1=on,,flag_0291,s,UCH,0=off;1=on,,flag_0391,s,UCH,0=off;1=on,,flag_0491,s,UCH,0=off;1=on,,
+
+# Note: `power_level` non e ancora validato dal dump; dopo l'analisi temporale di dump1/dump2 non emerge ancora un sostituto affidabile per la potenza istantanea.
+# Gli ultimi frame confermano invece `status_request_1/2` = 0191/0591.
+# In dump2, `status_request_1` cambia solo con `caldaia_mode=2` (riscaldamento), da `01 91 00 00 ...` a `01 91 01 00 ...`.
+# Struttura osservata di `status_request_1`: `01 91 xx 00 02 91 00 00 03 91 00 00 04 91 00 00`.
+# Ipotesi forte: il sottocampo `0191` vale `01` solo quando il riscaldamento e attivo; `0291/0391/0491` restano a `00` nei dump analizzati.
 
 
+# EXPERIMENTAL / legacy extension area
 # --- ESTENSIONI DEDOTTE DA MIRA C GREEN ---
 
 # Funzione SRA (Auto)
 w,aris,sra_status,Stato Funzione Auto (SRA),,fe,2020,0520,val,s,UCH,0=off;1=on,,
 
-# Stati Istantanei (Broadcast) - Aggiornano i sensori immediatamente senza polling
-w,aris,heating_status_bc,Stato Risc (Broadcast),,fe,2020,0120,val,s,UCH,0=off;1=on,,
+# Stati Istantanei (Broadcast) - le righe `w,...2020` restano ipotesi legacy; per il riscaldamento il dump2 conferma meglio `03/fe/2000/0120`
+w,aris,heating_status_bc,Stato Risc (Broadcast Legacy),,fe,2020,0120,val,s,UCH,0=off;1=on,,
 w,aris,dhw_status_bc,Stato Sanitario (Broadcast),,fe,2020,0220,val,s,UCH,0=off;1=on,,
 
 # Offset Temperatura Esterna (se hai la sonda esterna)
@@ -105,18 +148,73 @@ w,aris,ext_temp_offset,Offset Temp Esterna,,fe,2020,7426,val,s,SIN,10,°C,,
 r,aris,consumo_risc_kwh,Consumo Risc (Interno),31,3c,2000,8d50,val,s,UIN,1,kWh,
 r,aris,consumo_sanitario_kwh,Consumo Sanitario (Interno),31,3c,2000,8d51,val,s,UIN,1,kWh,
 
+# CONFIRMED / USABLE additions from logs and dumps
 # --- NUOVE AGGIUNTE DAI LOG ---
 # Temperatura Esterna (elimina errore "unknown" anche se non hai la sonda)
-b,aris,temp_esterna_bc,Temp Esterna (Broadcast),37,fe,2010,7647,val,s,SIN,10,°C,
+# Se il valore e `3276.7`, il raw e tipicamente `ff7f` e indica sonda esterna assente / valore non valido.
+b,aris,outdoor_temperature_bc,Temp Esterna (Broadcast),37,fe,2010,7647,val,s,SIN,10,°C,
+
+# Note dai dump validati con CRC:
+# - famiglia `03/37/70 fe 20 00/01/0e/0f ...` vista solo in dump2 e molto probabilmente legata a zona 1 / setpoint / heating state
+# - `03 fe 20 00 06 01 20 0f 23 10 23` e probabilmente un gruppo stato/richiesta riscaldamento
+# - `37 fe 20 0e 08 62 71..63 76..` sembra una scansione di record zona/schedule, non potenza istantanea
 
 # Stato Fiamma (Lettura passiva - aggiorna il sensore senza chiedere continuamente)
-b,aris,flame_heating_mode_bc,Fiamma in Risc (Broadcast),37,fe,2010,0c19,val,s,UCH,0=off;1=on,,
+b,aris,heating_flame_mode_bc,Fiamma in Risc (Broadcast),37,fe,2010,0c19,val,s,UCH,0=off;1=on,,
 
 # Debug / Info Tecniche (Z1 Request Mode)
-b,aris,z1_req_mode_bc,Modo Richiesta Z1 (Broadcast),37,fe,200f,c679,val,s,UCH,,,
+b,aris,zone1_request_mode_bc,Modo Richiesta Z1 (Broadcast),37,fe,200f,c679,val,s,UCH,,,
 r,aris,percentuale_fiamma,Modulazione Fiamma %,31,3c,2000,0208,val,s,UCH,2,%,
 
+# USABLE / EXPERIMENTAL zone-1 family inferred from dumps
+# --- ZONA 1 DA DUMP2 ---
+# Righe attive sotto: candidate forti gia promosse dal dump.
+# Righe commentate sotto: candidate ancora da verificare con ulteriori log / test.
+# Sequenza osservata in dump2:
+#   03 fe 20 00 06 01 20 0f 23 10 23
+#   37 fe 20 0f 0c 01 20 01 00 0f 23 00 00 10 23 00 00
+#   03 fe 20 01 02 62 71..63 76
+#   37 fe 20 0e 08 62 71..63 76 ...
+# Ipotesi forte: famiglia stati/richieste/setpoint zona 1, non potenza istantanea.
+# Dettaglio dai dump: in `37 fe 20 0e 08`, i record `6271..6276` valgono ~190/230, `6371..6376` valgono ~160, e `6426` vale 50.
+# Questo sembra molto piu compatibile con curve/livelli/setpoint che con una misura di potenza del bruciatore.
+#
+# b,aris,z1_heating_active_bc,Candidato Stato Risc Z1,37,fe,200f,0120,val,s,UCH,0=off;1=on,,
+# b,aris,z1_req_0f23_bc,Candidato Richiesta Z1 0f23,37,fe,200f,0f23,val,s,UCH,,,
+# b,aris,z1_req_1023_bc,Candidato Richiesta Z1 1023,37,fe,200f,1023,val,s,UCH,,,
+# b,aris,z1_curve_6271_bc,Candidato Record Z1 6271,37,fe,200e,6271,val,s,UIN,10,,,
+# b,aris,z1_curve_6371_bc,Candidato Record Z1 6371,37,fe,200e,6371,val,s,UIN,10,,,
+#
+# Scomposizione candidata dei frame osservati in dump2:
+#   37 fe 20 0f 0c 01 20 01 00 0f 23 00 00 10 23 00 00
+#     -> 0120=1, 0f23=0, 1023=0
+#   37 fe 20 0e 08 62 71 e6 00 64 00 2c 01
+#     -> 6271=230, 6400=300
+#   37 fe 20 0e 08 63 71 a0 00 64 00 2c 01
+#     -> 6371=160, 6400=300
+#   37 fe 20 0e 08 64 26 32 00 14 00 96 00
+#     -> 6426=50, 1400=150
+#
+b,aris,zone1_state_triplet_bc,Stato Z1 Triplet,37,fe,200f,0120,heating_request,s,UCH,0=off;1=on,,,zone_call_state,s,UCH,,,,zone_status_code,s,UCH,,,
+# Nota live: il terzo campo e stato visto come valore numerico `15`, quindi non va interpretato come booleano.
+# Le righe seguenti restano commentate finche non confermiamo i significati fisici dei valori.
+# b,aris,z1_setpoint_keyscan_bc,Keyscan Setpoint Z1,70,fe,2000,6426,key1,s,HEX:2,,,,key2,s,HEX:2,,,,
+# b,aris,z1_curve_627x_pair_bc,Candidato Curva Z1 627x,37,fe,200e,6271,val,s,UIN,10,,ref_6400,s,UIN,10,,
+# b,aris,z1_curve_637x_pair_bc,Candidato Curva Z1 637x,37,fe,200e,6371,val,s,UIN,10,,ref_6400,s,UIN,10,,
+# b,aris,z1_setpoint_pair_bc,Candidato Setpoint Z1 6426,37,fe,200e,6426,val,s,UIN,10,,ref_1400,s,UIN,10,,
 
+# Blocchi diagnostici/flag ricorrenti nei dump, ancora non interpretati ma stabili:
+# b,aris,diag_block_a,Diagnostica Block A,37,fe,2010,d346,val1,s,UIN,,,
+# ,,,,,,,,flag_cf9c,s,UIN,,,,flag_d995,s,UIN,,,,flag_da95,s,UIN,,,
+# b,aris,diag_block_b,Diagnostica Block B,37,fe,2010,db95,val1,s,UIN,,,
+# ,,,,,,,,flag_dc95,s,UIN,,,,flag_dd95,s,UIN,,,,flag_de95,s,UIN,,,
+# b,aris,diag_block_c,Diagnostica Block C,37,fe,2010,d994,val1,s,UIN,,,
+# ,,,,,,,,flag_da94,s,UIN,,,,flag_db94,s,UIN,,,,flag_dc94,s,UIN,,,
+# b,aris,diag_block_d,Diagnostica Block D,37,fe,2010,dd94,val1,s,UIN,,,
+# ,,,,,,,,flag_de94,s,UIN,,,,
+
+
+# EXPERIMENTAL power-search registers
 # --- TEST RICERCA POTENZA SANITARIO ---
 
 # Test 1: Comando Valvola Gas (PWM) - Se questo sale (es. 40-100), stai consumando!
