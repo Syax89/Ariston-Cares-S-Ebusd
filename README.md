@@ -1,147 +1,116 @@
-# Ariston Cares S ebusd Configuration
+# Ariston Cares S eBUSd Configuration
 
 [![GitHub Release](https://img.shields.io/github/v/release/Syax89/Ariston-Cares-S-Ebusd?style=for-the-badge)](https://github.com/Syax89/Ariston-Cares-S-Ebusd/releases)
 [![ebusd](https://img.shields.io/badge/ebusd-Compatible-blue?style=for-the-badge)](https://github.com/john30/ebusd)
 
-`ebusd` configuration for **Ariston Cares S** boilers and closely related Galileo-platform models.
+Reverse-engineered `ebusd` configuration for **Ariston Cares S** boilers and closely related Galileo-platform models.
 
-This repository is based on real packet captures (`dump`, `dump2`, `dump3`) and live `ebusd` validation against an `ens:192.168.4.74:9999` adapter stream.
+This project started as a custom `aris.csv` to make an Ariston Cares S usable with `ebusd`, and evolved into a dump-driven reverse-engineering effort based on:
 
-## What is already validated
+- real packet captures (`dump.pcapng`, `dump2.pcapng`, `dump3.pcapng`)
+- live validation through `ebusd`
+- MQTT observation during real boiler activity
 
-The current `aris.csv` is no longer just a guesswork file. The following areas were validated from packet dumps and confirmed again in live `ebusd` logs:
+## Project goal
 
-- boiler state and request status
-- heating and DHW setpoints
-- main temperatures and internal targets
-- room/zone temperatures and zone setpoint broadcasts
-- pump modulation and pressure sensor voltage
+The goal is simple:
+
+- map as many Ariston eBUS messages as possible
+- keep only the rows that are logically validated
+- expose useful entities for MQTT / Home Assistant
+- document what is confirmed, what is usable, and what is still experimental
+
+## Current status
+
+The repository is already usable in practice.
+
+What is working well right now:
+
+- boiler operating mode
+- request/status groups
+- DHW setpoint and DHW actual temperature
+- heating setpoint broadcasts
+- main flow / return / exhaust / auxiliary temperatures
+- pressure sensor voltage and pump modulation
+- room and zone setpoints
+- several passive broadcast rows discovered from dump analysis
+
+What is still being refined:
+
+- exact meaning of some zone-state bytes
+- diagnostic flag blocks (`d3..de` families)
+- final interpretation of a few heating-related logical flags
+
+## Recommended files
+
+- Main config: [`aris.csv`](aris.csv)
+- Shared templates: [`_templates.csv`](_templates.csv)
+- Reverse-engineering summary: [`reverse_engineering_report.json`](reverse_engineering_report.json)
 
 ## Installation
 
-Copy `aris.csv` and `_templates.csv` to your ebusd config directory, for example `/etc/ebusd/` or your Home Assistant add-on config path.
+Copy `aris.csv` and `_templates.csv` into your `ebusd` config path.
 
-Example startup:
+Example:
 
 ```bash
 ebusd --scanconfig=0 --configpath=/etc/ebusd --device=/dev/ttyUSB0
 ```
 
-For Ethernet/ENS adapters, a setup like this is also valid:
+For ENS/TCP adapters:
 
 ```bash
 ebusd --scanconfig=0 --configpath=/config/Ariston --device=ens:192.168.4.74:9999
 ```
 
-`--scanconfig=0` is recommended so `ebusd` does not fall back to generic Ariston CSV files.
+`--scanconfig=0` is recommended so `ebusd` does not load generic Ariston CSV files instead of this one.
 
-If you use MQTT/Home Assistant discovery, keep `mqtt-hassio.cfg` in the same config path.
+## Best entities to watch first
 
-## Confirmed entities
-
-These names are considered the most reliable right now.
-
-| Group | Name | Meaning | Unit / Type |
-| :--- | :--- | :--- | :--- |
-| Status | `flame_state` | flame state from active polling | enum |
-| Status | `boiler_operating_mode` | boiler operating mode | enum |
-| Status | `request_status_1` | composite request/status group | status |
-| Status | `request_status_2` | secondary request/status group | status |
-| Heating | `heating_setpoint_triplet` | heating target triplet | degC |
-| Heating | `max_heating_setpoint` | maximum heating setpoint | degC |
-| Heating | `internal_flow_target_temperature` | internal flow target | degC |
-| Heating | `zone1_current_setpoint` | active heating setpoint | degC |
-| Heating | `zone1_current_setpoint_bc` | passive broadcast of active heating setpoint | degC |
-| Water | `dhw_setpoint` | DHW setpoint | degC |
-| Water | `dhw_actual_temperature` | actual DHW temperature | degC |
-| Water | `temp_sanitario_eco` | ECO DHW setpoint | degC |
-| Temperature | `main_flow_temperature` | main flow temperature | degC |
-| Temperature | `secondary_return_temperature` | secondary return temperature | degC |
-| Temperature | `aux_probe_temperature` | auxiliary probe temperature | degC |
-| Temperature | `exhaust_temperature` | exhaust/flue temperature | degC |
-| Temperature | `zone1_room_temperature` | room temperature | degC |
-| Temperature | `outdoor_temperature_bc` | outdoor temperature broadcast | degC or invalid |
-| Technical | `pump_modulation` | pump modulation value | raw numeric |
-| Technical | `pressure_sensor_voltage` | pressure sensor voltage | V |
-| Technical | `nominal_power_kw` | nominal boiler power | kW |
-
-## Usable but still partly inferred
-
-These decode consistently, but their exact physical meaning is not fully proven yet:
-
-| Name | Current interpretation |
-| :--- | :--- |
-| `heating_active` | heating enable / logical heating active |
-| `heating_active_bc` | passive heating state byte, not a pure boolean |
-| `zone1_setpoints` | antifreeze/day/night zone setpoints |
-| `zone1_request_mode_bc` | zone request mode/status |
-| `zone1_heat_request_raw` | raw zone heat request byte |
-| `zone1_state_triplet_bc` | zone state triplet (`heating_request`, `zone_call_state`, `zone_status_code`) |
-| `heating_flame_mode` | heating-related flame mode, semantics still overlap with `flame_state` |
-| `heating_flame_mode_bc` | passive heating-flame-related state |
-| `current_power_level` | likely real burner power/modulation, but still worth observing |
-
-## Important notes from validation
-
-- `request_status_1` changes with heating mode; in the tested dumps, the `0191` subfield flips to `1` only during heating operation.
-- `heating_setpoint_triplet` behaves consistently across all three dumps:
-  - standby / DHW: `82.0;65.0;35.0`
-  - heating active: `65.0;65.0;35.0`
-- `dhw_setpoint` was confirmed live by observing writes like `41.0` and `42.0`.
-- `zone1_current_setpoint_bc` tracks real setpoint changes live (`64.0`, `65.0`, `66.0`, `67.0`, etc.).
-- `outdoor_temperature_bc = 3276.7` usually means raw `ff7f`, i.e. sensor absent / invalid value.
-- `zone1_heat_request_raw` currently exposes the raw byte (`79` seen live) because its semantics are not fully decoded yet.
-
-## Still unknown / experimental
-
-The file still contains some intentionally conservative or commented-out areas:
-
-- diagnostic blocks around `d346`, `db95`, `d994`, `dd94`
-- zone schedule/curve families around `6271..6276`, `6371..6376`, `6426`
-- legacy `2020`-based rows kept for observation only
-- power-search test registers at the bottom of `aris.csv`
-
-These are useful for future reverse engineering, but they are not required for day-to-day monitoring.
-
-## Unknown families worth tracking
-
-These frame families are still not fully decoded, but they are no longer random noise.
-
-| Family | Example | Best guess | Confidence | Best next check |
-| :--- | :--- | :--- | :--- | :--- |
-| `00/fe 203a/29` | `00fe203a0129` | bus sync / heartbeat | high | treat as transport/system sync |
-| `70/fe 203b` + `03/fe 203b` | `75`, `29` | address / discovery exchange | medium | compare cold starts with different attached devices |
-| `37/fe 2010 7310 ff7f00` | `7310 ff7f 00` | invalid or missing sensor marker | high | compare with a real outdoor probe installed |
-| `37/fe 2010 d346..de95` | all-zero diagnostic blocks | internal diagnostic / flag blocks | medium | capture during fault, reset, low pressure, or service mode |
-| `70/fe 2000 6426 6271 6371` | `70fe200006642662716371` | zone keyscan / key list | medium | check if it changes with zone parameter edits |
-| `03/fe 2001` + `37/fe 200e` | `6271..6276`, `6371..6376`, `6426` | zone config / curve / schedule family | high | change one zone parameter at a time and remap fields |
-| `37/fe 2020 6126` | `61 26 xx xx` | passive DHW setpoint | high | already safe to observe live |
-| `70/fe 2020 6271` | `62 71 d2 00`, `62 71 e6 00` | short mirror of one zone register | low | verify during repeated heating transitions |
-
-## Recommended MQTT entities to watch first
-
-If you want a practical starting point in MQTT / Home Assistant, watch these first:
+If you just want the most useful MQTT entities first, start with:
 
 - `boiler_operating_mode`
 - `flame_state`
 - `request_status_1`
-- `internal_flow_target_temperature`
-- `main_flow_temperature`
 - `dhw_setpoint`
 - `dhw_actual_temperature`
 - `zone1_current_setpoint_bc`
 - `heating_setpoint_triplet`
+- `internal_flow_target_temperature`
+- `main_flow_temperature`
 - `current_power_level`
+
+## Validation philosophy
+
+This repository does not treat a frame as valid just because it decodes once.
+
+A row is promoted only when it is supported by one or more of these:
+
+- repeated appearance across multiple dumps
+- temporal consistency with real user actions
+- plausible numeric range and unit
+- confirmation from live `ebusd` logs
+
+That is why some rows are active, some are documented as usable, and others remain commented or experimental.
+
+## Technical notes
+
+Some useful conclusions already established:
+
+- `request_status_1` is the strongest heating-demand indicator found so far
+- `dhw_setpoint` and `zone1_current_setpoint_bc` were validated by real setpoint changes
+- `outdoor_temperature_bc = 3276.7` typically means raw `ff7f`, i.e. invalid / sensor absent
+- `current_power_level` now looks much more credible than in the first iterations, because it changes under real load
+
+For the full reverse-engineering state, use [`reverse_engineering_report.json`](reverse_engineering_report.json).
 
 ## Contributing
 
-New packet captures, live logs, and validation from compatible Ariston / Chaffoteaux models are very welcome.
+If you want to help, the most useful contributions are:
 
-If you open an issue or PR, the most useful material is:
-
-- raw `ebusd` log excerpts
-- `pcapng` dumps
-- a short note describing what changed physically on the boiler (DHW setpoint, heating setpoint, burner start/stop, etc.)
+- new `pcapng` captures
+- raw `ebusd` log snippets
+- notes describing what physically changed on the boiler during the capture
 
 ## License
 

@@ -109,6 +109,7 @@ r,aris,heating_active,Attivazione Risc,31,3c,2000,0120,val,s,UCH,0=off;1=on,,
 # Broadcast passivo osservato live anche fuori da `mode=2`; il valore non e booleano puro (visto `15`).
 b,aris,heating_active_bc,Attivazione Risc (Broadcast),03,fe,2000,0120,val,s,UCH,,,
 r,aris,dhw_active,Attivazione Sanitario,31,3c,2000,0220,val,s,UCH,0=off;1=on,,
+# Rilevato live come `on` anche con `flame_state=off`: piu probabile flag logico/enable heating che stato fiamma reale.
 r,aris,heating_flame_mode,Fiamma in Risc,31,3c,2000,0c19,val,s,UCH,0=off;1=on,,
 
 # CONFIRMED / EXPERIMENTAL mix
@@ -124,8 +125,8 @@ b,aris,request_status_2,Stato Richiesta 2,37,fe,2010,0591,val,s,UCH,,,,,,,
 # Candidato commentato per futura scomposizione del gruppo 0191:
 # b,aris,status_request_1_flags,Candidato Flags Richiesta 1,37,fe,2010,0191,heating_request,s,UCH,0=off;1=on,,flag_0291,s,UCH,0=off;1=on,,flag_0391,s,UCH,0=off;1=on,,flag_0491,s,UCH,0=off;1=on,,
 
-# Note: `power_level` non e ancora validato dal dump; dopo l'analisi temporale di dump1/dump2 non emerge ancora un sostituto affidabile per la potenza istantanea.
-# Gli ultimi frame confermano invece `status_request_1/2` = 0191/0591.
+# Note: `current_power_level` e ora considerato usable: live logs mostrano `0.0004` in idle e valori come `6.9004` / `20.9004` sotto carico.
+# Gli ultimi frame confermano inoltre `request_status_1/2` = 0191/0591.
 # In dump2, `status_request_1` cambia solo con `caldaia_mode=2` (riscaldamento), da `01 91 00 00 ...` a `01 91 01 00 ...`.
 # Struttura osservata di `status_request_1`: `01 91 xx 00 02 91 00 00 03 91 00 00 04 91 00 00`.
 # Ipotesi forte: il sottocampo `0191` vale `01` solo quando il riscaldamento e attivo; `0291/0391/0491` restano a `00` nei dump analizzati.
@@ -160,6 +161,7 @@ b,aris,outdoor_temperature_bc,Temp Esterna (Broadcast),37,fe,2010,7647,val,s,SIN
 # - `37 fe 20 0e 08 62 71..63 76..` sembra una scansione di record zona/schedule, non potenza istantanea
 
 # Stato Fiamma (Lettura passiva - aggiorna il sensore senza chiedere continuamente)
+# Anche questa variante passiva sembra riflettere uno stato logico heating-flame, non la fiamma reale del bruciatore.
 b,aris,heating_flame_mode_bc,Fiamma in Risc (Broadcast),37,fe,2010,0c19,val,s,UCH,0=off;1=on,,
 
 # Debug / Info Tecniche (Z1 Request Mode)
@@ -206,7 +208,8 @@ b,aris,zone1_state_triplet_bc,Stato Z1 Triplet,37,fe,200f,0120,heating_request,s
 # b,aris,z1_curve_637x_pair_bc,Candidato Curva Z1 637x,37,fe,200e,6371,val,s,UIN,10,,ref_6400,s,UIN,10,,
 # b,aris,z1_setpoint_pair_bc,Candidato Setpoint Z1 6426,37,fe,200e,6426,val,s,UIN,10,,ref_1400,s,UIN,10,,
 
-# Blocchi diagnostici/flag ricorrenti nei dump, ancora non interpretati ma stabili:
+# Blocchi diagnostici/flag ricorrenti nei dump, stabili e quasi certamente non legati a temperature/setpoint/potenza:
+# il comportamento visto finora suggerisce flag diagnostici/interi interni, spesso tutti a zero in condizioni normali.
 # b,aris,diag_block_a,Diagnostica Block A,37,fe,2010,d346,val1,s,UIN,,,
 # ,,,,,,,,flag_cf9c,s,UIN,,,,flag_d995,s,UIN,,,,flag_da95,s,UIN,,,
 # b,aris,diag_block_b,Diagnostica Block B,37,fe,2010,db95,val1,s,UIN,,,
