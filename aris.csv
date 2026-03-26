@@ -28,7 +28,9 @@ r,aris,pressione_poll,Pressione (Poll),31,3c,2000,7547,val,s,UCH,10,bar,
 b,aris,dhw_actual_temperature,Temp Reale Sanitario,37,fe,2010,6147,val,s,U3N,10,°C,,,,,,,
 
 # Componenti
-r,aris,fan_speed,Velocita Ventola,31,3c,2000,4013,val,s,UIN,,rpm,
+# EXPERIMENTAL: `4013` tracks burner activity, but live MQTT values like `45569/49153/49921/52737` do not look like real RPM.
+# Treat it as a raw fan-related signal until scaling/byte order is understood.
+r,aris,fan_speed_raw,Segnale Ventola Raw,31,3c,2000,4013,val,s,HEX:2,,,,
 r,aris,current_power_level,Livello Potenza Attuale,31,3c,2000,6847,val,s,UIN,2560,kW,
 
 #######################################################
@@ -88,9 +90,11 @@ b,aris,zone1_room_temperature,Zona 1 Temp Ambiente,70,fe,2010,7118,val,s,UIN,10,
 b,aris,zone1_heat_request_raw,Richiesta Calore Z1 Raw,70,fe,2000,c6,val,s,HEX:1,,,,
 
 # --- SETPOINT ZONA ---
-b,aris,zone1_setpoints,Setpoints Zona 1,37,fe,200f,6426,antifreeze,s,UIN,10,°C,,ign1,s,IGN:3,,,,day,s,UIN,10,°C,,ign2,s,IGN:3,,,,night,s,UIN,10,°C,
+# Legacy duplicate of `zone1_setpoint_bundle_bc`: kept commented to avoid two active decoders on the same `37/fe/200f/6426` frame.
+# b,aris,zone1_setpoints,Setpoints Zona 1,37,fe,200f,6426,antifreeze,s,UIN,10,°C,,ign1,s,IGN:3,,,,day,s,UIN,10,°C,,ign2,s,IGN:3,,,,night,s,UIN,10,°C,
 # `6571` e confermato forte da dump3 come setpoint heating diretto: valori osservati 65.0 <-> 70.0.
-r,aris,zone1_current_setpoint,Set Attuale Z1,31,3c,200e,6571,val,s,UIN,10,°C,
+# I log ebusd mostrano una risposta strutturata `37fe200e0865718a022c013403` -> `6571=65.0`, seguita da due campi extra (`300`, `820`) da ignorare per ora.
+r,aris,zone1_current_setpoint,Set Attuale Z1,31,3c,200e,6571,val,s,UIN,10,°C,,ign1,s,IGN:3,,,,ign2,s,IGN:3,,,,
 # Candidato passivo equivalente visto in dump3 durante il cambio setpoint: `37 fe 20 20 04 65 71 xx xx`
 b,aris,zone1_current_setpoint_bc,Set Attuale Z1 (Broadcast),37,fe,2020,6571,val,s,UIN,10,°C,
 
@@ -202,14 +206,18 @@ b,aris,zone1_night_temperature_bc,Zone 1 Night Temperature,37,fe,200e,6371,val,s
 # Bundle frame (70 fe 20 00) contains register IDs only; values via 200f broadcast or 200e polled.
 b,aris,zone1_setpoint_bundle_bc,Zone 1 Setpoint Bundle,37,fe,200f,6426,base_setpoint,s,UIN,10,°C,,ign1,s,IGN:3,,,,day_temp,s,UIN,10,°C,,ign2,s,IGN:3,,,,night_temp,s,UIN,10,°C,
 # Cross-source thermoreg parameters from Ariston/Chaffoteaux CSV comparison
-# EXPERIMENTAL: NOT seen in Cares S dumps - cross-source only, may not exist on this hardware
-# Candidates: 6471 (offset), 6a71 (slope), 6071 (max temp), 6171 (min temp), c079 (type), c279 (room influence)
-# r,aris,zone1_thermoreg_offset,Zone 1 Thermoreg Offset,31,3c,2000,6471,ign,s,IGN:1,,,,val,s,SIN,10,°C,
-# r,aris,zone1_thermoreg_slope,Zone 1 Thermoreg Slope,31,3c,2000,6a71,ign,s,IGN:1,,,,val,s,UIN,100,,
-# r,aris,zone1_water_max_temp,Zone 1 Max Water Temp,31,3c,2000,6071,ign,s,IGN:1,,,,val,s,SIN,10,°C,
-# r,aris,zone1_water_min_temp,Zone 1 Min Water Temp,31,3c,2000,6171,ign,s,IGN:1,,,,val,s,SIN,10,°C,
-# r,aris,zone1_thermoreg_type,Zone 1 Thermoreg Type,31,3c,2000,c079,ign,s,IGN:1,,,,val,s,UCH,,,
-# r,aris,zone1_room_temp_influence,Zone 1 Room Temp Influence,31,3c,2000,c279,ign,s,IGN:1,,,,val,s,UCH,,,
+# UPDATE from live ebusd logs: the 2020 thermoreg family is now visible on this hardware, e.g.
+# - `37fe20200c6071340361712c0164710000` -> plausible `6071=82.0`, `6171=30.0`, `6471=0.0`
+# - `37fe20200c69712c016a7182006b715e01` -> plausible `6a71=1.30` with divisor 100
+# - `37fe20200a6c713200c07901c2790a` -> plausible `c079=1`, `c279=10`
+# Active rows below keep only the fields whose meaning is already reasonably supported by live evidence.
+b,aris,zone1_thermoreg_limits_bc,Zone 1 Thermoreg Limits,37,fe,2020,6071,max_water_temp,s,UIN,10,°C,,ign1,s,IGN:2,,,,min_water_temp,s,UIN,10,°C,,ign2,s,IGN:2,,,,offset,s,SIN,10,°C,
+# Note: the observed live frame starts at `6971`, not `6a71`: `37fe20200c69712c016a7182006b715e01`.
+# Keep the single-field slope row disabled until we finalize whether this should be decoded as a 3-field bundle.
+# b,aris,zone1_thermoreg_config_bc,Zone 1 Thermoreg Config,37,fe,2020,6a71,slope,s,UIN,100,,,
+# Future candidates still visible in the same live 2020 family, but semantics are not finalized enough yet:
+# b,aris,zone1_thermoreg_misc_bc,Candidate Thermoreg Misc,37,fe,2020,6971,field1,s,UIN,10,°C,,slope,s,UIN,100,,,
+# b,aris,zone1_thermoreg_room_influence_bc,Candidate Room Influence,37,fe,2020,c079,thermoreg_type,s,UCH,,,,room_temp_influence,s,UCH,,,
 #
 # Scomposizione candidata dei frame osservati in dump2:
 #   37 fe 20 0f 0c 01 20 01 00 0f 23 00 00 10 23 00 00
