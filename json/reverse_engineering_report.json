@@ -25,6 +25,10 @@
       "zone1_current_setpoint_bc",
       "zone1_setpoint_bundle_bc",
       "zone1_thermoreg_limits_bc",
+      "thermoreg_profile73_limits_bc",
+      "thermoreg_profile73_curve_bc",
+      "thermoreg_profile75_limits_bc",
+      "thermoreg_profile75_curve_bc",
       "zone1_room_temperature",
       "zone1_request_mode_bc"
     ],
@@ -32,6 +36,7 @@
       "current_power_level",
       "heating_active",
       "heating_active_bc",
+      "heating_active_short_bc",
       "heating_flame_mode",
       "heating_flame_mode_bc",
       "zone1_heat_request_raw",
@@ -76,6 +81,8 @@
     "heating_active_bc reached 15 in live logs, so it should be treated as a raw/status-like field rather than a pure on/off indicator",
     "zone1_thermoreg_limits_bc is now confirmed at 82.0 / 30.0 / 0.0 after correcting the IGN separators and is stable in recent MQTT/log evidence",
     "zone1_thermoreg_curve_bc is now confirmed at 30.0 / 1.30 / 35.0 in both ebusd logs and MQTT",
+    "thermoreg_profile73_limits_bc and thermoreg_profile73_curve_bc are now confirmed from passive 2020 traffic with values 82.0 / 35.0 / 0.0 and 30.0 / 1.30 / 35.0",
+    "thermoreg_profile75_limits_bc and thermoreg_profile75_curve_bc are now confirmed from passive 2020 traffic with values 82.0 / 35.0 / 0.0 and 30.0 / 1.30 / 35.0",
     "cross-source comparison suggests 6271/6371 likely represent day/night zone temperatures or comfort/reduced setpoints, while 6197 is a good candidate for computed target temperature",
     "current_power_level is likely useful and rises under load in live logs",
     "fan register 4013 tracks burner activity, but values like 45569/49153/49921/52737 do not look like real RPM and are now treated as raw",
@@ -89,6 +96,8 @@
     "zone1_current_setpoint_bc is now discovered in MQTT and confirmed in ebusd logs at 65.0",
     "zone1_thermoreg_limits_bc publishes stable MQTT payloads with max_water_temp=82.0, min_water_temp=30.0, offset=0.0",
     "zone1_thermoreg_curve_bc now publishes MQTT payloads with param1_temp=30.0, slope=1.30, param2_temp=35.0",
+    "thermoreg_profile73_limits_bc and thermoreg_profile73_curve_bc now publish MQTT payloads with 82.0 / 35.0 / 0.0 and 30.0 / 1.30 / 35.0",
+    "thermoreg_profile75_limits_bc and thermoreg_profile75_curve_bc now publish MQTT payloads with 82.0 / 35.0 / 0.0 and 30.0 / 1.30 / 35.0",
     "fan_speed on MQTT showed raw-looking values 1, 45569, 49153, 49921, 52737 and should not be interpreted as physical RPM yet"
   ],
   "ebusd_log_findings": [
@@ -99,6 +108,8 @@
     "the 2020 thermoreg family is now visible live: 6071=82.0, 6171=30.0, 6471=0.0, 6a71=1.30, c079=1, c279=10 are plausible structured decodes",
     "a second 2020 thermoreg frame 6971/6a71/6b71 decodes cleanly as 30.0 / 1.30 / 35.0, but only the middle slope field is semantically strong so far",
     "recent logs repeatedly decode zone1_thermoreg_limits_bc as 82.0;30.0;0.0 and zone1_thermoreg_curve_bc as 30.0;1.30;35.0",
+    "recent passive-only logs now decode thermoreg_profile73_limits_bc / thermoreg_profile73_curve_bc and thermoreg_profile75_limits_bc / thermoreg_profile75_curve_bc without polling",
+    "the 72/74/76 branches of the 2020 family are also highly structured and stable in raw logs, but are still treated as strong structural candidates until ebusd/MQTT decode them directly",
     "6126 also appears with a structured 200e response, reinforcing that some setpoint reads return extra trailing fields"
   ],
   "parse_failures_to_revisit": [
@@ -256,6 +267,42 @@
         "suggested_meaning": "zone1_thermoreg_slope",
         "confidence": "medium",
         "reason": "seen live in the 2020 thermoreg family with a plausible value of 1.30 using divisor 100, matching external CSV semantics"
+      },
+      {
+        "register": "6172/6472/6572",
+        "suggested_meaning": "parallel 2020 profile candidate with values 35.0 / 0.0 / 35.0",
+        "confidence": "medium",
+        "reason": "appears repeatedly and stably in logs with the same triplet structure as other confirmed 2020 bundles, but is not yet decoder-level confirmed"
+      },
+      {
+        "register": "6672/6772/6972",
+        "suggested_meaning": "parallel 2020 profile candidate with values 82.0 / 30.0 / 30.0",
+        "confidence": "medium",
+        "reason": "appears repeatedly and stably in logs with plausible scaled values, but semantics remain inferred from structure only"
+      },
+      {
+        "register": "6a72/6b72/6c72",
+        "suggested_meaning": "parallel 2020 profile candidate with values 1.30 / 35.0 / 5.0",
+        "confidence": "medium",
+        "reason": "repeated stable structure strongly parallels confirmed thermoreg curve/config families, but has no direct ebusd decode yet"
+      },
+      {
+        "register": "6174/6474/6574 and 6176/6476/6576",
+        "suggested_meaning": "parallel 2020 profile limit candidates",
+        "confidence": "medium",
+        "reason": "repeat the same stable raw pattern seen on the 72 branch and likely belong to the same family, but remain unconfirmed at decoder level"
+      },
+      {
+        "register": "6674/6774/6974 and 6676/6776/6976",
+        "suggested_meaning": "parallel 2020 profile mid-bundle candidates",
+        "confidence": "medium",
+        "reason": "stable recurring raw triplets with plausible scaled values and strong family symmetry, but semantics are still inferred"
+      },
+      {
+        "register": "6a74/6b74/6c74 and 6a76/6b76/6c76",
+        "suggested_meaning": "parallel 2020 profile curve/config candidates",
+        "confidence": "medium",
+        "reason": "stable recurring raw triplets with the same structure as confirmed thermoreg bundles on 71/73/75, but not yet exposed by ebusd"
       },
       {
         "register": "c079",
