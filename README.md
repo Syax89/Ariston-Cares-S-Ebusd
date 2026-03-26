@@ -33,7 +33,7 @@ What is working well right now:
 - main flow / return / exhaust / auxiliary temperatures
 - pressure sensor voltage and pump modulation
 - room and zone setpoints
-- zone day/night temperatures and setpoint bundle (validated from dump analysis)
+- zone day/night temperatures and setpoint bundle (validated from dumps and live MQTT)
 
 What is still experimental / unverified:
 
@@ -51,7 +51,7 @@ What is still being refined:
 
 - Main config: [`aris.csv`](aris.csv)
 - Shared templates: [`_templates.csv`](_templates.csv)
-- Reverse-engineering summary: [`reverse_engineering_report.json`](reverse_engineering_report.json)
+- Reverse-engineering summary: [`json/reverse_engineering_report.json`](json/reverse_engineering_report.json)
 
 ## Installation
 
@@ -108,10 +108,16 @@ Some useful conclusions already established:
 
 - `request_status_1` is the strongest heating-demand indicator found so far
 - `dhw_setpoint` and `zone1_current_setpoint_bc` were validated by real setpoint changes
+- `zone1_setpoint_bundle_bc` is now confirmed live in MQTT as `base_setpoint=5.0`, `day_temp=21.0`, `night_temp=16.0`
+- `zone1_current_setpoint_bc` is now confirmed live in ebusd logs at `65.0`
+- `zone1_state_triplet_bc` now decodes live as `on;0;15`, so the third field is not a boolean
+- `heating_active_bc` can reach `15`, so it should be treated as a status-like raw field, not a pure on/off sensor
+- `fan_speed_raw` tracks burner activity, but values like `45569/49153/49921/52737` are not credible physical RPM yet
+- the thermoreg family `6071/6171/6471/6a71/c079/c279` is now visible live in the `2020` broadcast family, but its best active CSV layout is still being finalized
 - `outdoor_temperature_bc = 3276.7` typically means raw `ff7f`, i.e. invalid / sensor absent
 - `current_power_level` now looks much more credible than in the first iterations, because it changes under real load
 
-For the full reverse-engineering state, use [`reverse_engineering_report.json`](reverse_engineering_report.json).
+For the full reverse-engineering state, use [`json/reverse_engineering_report.json`](json/reverse_engineering_report.json).
 
 ## Contributing
 

@@ -212,11 +212,9 @@ b,aris,zone1_setpoint_bundle_bc,Zone 1 Setpoint Bundle,37,fe,200f,6426,base_setp
 # - `37fe20200a6c713200c07901c2790a` -> plausible `c079=1`, `c279=10`
 # Active rows below keep only the fields whose meaning is already reasonably supported by live evidence.
 b,aris,zone1_thermoreg_limits_bc,Zone 1 Thermoreg Limits,37,fe,2020,6071,max_water_temp,s,UIN,10,°C,,ign1,s,IGN:2,,,,min_water_temp,s,UIN,10,°C,,ign2,s,IGN:2,,,,offset,s,SIN,10,°C,
-# Note: the observed live frame starts at `6971`, not `6a71`: `37fe20200c69712c016a7182006b715e01`.
-# Keep the single-field slope row disabled until we finalize whether this should be decoded as a 3-field bundle.
-# b,aris,zone1_thermoreg_config_bc,Zone 1 Thermoreg Config,37,fe,2020,6a71,slope,s,UIN,100,,,
-# Future candidates still visible in the same live 2020 family, but semantics are not finalized enough yet:
-# b,aris,zone1_thermoreg_misc_bc,Candidate Thermoreg Misc,37,fe,2020,6971,field1,s,UIN,10,°C,,slope,s,UIN,100,,,
+# Live frame `37fe20200c69712c016a7182006b715e01` decodes cleanly as `30.0 ; 1.30 ; 35.0`.
+# Only `6a71` is semantically strong (slope); the two neighboring fields stay deliberately generic until behavior is confirmed.
+b,aris,zone1_thermoreg_curve_bc,Zone 1 Thermoreg Curve,37,fe,2020,6971,param1_temp,s,UIN,10,°C,,ign1,s,IGN:2,,,,slope,s,UIN,100,,,ign2,s,IGN:2,,,,param2_temp,s,UIN,10,°C,
 # b,aris,zone1_thermoreg_room_influence_bc,Candidate Room Influence,37,fe,2020,c079,thermoreg_type,s,UCH,,,,room_temp_influence,s,UCH,,,
 #
 # Scomposizione candidata dei frame osservati in dump2:
