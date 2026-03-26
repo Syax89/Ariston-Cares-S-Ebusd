@@ -37,7 +37,7 @@ What is working well right now:
 
 What is still experimental / unverified:
 
-- thermoreg parameters (offset, slope, min/max water temp) - NOT seen in Cares S dumps
+- exact semantics of some thermoreg and hidden-profile fields in the `2020` families
 - diagnostic flag blocks (`d3..de` families)
 - exact meaning of some zone-state bytes
 
@@ -113,7 +113,9 @@ Some useful conclusions already established:
 - `zone1_state_triplet_bc` now decodes live as `on;0;15`, so the third field is not a boolean
 - `heating_active_bc` can reach `15`, so it should be treated as a status-like raw field, not a pure on/off sensor
 - `fan_speed_raw` tracks burner activity, but values like `45569/49153/49921/52737` are not credible physical RPM yet
-- the thermoreg family `6071/6171/6471/6a71/c079/c279` is now visible live in the `2020` broadcast family, but its best active CSV layout is still being finalized
+- the thermoreg family `6071/6171/6471/6a71/c079/c279` is now visible live in the `2020` broadcast family, and the current CSV keeps only evidence-backed fields active
+- newer `200e` triples around `6272..6276`, `6372..6376`, and `6426` are stable across recent passive logs and currently decode best as `19.0/10.0/30.0`, `16.0/10.0/30.0`, and `5.0/2.0/15.0`
+- those newer `200e` triples align with the `2020/0b` lookup rows, so they are currently treated as secondary comfort/reduced/antifreeze setpoint tables with trailing mode/profile metadata
 - `outdoor_temperature_bc = 3276.7` typically means raw `ff7f`, i.e. invalid / sensor absent
 - `current_power_level` now looks much more credible than in the first iterations, because it changes under real load
 

@@ -191,6 +191,10 @@ b,aris,zone1_request_mode_bc,Zone 1 Request Mode (Broadcast),37,fe,200f,c679,val
 # Confronto con CSV esterni Ariston/Chaffoteaux suggerisce una semantica plausibile per la famiglia zona:
 # - `6271` ~ day temperature / comfort setpoint
 # - `6371` ~ night temperature / reduced setpoint
+# New `2020/0b` evidence strengthens this: `37fe20200b64263200c679026271d200` mirrors `6426=5.0`, `c679=2`, `6271=21.0`,
+# and the next blocks `37fe20200b6371a000c67a036272be00` .. `37fe20200b6375a000c67e036276be00`
+# mirror `6371..6375=16.0` alongside `6272..6276=19.0`. This looks like a setpoint table keyed by mode/profile codes,
+# not like live modulation or power telemetry.
 # - `6197` ~ computed target temperature
 # - possibile famiglia ulteriore da CSV esterni: `6471` offset, `6a71` slope, `6071` max water temp, `6171` min water temp, `c079` thermoreg type, `c279` room temp influence
 #   ma questi registri non sono ancora visibili in modo diretto nei dump attuali, quindi restano solo come ipotesi cross-source.
@@ -218,9 +222,10 @@ b,aris,zone1_thermoreg_limits_bc,Zone 1 Thermoreg Limits,37,fe,2020,6071,max_wat
 # Live frame `37fe20200c69712c016a7182006b715e01` decodes cleanly as `30.0 ; 1.30 ; 35.0`.
 # Only `6a71` is semantically strong (slope); the two neighboring fields stay deliberately generic until behavior is confirmed.
 b,aris,zone1_thermoreg_curve_bc,Zone 1 Thermoreg Curve,37,fe,2020,6971,param1_temp,s,UIN,10,°C,,ign1,s,IGN:2,,,,slope,s,UIN,100,,,ign2,s,IGN:2,,,,param2_temp,s,UIN,10,°C,
-# Live frame `37fe20200a6c713200c07901c2790a` gives a compact config pair after the `6c71` field.
-# `c079=1` and `c279=10` look stable enough to expose as a cautious config bundle.
-b,aris,zone1_thermoreg_room_influence_bc,Zone 1 Thermoreg Room Influence,37,fe,2020,c079,thermoreg_type,s,UCH,,,,room_temp_influence,s,UCH,,,
+# Live frame `37fe20200a6c713200c07901c2790a` is keyed by `6c71`, not `c079`.
+# Structure: `6c71=5.0 ; c079=1 ; c279=10`. The earlier `c079`-keyed row was too short to match this payload.
+# Keep the leading field generic until its meaning is confirmed.
+b,aris,zone1_thermoreg_room_influence_bc,Zone 1 Thermoreg Room Influence,37,fe,2020,6c71,param0_temp,s,UIN,10,°C,,ign1,s,IGN:2,,,,thermoreg_type,s,UCH,,,,ign2,s,IGN:2,,,,room_temp_influence,s,UCH,,,
 # The `73` family is structurally parallel to the confirmed `71` family in existing logs:
 # - `37fe20200c6073340361735e0164730000` -> plausible `82.0 ; 35.0 ; 0.0`
 # - `37fe20200c69732c016a7382006b735e01` -> plausible `30.0 ; 1.30 ; 35.0`
@@ -228,24 +233,91 @@ b,aris,zone1_thermoreg_room_influence_bc,Zone 1 Thermoreg Room Influence,37,fe,2
 # Keep names generic for now: the structure is strong, but the exact profile/zone meaning is not yet known.
 b,aris,thermoreg_profile73_limits_bc,Thermoreg Profile 73 Limits,37,fe,2020,6073,max_water_temp,s,UIN,10,°C,,ign1,s,IGN:2,,,,min_water_temp,s,UIN,10,°C,,ign2,s,IGN:2,,,,offset,s,SIN,10,°C,
 b,aris,thermoreg_profile73_curve_bc,Thermoreg Profile 73 Curve,37,fe,2020,6973,param1_temp,s,UIN,10,°C,,ign1,s,IGN:2,,,,slope,s,UIN,100,,,ign2,s,IGN:2,,,,param2_temp,s,UIN,10,°C,
-b,aris,thermoreg_profile73_room_influence_bc,Thermoreg Profile 73 Room Influence,37,fe,2020,c07b,thermoreg_type,s,UCH,,,,room_temp_influence,s,UCH,,,
+# Live frame `37fe20200a6c733200c07b01c27b0a` is likewise keyed by `6c73` with a leading `5.0` field.
+b,aris,thermoreg_profile73_room_influence_bc,Thermoreg Profile 73 Room Influence,37,fe,2020,6c73,param0_temp,s,UIN,10,°C,,ign1,s,IGN:2,,,,thermoreg_type,s,UCH,,,,ign2,s,IGN:2,,,,room_temp_influence,s,UCH,,,
 # The `75` family also mirrors the confirmed `71` structure in existing logs:
 # - `37fe20200c6075340361755e0164750000` -> plausible `82.0 ; 35.0 ; 0.0`
 # - `37fe20200c69752c016a7582006b755e01` -> plausible `30.0 ; 1.30 ; 35.0`
 # - `37fe20200a6c753200c07d01c27d0a` -> plausible `5.0 ; 1 ; 10`
 b,aris,thermoreg_profile75_limits_bc,Thermoreg Profile 75 Limits,37,fe,2020,6075,max_water_temp,s,UIN,10,°C,,ign1,s,IGN:2,,,,min_water_temp,s,UIN,10,°C,,ign2,s,IGN:2,,,,offset,s,SIN,10,°C,
 b,aris,thermoreg_profile75_curve_bc,Thermoreg Profile 75 Curve,37,fe,2020,6975,param1_temp,s,UIN,10,°C,,ign1,s,IGN:2,,,,slope,s,UIN,100,,,ign2,s,IGN:2,,,,param2_temp,s,UIN,10,°C,
-b,aris,thermoreg_profile75_room_influence_bc,Thermoreg Profile 75 Room Influence,37,fe,2020,c07d,thermoreg_type,s,UCH,,,,room_temp_influence,s,UCH,,,
+# Live frame `37fe20200a6c753200c07d01c27d0a` is likewise keyed by `6c75` with a leading `5.0` field.
+b,aris,thermoreg_profile75_room_influence_bc,Thermoreg Profile 75 Room Influence,37,fe,2020,6c75,param0_temp,s,UIN,10,°C,,ign1,s,IGN:2,,,,thermoreg_type,s,UCH,,,,ign2,s,IGN:2,,,,room_temp_influence,s,UCH,,,
 # The `72/74/76` subfamily is also highly structured in existing logs, but is not yet decoder-level confirmed like `71/73/75`.
 # Repeated raw frames (seen 9 times each) suggest a parallel profile family with stable values:
 # - `37fe20200c61725e016472000065725e01` -> plausible `35.0 ; 0.0 ; 35.0`
 # - `37fe20200c6672340367722c0169722c01` -> plausible `82.0 ; 30.0 ; 30.0`
 # - `37fe20200c6a7282006b725e016c723200` -> plausible `1.30 ; 35.0 ; 5.0`
 # - same structural pattern repeats on `74` and `76`
+# The matching bridge/config sidecars also repeat cleanly:
+# - `37fe20200ac9790600810160723403` -> plausible `c979=6.0 ; 0081=1 ; 6072=82.0`
+# - `37fe20200ac97b0600830160743403` -> plausible `c97b=6.0 ; 0083=1 ; 6074=82.0`
+# - `37fe20200ac97d0600850160763403` -> plausible `c97d=6.0 ; 0085=1 ; 6076=82.0`
+# Sequence evidence from logs is strong: each `6c7x` compact config frame is followed by a `c97x` bridge frame,
+# then by the corresponding `6172/6672/6a72` or `6174/...` or `6176/...` triplets. That makes `6072/6074/6076`
+# the best current candidates for the missing max-water fields of the hidden `72/74/76` branches.
+# A parallel `2020/0b` block family also exists and seems to cross-link these hidden branches with zone setpoint tables:
+# - `37fe20200b64263200c679026271d200` -> `6426=5.0 ; c679=2 ; 6271=21.0`
+# - `37fe20200b6371a000c67a036272be00` .. `37fe20200b6375a000c67e036276be00`
+#   -> `6371..6375=16.0 ; c67a..c67e=3 ; 6272..6276=19.0`
+# Recent `200e` logs add a second strong layer of evidence for the same area:
+# - `37fe200e086272be0064002c01` .. `...6276...` -> best current decode `6272..6276 = 19.0 ; 10.0 ; 30.0`
+# - `37fe200e086372a00064002c01` .. `...6376...` -> best current decode `6372..6376 = 16.0 ; 10.0 ; 30.0`
+# - `37fe200e086426320014009600` -> best current decode `6426 = 5.0 ; 2.0 ; 15.0`
+# This matches the `0b` cross-links well and strengthens the interpretation of these rows as secondary comfort/reduced
+# setpoint tables with trailing mode/profile metadata, not one-field live measurements.
+# - `37fe20200b797196007a711e00078200` .. `37fe20200b797596007a751e00078600`
+#   -> `7971..7975=15.0 ; 7a71..7a75=3.0 ; 0782..0786=0`
+# - the sequence then continues with `7976=15.0 ; 7a76=3.0 ; ce79=0`, immediately followed by
+#   `ce7a..ce7e=0`, `0281..0286=1`, and `0881..0886=0` split across `37fe20200c...` plus the final short
+#   `37fe202003088600`. This makes the whole cluster look more like a hidden metadata/lookup table
+#   (flags, selectors, indexes) than a live sensor bundle.
+# These are best treated as hidden lookup/profile tables for now; structure is strong, semantics still partial.
+# Unified working model for branches `71..76` from current evidence:
+# - `71` = confirmed zone1 branch: limits `6071/6171/6471`, curve `6971/6a71/6b71`, compact config `6c71/c079/c279`
+# - `72` = hidden parallel branch: strongest candidates `6072`, `6172/6472/6572`, `6672/6772/6972`, `6a72/6b72/6c72`, sidecar `c07a/c27a/c97a/0082`
+# - `73` = confirmed parallel branch: limits `6073/6173/6473`, curve `6973/6a73/6b73`, compact config `6c73/c07b/c27b`
+# - `74` = hidden parallel branch: strongest candidates `6074`, `6174/6474/6574`, `6674/6774/6974`, `6a74/6b74/6c74`, sidecar `c07c/c27c/c97c/0084`
+# - `75` = confirmed parallel branch: limits `6075/6175/6475`, curve `6975/6a75/6b75`, compact config `6c75/c07d/c27d`
+# - `76` = hidden parallel branch: strongest candidates `6076`, `6176/6476/6576`, `6676/6776/6976`, `6a76/6b76/6c76`, sidecar `c07e/c27e/c97e/0086`
+# - cross-link tables: `0b` families tie `6271/6371/6426` and `6272..6276` plus selector codes `c679/c67a..c67e` to the same branch space
+# - another hidden branch-link table follows immediately after the thermoreg blocks:
+#   `0681..0686`, `7071..7076`, `7171..7176`, `7271..7276`, `7371..7376`, `7471..7476`, `7571..7576`, `7671..7676`
+#   with very stable values that look like per-branch lookup rows rather than live telemetry.
+#   Current raw pattern is strongly repeatable across all captures:
+#   `0681..0686=0 ; 707x=70 ; 717x=120 ; 727x=120 ; 737x=70 ; 747x=70 ; 757x=0 ; 767x=25`
+#   (all still semantically unknown; likely another internal profile table for the same `71..76` namespace).
+#   Working branch map, compact view:
+#   - `71`: `6071/6171/6471`, `6971/6a71/6b71`, `6c71/c079/c279`, `6426/c679/6271`, `7971/7a71`, `0681/7071/7171/7271/7371/7471/7571/7671`
+#   - `72`: `6072`, `6172/6472/6572`, `6672/6772/6972`, `6a72/6b72/6c72`, `c07a/c27a/c97a/0082`, `6371/c67a/6272`, `7972/7a72`, `0682/7072/7172/7272/7372/7472/7572/7672`
+#   - `73`: `6073/6173/6473`, `6973/6a73/6b73`, `6c73/c07b/c27b`, `6372/c67b/6273`, `7973/7a73`, `0683/7073/7173/7273/7373/7473/7573/7673`
+#   - `74`: `6074`, `6174/6474/6574`, `6674/6774/6974`, `6a74/6b74/6c74`, `c07c/c27c/c97c/0084`, `6373/c67c/6274`, `7974/7a74`, `0684/7074/7174/7274/7374/7474/7574/7674`
+#   - `75`: `6075/6175/6475`, `6975/6a75/6b75`, `6c75/c07d/c27d`, `6374/c67d/6275`, `7975/7a75`, `0685/7075/7175/7275/7375/7475/7575/7675`
+#   - `76`: `6076`, `6176/6476/6576`, `6676/6776/6976`, `6a76/6b76/6c76`, `c07e/c27e/c97e/0086`, `6375/c67e/6276`, `7976/7a76/ce79..ce7e/0281..0286/0881..0886`, `0686/7076/7176/7276/7376/7476/7576/7676`
+#   Low-confidence semantic hints for the `707x..767x` table only:
+#   - `70/25` look temperature-like, `120` looks more like a time/index/ceiling than a physical temperature on this boiler,
+#     so this table may mix scalar limits or schedule/profile constants rather than expose one uniform unit.
 # Keep these as documented candidates only until we see ebusd/MQTT decode them directly:
 #   `6172/6472/6572`, `6672/6772/6972`, `6a72/6b72/6c72`
 #   `6174/6474/6574`, `6674/6774/6974`, `6a74/6b74/6c74`
 #   `6176/6476/6576`, `6676/6776/6976`, `6a76/6b76/6c76`
+# Candidate commented rows for the hidden branches, kept here only as structured documentation:
+# b,aris,thermoreg_profile72_limits_candidate_bc,Thermoreg Profile 72 Limits (Candidate),37,fe,2020,6172,min_water_temp,s,UIN,10,°C,,ign1,s,IGN:2,,,,offset,s,SIN,10,°C,,ign2,s,IGN:2,,,,param3_temp,s,UIN,10,°C,
+# b,aris,thermoreg_profile72_curve_candidate_bc,Thermoreg Profile 72 Curve (Candidate),37,fe,2020,6672,max_water_temp,s,UIN,10,°C,,ign1,s,IGN:2,,,,param1_temp,s,UIN,10,°C,,ign2,s,IGN:2,,,,param2_temp,s,UIN,10,°C,
+# b,aris,thermoreg_profile72_extra_candidate_bc,Thermoreg Profile 72 Extra (Candidate),37,fe,2020,6a72,slope,s,UIN,100,,,ign1,s,IGN:2,,,,param4_temp,s,UIN,10,°C,,ign2,s,IGN:2,,,,param0_temp,s,UIN,10,°C,
+# b,aris,thermoreg_profile72_sidecar_candidate_bc,Thermoreg Profile 72 Sidecar (Candidate),37,fe,2020,c07a,thermoreg_type,s,UCH,,,,room_temp_influence,s,UCH,,,,bridge_param,s,UCH,,,
+# b,aris,thermoreg_profile74_limits_candidate_bc,Thermoreg Profile 74 Limits (Candidate),37,fe,2020,6174,min_water_temp,s,UIN,10,°C,,ign1,s,IGN:2,,,,offset,s,SIN,10,°C,,ign2,s,IGN:2,,,,param3_temp,s,UIN,10,°C,
+# b,aris,thermoreg_profile74_curve_candidate_bc,Thermoreg Profile 74 Curve (Candidate),37,fe,2020,6674,max_water_temp,s,UIN,10,°C,,ign1,s,IGN:2,,,,param1_temp,s,UIN,10,°C,,ign2,s,IGN:2,,,,param2_temp,s,UIN,10,°C,
+# b,aris,thermoreg_profile74_extra_candidate_bc,Thermoreg Profile 74 Extra (Candidate),37,fe,2020,6a74,slope,s,UIN,100,,,ign1,s,IGN:2,,,,param4_temp,s,UIN,10,°C,,ign2,s,IGN:2,,,,param0_temp,s,UIN,10,°C,
+# b,aris,thermoreg_profile74_sidecar_candidate_bc,Thermoreg Profile 74 Sidecar (Candidate),37,fe,2020,c07c,thermoreg_type,s,UCH,,,,room_temp_influence,s,UCH,,,,bridge_param,s,UCH,,,
+# b,aris,thermoreg_profile76_limits_candidate_bc,Thermoreg Profile 76 Limits (Candidate),37,fe,2020,6176,min_water_temp,s,UIN,10,°C,,ign1,s,IGN:2,,,,offset,s,SIN,10,°C,,ign2,s,IGN:2,,,,param3_temp,s,UIN,10,°C,
+# b,aris,thermoreg_profile76_curve_candidate_bc,Thermoreg Profile 76 Curve (Candidate),37,fe,2020,6676,max_water_temp,s,UIN,10,°C,,ign1,s,IGN:2,,,,param1_temp,s,UIN,10,°C,,ign2,s,IGN:2,,,,param2_temp,s,UIN,10,°C,
+# b,aris,thermoreg_profile76_extra_candidate_bc,Thermoreg Profile 76 Extra (Candidate),37,fe,2020,6a76,slope,s,UIN,100,,,ign1,s,IGN:2,,,,param4_temp,s,UIN,10,°C,,ign2,s,IGN:2,,,,param0_temp,s,UIN,10,°C,
+# b,aris,thermoreg_profile76_sidecar_candidate_bc,Thermoreg Profile 76 Sidecar (Candidate),37,fe,2020,c07e,thermoreg_type,s,UCH,,,,room_temp_influence,s,UCH,,,,bridge_param,s,UCH,,,
+# Candidate commented rows for the newer structured `200e` secondary setpoint tables:
+# b,aris,zone1_secondary_comfort_candidate_bc,Zone 1 Secondary Comfort Table (Candidate),37,fe,200e,6272,setpoint_temp,s,UIN,10,°C,,mode_or_min,s,UIN,10,°C,,profile_or_max,s,UIN,10,°C,
+# b,aris,zone1_secondary_reduced_candidate_bc,Zone 1 Secondary Reduced Table (Candidate),37,fe,200e,6372,setpoint_temp,s,UIN,10,°C,,mode_or_min,s,UIN,10,°C,,profile_or_max,s,UIN,10,°C,
+# b,aris,zone1_secondary_antifreeze_candidate_bc,Zone 1 Secondary Antifreeze Table (Candidate),37,fe,200e,6426,setpoint_temp,s,UIN,10,°C,,mode_or_min,s,UIN,10,°C,,profile_or_max,s,UIN,10,°C,
 #
 # Scomposizione candidata dei frame osservati in dump2:
 #   37 fe 20 0f 0c 01 20 01 00 0f 23 00 00 10 23 00 00

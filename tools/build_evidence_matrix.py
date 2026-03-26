@@ -18,6 +18,12 @@ PARSE_ERR_RE = re.compile(
 )
 UNKNOWN_CMD_RE = re.compile(r"received unknown BC cmd: (?P<frame>[0-9a-f]+)$")
 
+ALIASES = {
+    "temp_sanitario_eco": "dhw_eco_setpoint",
+    "temp_sanitario_eco_val": "dhw_eco_setpoint_val",
+    "temp_sanitario_eco_2": "dhw_eco_setpoint",
+}
+
 
 @dataclass
 class Evidence:
@@ -102,6 +108,10 @@ def derive_parent_name(name: str) -> str | None:
     return None
 
 
+def canonical_name(name: str) -> str:
+    return ALIASES.get(name, name)
+
+
 def temporal_consistency(entry: Evidence) -> str:
     values = entry.log_values + entry.mqtt_values
     if not values:
@@ -156,7 +166,7 @@ def parse_logs(log_paths: list[Path], evidence: dict[str, Evidence]) -> None:
 
             m = UPDATE_READ_RE.search(msg)
             if m:
-                name = m.group("name")
+                name = canonical_name(m.group("name"))
                 entry = evidence.setdefault(name, Evidence(name=name))
                 entry.add_log_value(ts, m.group("value"))
                 if last_unknown_frame:
@@ -165,7 +175,7 @@ def parse_logs(log_paths: list[Path], evidence: dict[str, Evidence]) -> None:
 
             m = POLL_READ_RE.search(msg)
             if m:
-                name = m.group("name")
+                name = canonical_name(m.group("name"))
                 entry = evidence.setdefault(name, Evidence(name=name))
                 entry.sources.add("ebusd_log")
                 if m.group("value") not in entry.log_values:
@@ -174,7 +184,7 @@ def parse_logs(log_paths: list[Path], evidence: dict[str, Evidence]) -> None:
 
             m = PARSE_ERR_RE.search(msg)
             if m:
-                name = m.group("name")
+                name = canonical_name(m.group("name"))
                 entry = evidence.setdefault(name, Evidence(name=name))
                 entry.add_failure(m.group("error"))
 
@@ -197,12 +207,14 @@ def parse_mqtt_exports(json_paths: list[Path], evidence: dict[str, Evidence]) ->
                 base = base[len("ebusd_aris_") :]
             if not base:
                 continue
+            base = canonical_name(base)
             entry = evidence.setdefault(base, Evidence(name=base))
             for sub in entity.get("subscriptions", []):
                 for message in sub.get("messages", []):
                     entry.add_mqtt_value(message.get("time", ""), normalize_payload(message.get("payload", "")))
             parent = derive_parent_name(base)
             if parent:
+                parent = canonical_name(parent)
                 parent_entry = evidence.setdefault(parent, Evidence(name=parent))
                 parent_entry.sources.add("mqtt")
                 parent_entry.mqtt_children.add(base)

@@ -109,8 +109,22 @@
     "a second 2020 thermoreg frame 6971/6a71/6b71 decodes cleanly as 30.0 / 1.30 / 35.0, but only the middle slope field is semantically strong so far",
     "recent logs repeatedly decode zone1_thermoreg_limits_bc as 82.0;30.0;0.0 and zone1_thermoreg_curve_bc as 30.0;1.30;35.0",
     "recent passive-only logs now decode thermoreg_profile73_limits_bc / thermoreg_profile73_curve_bc and thermoreg_profile75_limits_bc / thermoreg_profile75_curve_bc without polling",
+    "the compact 2020 config frames are keyed by 6c71/6c73/6c75 rather than c079/c07b/c07d, which explains why the earlier room-influence rows were discovered in MQTT but never received payloads",
     "the 72/74/76 branches of the 2020 family are also highly structured and stable in raw logs, but are still treated as strong structural candidates until ebusd/MQTT decode them directly",
-    "6126 also appears with a structured 200e response, reinforcing that some setpoint reads return extra trailing fields"
+    "the companion bridge frames c979/c97b/c97d repeat with a stable 6.0 / 1 / 82.0 style structure and likely link the compact config family to the 72/74/76 thermoreg limit bundles",
+    "log ordering is consistent: 6c71 -> c979 -> 6172/6672/6a72, 6c73 -> c97b -> 6174/6674/6a74, and 6c75 -> c97d -> 6176/6676/6a76, so 6072/6074/6076 are the strongest current candidates for the missing max-water fields of those hidden branches",
+    "the 2020/0b family behaves like a hidden lookup-table layer: 6426/c679/6271 mirrors the known 5.0 / mode 2 / 21.0 zone setpoint tuple, while 6371..6375 pair with c67a..c67e=3 and 6272..6276=19.0, strongly suggesting mode/profile-indexed setpoint tables rather than live telemetry",
+    "a second 2020/0b subfamily 7971..7976 / 7a71..7a76 / 0782..0786 is equally stable at roughly 15.0 / 3.0 / 0 and looks like another hidden profile table, but its physical meaning is still unclear",
+    "the 797x/7axx rows are immediately followed by zeroed ce79..ce7e and fixed 0281..0286=1 plus 0881..0886=0 flag/index blocks, with 0886 arriving in a final short 2020/03 frame; this strengthens the interpretation of this whole area as hidden metadata or lookup state rather than physical telemetry",
+    "taken together, the current best branch map is: confirmed 71/73/75 thermoreg families, hidden but strongly structured 72/74/76 thermoreg families, matching compact configs on 6c71/73/75 plus sidecars c07a/c27a/c97a/0082, c07c/c27c/c97c/0084, c07e/c27e/c97e/0086, and 0b lookup tables tying 6271/6371/6426 and 6272..6276 to the same 71..76 branch space",
+    "the remaining 2020/0b + 2020/0c branch-link block is now structurally mapped too: 0681..0686 act like branch separators/indexes, while 7071..7076, 7171..7176, 7271..7276, 7371..7376, 7471..7476, 7571..7576, and 7671..7676 form a rigid per-branch table with values 70 / 120 / 120 / 70 / 70 / 0 / 25, suggesting another hidden lookup layer for the same 71..76 namespace rather than live telemetry",
+    "a compact branch-by-branch map is now possible: each of 71..76 has a thermoreg bundle family, a compact config or sidecar family, a setpoint/selector row in the 0b tables, a 797x metadata row, and a 068x/707x..767x branch-link row, which strongly argues for a single internal multi-profile schema rather than unrelated broadcast fragments",
+    "for the 707x..767x table, the best current semantic guess is mixed internal constants rather than one shared unit: 70 and 25 are temperature-like, but 120 is implausibly high as a normal room/water value here and fits better as a timer/index/ceiling-style constant",
+    "the evidence matrix tool now canonicalizes legacy names like temp_sanitario_eco into dhw_eco_setpoint so new MQTT snapshots do not create duplicate confidence rows for the same signal",
+    "6126 also appears with a structured 200e response, reinforcing that some setpoint reads return extra trailing fields",
+    "recent logs repeatedly showed stable 200e triples for 6272..6276, 6372..6376, and 6426: the best current decode is 19.0 / 10.0 / 30.0 for 6272..6276, 16.0 / 10.0 / 30.0 for 6372..6376, and 5.0 / 2.0 / 15.0 for 6426",
+    "these 200e triples align with the 2020/0b lookup rows, especially 6426 pairing with selector-like c679=2 and 6371..6375 pairing with c67a..c67e=3 plus 6272..6276=19.0, so the strongest current interpretation is secondary comfort/reduced setpoint tables with trailing mode/profile metadata rather than direct live telemetry",
+    "across the current archived passive logs, no variation has yet been observed in the trailing 200e fields: 6272..6276 stay at 10.0 / 30.0, 6372..6376 stay at 10.0 / 30.0, and 6426 stays at 2.0 / 15.0, so mode/profile sensitivity remains plausible but still unproven"
   ],
   "parse_failures_to_revisit": [
     "test_ventola 4014 returned invalid position on 313c2000024014 / 0100",
@@ -152,7 +166,7 @@
     },
     {
       "family": "03/fe 2001 + 37/fe 200e",
-      "best_guess": "zone config / curve / schedule family",
+      "best_guess": "zone setpoint/config family with structured triples; strongest current candidates are 6272..6276=19.0/10.0/30.0, 6372..6376=16.0/10.0/30.0, and 6426=5.0/2.0/15.0",
       "confidence": "high",
       "next_test": "change one zone parameter at a time and remap fields"
     },
@@ -167,6 +181,12 @@
       "best_guess": "short mirror of one zone register",
       "confidence": "low",
       "next_test": "verify across repeated heating transitions"
+    },
+    {
+      "family": "37/fe 2020 branch map 71..76",
+      "best_guess": "single branch namespace spanning confirmed thermoreg rows, hidden thermoreg rows, compact configs, sidecars, and 0b lookup tables",
+      "confidence": "medium",
+      "next_test": "watch for a configuration change that alters one branch-specific tuple across 6c7x, c97x/c07x, 0c thermoreg triplets, and 0b lookup rows at the same time"
     }
   ],
   "diagnostic_blocks": {
@@ -315,6 +335,54 @@
         "suggested_meaning": "zone1_room_temp_influence",
         "confidence": "medium",
         "reason": "seen live in the 2020 thermoreg family with value 10, matching external boiler CSV semantics"
+      },
+      {
+        "register": "6c71/6c73/6c75",
+        "suggested_meaning": "compact thermoreg config bundles carrying 5.0 plus type/influence pairs",
+        "confidence": "medium",
+        "reason": "raw frames show a stable register-led structure of 5.0 / 1 / 10 before c07x/c27x pairs, and the primary key is the 6c7x register rather than c07x"
+      },
+      {
+        "register": "c979/c97b/c97d",
+        "suggested_meaning": "bridge or header bundles for the 72/74/76 thermoreg branches",
+        "confidence": "low",
+        "reason": "these raw frames repeat immediately before the 72/74/76 families with a stable 6.0 / 1 / 82.0 pattern, but the exact semantics of the first two fields are still unclear"
+      },
+      {
+        "register": "6072/6074/6076",
+        "suggested_meaning": "max water temperature fields for the hidden 72/74/76 branches",
+        "confidence": "medium",
+        "reason": "they appear only inside the c979/c97b/c97d bridge frames, always at 82.0, and slot structurally into the same position held by 6071/6073/6075 in the confirmed thermoreg limit bundles"
+      },
+      {
+        "register": "c679/c67a/c67b/c67c/c67d/c67e",
+        "suggested_meaning": "mode or profile selector codes inside hidden setpoint tables",
+        "confidence": "medium",
+        "reason": "c679 matches the live zone1_request_mode_bc value 2 inside the 6426/6271 tuple, while c67a..c67e stay at 3 across parallel 637x/627x table rows, indicating they are likely selectors rather than measured values"
+      },
+      {
+        "register": "7971..7976 / 7a71..7a76 / 0782..0786",
+        "suggested_meaning": "hidden lookup-table rows for additional zone/profile parameters",
+        "confidence": "low",
+        "reason": "the family is highly stable and branch-aligned at 15.0 / 3.0 / 0, and it flows directly into ce7a..ce7e zero flags plus 0281..0286 and 0881..0886 index-like tables, but there is still not enough behavioral evidence to assign physical semantics to the fields"
+      },
+      {
+        "register": "ce79..ce7e / 0281..0286 / 0881..0886",
+        "suggested_meaning": "flag and index tables attached to the hidden 797x profile rows",
+        "confidence": "medium",
+        "reason": "the values are extremely rigid across all captures (`ce79..ce7e=0`, `0281..0286=1`, `0881..0886=0`) and always appear immediately after the 797x/7axx cluster, including a final short frame for `0886`, which fits metadata/index behavior better than live measurements"
+      },
+      {
+        "register": "0681..0686 / 7071..7676",
+        "suggested_meaning": "branch-indexed hidden lookup table attached to the 71..76 namespace",
+        "confidence": "medium",
+        "reason": "the frames always appear as a complete run after the hidden thermoreg families, with a fixed branch-by-branch pattern of `068x=0`, `707x=70`, `717x=120`, `727x=120`, `737x=70`, `747x=70`, `757x=0`, `767x=25`, which is far more consistent with a static internal table than with live measured values"
+      },
+      {
+        "register": "7071..7676",
+        "suggested_meaning": "mixed per-branch constants, possibly temperatures plus non-temperature limits or timers",
+        "confidence": "low",
+        "reason": "70 and 25 fit plausible boiler-related scalar values, but the repeated 120 entries are too large for normal room or low-temperature curve fields on this system, so the table likely mixes heterogeneous internal constants rather than one simple engineering unit"
       },
       {
         "register": "c404",
