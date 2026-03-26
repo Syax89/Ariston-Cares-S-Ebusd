@@ -1,0 +1,1036 @@
+2026-03-26 18:31:51.821 [update notice] received unknown BC cmd: 37fe201010db950000dc950000dd950000de950000
+2026-03-26 18:31:51.978 [update notice] received unknown BC cmd: 37fe201010d9940000da940000db940000dc940000
+2026-03-26 18:31:52.102 [update notice] received unknown BC cmd: 37fe201008dd940000de940000
+2026-03-26 18:31:52.253 [update notice] received update-read aris heating_setpoint_triplet: 82.0;65.0;35.0
+2026-03-26 18:31:52.405 [update notice] received update-read aris max_heating_setpoint: 82.0
+2026-03-26 18:31:52.516 [update notice] received update-read aris dhw_eco_setpoint: 35.0
+2026-03-26 18:31:52.646 [update notice] received update-read aris dhw_actual_temperature: 8.0
+2026-03-26 18:31:52.748 [update notice] received unknown MS cmd: 703c2000040e11d140 / 0303000a
+2026-03-26 18:31:53.508 [update notice] received update-read aris boiler_operating_mode: 1
+2026-03-26 18:31:53.666 [update notice] received update-read aris status_request_1_flags: 0;0;2;145
+2026-03-26 18:31:53.731 [update notice] received unknown BC cmd: 00fe203a0129
+2026-03-26 18:31:53.792 [update notice] received update-read aris request_status_2: 0
+2026-03-26 18:31:57.025 [update notice] received update-read aris internal_flow_target_temperature: 70
+2026-03-26 18:31:57.149 [update notice] received update-read aris pressure_sensor_voltage: 0.075
+2026-03-26 18:31:57.270 [update notice] received update-read aris pump_modulation: 150
+2026-03-26 18:31:57.707 [update notice] received unknown MS cmd: 703c2000040e11d140 / 0303000a
+2026-03-26 18:31:58.528 [update notice] received update-read aris boiler_operating_mode: 1
+2026-03-26 18:31:58.685 [update notice] received update-read aris status_request_1_flags: 0;0;2;145
+2026-03-26 18:31:58.810 [update notice] received update-read aris request_status_2: 0
+2026-03-26 18:31:59.793 [update notice] received update-read aris zone1_room_temperature: 21.5
+2026-03-26 18:31:59.899 [update notice] received unknown BC cmd: 70fe200006642662716371
+2026-03-26 18:31:59.969 [update notice] received update-read aris zone1_setpoint_bundle_bc: 5.0;21.5;16.0
+2026-03-26 18:32:00.066 [update notice] received update-read aris zone1_heat_request_raw: 79
+2026-03-26 18:32:00.113 [update notice] received update-read aris zone1_request_mode_bc: 2
+2026-03-26 18:32:02.724 [update notice] received unknown MS cmd: 703c2000040e11d140 / 0303000a
+2026-03-26 18:32:03.575 [update notice] received update-read aris boiler_operating_mode: 1
+2026-03-26 18:32:03.732 [update notice] received update-read aris status_request_1_flags: 0;0;2;145
+2026-03-26 18:32:03.794 [update notice] received unknown BC cmd: 00fe203a0129
+2026-03-26 18:32:03.857 [update notice] received update-read aris request_status_2: 0
+2026-03-26 18:32:04.614 [update notice] received unknown BC cmd: 70fe203b0175
+2026-03-26 18:32:07.769 [update notice] received unknown MS cmd: 703c2000040e11d140 / 0303000a
+2026-03-26 18:32:08.589 [update notice] received update-read aris boiler_operating_mode: 1
+2026-03-26 18:32:08.749 [update notice] received update-read aris status_request_1_flags: 0;0;2;145
+2026-03-26 18:32:08.868 [update notice] received update-read aris request_status_2: 0
+2026-03-26 18:32:09.627 [update notice] received unknown BC cmd: 03fe203b0129
+2026-03-26 18:32:12.785 [update notice] received unknown MS cmd: 703c2000040e11d140 / 0303000a
+2026-03-26 18:32:13.631 [update notice] received update-read aris boiler_operating_mode: 1
+2026-03-26 18:32:13.788 [update notice] received update-read aris status_request_1_flags: 0;0;2;145
+2026-03-26 18:32:13.852 [update notice] received unknown BC cmd: 00fe203a0129
+2026-03-26 18:32:13.915 [update notice] received update-read aris request_status_2: 0
+2026-03-26 18:32:16.105 [update notice] received update-read aris flame_target_temperature: 0.0
+2026-03-26 18:32:16.249 [update notice] received update-read aris aux_probe_temperature: 21.5
+2026-03-26 18:32:16.396 [update notice] received update-read aris main_flow_temperature: 19.0
+2026-03-26 18:32:16.540 [update notice] received update-read aris secondary_return_temperature: 19.0
+2026-03-26 18:32:16.688 [update notice] received update-read aris exhaust_temperature: 19.0
+2026-03-26 18:32:16.844 [update notice] received unknown BC cmd: 37fe201010d3460000cf9c0000d9950000da950000
+2026-03-26 18:32:17.002 [update notice] received unknown BC cmd: 37fe201010db950000dc950000dd950000de950000
+2026-03-26 18:32:17.159 [update notice] received unknown BC cmd: 37fe201010d9940000da940000db940000dc940000
+2026-03-26 18:32:17.285 [update notice] received unknown BC cmd: 37fe201008dd940000de940000
+2026-03-26 18:32:17.435 [update notice] received update-read aris heating_setpoint_triplet: 82.0;65.0;35.0
+2026-03-26 18:32:17.590 [update notice] received update-read aris max_heating_setpoint: 82.0
+2026-03-26 18:32:17.696 [update notice] received update-read aris dhw_eco_setpoint: 35.0
+2026-03-26 18:32:17.802 [update notice] received unknown MS cmd: 703c2000040e11d140 / 0303000a
+2026-03-26 18:32:17.869 [update notice] received update-read aris dhw_actual_temperature: 8.0
+2026-03-26 18:32:18.659 [update notice] received update-read aris boiler_operating_mode: 1
+2026-03-26 18:32:18.821 [update notice] received update-read aris status_request_1_flags: 0;0;2;145
+2026-03-26 18:32:18.938 [update notice] received update-read aris request_status_2: 0
+2026-03-26 18:32:22.169 [update notice] received update-read aris internal_flow_target_temperature: 70
+2026-03-26 18:32:22.293 [update notice] received update-read aris pressure_sensor_voltage: 0.075
+2026-03-26 18:32:22.415 [update notice] received update-read aris pump_modulation: 150
+2026-03-26 18:32:22.822 [update notice] received unknown MS cmd: 703c2000040e11d140 / 0303000a
+2026-03-26 18:32:23.703 [update notice] received update-read aris boiler_operating_mode: 1
+2026-03-26 18:32:23.859 [update notice] received update-read aris status_request_1_flags: 0;0;2;145
+2026-03-26 18:32:23.922 [update notice] received unknown BC cmd: 00fe203a0129
+2026-03-26 18:32:23.985 [update notice] received update-read aris request_status_2: 0
+2026-03-26 18:32:27.835 [update notice] received unknown MS cmd: 703c2000040e11d140 / 0303000a
+2026-03-26 18:32:28.717 [update notice] received update-read aris boiler_operating_mode: 1
+2026-03-26 18:32:28.872 [update notice] received update-read aris status_request_1_flags: 0;0;2;145
+2026-03-26 18:32:28.996 [update notice] received update-read aris request_status_2: 0
+2026-03-26 18:32:32.847 [update notice] received unknown MS cmd: 703c2000040e11d140 / 0303000a
+2026-03-26 18:32:33.756 [update notice] received update-read aris boiler_operating_mode: 1
+2026-03-26 18:32:33.912 [update notice] received update-read aris status_request_1_flags: 0;0;2;145
+2026-03-26 18:32:37.889 [update notice] received unknown MS cmd: 703c2000040e11d140 / 0303000a
+2026-03-26 18:32:38.799 [update notice] received update-read aris boiler_operating_mode: 1
+2026-03-26 18:32:38.955 [update notice] received update-read aris status_request_1_flags: 0;0;2;145
+2026-03-26 18:32:39.076 [update notice] received update-read aris request_status_2: 0
+2026-03-26 18:32:41.267 [update notice] received update-read aris flame_target_temperature: 0.0
+2026-03-26 18:32:41.411 [update notice] received update-read aris aux_probe_temperature: 21.5
+2026-03-26 18:32:41.560 [update notice] received update-read aris main_flow_temperature: 19.0
+2026-03-26 18:32:41.702 [update notice] received update-read aris secondary_return_temperature: 19.0
+2026-03-26 18:32:41.850 [update notice] received update-read aris exhaust_temperature: 19.0
+2026-03-26 18:32:42.007 [update notice] received unknown BC cmd: 37fe201010d3460000cf9c0000d9950000da950000
+2026-03-26 18:32:42.166 [update notice] received unknown BC cmd: 37fe201010db950000dc950000dd950000de950000
+2026-03-26 18:32:42.318 [update notice] received unknown BC cmd: 37fe201010d9940000da940000db940000dc940000
+2026-03-26 18:32:42.442 [update notice] received unknown BC cmd: 37fe201008dd940000de940000
+2026-03-26 18:32:42.594 [update notice] received update-read aris heating_setpoint_triplet: 82.0;65.0;35.0
+2026-03-26 18:32:42.747 [update notice] received update-read aris max_heating_setpoint: 82.0
+2026-03-26 18:32:42.919 [update notice] received unknown MS cmd: 703c2000040e11d140 / 0303000a
+2026-03-26 18:32:42.969 [update notice] received update-read aris dhw_eco_setpoint: 35.0
+2026-03-26 18:32:43.097 [update notice] received update-read aris dhw_actual_temperature: 8.0
+2026-03-26 18:32:43.825 [update notice] received update-read aris boiler_operating_mode: 1
+2026-03-26 18:32:43.982 [update notice] received update-read aris status_request_1_flags: 0;0;2;145
+2026-03-26 18:32:44.046 [update notice] received unknown BC cmd: 00fe203a0129
+2026-03-26 18:32:44.112 [update notice] received update-read aris request_status_2: 0
+2026-03-26 18:32:47.341 [update notice] received update-read aris internal_flow_target_temperature: 70
+2026-03-26 18:32:47.465 [update notice] received update-read aris pressure_sensor_voltage: 0.075
+2026-03-26 18:32:47.587 [update notice] received update-read aris pump_modulation: 150
+2026-03-26 18:32:47.904 [update notice] received unknown MS cmd: 703c2000040e11d140 / 0303000a
+2026-03-26 18:32:48.847 [update notice] received update-read aris boiler_operating_mode: 1
+2026-03-26 18:32:49.001 [update notice] received update-read aris status_request_1_flags: 0;0;2;145
+2026-03-26 18:32:49.129 [update notice] received update-read aris request_status_2: 0
+2026-03-26 18:32:52.944 [update notice] received unknown MS cmd: 703c2000040e11d140 / 0303000a
+2026-03-26 18:32:53.884 [update notice] received update-read aris boiler_operating_mode: 1
+2026-03-26 18:32:54.044 [update notice] received update-read aris status_request_1_flags: 0;0;2;145
+2026-03-26 18:32:54.103 [update notice] received unknown BC cmd: 00fe203a0129
+2026-03-26 18:32:54.166 [update notice] received update-read aris request_status_2: 0
+2026-03-26 18:32:57.955 [update notice] received unknown MS cmd: 703c2000040e11d140 / 0303000a
+2026-03-26 18:32:58.927 [update notice] received update-read aris boiler_operating_mode: 1
+2026-03-26 18:32:59.083 [update notice] received update-read aris status_request_1_flags: 0;0;2;145
+2026-03-26 18:32:59.205 [update notice] received update-read aris request_status_2: 0
+2026-03-26 18:33:02.964 [update notice] received unknown MS cmd: 703c2000040e11d140 / 0303000a
+2026-03-26 18:33:03.935 [update notice] received update-read aris boiler_operating_mode: 1
+2026-03-26 18:33:04.094 [update notice] received update-read aris status_request_1_flags: 0;0;2;145
+2026-03-26 18:33:04.157 [update notice] received unknown BC cmd: 00fe203a0129
+2026-03-26 18:33:04.220 [update notice] received update-read aris request_status_2: 0
+2026-03-26 18:33:06.410 [update notice] received update-read aris flame_target_temperature: 0.0
+2026-03-26 18:33:06.554 [update notice] received update-read aris aux_probe_temperature: 21.5
+2026-03-26 18:33:06.704 [update notice] received update-read aris main_flow_temperature: 19.0
+2026-03-26 18:33:06.865 [update notice] received update-read aris secondary_return_temperature: 19.0
+2026-03-26 18:33:06.995 [update notice] received update-read aris exhaust_temperature: 19.0
+2026-03-26 18:33:07.156 [update notice] received unknown BC cmd: 37fe201010d3460000cf9c0000d9950000da950000
+2026-03-26 18:33:07.307 [update notice] received unknown BC cmd: 37fe201010db950000dc950000dd950000de950000
+2026-03-26 18:33:07.463 [update notice] received unknown BC cmd: 37fe201010d9940000da940000db940000dc940000
+2026-03-26 18:33:07.587 [update notice] received unknown BC cmd: 37fe201008dd940000de940000
+2026-03-26 18:33:07.739 [update notice] received update-read aris heating_setpoint_triplet: 82.0;65.0;35.0
+2026-03-26 18:33:07.893 [update notice] received update-read aris max_heating_setpoint: 82.0
+2026-03-26 18:33:07.996 [update notice] received unknown MS cmd: 703c2000040e11d140 / 0303000a
+2026-03-26 18:33:08.046 [update notice] received update-read aris dhw_eco_setpoint: 35.0
+2026-03-26 18:33:08.176 [update notice] received update-read aris dhw_actual_temperature: 8.0
+2026-03-26 18:33:08.963 [update notice] received update-read aris boiler_operating_mode: 1
+2026-03-26 18:33:09.120 [update notice] received update-read aris status_request_1_flags: 0;0;2;145
+2026-03-26 18:33:09.242 [update notice] received update-read aris request_status_2: 0
+2026-03-26 18:33:12.506 [update notice] received update-read aris internal_flow_target_temperature: 70
+2026-03-26 18:33:12.628 [update notice] received update-read aris pressure_sensor_voltage: 0.075
+2026-03-26 18:33:12.751 [update notice] received update-read aris pump_modulation: 150
+2026-03-26 18:33:13.007 [update notice] received unknown MS cmd: 703c2000040e11d140 / 0303000a
+2026-03-26 18:33:14.014 [update notice] received update-read aris boiler_operating_mode: 1
+2026-03-26 18:33:14.164 [update notice] received update-read aris status_request_1_flags: 0;0;2;145
+2026-03-26 18:33:14.228 [update notice] received unknown BC cmd: 00fe203a0129
+2026-03-26 18:33:14.292 [update notice] received update-read aris request_status_2: 0
+2026-03-26 18:33:18.049 [update notice] received unknown MS cmd: 703c2000040e11d140 / 0303000a
+2026-03-26 18:33:19.051 [update notice] received update-read aris boiler_operating_mode: 1
+2026-03-26 18:33:19.208 [update notice] received update-read aris status_request_1_flags: 0;0;2;145
+2026-03-26 18:33:19.330 [update notice] received update-read aris request_status_2: 0
+2026-03-26 18:33:23.058 [update notice] received unknown MS cmd: 703c2000040e11d140 / 0303000a
+2026-03-26 18:33:24.060 [update notice] received update-read aris boiler_operating_mode: 1
+2026-03-26 18:33:24.220 [update notice] received update-read aris status_request_1_flags: 0;0;2;145
+2026-03-26 18:33:24.282 [update notice] received unknown BC cmd: 00fe203a0129
+2026-03-26 18:33:24.347 [update notice] received update-read aris request_status_2: 0
+2026-03-26 18:33:28.071 [update notice] received unknown MS cmd: 703c2000040e11d140 / 0303000a
+2026-03-26 18:33:29.102 [update notice] received update-read aris boiler_operating_mode: 1
+2026-03-26 18:33:29.259 [update notice] received update-read aris status_request_1_flags: 0;0;2;145
+2026-03-26 18:33:29.381 [update notice] received update-read aris request_status_2: 0
+2026-03-26 18:33:31.572 [update notice] received update-read aris flame_target_temperature: 0.0
+2026-03-26 18:33:31.715 [update notice] received update-read aris aux_probe_temperature: 21.5
+2026-03-26 18:33:31.863 [update notice] received update-read aris main_flow_temperature: 19.0
+2026-03-26 18:33:32.007 [update notice] received update-read aris secondary_return_temperature: 19.0
+2026-03-26 18:33:32.155 [update notice] received update-read aris exhaust_temperature: 19.0
+2026-03-26 18:33:32.311 [update notice] received unknown BC cmd: 37fe201010d3460000cf9c0000d9950000da950000
+2026-03-26 18:33:32.468 [update notice] received unknown BC cmd: 37fe201010db950000dc950000dd950000de950000
+2026-03-26 18:33:32.623 [update notice] received unknown BC cmd: 37fe201010d9940000da940000db940000dc940000
+2026-03-26 18:33:32.752 [update notice] received unknown BC cmd: 37fe201008dd940000de940000
+2026-03-26 18:33:32.898 [update notice] received update-read aris heating_setpoint_triplet: 82.0;65.0;35.0
+2026-03-26 18:33:33.050 [update notice] received update-read aris max_heating_setpoint: 82.0
+2026-03-26 18:33:33.155 [update notice] received unknown MS cmd: 703c2000040e11d140 / 0303000a
+2026-03-26 18:33:33.206 [update notice] received update-read aris dhw_eco_setpoint: 35.0
+2026-03-26 18:33:33.334 [update notice] received update-read aris dhw_actual_temperature: 8.0
+2026-03-26 18:33:34.124 [update notice] received update-read aris boiler_operating_mode: 1
+2026-03-26 18:33:34.280 [update notice] received update-read aris status_request_1_flags: 0;0;2;145
+2026-03-26 18:33:34.343 [update notice] received unknown BC cmd: 00fe203a0129
+2026-03-26 18:33:34.407 [update notice] received update-read aris request_status_2: 0
+2026-03-26 18:33:36.601 [update notice] received unknown BC cmd: 37fe2010057310ff7f00
+2026-03-26 18:33:36.746 [update notice] received update-read aris outdoor_temperature_bc: 3276.7
+2026-03-26 18:33:36.900 [update notice] received unknown BC cmd: 37fe201010d3940000d4940000d5940000d6940000
+2026-03-26 18:33:37.657 [update notice] received update-read aris internal_flow_target_temperature: 70
+2026-03-26 18:33:37.782 [update notice] received update-read aris pressure_sensor_voltage: 0.075
+2026-03-26 18:33:37.903 [update notice] received update-read aris pump_modulation: 150
+2026-03-26 18:33:38.129 [update notice] received unknown MS cmd: 703c2000040e11d140 / 0303000a
+2026-03-26 18:33:39.160 [update notice] received update-read aris boiler_operating_mode: 1
+2026-03-26 18:33:39.317 [update notice] received update-read aris status_request_1_flags: 0;0;2;145
+2026-03-26 18:33:39.439 [update notice] received update-read aris request_status_2: 0
+2026-03-26 18:33:40.922 [update notice] received unknown BC cmd: 37fe203b013c
+2026-03-26 18:33:43.140 [update notice] received unknown MS cmd: 703c2000040e11d140 / 0303000a
+2026-03-26 18:33:44.202 [update notice] received update-read aris boiler_operating_mode: 1
+2026-03-26 18:33:44.358 [update notice] received update-read aris status_request_1_flags: 0;0;2;145
+2026-03-26 18:33:44.426 [update notice] received unknown BC cmd: 00fe203a0129
+2026-03-26 18:33:44.484 [update notice] received update-read aris request_status_2: 0
+2026-03-26 18:33:48.152 [update notice] received unknown MS cmd: 703c2000040e11d140 / 0303000a
+2026-03-26 18:33:49.242 [update notice] received update-read aris boiler_operating_mode: 1
+2026-03-26 18:33:49.399 [update notice] received update-read aris status_request_1_flags: 0;0;2;145
+2026-03-26 18:33:49.521 [update notice] received update-read aris request_status_2: 0
+2026-03-26 18:33:53.159 [update notice] received unknown MS cmd: 703c2000040e11d140 / 0303000a
+2026-03-26 18:33:54.257 [update notice] received update-read aris boiler_operating_mode: 1
+2026-03-26 18:33:54.407 [update notice] received update-read aris status_request_1_flags: 0;0;2;145
+2026-03-26 18:33:54.470 [update notice] received unknown BC cmd: 00fe203a0129
+2026-03-26 18:33:54.533 [update notice] received update-read aris request_status_2: 0
+2026-03-26 18:33:56.723 [update notice] received update-read aris flame_target_temperature: 0.0
+2026-03-26 18:33:56.867 [update notice] received update-read aris aux_probe_temperature: 21.5
+2026-03-26 18:33:57.020 [update notice] received update-read aris main_flow_temperature: 19.0
+2026-03-26 18:33:57.158 [update notice] received update-read aris secondary_return_temperature: 19.0
+2026-03-26 18:33:57.306 [update notice] received update-read aris exhaust_temperature: 19.0
+2026-03-26 18:33:57.463 [update notice] received unknown BC cmd: 37fe201010d3460000cf9c0000d9950000da950000
+2026-03-26 18:33:57.619 [update notice] received unknown BC cmd: 37fe201010db950000dc950000dd950000de950000
+2026-03-26 18:33:57.774 [update notice] received unknown BC cmd: 37fe201010d9940000da940000db940000dc940000
+2026-03-26 18:33:57.899 [update notice] received unknown BC cmd: 37fe201008dd940000de940000
+2026-03-26 18:33:58.051 [update notice] received update-read aris heating_setpoint_triplet: 82.0;65.0;35.0
+2026-03-26 18:33:58.224 [update notice] received unknown MS cmd: 703c2000040e11d140 / 0303000a
+2026-03-26 18:33:58.318 [update notice] received update-read aris max_heating_setpoint: 82.0
+2026-03-26 18:33:58.426 [update notice] received update-read aris dhw_eco_setpoint: 35.0
+2026-03-26 18:33:58.556 [update notice] received update-read aris dhw_actual_temperature: 8.0
+2026-03-26 18:33:59.283 [update notice] received update-read aris boiler_operating_mode: 1
+2026-03-26 18:33:59.440 [update notice] received update-read aris status_request_1_flags: 0;0;2;145
+2026-03-26 18:33:59.564 [update notice] received update-read aris request_status_2: 0
+2026-03-26 18:34:00.278 [update notice] received update-read aris zone1_room_temperature: 21.5
+2026-03-26 18:34:00.366 [update notice] received unknown BC cmd: 70fe200006642662716371
+2026-03-26 18:34:00.455 [update notice] received update-read aris zone1_setpoint_bundle_bc: 5.0;21.5;16.0
+2026-03-26 18:34:00.553 [update notice] received update-read aris zone1_heat_request_raw: 79
+2026-03-26 18:34:00.599 [update notice] received update-read aris zone1_request_mode_bc: 2
+2026-03-26 18:34:02.804 [update notice] received update-read aris internal_flow_target_temperature: 70
+2026-03-26 18:34:02.928 [update notice] received update-read aris pressure_sensor_voltage: 0.075
+2026-03-26 18:34:03.053 [update notice] received update-read aris pump_modulation: 150
+2026-03-26 18:34:03.216 [update notice] received unknown MS cmd: 703c2000040e11d140 / 0303000a
+2026-03-26 18:34:04.338 [update notice] received update-read aris boiler_operating_mode: 1
+2026-03-26 18:34:04.498 [update notice] received update-read aris status_request_1_flags: 0;0;2;145
+2026-03-26 18:34:04.556 [update notice] received unknown BC cmd: 00fe203a0129
+2026-03-26 18:34:04.620 [update notice] received update-read aris request_status_2: 0
+2026-03-26 18:34:08.227 [update notice] received unknown MS cmd: 703c2000040e11d140 / 0303000a
+2026-03-26 18:34:09.349 [update notice] received update-read aris boiler_operating_mode: 1
+2026-03-26 18:34:09.506 [update notice] received update-read aris status_request_1_flags: 0;0;2;145
+2026-03-26 18:34:09.629 [update notice] received update-read aris request_status_2: 0
+2026-03-26 18:34:13.268 [update notice] received unknown MS cmd: 703c2000040e11d140 / 0303000a
+2026-03-26 18:34:14.388 [update notice] received update-read aris boiler_operating_mode: 1
+2026-03-26 18:34:14.544 [update notice] received update-read aris status_request_1_flags: 0;0;2;145
+2026-03-26 18:34:14.608 [update notice] received unknown BC cmd: 00fe203a0129
+2026-03-26 18:34:14.670 [update notice] received update-read aris request_status_2: 0
+2026-03-26 18:34:18.278 [update notice] received unknown MS cmd: 703c2000040e11d140 / 0303000a
+2026-03-26 18:34:19.431 [update notice] received update-read aris boiler_operating_mode: 1
+2026-03-26 18:34:19.587 [update notice] received update-read aris status_request_1_flags: 0;0;2;145
+2026-03-26 18:34:19.709 [update notice] received update-read aris request_status_2: 0
+2026-03-26 18:34:21.904 [update notice] received update-read aris flame_target_temperature: 0.0
+2026-03-26 18:34:22.042 [update notice] received update-read aris aux_probe_temperature: 21.5
+2026-03-26 18:34:22.190 [update notice] received update-read aris main_flow_temperature: 19.0
+2026-03-26 18:34:22.333 [update notice] received update-read aris secondary_return_temperature: 19.0
+2026-03-26 18:34:22.484 [update notice] received update-read aris exhaust_temperature: 19.0
+2026-03-26 18:34:22.640 [update notice] received unknown BC cmd: 37fe201010d3460000cf9c0000d9950000da950000
+2026-03-26 18:34:22.794 [update notice] received unknown BC cmd: 37fe201010db950000dc950000dd950000de950000
+2026-03-26 18:34:22.951 [update notice] received unknown BC cmd: 37fe201010d9940000da940000db940000dc940000
+2026-03-26 18:34:23.074 [update notice] received unknown BC cmd: 37fe201008dd940000de940000
+2026-03-26 18:34:23.226 [update notice] received update-read aris heating_setpoint_triplet: 82.0;65.0;35.0
+2026-03-26 18:34:23.339 [update notice] received unknown MS cmd: 703c2000040e11d140 / 0303000a
+2026-03-26 18:34:23.423 [update notice] received update-read aris max_heating_setpoint: 82.0
+2026-03-26 18:34:23.533 [update notice] received update-read aris dhw_eco_setpoint: 35.0
+2026-03-26 18:34:23.662 [update notice] received update-read aris dhw_actual_temperature: 8.0
+2026-03-26 18:34:24.451 [update notice] received update-read aris boiler_operating_mode: 1
+2026-03-26 18:34:24.607 [update notice] received update-read aris status_request_1_flags: 0;0;2;145
+2026-03-26 18:34:24.670 [update notice] received unknown BC cmd: 00fe203a0129
+2026-03-26 18:34:24.733 [update notice] received update-read aris request_status_2: 0
+2026-03-26 18:34:27.966 [update notice] received update-read aris internal_flow_target_temperature: 70
+2026-03-26 18:34:28.087 [update notice] received update-read aris pressure_sensor_voltage: 0.075
+2026-03-26 18:34:28.211 [update notice] received update-read aris pump_modulation: 150
+2026-03-26 18:34:28.315 [update notice] received unknown MS cmd: 703c2000040e11d140 / 0303000a
+2026-03-26 18:34:29.499 [update notice] received update-read aris boiler_operating_mode: 1
+2026-03-26 18:34:29.655 [update notice] received update-read aris status_request_1_flags: 0;0;2;145
+2026-03-26 18:34:29.779 [update notice] received update-read aris request_status_2: 0
+2026-03-26 18:34:33.325 [update notice] received unknown MS cmd: 703c2000040e11d140 / 0303000a
+2026-03-26 18:34:34.508 [update notice] received update-read aris boiler_operating_mode: 1
+2026-03-26 18:34:34.665 [update notice] received update-read aris status_request_1_flags: 0;0;2;145
+2026-03-26 18:34:34.727 [update notice] received unknown BC cmd: 00fe203a0129
+2026-03-26 18:34:34.790 [update notice] received update-read aris request_status_2: 0
+2026-03-26 18:34:38.367 [update notice] received unknown MS cmd: 703c2000040e11d140 / 0303000a
+2026-03-26 18:34:39.552 [update notice] received update-read aris boiler_operating_mode: 1
+2026-03-26 18:34:39.706 [update notice] received update-read aris status_request_1_flags: 0;0;2;145
+2026-03-26 18:34:39.829 [update notice] received update-read aris request_status_2: 0
+2026-03-26 18:34:43.376 [update notice] received unknown MS cmd: 703c2000040e11d140 / 0303000a
+2026-03-26 18:34:44.590 [update notice] received update-read aris boiler_operating_mode: 1
+2026-03-26 18:34:44.745 [update notice] received update-read aris status_request_1_flags: 0;0;2;145
+2026-03-26 18:34:44.809 [update notice] received unknown BC cmd: 00fe203a0129
+2026-03-26 18:34:44.872 [update notice] received update-read aris request_status_2: 0
+2026-03-26 18:34:47.062 [update notice] received update-read aris flame_target_temperature: 0.0
+2026-03-26 18:34:47.205 [update notice] received update-read aris aux_probe_temperature: 21.5
+2026-03-26 18:34:47.353 [update notice] received update-read aris main_flow_temperature: 19.0
+2026-03-26 18:34:47.496 [update notice] received update-read aris secondary_return_temperature: 19.0
+2026-03-26 18:34:47.645 [update notice] received update-read aris exhaust_temperature: 19.0
+2026-03-26 18:34:47.801 [update notice] received unknown BC cmd: 37fe201010d3460000cf9c0000d9950000da950000
+2026-03-26 18:34:47.956 [update notice] received unknown BC cmd: 37fe201010db950000dc950000dd950000de950000
+2026-03-26 18:34:48.119 [update notice] received unknown BC cmd: 37fe201010d9940000da940000db940000dc940000
+2026-03-26 18:34:48.238 [update notice] received unknown BC cmd: 37fe201008dd940000de940000
+2026-03-26 18:34:48.392 [update notice] received update-read aris heating_setpoint_triplet: 82.0;65.0;35.0
+2026-03-26 18:34:48.494 [update notice] received unknown MS cmd: 703c2000040e11d140 / 0303000a
+2026-03-26 18:34:48.586 [update notice] received update-read aris max_heating_setpoint: 82.0
+2026-03-26 18:34:48.701 [update notice] received update-read aris dhw_eco_setpoint: 35.0
+2026-03-26 18:34:48.824 [update notice] received update-read aris dhw_actual_temperature: 8.0
+2026-03-26 18:34:49.614 [update notice] received update-read aris boiler_operating_mode: 1
+2026-03-26 18:34:49.770 [update notice] received update-read aris status_request_1_flags: 0;0;2;145
+2026-03-26 18:34:49.892 [update notice] received update-read aris request_status_2: 0
+2026-03-26 18:34:53.125 [update notice] received update-read aris internal_flow_target_temperature: 70
+2026-03-26 18:34:53.248 [update notice] received update-read aris pressure_sensor_voltage: 0.075
+2026-03-26 18:34:53.370 [update notice] received update-read aris pump_modulation: 150
+2026-03-26 18:34:53.476 [update notice] received unknown MS cmd: 703c2000040e11d140 / 0303000a
+2026-03-26 18:34:54.658 [update notice] received update-read aris boiler_operating_mode: 1
+2026-03-26 18:34:54.814 [update notice] received update-read aris status_request_1_flags: 0;0;2;145
+2026-03-26 18:34:54.877 [update notice] received unknown BC cmd: 00fe203a0129
+2026-03-26 18:34:54.940 [update notice] received update-read aris request_status_2: 0
+2026-03-26 18:34:58.428 [update notice] received unknown MS cmd: 703c2000040e11d140 / 0303000a
+2026-03-26 18:34:59.669 [update notice] received update-read aris boiler_operating_mode: 1
+2026-03-26 18:34:59.826 [update notice] received update-read aris status_request_1_flags: 0;0;2;145
+2026-03-26 18:34:59.951 [update notice] received update-read aris request_status_2: 0
+2026-03-26 18:35:03.468 [update notice] received unknown MS cmd: 703c2000040e11d140 / 0303000a
+2026-03-26 18:35:04.711 [update notice] received update-read aris boiler_operating_mode: 1
+2026-03-26 18:35:04.868 [update notice] received update-read aris status_request_1_flags: 0;0;2;145
+2026-03-26 18:35:04.933 [update notice] received unknown BC cmd: 00fe203a0129
+2026-03-26 18:35:04.995 [update notice] received update-read aris request_status_2: 0
+2026-03-26 18:35:08.482 [update notice] received unknown MS cmd: 703c2000040e11d140 / 0303000a
+2026-03-26 18:35:09.754 [update notice] received update-read aris boiler_operating_mode: 1
+2026-03-26 18:35:09.910 [update notice] received update-read aris status_request_1_flags: 0;0;2;145
+2026-03-26 18:35:10.033 [update notice] received update-read aris request_status_2: 0
+2026-03-26 18:35:12.223 [update notice] received update-read aris flame_target_temperature: 0.0
+2026-03-26 18:35:12.366 [update notice] received update-read aris aux_probe_temperature: 21.5
+2026-03-26 18:35:12.514 [update notice] received update-read aris main_flow_temperature: 19.0
+2026-03-26 18:35:12.658 [update notice] received update-read aris secondary_return_temperature: 19.0
+2026-03-26 18:35:12.806 [update notice] received update-read aris exhaust_temperature: 19.0
+2026-03-26 18:35:12.962 [update notice] received unknown BC cmd: 37fe201010d3460000cf9c0000d9950000da950000
+2026-03-26 18:35:13.118 [update notice] received unknown BC cmd: 37fe201010db950000dc950000dd950000de950000
+2026-03-26 18:35:13.276 [update notice] received unknown BC cmd: 37fe201010d9940000da940000db940000dc940000
+2026-03-26 18:35:13.397 [update notice] received unknown BC cmd: 37fe201008dd940000de940000
+2026-03-26 18:35:13.501 [update notice] received unknown MS cmd: 703c2000040e11d140 / 0303000a
+2026-03-26 18:35:13.594 [update notice] received update-read aris heating_setpoint_triplet: 82.0;65.0;35.0
+2026-03-26 18:35:13.746 [update notice] received update-read aris max_heating_setpoint: 82.0
+2026-03-26 18:35:13.855 [update notice] received update-read aris dhw_eco_setpoint: 35.0
+2026-03-26 18:35:13.984 [update notice] received update-read aris dhw_actual_temperature: 8.0
+2026-03-26 18:35:14.774 [update notice] received update-read aris boiler_operating_mode: 1
+2026-03-26 18:35:14.931 [update notice] received update-read aris status_request_1_flags: 0;0;2;145
+2026-03-26 18:35:14.994 [update notice] received unknown BC cmd: 00fe203a0129
+2026-03-26 18:35:15.057 [update notice] received update-read aris request_status_2: 0
+2026-03-26 18:35:18.290 [update notice] received update-read aris internal_flow_target_temperature: 70
+2026-03-26 18:35:18.413 [update notice] received update-read aris pressure_sensor_voltage: 0.075
+2026-03-26 18:35:18.517 [update notice] received unknown MS cmd: 703c2000040e11d140 / 0303000a
+2026-03-26 18:35:18.580 [update notice] received update-read aris pump_modulation: 150
+2026-03-26 18:35:19.794 [update notice] received update-read aris boiler_operating_mode: 1
+2026-03-26 18:35:19.950 [update notice] received update-read aris status_request_1_flags: 0;0;2;145
+2026-03-26 18:35:20.073 [update notice] received update-read aris request_status_2: 0
+2026-03-26 18:35:23.532 [update notice] received unknown MS cmd: 703c2000040e11d140 / 0303000a
+2026-03-26 18:35:24.834 [update notice] received update-read aris boiler_operating_mode: 1
+2026-03-26 18:35:24.990 [update notice] received update-read aris status_request_1_flags: 0;0;2;145
+2026-03-26 18:35:25.054 [update notice] received unknown BC cmd: 00fe203a0129
+2026-03-26 18:35:25.117 [update notice] received update-read aris request_status_2: 0
+2026-03-26 18:35:28.544 [update notice] received unknown MS cmd: 703c2000040e11d140 / 0303000a
+2026-03-26 18:35:29.878 [update notice] received update-read aris boiler_operating_mode: 1
+2026-03-26 18:35:30.035 [update notice] received update-read aris status_request_1_flags: 0;0;2;145
+2026-03-26 18:35:30.157 [update notice] received update-read aris request_status_2: 0
+2026-03-26 18:35:33.586 [update notice] received unknown MS cmd: 703c2000040e11d140 / 0303000a
+2026-03-26 18:35:34.917 [update notice] received update-read aris boiler_operating_mode: 1
+2026-03-26 18:35:35.073 [update notice] received update-read aris status_request_1_flags: 0;0;2;145
+2026-03-26 18:35:35.139 [update notice] received unknown BC cmd: 00fe203a0129
+2026-03-26 18:35:35.199 [update notice] received update-read aris request_status_2: 0
+2026-03-26 18:35:37.390 [update notice] received update-read aris flame_target_temperature: 0.0
+2026-03-26 18:35:37.533 [update notice] received update-read aris aux_probe_temperature: 21.5
+2026-03-26 18:35:37.682 [update notice] received update-read aris main_flow_temperature: 19.0
+2026-03-26 18:35:37.825 [update notice] received update-read aris secondary_return_temperature: 19.0
+2026-03-26 18:35:37.973 [update notice] received update-read aris exhaust_temperature: 19.0
+2026-03-26 18:35:38.130 [update notice] received unknown BC cmd: 37fe201010d3460000cf9c0000d9950000da950000
+2026-03-26 18:35:38.286 [update notice] received unknown BC cmd: 37fe201010db950000dc950000dd950000de950000
+2026-03-26 18:35:38.444 [update notice] received unknown BC cmd: 37fe201010d9940000da940000db940000dc940000
+2026-03-26 18:35:38.617 [update notice] received unknown MS cmd: 703c2000040e11d140 / 0303000a
+2026-03-26 18:35:38.680 [update notice] received unknown BC cmd: 37fe201008dd940000de940000
+2026-03-26 18:35:38.832 [update notice] received update-read aris heating_setpoint_triplet: 82.0;65.0;35.0
+2026-03-26 18:35:38.984 [update notice] received update-read aris max_heating_setpoint: 82.0
+2026-03-26 18:35:39.093 [update notice] received update-read aris dhw_eco_setpoint: 35.0
+2026-03-26 18:35:39.222 [update notice] received update-read aris dhw_actual_temperature: 8.0
+2026-03-26 18:35:39.331 [update notice] received unknown BC cmd: 37fe2010057310ff7f00
+2026-03-26 18:35:39.476 [update notice] received update-read aris outdoor_temperature_bc: 3276.7
+2026-03-26 18:35:39.632 [update notice] received unknown BC cmd: 37fe201010d3940000d4940000d5940000d6940000
+2026-03-26 18:35:39.772 [update notice] received update-read aris heating_flame_mode_bc: off
+2026-03-26 18:35:39.990 [update notice] received update-read aris boiler_operating_mode: 1
+2026-03-26 18:35:40.146 [update notice] received update-read aris status_request_1_flags: 0;0;2;145
+2026-03-26 18:35:40.269 [update notice] received update-read aris request_status_2: 0
+2026-03-26 18:35:43.441 [update notice] received update-read aris internal_flow_target_temperature: 70
+2026-03-26 18:35:43.564 [update notice] received update-read aris pressure_sensor_voltage: 0.075
+2026-03-26 18:35:43.669 [update notice] received unknown MS cmd: 703c2000040e11d140 / 0303000a
+2026-03-26 18:35:43.732 [update notice] received update-read aris pump_modulation: 150
+2026-03-26 18:35:44.976 [update notice] received update-read aris boiler_operating_mode: 1
+2026-03-26 18:35:45.131 [update notice] received update-read aris status_request_1_flags: 0;0;2;145
+2026-03-26 18:35:45.195 [update notice] received unknown BC cmd: 00fe203a0129
+2026-03-26 18:35:45.259 [update notice] received update-read aris request_status_2: 0
+2026-03-26 18:35:48.624 [update notice] received unknown MS cmd: 703c2000040e11d140 / 0303000a
+2026-03-26 18:35:49.987 [update notice] received update-read aris boiler_operating_mode: 1
+2026-03-26 18:35:50.144 [update notice] received update-read aris status_request_1_flags: 0;0;2;145
+2026-03-26 18:35:50.267 [update notice] received update-read aris request_status_2: 0
+2026-03-26 18:35:53.664 [update notice] received unknown MS cmd: 703c2000040e11d140 / 0303000a
+2026-03-26 18:35:55.027 [update notice] received update-read aris boiler_operating_mode: 1
+2026-03-26 18:35:55.182 [update notice] received update-read aris status_request_1_flags: 0;0;2;145
+2026-03-26 18:35:55.246 [update notice] received unknown BC cmd: 00fe203a0129
+2026-03-26 18:35:55.316 [update notice] received update-read aris request_status_2: 0
+2026-03-26 18:35:58.675 [update notice] received unknown MS cmd: 703c2000040e11d140 / 0303000a
+2026-03-26 18:36:00.069 [update notice] received update-read aris boiler_operating_mode: 1
+2026-03-26 18:36:00.227 [update notice] received update-read aris status_request_1_flags: 0;0;2;145
+2026-03-26 18:36:00.350 [update notice] received update-read aris request_status_2: 0
+2026-03-26 18:36:00.730 [update notice] received update-read aris zone1_room_temperature: 21.5
+2026-03-26 18:36:00.815 [update notice] received unknown BC cmd: 70fe200006642662716371
+2026-03-26 18:36:00.907 [update notice] received update-read aris zone1_setpoint_bundle_bc: 5.0;21.5;16.0
+2026-03-26 18:36:01.005 [update notice] received update-read aris zone1_heat_request_raw: 79
+2026-03-26 18:36:01.051 [update notice] received update-read aris zone1_request_mode_bc: 2
+2026-03-26 18:36:02.517 [update notice] received update-read aris flame_target_temperature: 0.0
+2026-03-26 18:36:02.664 [update notice] received update-read aris aux_probe_temperature: 21.5
+2026-03-26 18:36:02.810 [update notice] received update-read aris main_flow_temperature: 19.0
+2026-03-26 18:36:02.952 [update notice] received update-read aris secondary_return_temperature: 19.0
+2026-03-26 18:36:03.103 [update notice] received update-read aris exhaust_temperature: 19.0
+2026-03-26 18:36:03.257 [update notice] received unknown BC cmd: 37fe201010d3460000cf9c0000d9950000da950000
+2026-03-26 18:36:03.412 [update notice] received unknown BC cmd: 37fe201010db950000dc950000dd950000de950000
+2026-03-26 18:36:03.569 [update notice] received unknown BC cmd: 37fe201010d9940000da940000db940000dc940000
+2026-03-26 18:36:03.743 [update notice] received unknown MS cmd: 703c2000040e11d140 / 0303000a
+2026-03-26 18:36:03.806 [update notice] received unknown BC cmd: 37fe201008dd940000de940000
+2026-03-26 18:36:03.957 [update notice] received update-read aris heating_setpoint_triplet: 82.0;65.0;35.0
+2026-03-26 18:36:04.109 [update notice] received update-read aris max_heating_setpoint: 82.0
+2026-03-26 18:36:04.221 [update notice] received update-read aris dhw_eco_setpoint: 35.0
+2026-03-26 18:36:04.347 [update notice] received update-read aris dhw_actual_temperature: 8.0
+2026-03-26 18:36:05.106 [update notice] received update-read aris boiler_operating_mode: 1
+2026-03-26 18:36:05.262 [update notice] received update-read aris status_request_1_flags: 0;0;2;145
+2026-03-26 18:36:05.330 [update notice] received unknown BC cmd: 00fe203a0129
+2026-03-26 18:36:05.389 [update notice] received update-read aris request_status_2: 0
+2026-03-26 18:36:08.623 [update notice] received update-read aris internal_flow_target_temperature: 70
+2026-03-26 18:36:08.727 [update notice] received unknown MS cmd: 703c2000040e11d140 / 0303000a
+2026-03-26 18:36:08.790 [update notice] received update-read aris pressure_sensor_voltage: 0.075
+2026-03-26 18:36:08.913 [update notice] received update-read aris pump_modulation: 150
+2026-03-26 18:36:10.126 [update notice] received update-read aris boiler_operating_mode: 1
+2026-03-26 18:36:10.281 [update notice] received update-read aris status_request_1_flags: 0;0;2;145
+2026-03-26 18:36:10.403 [update notice] received update-read aris request_status_2: 0
+2026-03-26 18:36:13.738 [update notice] received unknown MS cmd: 703c2000040e11d140 / 0303000a
+2026-03-26 18:36:15.162 [update notice] received update-read aris boiler_operating_mode: 1
+2026-03-26 18:36:15.320 [update notice] received update-read aris status_request_1_flags: 0;0;2;145
+2026-03-26 18:36:15.384 [update notice] received unknown BC cmd: 00fe203a0129
+2026-03-26 18:36:15.447 [update notice] received update-read aris request_status_2: 0
+2026-03-26 18:36:18.752 [update notice] received unknown MS cmd: 703c2000040e11d140 / 0303000a
+2026-03-26 18:36:20.178 [update notice] received update-read aris boiler_operating_mode: 1
+2026-03-26 18:36:20.332 [update notice] received update-read aris status_request_1_flags: 0;0;2;145
+2026-03-26 18:36:20.455 [update notice] received update-read aris request_status_2: 0
+2026-03-26 18:36:23.760 [update notice] received unknown MS cmd: 703c2000040e11d140 / 0303000a
+2026-03-26 18:36:25.215 [update notice] received update-read aris boiler_operating_mode: 1
+2026-03-26 18:36:25.372 [update notice] received update-read aris status_request_1_flags: 0;0;2;145
+2026-03-26 18:36:25.436 [update notice] received unknown BC cmd: 00fe203a0129
+2026-03-26 18:36:25.501 [update notice] received update-read aris request_status_2: 0
+2026-03-26 18:36:27.689 [update notice] received update-read aris flame_target_temperature: 0.0
+2026-03-26 18:36:27.833 [update notice] received update-read aris aux_probe_temperature: 21.5
+2026-03-26 18:36:27.981 [update notice] received update-read aris main_flow_temperature: 19.0
+2026-03-26 18:36:28.125 [update notice] received update-read aris secondary_return_temperature: 19.0
+2026-03-26 18:36:28.273 [update notice] received update-read aris exhaust_temperature: 19.0
+2026-03-26 18:36:28.429 [update notice] received unknown BC cmd: 37fe201010d3460000cf9c0000d9950000da950000
+2026-03-26 18:36:28.586 [update notice] received unknown BC cmd: 37fe201010db950000dc950000dd950000de950000
+2026-03-26 18:36:28.746 [update notice] received unknown BC cmd: 37fe201010d9940000da940000db940000dc940000
+2026-03-26 18:36:28.848 [update notice] received unknown MS cmd: 703c2000040e11d140 / 0303000a
+2026-03-26 18:36:28.911 [update notice] received unknown BC cmd: 37fe201008dd940000de940000
+2026-03-26 18:36:29.062 [update notice] received update-read aris heating_setpoint_triplet: 82.0;65.0;35.0
+2026-03-26 18:36:29.216 [update notice] received update-read aris max_heating_setpoint: 82.0
+2026-03-26 18:36:29.326 [update notice] received update-read aris dhw_eco_setpoint: 35.0
+2026-03-26 18:36:29.452 [update notice] received update-read aris dhw_actual_temperature: 8.0
+2026-03-26 18:36:30.244 [update notice] received update-read aris boiler_operating_mode: 1
+2026-03-26 18:36:30.398 [update notice] received update-read aris status_request_1_flags: 0;0;2;145
+2026-03-26 18:36:30.522 [update notice] received update-read aris request_status_2: 0
+2026-03-26 18:36:33.834 [update notice] received unknown MS cmd: 703c2000040e11d140 / 0303000a
+2026-03-26 18:36:33.900 [update notice] received update-read aris internal_flow_target_temperature: 70
+2026-03-26 18:36:34.020 [update notice] received update-read aris pressure_sensor_voltage: 0.075
+2026-03-26 18:36:34.143 [update notice] received update-read aris pump_modulation: 150
+2026-03-26 18:36:35.296 [update notice] received update-read aris boiler_operating_mode: 1
+2026-03-26 18:36:35.452 [update notice] received update-read aris status_request_1_flags: 0;0;2;145
+2026-03-26 18:36:35.515 [update notice] received unknown BC cmd: 00fe203a0129
+2026-03-26 18:36:35.577 [update notice] received update-read aris request_status_2: 0
+2026-03-26 18:36:38.823 [update notice] received unknown MS cmd: 703c2000040e11d140 / 0303000a
+2026-03-26 18:36:40.308 [update notice] received update-read aris boiler_operating_mode: 1
+2026-03-26 18:36:40.463 [update notice] received update-read aris status_request_1_flags: 0;0;2;145
+2026-03-26 18:36:40.585 [update notice] received update-read aris request_status_2: 0
+2026-03-26 18:36:43.861 [update notice] received unknown MS cmd: 703c2000040e11d140 / 0303000a
+2026-03-26 18:36:45.347 [update notice] received update-read aris boiler_operating_mode: 1
+2026-03-26 18:36:45.502 [update notice] received update-read aris status_request_1_flags: 0;0;2;145
+2026-03-26 18:36:45.571 [update notice] received unknown BC cmd: 00fe203a0129
+2026-03-26 18:36:45.628 [update notice] received update-read aris request_status_2: 0
+2026-03-26 18:36:48.873 [update notice] received unknown MS cmd: 703c2000040e11d140 / 0303000a
+2026-03-26 18:36:50.389 [update notice] received update-read aris boiler_operating_mode: 1
+2026-03-26 18:36:50.544 [update notice] received update-read aris status_request_1_flags: 0;0;2;145
+2026-03-26 18:36:50.667 [update notice] received update-read aris request_status_2: 0
+2026-03-26 18:36:52.856 [update notice] received update-read aris flame_target_temperature: 0.0
+2026-03-26 18:36:52.999 [update notice] received update-read aris aux_probe_temperature: 21.5
+2026-03-26 18:36:53.148 [update notice] received update-read aris main_flow_temperature: 19.0
+2026-03-26 18:36:53.291 [update notice] received update-read aris secondary_return_temperature: 19.0
+2026-03-26 18:36:53.439 [update notice] received update-read aris exhaust_temperature: 19.0
+2026-03-26 18:36:53.595 [update notice] received unknown BC cmd: 37fe201010d3460000cf9c0000d9950000da950000
+2026-03-26 18:36:53.752 [update notice] received unknown BC cmd: 37fe201010db950000dc950000dd950000de950000
+2026-03-26 18:36:53.926 [update notice] received unknown MS cmd: 703c2000040e11d140 / 0303000a
+2026-03-26 18:36:54.020 [update notice] received unknown BC cmd: 37fe201010d9940000da940000db940000dc940000
+2026-03-26 18:36:54.143 [update notice] received unknown BC cmd: 37fe201008dd940000de940000
+2026-03-26 18:36:54.296 [update notice] received update-read aris heating_setpoint_triplet: 82.0;65.0;35.0
+2026-03-26 18:36:54.448 [update notice] received update-read aris max_heating_setpoint: 82.0
+2026-03-26 18:36:54.558 [update notice] received update-read aris dhw_eco_setpoint: 35.0
+2026-03-26 18:36:54.686 [update notice] received update-read aris dhw_actual_temperature: 8.0
+2026-03-26 18:36:55.415 [update notice] received update-read aris boiler_operating_mode: 1
+2026-03-26 18:36:55.574 [update notice] received update-read aris status_request_1_flags: 0;0;2;145
+2026-03-26 18:36:55.635 [update notice] received unknown BC cmd: 00fe203a0129
+2026-03-26 18:36:55.698 [update notice] received update-read aris request_status_2: 0
+2026-03-26 18:36:58.913 [update notice] received unknown MS cmd: 703c2000040e11d140 / 0303000a
+2026-03-26 18:36:58.976 [update notice] received update-read aris internal_flow_target_temperature: 70
+2026-03-26 18:36:59.099 [update notice] received update-read aris pressure_sensor_voltage: 0.075
+2026-03-26 18:36:59.224 [update notice] received update-read aris pump_modulation: 150
+2026-03-26 18:37:00.435 [update notice] received update-read aris boiler_operating_mode: 1
+2026-03-26 18:37:00.591 [update notice] received update-read aris status_request_1_flags: 0;0;2;145
+2026-03-26 18:37:00.713 [update notice] received update-read aris request_status_2: 0
+2026-03-26 18:37:03.930 [update notice] received unknown MS cmd: 703c2000040e11d140 / 0303000a
+2026-03-26 18:37:05.473 [update notice] received update-read aris boiler_operating_mode: 1
+2026-03-26 18:37:05.630 [update notice] received update-read aris status_request_1_flags: 0;0;2;145
+2026-03-26 18:37:05.693 [update notice] received unknown BC cmd: 00fe203a0129
+2026-03-26 18:37:05.755 [update notice] received update-read aris request_status_2: 0
+2026-03-26 18:37:05.819 [update notice] received unknown BC cmd: 70fe203b0175
+2026-03-26 18:37:08.945 [update notice] received unknown MS cmd: 703c2000040e11d140 / 0303000a
+2026-03-26 18:37:10.519 [update notice] received update-read aris boiler_operating_mode: 1
+2026-03-26 18:37:10.675 [update notice] received update-read aris status_request_1_flags: 0;0;2;145
+2026-03-26 18:37:10.799 [update notice] received update-read aris request_status_2: 0
+2026-03-26 18:37:10.864 [update notice] received unknown BC cmd: 03fe203b0129
+2026-03-26 18:37:13.956 [update notice] received unknown MS cmd: 703c2000040e11d140 / 0303000a
+2026-03-26 18:37:15.531 [update notice] received update-read aris boiler_operating_mode: 1
+2026-03-26 18:37:15.687 [update notice] received update-read aris status_request_1_flags: 0;0;2;145
+2026-03-26 18:37:15.750 [update notice] received unknown BC cmd: 00fe203a0129
+2026-03-26 18:37:15.812 [update notice] received update-read aris request_status_2: 0
+2026-03-26 18:37:18.002 [update notice] received update-read aris flame_target_temperature: 0.0
+2026-03-26 18:37:18.146 [update notice] received update-read aris aux_probe_temperature: 21.5
+2026-03-26 18:37:18.294 [update notice] received update-read aris main_flow_temperature: 19.0
+2026-03-26 18:37:18.443 [update notice] received update-read aris secondary_return_temperature: 19.0
+2026-03-26 18:37:18.586 [update notice] received update-read aris exhaust_temperature: 19.0
+2026-03-26 18:37:18.752 [update notice] received unknown BC cmd: 37fe201010d3460000cf9c0000d9950000da950000
+2026-03-26 18:37:18.898 [update notice] received unknown BC cmd: 37fe201010db950000dc950000dd950000de950000
+2026-03-26 18:37:19.003 [update notice] received unknown MS cmd: 703c2000040e11d140 / 0303000a
+2026-03-26 18:37:19.099 [update notice] received unknown BC cmd: 37fe201010d9940000da940000db940000dc940000
+2026-03-26 18:37:19.222 [update notice] received unknown BC cmd: 37fe201008dd940000de940000
+2026-03-26 18:37:19.374 [update notice] received update-read aris heating_setpoint_triplet: 82.0;65.0;35.0
+2026-03-26 18:37:19.526 [update notice] received update-read aris max_heating_setpoint: 82.0
+2026-03-26 18:37:19.637 [update notice] received update-read aris dhw_eco_setpoint: 35.0
+2026-03-26 18:37:19.763 [update notice] received update-read aris dhw_actual_temperature: 8.0
+2026-03-26 18:37:20.584 [update notice] received update-read aris boiler_operating_mode: 1
+2026-03-26 18:37:20.740 [update notice] received update-read aris status_request_1_flags: 0;0;2;145
+2026-03-26 18:37:20.866 [update notice] received update-read aris request_status_2: 0
+2026-03-26 18:37:24.017 [update notice] received unknown MS cmd: 703c2000040e11d140 / 0303000a
+2026-03-26 18:37:24.080 [update notice] received update-read aris internal_flow_target_temperature: 70
+2026-03-26 18:37:24.203 [update notice] received update-read aris pressure_sensor_voltage: 0.075
+2026-03-26 18:37:24.326 [update notice] received update-read aris pump_modulation: 150
+2026-03-26 18:37:25.600 [update notice] received update-read aris boiler_operating_mode: 1
+2026-03-26 18:37:25.756 [update notice] received update-read aris status_request_1_flags: 0;0;2;145
+2026-03-26 18:37:25.819 [update notice] received unknown BC cmd: 00fe203a0129
+2026-03-26 18:37:25.882 [update notice] received update-read aris request_status_2: 0
+2026-03-26 18:37:29.036 [update notice] received unknown MS cmd: 703c2000040e11d140 / 0303000a
+2026-03-26 18:37:30.649 [update notice] received update-read aris boiler_operating_mode: 1
+2026-03-26 18:37:30.801 [update notice] received update-read aris status_request_1_flags: 0;0;2;145
+2026-03-26 18:37:30.923 [update notice] received update-read aris request_status_2: 0
+2026-03-26 18:37:34.047 [update notice] received unknown MS cmd: 703c2000040e11d140 / 0303000a
+2026-03-26 18:37:35.652 [update notice] received update-read aris boiler_operating_mode: 1
+2026-03-26 18:37:35.809 [update notice] received update-read aris status_request_1_flags: 0;0;2;145
+2026-03-26 18:37:35.871 [update notice] received unknown BC cmd: 00fe203a0129
+2026-03-26 18:37:35.934 [update notice] received update-read aris request_status_2: 0
+2026-03-26 18:37:38.128 [update notice] received unknown BC cmd: 37fe2010057310ff7f00
+2026-03-26 18:37:38.288 [update notice] received update-read aris outdoor_temperature_bc: 3276.7
+2026-03-26 18:37:38.428 [update notice] received unknown BC cmd: 37fe201010d3940000d4940000d5940000d6940000
+2026-03-26 18:37:39.076 [update notice] received unknown MS cmd: 703c2000040e11d140 / 0303000a
+2026-03-26 18:37:40.711 [update notice] received update-read aris boiler_operating_mode: 1
+2026-03-26 18:37:40.869 [update notice] received update-read aris status_request_1_flags: 0;0;2;145
+2026-03-26 18:37:40.989 [update notice] received update-read aris request_status_2: 0
+2026-03-26 18:37:43.179 [update notice] received update-read aris flame_target_temperature: 0.0
+2026-03-26 18:37:43.326 [update notice] received update-read aris aux_probe_temperature: 21.5
+2026-03-26 18:37:43.471 [update notice] received update-read aris main_flow_temperature: 19.0
+2026-03-26 18:37:43.615 [update notice] received update-read aris secondary_return_temperature: 19.0
+2026-03-26 18:37:43.764 [update notice] received update-read aris exhaust_temperature: 19.0
+2026-03-26 18:37:43.919 [update notice] received unknown BC cmd: 37fe201010d3460000cf9c0000d9950000da950000
+2026-03-26 18:37:44.075 [update notice] received unknown BC cmd: 37fe201010db950000dc950000dd950000de950000
+2026-03-26 18:37:44.181 [update notice] received unknown MS cmd: 703c2000040e11d140 / 0303000a
+2026-03-26 18:37:44.278 [update notice] received unknown BC cmd: 37fe201010d9940000da940000db940000dc940000
+2026-03-26 18:37:44.400 [update notice] received unknown BC cmd: 37fe201008dd940000de940000
+2026-03-26 18:37:44.555 [update notice] received update-read aris heating_setpoint_triplet: 82.0;65.0;35.0
+2026-03-26 18:37:44.704 [update notice] received update-read aris max_heating_setpoint: 82.0
+2026-03-26 18:37:44.814 [update notice] received update-read aris dhw_eco_setpoint: 35.0
+2026-03-26 18:37:44.942 [update notice] received update-read aris dhw_actual_temperature: 8.0
+2026-03-26 18:37:45.732 [update notice] received update-read aris boiler_operating_mode: 1
+2026-03-26 18:37:45.889 [update notice] received update-read aris status_request_1_flags: 0;0;2;145
+2026-03-26 18:37:45.955 [update notice] received unknown BC cmd: 00fe203a0129
+2026-03-26 18:37:46.016 [update notice] received update-read aris request_status_2: 0
+2026-03-26 18:37:49.108 [update notice] received unknown MS cmd: 703c2000040e11d140 / 0303000a
+2026-03-26 18:37:49.264 [update notice] received update-read aris internal_flow_target_temperature: 70
+2026-03-26 18:37:49.386 [update notice] received update-read aris pressure_sensor_voltage: 0.075
+2026-03-26 18:37:49.508 [update notice] received update-read aris pump_modulation: 150
+2026-03-26 18:37:50.752 [update notice] received update-read aris boiler_operating_mode: 1
+2026-03-26 18:37:50.909 [update notice] received update-read aris status_request_1_flags: 0;0;2;145
+2026-03-26 18:37:51.034 [update notice] received update-read aris request_status_2: 0
+2026-03-26 18:37:54.124 [update notice] received unknown MS cmd: 703c2000040e11d140 / 0303000a
+2026-03-26 18:37:55.791 [update notice] received update-read aris boiler_operating_mode: 1
+2026-03-26 18:37:55.948 [update notice] received update-read aris status_request_1_flags: 0;0;2;145
+2026-03-26 18:37:56.011 [update notice] received unknown BC cmd: 00fe203a0129
+2026-03-26 18:37:56.075 [update notice] received update-read aris request_status_2: 0
+2026-03-26 18:37:59.139 [update notice] received unknown MS cmd: 703c2000040e11d140 / 0303000a
+2026-03-26 18:38:00.836 [update notice] received update-read aris boiler_operating_mode: 1
+2026-03-26 18:38:00.991 [update notice] received update-read aris status_request_1_flags: 0;0;2;145
+2026-03-26 18:38:01.119 [update notice] received update-read aris request_status_2: 0
+2026-03-26 18:38:01.224 [update notice] received update-read aris zone1_room_temperature: 21.5
+2026-03-26 18:38:01.307 [update notice] received unknown BC cmd: 70fe200006642662716371
+2026-03-26 18:38:01.399 [update notice] received update-read aris zone1_setpoint_bundle_bc: 5.0;21.5;16.0
+2026-03-26 18:38:01.496 [update notice] received update-read aris zone1_heat_request_raw: 79
+2026-03-26 18:38:01.544 [update notice] received update-read aris zone1_request_mode_bc: 2
+2026-03-26 18:38:04.153 [update notice] received unknown MS cmd: 703c2000040e11d140 / 0303000a
+2026-03-26 18:38:05.852 [update notice] received update-read aris boiler_operating_mode: 1
+2026-03-26 18:38:06.006 [update notice] received update-read aris status_request_1_flags: 0;0;2;145
+2026-03-26 18:38:06.069 [update notice] received unknown BC cmd: 00fe203a0129
+2026-03-26 18:38:06.132 [update notice] received update-read aris request_status_2: 0
+2026-03-26 18:38:08.322 [update notice] received update-read aris flame_target_temperature: 0.0
+2026-03-26 18:38:08.467 [update notice] received update-read aris aux_probe_temperature: 21.5
+2026-03-26 18:38:08.617 [update notice] received update-read aris main_flow_temperature: 19.0
+2026-03-26 18:38:08.758 [update notice] received update-read aris secondary_return_temperature: 19.0
+2026-03-26 18:38:08.937 [update notice] received update-read aris exhaust_temperature: 19.0
+2026-03-26 18:38:09.062 [update notice] received unknown BC cmd: 37fe201010d3460000cf9c0000d9950000da950000
+2026-03-26 18:38:09.236 [update notice] received unknown MS cmd: 703c2000040e11d140 / 0303000a
+2026-03-26 18:38:09.335 [update notice] received unknown BC cmd: 37fe201010db950000dc950000dd950000de950000
+2026-03-26 18:38:09.489 [update notice] received unknown BC cmd: 37fe201010d9940000da940000db940000dc940000
+2026-03-26 18:38:09.612 [update notice] received unknown BC cmd: 37fe201008dd940000de940000
+2026-03-26 18:38:09.764 [update notice] received update-read aris heating_setpoint_triplet: 82.0;65.0;35.0
+2026-03-26 18:38:09.918 [update notice] received update-read aris max_heating_setpoint: 82.0
+2026-03-26 18:38:10.026 [update notice] received update-read aris dhw_eco_setpoint: 35.0
+2026-03-26 18:38:10.154 [update notice] received update-read aris dhw_actual_temperature: 8.0
+2026-03-26 18:38:10.884 [update notice] received update-read aris boiler_operating_mode: 1
+2026-03-26 18:38:11.039 [update notice] received update-read aris status_request_1_flags: 0;0;2;145
+2026-03-26 18:38:11.162 [update notice] received update-read aris request_status_2: 0
+2026-03-26 18:38:14.196 [update notice] received unknown MS cmd: 703c2000040e11d140 / 0303000a
+2026-03-26 18:38:14.409 [update notice] received update-read aris internal_flow_target_temperature: 70
+2026-03-26 18:38:14.532 [update notice] received update-read aris pressure_sensor_voltage: 0.075
+2026-03-26 18:38:14.658 [update notice] received update-read aris pump_modulation: 150
+2026-03-26 18:38:15.929 [update notice] received update-read aris boiler_operating_mode: 1
+2026-03-26 18:38:16.085 [update notice] received update-read aris status_request_1_flags: 0;0;2;145
+2026-03-26 18:38:16.147 [update notice] received unknown BC cmd: 00fe203a0129
+2026-03-26 18:38:16.210 [update notice] received update-read aris request_status_2: 0
+2026-03-26 18:38:19.213 [update notice] received unknown MS cmd: 703c2000040e11d140 / 0303000a
+2026-03-26 18:38:20.946 [update notice] received update-read aris boiler_operating_mode: 1
+2026-03-26 18:38:21.096 [update notice] received update-read aris status_request_1_flags: 0;0;2;145
+2026-03-26 18:38:21.218 [update notice] received update-read aris request_status_2: 0
+2026-03-26 18:38:24.254 [update notice] received unknown MS cmd: 703c2000040e11d140 / 0303000a
+2026-03-26 18:38:25.980 [update notice] received update-read aris boiler_operating_mode: 1
+2026-03-26 18:38:26.136 [update notice] received update-read aris status_request_1_flags: 0;0;2;145
+2026-03-26 18:38:26.199 [update notice] received unknown BC cmd: 00fe203a0129
+2026-03-26 18:38:26.262 [update notice] received update-read aris request_status_2: 0
+2026-03-26 18:38:29.266 [update notice] received unknown MS cmd: 703c2000040e11d140 / 0303000a
+2026-03-26 18:38:31.022 [update notice] received update-read aris boiler_operating_mode: 1
+2026-03-26 18:38:31.179 [update notice] received update-read aris status_request_1_flags: 0;0;2;145
+2026-03-26 18:38:31.301 [update notice] received update-read aris request_status_2: 0
+2026-03-26 18:38:33.491 [update notice] received update-read aris flame_target_temperature: 0.0
+2026-03-26 18:38:33.635 [update notice] received update-read aris aux_probe_temperature: 21.5
+2026-03-26 18:38:33.783 [update notice] received update-read aris main_flow_temperature: 19.0
+2026-03-26 18:38:33.928 [update notice] received update-read aris secondary_return_temperature: 19.0
+2026-03-26 18:38:34.075 [update notice] received update-read aris exhaust_temperature: 19.0
+2026-03-26 18:38:34.231 [update notice] received unknown BC cmd: 37fe201010d3460000cf9c0000d9950000da950000
+2026-03-26 18:38:34.336 [update notice] received unknown MS cmd: 703c2000040e11d140 / 0303000a
+2026-03-26 18:38:34.433 [update notice] received unknown BC cmd: 37fe201010db950000dc950000dd950000de950000
+2026-03-26 18:38:34.589 [update notice] received unknown BC cmd: 37fe201010d9940000da940000db940000dc940000
+2026-03-26 18:38:34.712 [update notice] received unknown BC cmd: 37fe201008dd940000de940000
+2026-03-26 18:38:34.863 [update notice] received update-read aris heating_setpoint_triplet: 82.0;65.0;35.0
+2026-03-26 18:38:35.020 [update notice] received update-read aris max_heating_setpoint: 82.0
+2026-03-26 18:38:35.125 [update notice] received update-read aris dhw_eco_setpoint: 35.0
+2026-03-26 18:38:35.253 [update notice] received update-read aris dhw_actual_temperature: 8.0
+2026-03-26 18:38:36.043 [update notice] received update-read aris boiler_operating_mode: 1
+2026-03-26 18:38:36.199 [update notice] received update-read aris status_request_1_flags: 0;0;2;145
+2026-03-26 18:38:36.265 [update notice] received unknown BC cmd: 00fe203a0129
+2026-03-26 18:38:36.327 [update notice] received update-read aris request_status_2: 0
+2026-03-26 18:38:39.300 [update notice] received unknown MS cmd: 703c2000040e11d140 / 0303000a
+2026-03-26 18:38:39.573 [update notice] received update-read aris internal_flow_target_temperature: 70
+2026-03-26 18:38:39.696 [update notice] received update-read aris pressure_sensor_voltage: 0.075
+2026-03-26 18:38:39.840 [update notice] received update-read aris pump_modulation: 150
+2026-03-26 18:38:41.093 [update notice] received update-read aris boiler_operating_mode: 1
+2026-03-26 18:38:41.248 [update notice] received update-read aris status_request_1_flags: 0;0;2;145
+2026-03-26 18:38:41.370 [update notice] received update-read aris request_status_2: 0
+2026-03-26 18:38:42.853 [update notice] received unknown BC cmd: 37fe203b013c
+2026-03-26 18:38:44.316 [update notice] received unknown MS cmd: 703c2000040e11d140 / 0303000a
+2026-03-26 18:38:46.104 [update notice] received update-read aris boiler_operating_mode: 1
+2026-03-26 18:38:46.262 [update notice] received update-read aris status_request_1_flags: 0;0;2;145
+2026-03-26 18:38:46.323 [update notice] received unknown BC cmd: 00fe203a0129
+2026-03-26 18:38:46.386 [update notice] received update-read aris request_status_2: 0
+2026-03-26 18:38:49.358 [update notice] received unknown MS cmd: 703c2000040e11d140 / 0303000a
+2026-03-26 18:38:51.145 [update notice] received update-read aris boiler_operating_mode: 1
+2026-03-26 18:38:51.303 [update notice] received update-read aris status_request_1_flags: 0;0;2;145
+2026-03-26 18:38:51.424 [update notice] received update-read aris request_status_2: 0
+2026-03-26 18:38:54.367 [update notice] received unknown MS cmd: 703c2000040e11d140 / 0303000a
+2026-03-26 18:38:56.183 [update notice] received update-read aris boiler_operating_mode: 1
+2026-03-26 18:38:56.340 [update notice] received update-read aris status_request_1_flags: 0;0;2;145
+2026-03-26 18:38:56.404 [update notice] received unknown BC cmd: 00fe203a0129
+2026-03-26 18:38:56.467 [update notice] received update-read aris request_status_2: 0
+2026-03-26 18:38:58.659 [update notice] received update-read aris flame_target_temperature: 0.0
+2026-03-26 18:38:58.801 [update notice] received update-read aris aux_probe_temperature: 21.5
+2026-03-26 18:38:58.948 [update notice] received update-read aris main_flow_temperature: 19.0
+2026-03-26 18:38:59.093 [update notice] received update-read aris secondary_return_temperature: 19.0
+2026-03-26 18:38:59.240 [update notice] received update-read aris exhaust_temperature: 19.0
+2026-03-26 18:38:59.415 [update notice] received unknown MS cmd: 703c2000040e11d140 / 0303000a
+2026-03-26 18:38:59.513 [update notice] received unknown BC cmd: 37fe201010d3460000cf9c0000d9950000da950000
+2026-03-26 18:38:59.666 [update notice] received unknown BC cmd: 37fe201010db950000dc950000dd950000de950000
+2026-03-26 18:38:59.822 [update notice] received unknown BC cmd: 37fe201010d9940000da940000db940000dc940000
+2026-03-26 18:38:59.945 [update notice] received unknown BC cmd: 37fe201008dd940000de940000
+2026-03-26 18:39:00.097 [update notice] received update-read aris heating_setpoint_triplet: 82.0;65.0;35.0
+2026-03-26 18:39:00.249 [update notice] received update-read aris max_heating_setpoint: 82.0
+2026-03-26 18:39:00.361 [update notice] received update-read aris dhw_eco_setpoint: 35.0
+2026-03-26 18:39:00.487 [update notice] received update-read aris dhw_actual_temperature: 8.0
+2026-03-26 18:39:01.219 [update notice] received update-read aris boiler_operating_mode: 1
+2026-03-26 18:39:01.374 [update notice] received update-read aris status_request_1_flags: 0;0;2;145
+2026-03-26 18:39:01.497 [update notice] received update-read aris request_status_2: 0
+2026-03-26 18:39:04.409 [update notice] received unknown MS cmd: 703c2000040e11d140 / 0303000a
+2026-03-26 18:39:04.714 [update notice] received update-read aris internal_flow_target_temperature: 70
+2026-03-26 18:39:04.836 [update notice] received update-read aris pressure_sensor_voltage: 0.075
+2026-03-26 18:39:04.960 [update notice] received update-read aris pump_modulation: 150
+2026-03-26 18:39:06.235 [update notice] received update-read aris boiler_operating_mode: 1
+2026-03-26 18:39:06.392 [update notice] received update-read aris status_request_1_flags: 0;0;2;145
+2026-03-26 18:39:06.452 [update notice] received unknown BC cmd: 00fe203a0129
+2026-03-26 18:39:06.516 [update notice] received update-read aris request_status_2: 0
+2026-03-26 18:39:09.428 [update notice] received unknown MS cmd: 703c2000040e11d140 / 0303000a
+2026-03-26 18:39:11.276 [update notice] received update-read aris boiler_operating_mode: 1
+2026-03-26 18:39:11.433 [update notice] received update-read aris status_request_1_flags: 0;0;2;145
+2026-03-26 18:39:11.556 [update notice] received update-read aris request_status_2: 0
+2026-03-26 18:39:14.439 [update notice] received unknown MS cmd: 703c2000040e11d140 / 0303000a
+2026-03-26 18:39:16.317 [update notice] received update-read aris boiler_operating_mode: 1
+2026-03-26 18:39:16.478 [update notice] received update-read aris status_request_1_flags: 0;0;2;145
+2026-03-26 18:39:16.539 [update notice] received unknown BC cmd: 00fe203a0129
+2026-03-26 18:39:16.601 [update notice] received update-read aris request_status_2: 0
+2026-03-26 18:39:19.453 [update notice] received unknown MS cmd: 703c2000040e11d140 / 0303000a
+2026-03-26 18:39:21.330 [update notice] received update-read aris boiler_operating_mode: 1
+2026-03-26 18:39:21.486 [update notice] received update-read aris status_request_1_flags: 0;0;2;145
+2026-03-26 18:39:21.608 [update notice] received update-read aris request_status_2: 0
+2026-03-26 18:39:23.800 [update notice] received update-read aris flame_target_temperature: 0.0
+2026-03-26 18:39:23.942 [update notice] received update-read aris aux_probe_temperature: 21.5
+2026-03-26 18:39:24.090 [update notice] received update-read aris main_flow_temperature: 19.0
+2026-03-26 18:39:24.234 [update notice] received update-read aris secondary_return_temperature: 19.0
+2026-03-26 18:39:24.382 [update notice] received update-read aris exhaust_temperature: 19.0
+2026-03-26 18:39:24.487 [update notice] received unknown MS cmd: 703c2000040e11d140 / 0303000a
+2026-03-26 18:39:24.584 [update notice] received unknown BC cmd: 37fe201010d3460000cf9c0000d9950000da950000
+2026-03-26 18:39:24.740 [update notice] received unknown BC cmd: 37fe201010db950000dc950000dd950000de950000
+2026-03-26 18:39:24.897 [update notice] received unknown BC cmd: 37fe201010d9940000da940000db940000dc940000
+2026-03-26 18:39:25.019 [update notice] received unknown BC cmd: 37fe201008dd940000de940000
+2026-03-26 18:39:25.171 [update notice] received update-read aris heating_setpoint_triplet: 82.0;65.0;35.0
+2026-03-26 18:39:25.323 [update notice] received update-read aris max_heating_setpoint: 82.0
+2026-03-26 18:39:25.438 [update notice] received update-read aris dhw_eco_setpoint: 35.0
+2026-03-26 18:39:25.560 [update notice] received update-read aris dhw_actual_temperature: 8.0
+2026-03-26 18:39:26.381 [update notice] received update-read aris boiler_operating_mode: 1
+2026-03-26 18:39:26.542 [update notice] received update-read aris status_request_1_flags: 0;0;2;145
+2026-03-26 18:39:26.600 [update notice] received unknown BC cmd: 00fe203a0129
+2026-03-26 18:39:26.663 [update notice] received update-read aris request_status_2: 0
+2026-03-26 18:39:29.516 [update notice] received unknown MS cmd: 703c2000040e11d140 / 0303000a
+2026-03-26 18:39:29.880 [update notice] received update-read aris internal_flow_target_temperature: 70
+2026-03-26 18:39:30.003 [update notice] received update-read aris pressure_sensor_voltage: 0.075
+2026-03-26 18:39:30.126 [update notice] received update-read aris pump_modulation: 150
+2026-03-26 18:39:31.403 [update notice] received update-read aris boiler_operating_mode: 1
+2026-03-26 18:39:31.560 [update notice] received update-read aris status_request_1_flags: 0;0;2;145
+2026-03-26 18:39:31.679 [update notice] received update-read aris request_status_2: 0
+2026-03-26 18:39:34.533 [update notice] received unknown MS cmd: 703c2000040e11d140 / 0303000a
+2026-03-26 18:39:36.440 [update notice] received update-read aris boiler_operating_mode: 1
+2026-03-26 18:39:36.596 [update notice] received update-read aris status_request_1_flags: 0;0;2;145
+2026-03-26 18:39:36.667 [update notice] received unknown BC cmd: 00fe203a0129
+2026-03-26 18:39:36.723 [update notice] received update-read aris request_status_2: 0
+2026-03-26 18:39:38.918 [update notice] received unknown BC cmd: 37fe2010057310ff7f00
+2026-03-26 18:39:39.060 [update notice] received update-read aris outdoor_temperature_bc: 3276.7
+2026-03-26 18:39:39.217 [update notice] received unknown BC cmd: 37fe201010d3940000d4940000d5940000d6940000
+2026-03-26 18:39:39.532 [update notice] received unknown MS cmd: 703c2000040e11d140 / 0303000a
+2026-03-26 18:39:41.472 [update notice] received update-read aris boiler_operating_mode: 1
+2026-03-26 18:39:41.629 [update notice] received update-read aris status_request_1_flags: 0;0;2;145
+2026-03-26 18:39:41.752 [update notice] received update-read aris request_status_2: 0
+2026-03-26 18:39:44.573 [update notice] received unknown MS cmd: 703c2000040e11d140 / 0303000a
+2026-03-26 18:39:46.511 [update notice] received update-read aris boiler_operating_mode: 1
+2026-03-26 18:39:46.666 [update notice] received update-read aris status_request_1_flags: 0;0;2;145
+2026-03-26 18:39:46.730 [update notice] received unknown BC cmd: 00fe203a0129
+2026-03-26 18:39:46.793 [update notice] received update-read aris request_status_2: 0
+2026-03-26 18:39:48.952 [update notice] received update-read aris flame_target_temperature: 0.0
+2026-03-26 18:39:49.096 [update notice] received update-read aris aux_probe_temperature: 21.5
+2026-03-26 18:39:49.247 [update notice] received update-read aris main_flow_temperature: 19.0
+2026-03-26 18:39:49.388 [update notice] received update-read aris secondary_return_temperature: 19.0
+2026-03-26 18:39:49.536 [update notice] received update-read aris exhaust_temperature: 19.0
+2026-03-26 18:39:49.640 [update notice] received unknown MS cmd: 703c2000040e11d140 / 0303000a
+2026-03-26 18:39:49.737 [update notice] received unknown BC cmd: 37fe201010d3460000cf9c0000d9950000da950000
+2026-03-26 18:39:49.893 [update notice] received unknown BC cmd: 37fe201010db950000dc950000dd950000de950000
+2026-03-26 18:39:50.050 [update notice] received unknown BC cmd: 37fe201010d9940000da940000db940000dc940000
+2026-03-26 18:39:50.175 [update notice] received unknown BC cmd: 37fe201008dd940000de940000
+2026-03-26 18:39:50.325 [update notice] received update-read aris heating_setpoint_triplet: 82.0;65.0;35.0
+2026-03-26 18:39:50.477 [update notice] received update-read aris max_heating_setpoint: 82.0
+2026-03-26 18:39:50.589 [update notice] received update-read aris dhw_eco_setpoint: 35.0
+2026-03-26 18:39:50.715 [update notice] received update-read aris dhw_actual_temperature: 8.0
+2026-03-26 18:39:51.534 [update notice] received update-read aris boiler_operating_mode: 1
+2026-03-26 18:39:51.691 [update notice] received update-read aris status_request_1_flags: 0;0;2;145
+2026-03-26 18:39:51.814 [update notice] received update-read aris request_status_2: 0
+2026-03-26 18:39:54.606 [update notice] received unknown MS cmd: 703c2000040e11d140 / 0303000a
+2026-03-26 18:39:55.061 [update notice] received update-read aris internal_flow_target_temperature: 70
+2026-03-26 18:39:55.186 [update notice] received update-read aris pressure_sensor_voltage: 0.075
+2026-03-26 18:39:55.307 [update notice] received update-read aris pump_modulation: 150
+2026-03-26 18:39:56.550 [update notice] received update-read aris boiler_operating_mode: 1
+2026-03-26 18:39:56.706 [update notice] received update-read aris status_request_1_flags: 0;0;2;145
+2026-03-26 18:39:56.800 [update notice] received unknown BC cmd: 00fe203a0129
+2026-03-26 18:39:56.863 [update notice] received update-read aris request_status_2: 0
+2026-03-26 18:39:59.625 [update notice] received unknown MS cmd: 703c2000040e11d140 / 0303000a
+2026-03-26 18:40:01.596 [update notice] received update-read aris boiler_operating_mode: 1
+2026-03-26 18:40:01.742 [update notice] received update-read aris zone1_room_temperature: 21.5
+2026-03-26 18:40:01.841 [update notice] received update-read aris status_request_1_flags: 0;0;2;145
+2026-03-26 18:40:01.922 [update notice] received unknown BC cmd: 70fe200006642662716371
+2026-03-26 18:40:02.014 [update notice] received update-read aris zone1_setpoint_bundle_bc: 5.0;21.5;16.0
+2026-03-26 18:40:02.150 [update notice] received update-read aris zone1_heat_request_raw: 79
+2026-03-26 18:40:02.196 [update notice] received update-read aris zone1_request_mode_bc: 2
+2026-03-26 18:40:02.319 [update notice] received update-read aris request_status_2: 0
+2026-03-26 18:40:04.658 [update notice] received unknown MS cmd: 703c2000040e11d140 / 0303000a
+2026-03-26 18:40:06.625 [update notice] received update-read aris boiler_operating_mode: 1
+2026-03-26 18:40:06.786 [update notice] received update-read aris status_request_1_flags: 0;0;2;145
+2026-03-26 18:40:06.844 [update notice] received unknown BC cmd: 00fe203a0129
+2026-03-26 18:40:06.907 [update notice] received update-read aris request_status_2: 0
+2026-03-26 18:40:09.669 [update notice] received unknown MS cmd: 703c2000040e11d140 / 0303000a
+2026-03-26 18:40:11.668 [update notice] received update-read aris boiler_operating_mode: 1
+2026-03-26 18:40:11.826 [update notice] received update-read aris status_request_1_flags: 0;0;2;145
+2026-03-26 18:40:11.947 [update notice] received update-read aris request_status_2: 0
+2026-03-26 18:40:14.107 [update notice] received update-read aris flame_target_temperature: 0.0
+2026-03-26 18:40:14.250 [update notice] received update-read aris aux_probe_temperature: 21.5
+2026-03-26 18:40:14.398 [update notice] received update-read aris main_flow_temperature: 19.0
+2026-03-26 18:40:14.542 [update notice] received update-read aris secondary_return_temperature: 19.0
+2026-03-26 18:40:14.715 [update notice] received unknown MS cmd: 703c2000040e11d140 / 0303000a
+2026-03-26 18:40:14.805 [update notice] received update-read aris exhaust_temperature: 19.0
+2026-03-26 18:40:14.960 [update notice] received unknown BC cmd: 37fe201010d3460000cf9c0000d9950000da950000
+2026-03-26 18:40:15.118 [update notice] received unknown BC cmd: 37fe201010db950000dc950000dd950000de950000
+2026-03-26 18:40:15.274 [update notice] received unknown BC cmd: 37fe201010d9940000da940000db940000dc940000
+2026-03-26 18:40:15.398 [update notice] received unknown BC cmd: 37fe201008dd940000de940000
+2026-03-26 18:40:15.549 [update notice] received update-read aris heating_setpoint_triplet: 82.0;65.0;35.0
+2026-03-26 18:40:15.702 [update notice] received update-read aris max_heating_setpoint: 82.0
+2026-03-26 18:40:15.812 [update notice] received update-read aris dhw_eco_setpoint: 35.0
+2026-03-26 18:40:15.939 [update notice] received update-read aris dhw_actual_temperature: 8.0
+2026-03-26 18:40:16.700 [update notice] received update-read aris boiler_operating_mode: 1
+2026-03-26 18:40:16.856 [update notice] received update-read aris status_request_1_flags: 0;0;2;145
+2026-03-26 18:40:16.923 [update notice] received unknown BC cmd: 00fe203a0129
+2026-03-26 18:40:16.983 [update notice] received update-read aris request_status_2: 0
+2026-03-26 18:40:19.715 [update notice] received unknown MS cmd: 703c2000040e11d140 / 0303000a
+2026-03-26 18:40:20.201 [update notice] received update-read aris internal_flow_target_temperature: 70
+2026-03-26 18:40:20.325 [update notice] received update-read aris pressure_sensor_voltage: 0.075
+2026-03-26 18:40:20.446 [update notice] received update-read aris pump_modulation: 150
+2026-03-26 18:40:21.719 [update notice] received update-read aris boiler_operating_mode: 1
+2026-03-26 18:40:21.875 [update notice] received update-read aris status_request_1_flags: 0;0;2;145
+2026-03-26 18:40:21.998 [update notice] received update-read aris request_status_2: 0
+2026-03-26 18:40:24.729 [update notice] received unknown MS cmd: 703c2000040e11d140 / 0303000a
+2026-03-26 18:40:26.757 [update notice] received update-read aris boiler_operating_mode: 1
+2026-03-26 18:40:26.913 [update notice] received update-read aris status_request_1_flags: 0;0;2;145
+2026-03-26 18:40:26.977 [update notice] received unknown BC cmd: 00fe203a0129
+2026-03-26 18:40:27.041 [update notice] received update-read aris request_status_2: 0
+2026-03-26 18:40:29.741 [update notice] received unknown MS cmd: 703c2000040e11d140 / 0303000a
+2026-03-26 18:40:31.772 [update notice] received update-read aris boiler_operating_mode: 1
+2026-03-26 18:40:31.927 [update notice] received update-read aris status_request_1_flags: 0;0;2;145
+2026-03-26 18:40:32.051 [update notice] received update-read aris request_status_2: 0
+2026-03-26 18:40:34.752 [update notice] received unknown MS cmd: 703c2000040e11d140 / 0303000a
+2026-03-26 18:40:36.811 [update notice] received update-read aris boiler_operating_mode: 1
+2026-03-26 18:40:36.969 [update notice] received update-read aris status_request_1_flags: 0;0;2;145
+2026-03-26 18:40:37.032 [update notice] received unknown BC cmd: 00fe203a0129
+2026-03-26 18:40:37.096 [update notice] received update-read aris request_status_2: 0
+2026-03-26 18:40:39.284 [update notice] received update-read aris flame_target_temperature: 0.0
+2026-03-26 18:40:39.429 [update notice] received update-read aris aux_probe_temperature: 21.5
+2026-03-26 18:40:39.576 [update notice] received update-read aris main_flow_temperature: 19.0
+2026-03-26 18:40:39.720 [update notice] received update-read aris secondary_return_temperature: 19.0
+2026-03-26 18:40:39.825 [update notice] received unknown MS cmd: 703c2000040e11d140 / 0303000a
+2026-03-26 18:40:39.913 [update notice] received update-read aris exhaust_temperature: 19.0
+2026-03-26 18:40:40.071 [update notice] received unknown BC cmd: 37fe201010d3460000cf9c0000d9950000da950000
+2026-03-26 18:40:40.226 [update notice] received unknown BC cmd: 37fe201010db950000dc950000dd950000de950000
+2026-03-26 18:40:40.383 [update notice] received unknown BC cmd: 37fe201010d9940000da940000db940000dc940000
+2026-03-26 18:40:40.506 [update notice] received unknown BC cmd: 37fe201008dd940000de940000
+2026-03-26 18:40:40.658 [update notice] received update-read aris heating_setpoint_triplet: 82.0;65.0;35.0
+2026-03-26 18:40:40.811 [update notice] received update-read aris max_heating_setpoint: 82.0
+2026-03-26 18:40:40.920 [update notice] received update-read aris dhw_eco_setpoint: 35.0
+2026-03-26 18:40:41.048 [update notice] received update-read aris dhw_actual_temperature: 8.0
+2026-03-26 18:40:41.839 [update notice] received update-read aris boiler_operating_mode: 1
+2026-03-26 18:40:41.995 [update notice] received update-read aris status_request_1_flags: 0;0;2;145
+2026-03-26 18:40:42.118 [update notice] received update-read aris request_status_2: 0
+2026-03-26 18:40:44.788 [update notice] received unknown MS cmd: 703c2000040e11d140 / 0303000a
+2026-03-26 18:40:45.367 [update notice] received update-read aris internal_flow_target_temperature: 70
+2026-03-26 18:40:45.492 [update notice] received update-read aris pressure_sensor_voltage: 0.075
+2026-03-26 18:40:45.610 [update notice] received update-read aris pump_modulation: 150
+2026-03-26 18:40:46.884 [update notice] received update-read aris boiler_operating_mode: 1
+2026-03-26 18:40:47.041 [update notice] received update-read aris status_request_1_flags: 0;0;2;145
+2026-03-26 18:40:47.103 [update notice] received unknown BC cmd: 00fe203a0129
+2026-03-26 18:40:47.166 [update notice] received update-read aris request_status_2: 0
+2026-03-26 18:40:49.843 [update notice] received unknown MS cmd: 703c2000040e11d140 / 0303000a
+2026-03-26 18:40:51.900 [update notice] received update-read aris boiler_operating_mode: 1
+2026-03-26 18:40:52.052 [update notice] received update-read aris status_request_1_flags: 0;0;2;145
+2026-03-26 18:40:52.174 [update notice] received update-read aris request_status_2: 0
+2026-03-26 18:40:54.846 [update notice] received unknown MS cmd: 703c2000040e11d140 / 0303000a
+2026-03-26 18:40:56.935 [update notice] received update-read aris boiler_operating_mode: 1
+2026-03-26 18:40:57.090 [update notice] received update-read aris status_request_1_flags: 0;0;2;145
+2026-03-26 18:40:57.155 [update notice] received unknown BC cmd: 00fe203a0129
+2026-03-26 18:40:57.218 [update notice] received update-read aris request_status_2: 0
+2026-03-26 18:40:59.858 [update notice] received unknown MS cmd: 703c2000040e11d140 / 0303000a
+2026-03-26 18:41:01.979 [update notice] received update-read aris boiler_operating_mode: 1
+2026-03-26 18:41:02.133 [update notice] received update-read aris status_request_1_flags: 0;0;2;145
+2026-03-26 18:41:02.257 [update notice] received update-read aris request_status_2: 0
+2026-03-26 18:41:04.445 [update notice] received update-read aris flame_target_temperature: 0.0
+2026-03-26 18:41:04.589 [update notice] received update-read aris aux_probe_temperature: 21.5
+2026-03-26 18:41:04.743 [update notice] received update-read aris main_flow_temperature: 19.0
+2026-03-26 18:41:04.910 [update notice] received unknown MS cmd: 703c2000040e11d140 / 0303000a
+2026-03-26 18:41:04.994 [update notice] received update-read aris secondary_return_temperature: 19.0
+2026-03-26 18:41:05.142 [update notice] received update-read aris exhaust_temperature: 19.0
+2026-03-26 18:41:05.299 [update notice] received unknown BC cmd: 37fe201010d3460000cf9c0000d9950000da950000
+2026-03-26 18:41:05.460 [update notice] received unknown BC cmd: 37fe201010db950000dc950000dd950000de950000
+2026-03-26 18:41:05.613 [update notice] received unknown BC cmd: 37fe201010d9940000da940000db940000dc940000
+2026-03-26 18:41:05.737 [update notice] received unknown BC cmd: 37fe201008dd940000de940000
+2026-03-26 18:41:05.888 [update notice] received update-read aris heating_setpoint_triplet: 82.0;65.0;35.0
+2026-03-26 18:41:06.040 [update notice] received update-read aris max_heating_setpoint: 82.0
+2026-03-26 18:41:06.152 [update notice] received update-read aris dhw_eco_setpoint: 35.0
+2026-03-26 18:41:06.286 [update notice] received update-read aris dhw_actual_temperature: 8.0
+2026-03-26 18:41:07.008 [update notice] received update-read aris boiler_operating_mode: 1
+2026-03-26 18:41:07.164 [update notice] received update-read aris status_request_1_flags: 0;0;2;145
+2026-03-26 18:41:07.227 [update notice] received unknown BC cmd: 00fe203a0129
+2026-03-26 18:41:07.290 [update notice] received update-read aris request_status_2: 0
+2026-03-26 18:41:09.900 [update notice] received unknown MS cmd: 703c2000040e11d140 / 0303000a
+2026-03-26 18:41:10.536 [update notice] received update-read aris internal_flow_target_temperature: 70
+2026-03-26 18:41:10.660 [update notice] received update-read aris pressure_sensor_voltage: 0.075
+2026-03-26 18:41:10.787 [update notice] received update-read aris pump_modulation: 150
+2026-03-26 18:41:12.026 [update notice] received update-read aris boiler_operating_mode: 1
+2026-03-26 18:41:12.181 [update notice] received update-read aris status_request_1_flags: 0;0;2;145
+2026-03-26 18:41:12.304 [update notice] received update-read aris request_status_2: 0
+2026-03-26 18:41:14.915 [update notice] received unknown MS cmd: 703c2000040e11d140 / 0303000a
+2026-03-26 18:41:17.069 [update notice] received update-read aris boiler_operating_mode: 1
+2026-03-26 18:41:17.222 [update notice] received update-read aris status_request_1_flags: 0;0;2;145
+2026-03-26 18:41:17.285 [update notice] received unknown BC cmd: 00fe203a0129
+2026-03-26 18:41:17.347 [update notice] received update-read aris request_status_2: 0
+2026-03-26 18:41:19.928 [update notice] received unknown MS cmd: 703c2000040e11d140 / 0303000a
+2026-03-26 18:41:22.107 [update notice] received update-read aris boiler_operating_mode: 1
+2026-03-26 18:41:22.262 [update notice] received update-read aris status_request_1_flags: 0;0;2;145
+2026-03-26 18:41:22.385 [update notice] received update-read aris request_status_2: 0
+2026-03-26 18:41:24.966 [update notice] received unknown MS cmd: 703c2000040e11d140 / 0303000a
+2026-03-26 18:41:27.145 [update notice] received update-read aris boiler_operating_mode: 1
+2026-03-26 18:41:27.303 [update notice] received update-read aris status_request_1_flags: 0;0;2;145
+2026-03-26 18:41:27.364 [update notice] received unknown BC cmd: 00fe203a0129
+2026-03-26 18:41:27.427 [update notice] received update-read aris request_status_2: 0
+2026-03-26 18:41:29.586 [update notice] received update-read aris flame_target_temperature: 0.0
+2026-03-26 18:41:29.732 [update notice] received update-read aris aux_probe_temperature: 21.5
+2026-03-26 18:41:29.878 [update notice] received update-read aris main_flow_temperature: 19.0
+2026-03-26 18:41:29.986 [update notice] received unknown MS cmd: 703c2000040e11d140 / 0303000a
+2026-03-26 18:41:30.070 [update notice] received update-read aris secondary_return_temperature: 19.0
+2026-03-26 18:41:30.215 [update notice] received update-read aris exhaust_temperature: 19.0
+2026-03-26 18:41:30.372 [update notice] received unknown BC cmd: 37fe201010d3460000cf9c0000d9950000da950000
+2026-03-26 18:41:30.528 [update notice] received unknown BC cmd: 37fe201010db950000dc950000dd950000de950000
+2026-03-26 18:41:30.686 [update notice] received unknown BC cmd: 37fe201010d9940000da940000db940000dc940000
+2026-03-26 18:41:30.806 [update notice] received unknown BC cmd: 37fe201008dd940000de940000
+2026-03-26 18:41:30.959 [update notice] received update-read aris heating_setpoint_triplet: 82.0;65.0;35.0
+2026-03-26 18:41:31.110 [update notice] received update-read aris max_heating_setpoint: 82.0
+2026-03-26 18:41:31.220 [update notice] received update-read aris dhw_eco_setpoint: 35.0
+2026-03-26 18:41:31.348 [update notice] received update-read aris dhw_actual_temperature: 8.0
+2026-03-26 18:41:32.167 [update notice] received update-read aris boiler_operating_mode: 1
+2026-03-26 18:41:32.323 [update notice] received update-read aris status_request_1_flags: 0;0;2;145
+2026-03-26 18:41:32.446 [update notice] received update-read aris request_status_2: 0
+2026-03-26 18:41:34.997 [update notice] received unknown MS cmd: 703c2000040e11d140 / 0303000a
+2026-03-26 18:41:35.695 [update notice] received update-read aris internal_flow_target_temperature: 70
+2026-03-26 18:41:35.816 [update notice] received update-read aris pressure_sensor_voltage: 0.075
+2026-03-26 18:41:35.939 [update notice] received update-read aris pump_modulation: 150
+2026-03-26 18:41:37.213 [update notice] received update-read aris boiler_operating_mode: 1
+2026-03-26 18:41:37.369 [update notice] received update-read aris status_request_1_flags: 0;0;2;145
+2026-03-26 18:41:37.433 [update notice] received unknown BC cmd: 00fe203a0129
+2026-03-26 18:41:37.496 [update notice] received update-read aris request_status_2: 0
+2026-03-26 18:41:39.662 [update notice] received unknown BC cmd: 37fe2010057310ff7f00
+2026-03-26 18:41:39.803 [update notice] received update-read aris outdoor_temperature_bc: 3276.7
+2026-03-26 18:41:39.959 [update notice] received unknown BC cmd: 37fe201010d3940000d4940000d5940000d6940000
+2026-03-26 18:41:40.064 [update notice] received unknown MS cmd: 703c2000040e11d140 / 0303000a
+2026-03-26 18:41:42.246 [update notice] received update-read aris boiler_operating_mode: 1
+2026-03-26 18:41:42.403 [update notice] received update-read aris status_request_1_flags: 0;0;2;145
+2026-03-26 18:41:42.529 [update notice] received update-read aris request_status_2: 0
+2026-03-26 18:41:45.045 [update notice] received unknown MS cmd: 703c2000040e11d140 / 0303000a
+2026-03-26 18:41:47.253 [update notice] received update-read aris boiler_operating_mode: 1
+2026-03-26 18:41:47.409 [update notice] received update-read aris status_request_1_flags: 0;0;2;145
+2026-03-26 18:41:47.472 [update notice] received unknown BC cmd: 00fe203a0129
+2026-03-26 18:41:47.536 [update notice] received update-read aris request_status_2: 0
+2026-03-26 18:41:50.057 [update notice] received unknown MS cmd: 703c2000040e11d140 / 0303000a
+2026-03-26 18:41:52.322 [update notice] received update-read aris boiler_operating_mode: 1
+2026-03-26 18:41:52.453 [update notice] received update-read aris status_request_1_flags: 0;0;2;145
+2026-03-26 18:41:52.582 [update notice] received update-read aris request_status_2: 0
+2026-03-26 18:41:54.767 [update notice] received update-read aris flame_target_temperature: 0.0
+2026-03-26 18:41:54.910 [update notice] received update-read aris aux_probe_temperature: 21.5
+2026-03-26 18:41:55.059 [update notice] received update-read aris main_flow_temperature: 19.0
+2026-03-26 18:41:55.163 [update notice] received unknown MS cmd: 703c2000040e11d140 / 0303000a
+2026-03-26 18:41:55.247 [update notice] received update-read aris secondary_return_temperature: 19.0
+2026-03-26 18:41:55.396 [update notice] received update-read aris exhaust_temperature: 19.0
+2026-03-26 18:41:55.553 [update notice] received unknown BC cmd: 37fe201010d3460000cf9c0000d9950000da950000
+2026-03-26 18:41:55.707 [update notice] received unknown BC cmd: 37fe201010db950000dc950000dd950000de950000
+2026-03-26 18:41:55.864 [update notice] received unknown BC cmd: 37fe201010d9940000da940000db940000dc940000
+2026-03-26 18:41:55.987 [update notice] received unknown BC cmd: 37fe201008dd940000de940000
+2026-03-26 18:41:56.138 [update notice] received update-read aris heating_setpoint_triplet: 82.0;65.0;35.0
+2026-03-26 18:41:56.290 [update notice] received update-read aris max_heating_setpoint: 82.0
+2026-03-26 18:41:56.401 [update notice] received update-read aris dhw_eco_setpoint: 35.0
+2026-03-26 18:41:56.531 [update notice] received update-read aris dhw_actual_temperature: 8.0
+2026-03-26 18:41:57.318 [update notice] received update-read aris boiler_operating_mode: 1
+2026-03-26 18:41:57.479 [update notice] received update-read aris status_request_1_flags: 0;0;2;145
+2026-03-26 18:41:57.537 [update notice] received unknown BC cmd: 00fe203a0129
+2026-03-26 18:41:57.600 [update notice] received update-read aris request_status_2: 0
+2026-03-26 18:42:00.090 [update notice] received unknown MS cmd: 703c2000040e11d140 / 0303000a
+2026-03-26 18:42:00.847 [update notice] received update-read aris internal_flow_target_temperature: 70
+2026-03-26 18:42:00.970 [update notice] received update-read aris pressure_sensor_voltage: 0.075
+2026-03-26 18:42:01.092 [update notice] received update-read aris pump_modulation: 150
+2026-03-26 18:42:02.201 [update notice] received update-read aris zone1_room_temperature: 21.5
+2026-03-26 18:42:02.282 [update notice] received unknown BC cmd: 70fe200006642662716371
+2026-03-26 18:42:02.375 [update notice] received update-read aris zone1_setpoint_bundle_bc: 5.0;21.5;16.0
+2026-03-26 18:42:02.512 [update notice] received update-read aris zone1_heat_request_raw: 79
+2026-03-26 18:42:02.559 [update notice] received update-read aris zone1_request_mode_bc: 2
+2026-03-26 18:42:02.675 [update notice] received update-read aris heating_active_bc: 15
+2026-03-26 18:42:02.752 [update notice] received update-read aris heating_active_short_bc: 1
+2026-03-26 18:42:02.909 [update notice] received update-read aris boiler_operating_mode: 1
+2026-03-26 18:42:03.065 [update notice] received update-read aris status_request_1_flags: 0;0;2;145
+2026-03-26 18:42:03.188 [update notice] received update-read aris request_status_2: 0
+2026-03-26 18:42:05.135 [update notice] received unknown MS cmd: 703c2000040e11d140 / 0303000a
+2026-03-26 18:42:06.977 [update notice] received unknown BC cmd: 70fe203b0175
+2026-03-26 18:42:07.375 [update notice] received update-read aris boiler_operating_mode: 1
+2026-03-26 18:42:07.556 [update notice] received update-read aris status_request_1_flags: 0;0;2;145
+2026-03-26 18:42:07.595 [update notice] received unknown BC cmd: 00fe203a0129
+2026-03-26 18:42:07.658 [update notice] received update-read aris request_status_2: 0
+2026-03-26 18:42:10.150 [update notice] received unknown MS cmd: 703c2000040e11d140 / 0303000a
+2026-03-26 18:42:12.025 [update notice] received unknown BC cmd: 03fe203b0129
+2026-03-26 18:42:12.421 [update notice] received update-read aris boiler_operating_mode: 1
+2026-03-26 18:42:12.578 [update notice] received update-read aris status_request_1_flags: 0;0;2;145
+2026-03-26 18:42:12.702 [update notice] received update-read aris request_status_2: 0
+2026-03-26 18:42:15.161 [update notice] received unknown MS cmd: 703c2000040e11d140 / 0303000a
+2026-03-26 18:42:17.463 [update notice] received update-read aris boiler_operating_mode: 1
+2026-03-26 18:42:17.619 [update notice] received update-read aris status_request_1_flags: 0;0;2;145
+2026-03-26 18:42:17.685 [update notice] received unknown BC cmd: 00fe203a0129
+2026-03-26 18:42:17.746 [update notice] received update-read aris request_status_2: 0
+2026-03-26 18:42:19.906 [update notice] received update-read aris flame_target_temperature: 0.0
+2026-03-26 18:42:20.050 [update notice] received update-read aris aux_probe_temperature: 21.5
+2026-03-26 18:42:20.224 [update notice] received unknown MS cmd: 703c2000040e11d140 / 0303000a
+2026-03-26 18:42:20.315 [update notice] received update-read aris main_flow_temperature: 19.0
+2026-03-26 18:42:20.455 [update notice] received update-read aris secondary_return_temperature: 19.0
+2026-03-26 18:42:20.604 [update notice] received update-read aris exhaust_temperature: 19.0
+2026-03-26 18:42:20.761 [update notice] received unknown BC cmd: 37fe201010d3460000cf9c0000d9950000da950000
+2026-03-26 18:42:20.916 [update notice] received unknown BC cmd: 37fe201010db950000dc950000dd950000de950000
+2026-03-26 18:42:21.072 [update notice] received unknown BC cmd: 37fe201010d9940000da940000db940000dc940000
+2026-03-26 18:42:21.195 [update notice] received unknown BC cmd: 37fe201008dd940000de940000
+2026-03-26 18:42:21.347 [update notice] received update-read aris heating_setpoint_triplet: 82.0;65.0;35.0
+2026-03-26 18:42:21.499 [update notice] received update-read aris max_heating_setpoint: 82.0
+2026-03-26 18:42:21.610 [update notice] received update-read aris dhw_eco_setpoint: 35.0
+2026-03-26 18:42:21.737 [update notice] received update-read aris dhw_actual_temperature: 8.0
+2026-03-26 18:42:22.497 [update notice] received update-read aris boiler_operating_mode: 1
+2026-03-26 18:42:22.653 [update notice] received update-read aris status_request_1_flags: 0;0;2;145
+2026-03-26 18:42:22.778 [update notice] received update-read aris request_status_2: 0
+2026-03-26 18:42:25.205 [update notice] received unknown MS cmd: 703c2000040e11d140 / 0303000a
+2026-03-26 18:42:25.992 [update notice] received update-read aris internal_flow_target_temperature: 70
+2026-03-26 18:42:26.115 [update notice] received update-read aris pressure_sensor_voltage: 0.075
+2026-03-26 18:42:26.238 [update notice] received update-read aris pump_modulation: 150
+2026-03-26 18:42:27.512 [update notice] received update-read aris boiler_operating_mode: 1
+2026-03-26 18:42:27.668 [update notice] received update-read aris status_request_1_flags: 0;0;2;145
+2026-03-26 18:42:27.730 [update notice] received unknown BC cmd: 00fe203a0129
+2026-03-26 18:42:27.794 [update notice] received update-read aris request_status_2: 0

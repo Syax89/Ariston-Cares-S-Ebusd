@@ -86,7 +86,8 @@
     "cross-source comparison suggests 6271/6371 belong to the comfort/reduced branch of a structured zone setpoint family, while 6197 is a good candidate for computed target temperature",
     "current_power_level is likely useful and rises under load in live logs",
     "fan register 4013 tracks burner activity, but values like 45569/49153/49921/52737 do not look like real RPM and are now treated as raw",
-    "outdoor_temperature_bc value 3276.7 corresponds to raw ff7f and should be treated as invalid or sensor absent"
+    "outdoor_temperature_bc value 3276.7 corresponds to raw ff7f and should be treated as invalid or sensor absent",
+    "the newest MQTT export fills the hidden thermoreg candidates much more completely: profiles 72/74/76 now show stable sidecar type `basic_on_off` with bridge values 122/124/126 and repeated 82.0 / 30.0 / 30.0 plus 1.30 / 35.0 / 5.0 style bundles, while the corrected room-influence rows on profiles 73/75 now publish 5.0 / basic_on_off / 10 instead of remaining unknown"
   ],
   "mqtt_log_findings": [
     "filter-seen=2 in mqtt-hassio.cfg allowed Home Assistant discovery of many active read rows and multi-field entities",
@@ -98,6 +99,8 @@
     "zone1_thermoreg_curve_bc now publishes MQTT payloads with param1_temp=30.0, slope=1.30, param2_temp=35.0",
     "thermoreg_profile73_limits_bc and thermoreg_profile73_curve_bc now publish MQTT payloads with 82.0 / 35.0 / 0.0 and 30.0 / 1.30 / 35.0",
     "thermoreg_profile75_limits_bc and thermoreg_profile75_curve_bc now publish MQTT payloads with 82.0 / 35.0 / 0.0 and 30.0 / 1.30 / 35.0",
+    "the latest MQTT export also populates the hidden 72/74/76 candidate families end-to-end with stable values: limits-like 35.0 / 0.0 / 35.0, curve-like 82.0 / 30.0 / 30.0, extra-like 1.30 / 35.0 / 5.0, and sidecars whose first field decodes as `basic_on_off`",
+    "the corrected room-influence rows for profiles 73 and 75 now publish real payloads rather than `unknown`, specifically 5.0 / basic_on_off / 10",
     "fan_speed on MQTT showed raw-looking values 1, 45569, 49153, 49921, 52737 and should not be interpreted as physical RPM yet"
   ],
   "ebusd_log_findings": [
@@ -128,6 +131,7 @@
     "the newer development CSV now confirms those secondary 200e tables end-to-end in both ebusd logs and Home Assistant MQTT entities under stable names: zone1_secondary_comfort_bc = 19.0 / 10.0 / 30.0, zone1_secondary_reduced_bc = 16.0 / 10.0 / 30.0, zone1_secondary_antifreeze_bc = 5.0 / 2.0 / 15.0",
     "the decomposed 0191 request row also now decodes live as status_request_1_flags = 0 / 0 / 2 / 145; the structure is therefore confirmed, but the exact semantics of the four subfields should still remain conservative",
     "after switching the CSVs to shared templates, the `onoff` template also behaves correctly on stable binary rows like heating_flame_mode_bc=off, and the `thermoreg_type` template now yields human-readable values where the payload supports it",
+    "the newest passive log adds another clean stability checkpoint: status_request_1_flags remains 0 / 0 / 2 / 145, zone1_setpoint_bundle_bc stays at 5.0 / 21.5 / 16.0 with zone1_request_mode_bc=2, and outdoor_temperature_bc still decodes as the ff7f sentinel 3276.7",
     "across the current archived passive logs, no variation has yet been observed in the trailing 200e fields: 6272..6276 stay at 10.0 / 30.0, 6372..6376 stay at 10.0 / 30.0, and 6426 stays at 2.0 / 15.0, so mode/profile sensitivity remains plausible but still unproven"
   ],
   "parse_failures_to_revisit": [

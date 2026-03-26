@@ -242,6 +242,7 @@ b,aris,zone1_thermoreg_room_influence_bc,Zone 1 Thermoreg Room Influence,37,fe,2
 b,aris,thermoreg_profile73_limits_bc,Thermoreg Profile 73 Limits,37,fe,2020,6073,max_water_temp,s,UIN,10,°C,,ign1,s,IGN:2,,,,min_water_temp,s,UIN,10,°C,,ign2,s,IGN:2,,,,offset,s,SIN,10,°C,
 b,aris,thermoreg_profile73_curve_bc,Thermoreg Profile 73 Curve,37,fe,2020,6973,param1_temp,s,UIN,10,°C,,ign1,s,IGN:2,,,,slope,s,UIN,100,,,ign2,s,IGN:2,,,,param2_temp,s,UIN,10,°C,
 # Live frame `37fe20200a6c733200c07b01c27b0a` is likewise keyed by `6c73` with a leading `5.0` field.
+# MQTT now confirms real payloads on this row: `5.0 ; basic_on_off ; 10`.
 b,aris,thermoreg_profile73_room_influence_bc,Thermoreg Profile 73 Room Influence,37,fe,2020,6c73,param0_temp,s,UIN,10,°C,,ign1,s,IGN:2,,,,thermoreg_type,s,thermoreg_type,,,,ign2,s,IGN:2,,,,room_temp_influence,s,UCH,,,
 # The `75` family also mirrors the confirmed `71` structure in existing logs:
 # - `37fe20200c6075340361755e0164750000` -> plausible `82.0 ; 35.0 ; 0.0`
@@ -250,6 +251,7 @@ b,aris,thermoreg_profile73_room_influence_bc,Thermoreg Profile 73 Room Influence
 b,aris,thermoreg_profile75_limits_bc,Thermoreg Profile 75 Limits,37,fe,2020,6075,max_water_temp,s,UIN,10,°C,,ign1,s,IGN:2,,,,min_water_temp,s,UIN,10,°C,,ign2,s,IGN:2,,,,offset,s,SIN,10,°C,
 b,aris,thermoreg_profile75_curve_bc,Thermoreg Profile 75 Curve,37,fe,2020,6975,param1_temp,s,UIN,10,°C,,ign1,s,IGN:2,,,,slope,s,UIN,100,,,ign2,s,IGN:2,,,,param2_temp,s,UIN,10,°C,
 # Live frame `37fe20200a6c753200c07d01c27d0a` is likewise keyed by `6c75` with a leading `5.0` field.
+# MQTT now confirms real payloads on this row: `5.0 ; basic_on_off ; 10`.
 b,aris,thermoreg_profile75_room_influence_bc,Thermoreg Profile 75 Room Influence,37,fe,2020,6c75,param0_temp,s,UIN,10,°C,,ign1,s,IGN:2,,,,thermoreg_type,s,thermoreg_type,,,,ign2,s,IGN:2,,,,room_temp_influence,s,UCH,,,
 # The `72/74/76` subfamily is also highly structured in existing logs, but is not yet decoder-level confirmed like `71/73/75`.
 # Repeated raw frames (seen 9 times each) suggest a parallel profile family with stable values:
@@ -309,22 +311,25 @@ b,aris,thermoreg_profile75_room_influence_bc,Thermoreg Profile 75 Room Influence
 #   `6172/6472/6572`, `6672/6772/6972`, `6a72/6b72/6c72`
 #   `6174/6474/6574`, `6674/6774/6974`, `6a74/6b74/6c74`
 #   `6176/6476/6576`, `6676/6776/6976`, `6a76/6b76/6c76`
-# Candidate commented rows for the hidden branches, kept here only as structured documentation:
-# Passive hidden-branch candidates enabled for live observation only.
-# New evidence: the `thermoreg_type` template decodes the first field of `c07e` live as `basic_on_off`.
-# Keep the companion fields conservative until we observe more than the current `basic_on_off;194;126` payload.
-b,aris,thermoreg_profile72_limits_candidate_bc,Thermoreg Profile 72 Limits (Candidate),37,fe,2020,6172,min_water_temp,s,UIN,10,°C,,ign1,s,IGN:2,,,,offset,s,SIN,10,°C,,ign2,s,IGN:2,,,,param3_temp,s,UIN,10,°C,
-b,aris,thermoreg_profile72_curve_candidate_bc,Thermoreg Profile 72 Curve (Candidate),37,fe,2020,6672,max_water_temp,s,UIN,10,°C,,ign1,s,IGN:2,,,,param1_temp,s,UIN,10,°C,,ign2,s,IGN:2,,,,param2_temp,s,UIN,10,°C,
-b,aris,thermoreg_profile72_extra_candidate_bc,Thermoreg Profile 72 Extra (Candidate),37,fe,2020,6a72,slope,s,UIN,100,,,ign1,s,IGN:2,,,,param4_temp,s,UIN,10,°C,,ign2,s,IGN:2,,,,param0_temp,s,UIN,10,°C,
-b,aris,thermoreg_profile72_sidecar_candidate_bc,Thermoreg Profile 72 Sidecar (Candidate),37,fe,2020,c07a,thermoreg_type,s,thermoreg_type,,,,room_temp_influence,s,UCH,,,,bridge_param,s,UCH,,,
-b,aris,thermoreg_profile74_limits_candidate_bc,Thermoreg Profile 74 Limits (Candidate),37,fe,2020,6174,min_water_temp,s,UIN,10,°C,,ign1,s,IGN:2,,,,offset,s,SIN,10,°C,,ign2,s,IGN:2,,,,param3_temp,s,UIN,10,°C,
-b,aris,thermoreg_profile74_curve_candidate_bc,Thermoreg Profile 74 Curve (Candidate),37,fe,2020,6674,max_water_temp,s,UIN,10,°C,,ign1,s,IGN:2,,,,param1_temp,s,UIN,10,°C,,ign2,s,IGN:2,,,,param2_temp,s,UIN,10,°C,
-b,aris,thermoreg_profile74_extra_candidate_bc,Thermoreg Profile 74 Extra (Candidate),37,fe,2020,6a74,slope,s,UIN,100,,,ign1,s,IGN:2,,,,param4_temp,s,UIN,10,°C,,ign2,s,IGN:2,,,,param0_temp,s,UIN,10,°C,
-b,aris,thermoreg_profile74_sidecar_candidate_bc,Thermoreg Profile 74 Sidecar (Candidate),37,fe,2020,c07c,thermoreg_type,s,thermoreg_type,,,,room_temp_influence,s,UCH,,,,bridge_param,s,UCH,,,
-b,aris,thermoreg_profile76_limits_candidate_bc,Thermoreg Profile 76 Limits (Candidate),37,fe,2020,6176,min_water_temp,s,UIN,10,°C,,ign1,s,IGN:2,,,,offset,s,SIN,10,°C,,ign2,s,IGN:2,,,,param3_temp,s,UIN,10,°C,
-b,aris,thermoreg_profile76_curve_candidate_bc,Thermoreg Profile 76 Curve (Candidate),37,fe,2020,6676,max_water_temp,s,UIN,10,°C,,ign1,s,IGN:2,,,,param1_temp,s,UIN,10,°C,,ign2,s,IGN:2,,,,param2_temp,s,UIN,10,°C,
-b,aris,thermoreg_profile76_extra_candidate_bc,Thermoreg Profile 76 Extra (Candidate),37,fe,2020,6a76,slope,s,UIN,100,,,ign1,s,IGN:2,,,,param4_temp,s,UIN,10,°C,,ign2,s,IGN:2,,,,param0_temp,s,UIN,10,°C,
-b,aris,thermoreg_profile76_sidecar_candidate_bc,Thermoreg Profile 76 Sidecar (Candidate),37,fe,2020,c07e,thermoreg_type,s,thermoreg_type,,,,room_temp_influence,s,UCH,,,,bridge_param,s,UCH,,,
+# Passive hidden-branch rows enabled for live observation only.
+# MQTT now fills these rows end-to-end with stable payloads:
+# - `72`: `35.0 ; 0.0 ; 35.0`, `82.0 ; 30.0 ; 30.0`, `1.30 ; 35.0 ; 5.0`, sidecar `basic_on_off ; 194 ; 122`
+# - `74`: `35.0 ; 0.0 ; 35.0`, `82.0 ; 30.0 ; 30.0`, `1.30 ; 35.0 ; 5.0`, sidecar `basic_on_off ; 194 ; 124`
+# - `76`: `35.0 ; 0.0 ; 35.0`, `82.0 ; 30.0 ; 30.0`, `1.30 ; 35.0 ; 5.0`, sidecar `basic_on_off ; 194 ; 126`
+# Keep internal row names conservative for compatibility with existing MQTT/evidence history.
+# Human labels now drop the explicit "Candidate" marker, but field semantics remain only partly confirmed.
+b,aris,thermoreg_profile72_limits_candidate_bc,Thermoreg Profile 72 Limits,37,fe,2020,6172,min_water_temp,s,UIN,10,°C,,ign1,s,IGN:2,,,,offset,s,SIN,10,°C,,ign2,s,IGN:2,,,,param3_temp,s,UIN,10,°C,
+b,aris,thermoreg_profile72_curve_candidate_bc,Thermoreg Profile 72 Curve,37,fe,2020,6672,max_water_temp,s,UIN,10,°C,,ign1,s,IGN:2,,,,param1_temp,s,UIN,10,°C,,ign2,s,IGN:2,,,,param2_temp,s,UIN,10,°C,
+b,aris,thermoreg_profile72_extra_candidate_bc,Thermoreg Profile 72 Extra,37,fe,2020,6a72,slope,s,UIN,100,,,ign1,s,IGN:2,,,,param4_temp,s,UIN,10,°C,,ign2,s,IGN:2,,,,param0_temp,s,UIN,10,°C,
+b,aris,thermoreg_profile72_sidecar_candidate_bc,Thermoreg Profile 72 Sidecar,37,fe,2020,c07a,thermoreg_type,s,thermoreg_type,,,,room_temp_influence,s,UCH,,,,bridge_param,s,UCH,,,
+b,aris,thermoreg_profile74_limits_candidate_bc,Thermoreg Profile 74 Limits,37,fe,2020,6174,min_water_temp,s,UIN,10,°C,,ign1,s,IGN:2,,,,offset,s,SIN,10,°C,,ign2,s,IGN:2,,,,param3_temp,s,UIN,10,°C,
+b,aris,thermoreg_profile74_curve_candidate_bc,Thermoreg Profile 74 Curve,37,fe,2020,6674,max_water_temp,s,UIN,10,°C,,ign1,s,IGN:2,,,,param1_temp,s,UIN,10,°C,,ign2,s,IGN:2,,,,param2_temp,s,UIN,10,°C,
+b,aris,thermoreg_profile74_extra_candidate_bc,Thermoreg Profile 74 Extra,37,fe,2020,6a74,slope,s,UIN,100,,,ign1,s,IGN:2,,,,param4_temp,s,UIN,10,°C,,ign2,s,IGN:2,,,,param0_temp,s,UIN,10,°C,
+b,aris,thermoreg_profile74_sidecar_candidate_bc,Thermoreg Profile 74 Sidecar,37,fe,2020,c07c,thermoreg_type,s,thermoreg_type,,,,room_temp_influence,s,UCH,,,,bridge_param,s,UCH,,,
+b,aris,thermoreg_profile76_limits_candidate_bc,Thermoreg Profile 76 Limits,37,fe,2020,6176,min_water_temp,s,UIN,10,°C,,ign1,s,IGN:2,,,,offset,s,SIN,10,°C,,ign2,s,IGN:2,,,,param3_temp,s,UIN,10,°C,
+b,aris,thermoreg_profile76_curve_candidate_bc,Thermoreg Profile 76 Curve,37,fe,2020,6676,max_water_temp,s,UIN,10,°C,,ign1,s,IGN:2,,,,param1_temp,s,UIN,10,°C,,ign2,s,IGN:2,,,,param2_temp,s,UIN,10,°C,
+b,aris,thermoreg_profile76_extra_candidate_bc,Thermoreg Profile 76 Extra,37,fe,2020,6a76,slope,s,UIN,100,,,ign1,s,IGN:2,,,,param4_temp,s,UIN,10,°C,,ign2,s,IGN:2,,,,param0_temp,s,UIN,10,°C,
+b,aris,thermoreg_profile76_sidecar_candidate_bc,Thermoreg Profile 76 Sidecar,37,fe,2020,c07e,thermoreg_type,s,thermoreg_type,,,,room_temp_influence,s,UCH,,,,bridge_param,s,UCH,,,
 # Structured `200e` secondary setpoint tables, now confirmed live in both ebusd logs and MQTT.
 # Naming stays conservative on the trailing fields because their exact semantics still look like mode/profile metadata.
 b,aris,zone1_secondary_comfort_bc,Zone 1 Secondary Comfort Table,37,fe,200e,6272,setpoint_temp,s,UIN,10,°C,,mode_or_min,s,UIN,10,°C,,profile_or_max,s,UIN,10,°C,
