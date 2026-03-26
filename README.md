@@ -49,13 +49,16 @@ What is still being refined:
 
 ## Recommended files
 
-- Main config: [`aris.csv`](aris.csv)
+- Production config: [`aris.csv`](aris.csv)
+- Development config: [`aris-development.csv`](aris-development.csv)
 - Shared templates: [`_templates.csv`](_templates.csv)
 - Reverse-engineering summary: [`json/reverse_engineering_report.json`](json/reverse_engineering_report.json)
 
 ## Installation
 
-Copy `aris.csv` and `_templates.csv` into your `ebusd` config path.
+For normal use, copy `aris.csv` and `_templates.csv` into your `ebusd` config path.
+
+Use `aris-development.csv` only when you want the exploratory layout with candidate rows, extended reverse-engineering notes, and partially decoded families. If you want to test it with `ebusd`, rename it to `aris.csv` in your config path.
 
 Example:
 
@@ -70,6 +73,8 @@ ebusd --scanconfig=0 --configpath=/config/Ariston --device=ens:192.168.4.74:9999
 ```
 
 `--scanconfig=0` is recommended so `ebusd` does not load generic Ariston CSV files instead of this one.
+
+The production file intentionally excludes rows that are still useful for research but not yet clean enough for a stable day-to-day setup.
 
 ## Best entities to watch first
 

@@ -2,46 +2,28 @@
   "version": 1,
   "generated_from": {
     "logs": [
-      "logs/2ad9b828_ebusd_2026-03-26T05-03-19.484Z.log",
-      "logs/2ad9b828_ebusd_2026-03-26T05-10-41.183Z.log",
-      "logs/2ad9b828_ebusd_2026-03-26T05-19-09.757Z.log",
-      "logs/2ad9b828_ebusd_2026-03-26T05-23-35.963Z.log",
-      "logs/2ad9b828_ebusd_2026-03-26T05-26-33.297Z.log",
-      "logs/2ad9b828_ebusd_2026-03-26T05-33-21.769Z.log",
-      "logs/2ad9b828_ebusd_2026-03-26T05-36-36.505Z.log",
-      "logs/2ad9b828_ebusd_2026-03-26T05-41-25.178Z.log",
-      "logs/2ad9b828_ebusd_2026-03-26T05-46-44.301Z.log",
-      "logs/2ad9b828_ebusd_2026-03-26T05-56-01.046Z.log",
-      "logs/2ad9b828_ebusd_2026-03-26T06-09-44.012Z.log",
-      "logs/2ad9b828_ebusd_2026-03-26T06-23-17.636Z.log",
-      "logs/2ad9b828_ebusd_2026-03-26T09-50-05.934Z.log",
-      "logs/2ad9b828_ebusd_2026-03-26T10-18-54.244Z.log",
-      "logs/2ad9b828_ebusd_2026-03-26T10-22-56.980Z.log",
-      "logs/2ad9b828_ebusd_2026-03-26T11-01-35.689Z.log",
-      "logs/2ad9b828_ebusd_2026-03-26T11-52-02.205Z.log"
+      "logs/2ad9b828_ebusd_2026-03-26T11-52-02.205Z.log",
+      "logs/2ad9b828_ebusd_2026-03-26T12-13-28.467Z.log",
+      "logs/2ad9b828_ebusd_2026-03-26T12-19-20.408Z.log",
+      "logs/2ad9b828_ebusd_2026-03-26T12-45-06.784Z.log",
+      "logs/2ad9b828_ebusd_2026-03-26T12-55-53.959Z.log"
     ],
     "json_exports": [
       "json/evidence_matrix.json",
-      "json/mqtt-01KENA0RTA4PWHN01GRW3CK69N-ebusd aris-69a20998c010a10e86c1c9a84fd7731e (1).json",
-      "json/mqtt-01KENA0RTA4PWHN01GRW3CK69N-ebusd aris-69a20998c010a10e86c1c9a84fd7731e (2).json",
-      "json/mqtt-01KENA0RTA4PWHN01GRW3CK69N-ebusd aris-69a20998c010a10e86c1c9a84fd7731e (3).json",
-      "json/mqtt-01KENA0RTA4PWHN01GRW3CK69N-ebusd aris-69a20998c010a10e86c1c9a84fd7731e (4).json",
-      "json/mqtt-01KENA0RTA4PWHN01GRW3CK69N-ebusd aris-69a20998c010a10e86c1c9a84fd7731e (5).json",
-      "json/mqtt-01KENA0RTA4PWHN01GRW3CK69N-ebusd aris-69a20998c010a10e86c1c9a84fd7731e (6).json",
-      "json/mqtt-01KENA0RTA4PWHN01GRW3CK69N-ebusd aris-69a20998c010a10e86c1c9a84fd7731e (7).json",
+      "json/mqtt-01KENA0RTA4PWHN01GRW3CK69N-ebusd aris-69a20998c010a10e86c1c9a84fd7731e (10).json",
+      "json/mqtt-01KENA0RTA4PWHN01GRW3CK69N-ebusd aris-69a20998c010a10e86c1c9a84fd7731e (11).json",
+      "json/mqtt-01KENA0RTA4PWHN01GRW3CK69N-ebusd aris-69a20998c010a10e86c1c9a84fd7731e (12).json",
       "json/mqtt-01KENA0RTA4PWHN01GRW3CK69N-ebusd aris-69a20998c010a10e86c1c9a84fd7731e (8).json",
-      "json/mqtt-01KENA0RTA4PWHN01GRW3CK69N-ebusd aris-69a20998c010a10e86c1c9a84fd7731e.json",
+      "json/mqtt-01KENA0RTA4PWHN01GRW3CK69N-ebusd aris-69a20998c010a10e86c1c9a84fd7731e (9).json",
       "json/reverse_engineering_report.json",
       "json/unknown_patterns.json"
     ]
   },
   "summary": {
-    "broken": 5,
-    "candidate": 1,
-    "confirmed": 49,
-    "mixed": 1,
-    "unknown": 21,
-    "usable": 71
+    "candidate": 9,
+    "confirmed": 34,
+    "unknown": 64,
+    "usable": 86
   },
   "rows": [
     {
@@ -54,31 +36,32 @@
         "mqtt"
       ],
       "log_values": [
-        "21.0"
+        "21.0",
+        "21.5"
       ],
       "mqtt_values": [
+        "val=21.5",
         "val=21.0"
       ],
-      "log_samples": 122,
-      "mqtt_samples": 83,
+      "log_samples": 39,
+      "mqtt_samples": 39,
       "parse_failures": [],
       "related_frames": [
-        "37fe2020047e2b0001",
         "00fe203a0129",
+        "03fe203b0129",
+        "70fe2020046271d700",
         "70fe200006642662716371",
-        "37fe201010d3940000d4940000d5940000d6940000",
-        "70fe203b0175",
-        "03fe203b0129"
+        "37fe2020047e2b0001"
       ],
       "mqtt_children": [
         "aux_probe_temperature_val"
       ],
-      "temporal_consistency": "limited_variation",
+      "temporal_consistency": "variable",
       "recent_values": [
-        "val=21.0"
+        "val=21.5"
       ],
       "recency_bias": "stable_recent",
-      "has_corrected_history": false,
+      "has_corrected_history": true,
       "notes": [
         "listed as confirmed in reverse_engineering_report.json"
       ]
@@ -86,75 +69,23 @@
     {
       "name": "aux_probe_temperature_val",
       "status": "usable",
-      "confidence": "low",
-      "sources": [
-        "mqtt"
-      ],
-      "log_values": [],
-      "mqtt_values": [
-        "val=21.0"
-      ],
-      "log_samples": 0,
-      "mqtt_samples": 40,
-      "parse_failures": [],
-      "related_frames": [],
-      "mqtt_children": [],
-      "temporal_consistency": "stable",
-      "recent_values": [
-        "val=21.0"
-      ],
-      "recency_bias": "stable_recent",
-      "has_corrected_history": false,
-      "notes": []
-    },
-    {
-      "name": "boiler_life_time",
-      "status": "confirmed",
       "confidence": "medium",
       "sources": [
-        "ebusd_log",
-        "mqtt"
-      ],
-      "log_values": [
-        "57089"
-      ],
-      "mqtt_values": [
-        "val=57089"
-      ],
-      "log_samples": 0,
-      "mqtt_samples": 9,
-      "parse_failures": [],
-      "related_frames": [],
-      "mqtt_children": [
-        "boiler_life_time_val"
-      ],
-      "temporal_consistency": "limited_variation",
-      "recent_values": [
-        "val=57089"
-      ],
-      "recency_bias": "stable_recent",
-      "has_corrected_history": false,
-      "notes": []
-    },
-    {
-      "name": "boiler_life_time_val",
-      "status": "usable",
-      "confidence": "low",
-      "sources": [
         "mqtt"
       ],
       "log_values": [],
       "mqtt_values": [
-        "val=57089"
+        "val=21.5",
+        "val=21.0"
       ],
       "log_samples": 0,
-      "mqtt_samples": 9,
+      "mqtt_samples": 39,
       "parse_failures": [],
       "related_frames": [],
       "mqtt_children": [],
-      "temporal_consistency": "stable",
+      "temporal_consistency": "limited_variation",
       "recent_values": [
-        "val=57089"
+        "val=21.5"
       ],
       "recency_bias": "stable_recent",
       "has_corrected_history": false,
@@ -170,31 +101,26 @@
         "mqtt"
       ],
       "log_values": [
-        "101",
-        "2",
-        "5",
-        "1"
+        "1",
+        "3"
       ],
       "mqtt_values": [
-        "val=2",
-        "val=1",
-        "val=3",
-        "val=101"
+        "val=1"
       ],
-      "log_samples": 897,
-      "mqtt_samples": 90,
+      "log_samples": 204,
+      "mqtt_samples": 50,
       "parse_failures": [],
       "related_frames": [
-        "00fe203a0129",
-        "37fe200f0402200100",
-        "37fe200f080591000006910000",
-        "37fe200f0f6c96be00006d96be00006e96be0000",
-        "37fe200f0406910000",
-        "37fe2020047e2b0001",
-        "37fe201010d3940000d4940000d5940000d6940000",
-        "37fe2010057310ff7f00",
         "37fe201008dd940000de940000",
-        "00fe203a012b"
+        "00fe203a0129",
+        "03fe203b0129",
+        "37fe201010d3940000d4940000d5940000d6940000",
+        "37fe203b013c",
+        "70fe200006642662716371",
+        "70fe203b0175",
+        "37fe200e086426320014009600",
+        "70fe2020046271d200",
+        "03fe2001026426"
       ],
       "mqtt_children": [
         "boiler_operating_mode_val"
@@ -212,60 +138,6 @@
     {
       "name": "boiler_operating_mode_val",
       "status": "usable",
-      "confidence": "medium",
-      "sources": [
-        "mqtt"
-      ],
-      "log_values": [],
-      "mqtt_values": [
-        "val=1",
-        "val=2"
-      ],
-      "log_samples": 0,
-      "mqtt_samples": 40,
-      "parse_failures": [],
-      "related_frames": [],
-      "mqtt_children": [],
-      "temporal_consistency": "limited_variation",
-      "recent_values": [
-        "val=1"
-      ],
-      "recency_bias": "stable_recent",
-      "has_corrected_history": false,
-      "notes": []
-    },
-    {
-      "name": "boiler_type",
-      "status": "confirmed",
-      "confidence": "medium",
-      "sources": [
-        "ebusd_log",
-        "mqtt"
-      ],
-      "log_values": [
-        "1"
-      ],
-      "mqtt_values": [
-        "val=1"
-      ],
-      "log_samples": 0,
-      "mqtt_samples": 9,
-      "parse_failures": [],
-      "related_frames": [],
-      "mqtt_children": [
-        "boiler_type_val"
-      ],
-      "temporal_consistency": "limited_variation",
-      "recent_values": [
-        "val=1"
-      ],
-      "recency_bias": "stable_recent",
-      "has_corrected_history": false,
-      "notes": []
-    },
-    {
-      "name": "boiler_type_val",
-      "status": "usable",
       "confidence": "low",
       "sources": [
         "mqtt"
@@ -275,7 +147,7 @@
         "val=1"
       ],
       "log_samples": 0,
-      "mqtt_samples": 9,
+      "mqtt_samples": 50,
       "parse_failures": [],
       "related_frames": [],
       "mqtt_children": [],
@@ -284,242 +156,50 @@
         "val=1"
       ],
       "recency_bias": "stable_recent",
-      "has_corrected_history": false,
-      "notes": []
-    },
-    {
-      "name": "burner_heat_life_time",
-      "status": "confirmed",
-      "confidence": "medium",
-      "sources": [
-        "ebusd_log",
-        "mqtt"
-      ],
-      "log_values": [
-        "5145.7"
-      ],
-      "mqtt_values": [
-        "val=5145.7"
-      ],
-      "log_samples": 0,
-      "mqtt_samples": 26,
-      "parse_failures": [],
-      "related_frames": [],
-      "mqtt_children": [
-        "burner_heat_life_time_val"
-      ],
-      "temporal_consistency": "limited_variation",
-      "recent_values": [
-        "val=5145.7"
-      ],
-      "recency_bias": "stable_recent",
-      "has_corrected_history": false,
-      "notes": []
-    },
-    {
-      "name": "burner_heat_life_time_val",
-      "status": "usable",
-      "confidence": "low",
-      "sources": [
-        "mqtt"
-      ],
-      "log_values": [],
-      "mqtt_values": [
-        "val=5145.7"
-      ],
-      "log_samples": 0,
-      "mqtt_samples": 26,
-      "parse_failures": [],
-      "related_frames": [],
-      "mqtt_children": [],
-      "temporal_consistency": "stable",
-      "recent_values": [
-        "val=5145.7"
-      ],
-      "recency_bias": "stable_recent",
-      "has_corrected_history": false,
-      "notes": []
-    },
-    {
-      "name": "consumo_risc_kwh",
-      "status": "broken",
-      "confidence": "low",
-      "sources": [
-        "ebusd_log",
-        "mqtt"
-      ],
-      "log_values": [],
-      "mqtt_values": [],
-      "log_samples": 0,
-      "mqtt_samples": 0,
-      "parse_failures": [
-        "invalid position"
-      ],
-      "related_frames": [],
-      "mqtt_children": [
-        "consumo_risc_kwh_val"
-      ],
-      "temporal_consistency": "unknown",
-      "recent_values": [],
-      "recency_bias": "unknown",
-      "has_corrected_history": false,
-      "notes": []
-    },
-    {
-      "name": "consumo_risc_kwh_val",
-      "status": "unknown",
-      "confidence": "low",
-      "sources": [],
-      "log_values": [],
-      "mqtt_values": [],
-      "log_samples": 0,
-      "mqtt_samples": 0,
-      "parse_failures": [],
-      "related_frames": [],
-      "mqtt_children": [],
-      "temporal_consistency": "unknown",
-      "recent_values": [],
-      "recency_bias": "unknown",
-      "has_corrected_history": false,
-      "notes": []
-    },
-    {
-      "name": "consumo_sanitario_kwh",
-      "status": "broken",
-      "confidence": "low",
-      "sources": [
-        "ebusd_log",
-        "mqtt"
-      ],
-      "log_values": [],
-      "mqtt_values": [],
-      "log_samples": 0,
-      "mqtt_samples": 0,
-      "parse_failures": [
-        "invalid position"
-      ],
-      "related_frames": [],
-      "mqtt_children": [
-        "consumo_sanitario_kwh_val"
-      ],
-      "temporal_consistency": "unknown",
-      "recent_values": [],
-      "recency_bias": "unknown",
-      "has_corrected_history": false,
-      "notes": []
-    },
-    {
-      "name": "consumo_sanitario_kwh_val",
-      "status": "unknown",
-      "confidence": "low",
-      "sources": [],
-      "log_values": [],
-      "mqtt_values": [],
-      "log_samples": 0,
-      "mqtt_samples": 0,
-      "parse_failures": [],
-      "related_frames": [],
-      "mqtt_children": [],
-      "temporal_consistency": "unknown",
-      "recent_values": [],
-      "recency_bias": "unknown",
       "has_corrected_history": false,
       "notes": []
     },
     {
       "name": "current_power_level",
-      "status": "confirmed",
-      "confidence": "high",
+      "status": "candidate",
+      "confidence": "low",
       "sources": [
-        "dump_report",
-        "ebusd_log",
-        "mqtt"
+        "dump_report"
       ],
-      "log_values": [
-        "14.5004",
-        "0.0004",
-        "13.5004",
-        "7.1004",
-        "4.5004"
-      ],
-      "mqtt_values": [
-        "val=4.5004",
-        "val=0.0004",
-        "val=14.5004",
-        "val=13.5004"
-      ],
+      "log_values": [],
+      "mqtt_values": [],
       "log_samples": 0,
-      "mqtt_samples": 41,
+      "mqtt_samples": 0,
       "parse_failures": [],
       "related_frames": [],
       "mqtt_children": [],
-      "temporal_consistency": "variable",
-      "recent_values": [
-        "val=14.5004",
-        "val=13.5004",
-        "val=4.5004"
-      ],
-      "recency_bias": "recently_variable",
-      "has_corrected_history": true,
+      "temporal_consistency": "unknown",
+      "recent_values": [],
+      "recency_bias": "unknown",
+      "has_corrected_history": false,
       "notes": [
         "listed as usable in reverse_engineering_report.json"
       ]
     },
     {
-      "name": "dhw_active",
-      "status": "confirmed",
-      "confidence": "medium",
+      "name": "dhw_active_short_bc",
+      "status": "unknown",
+      "confidence": "low",
       "sources": [
-        "ebusd_log",
         "mqtt"
       ],
-      "log_values": [
-        "off"
-      ],
-      "mqtt_values": [
-        "val=off"
-      ],
+      "log_values": [],
+      "mqtt_values": [],
       "log_samples": 0,
-      "mqtt_samples": 23,
+      "mqtt_samples": 0,
       "parse_failures": [],
       "related_frames": [],
       "mqtt_children": [
-        "dhw_active_val"
-      ],
-      "temporal_consistency": "limited_variation",
-      "recent_values": [
-        "val=off"
-      ],
-      "recency_bias": "stable_recent",
-      "has_corrected_history": false,
-      "notes": []
-    },
-    {
-      "name": "dhw_active_short_bc",
-      "status": "usable",
-      "confidence": "medium",
-      "sources": [
-        "ebusd_log",
-        "mqtt"
-      ],
-      "log_values": [
-        "on"
-      ],
-      "mqtt_values": [],
-      "log_samples": 1,
-      "mqtt_samples": 0,
-      "parse_failures": [],
-      "related_frames": [
-        "37fe2000020220"
-      ],
-      "mqtt_children": [
         "dhw_active_short_bc_val"
       ],
-      "temporal_consistency": "stable",
-      "recent_values": [
-        "on"
-      ],
-      "recency_bias": "stable_recent",
+      "temporal_consistency": "unknown",
+      "recent_values": [],
+      "recency_bias": "unknown",
       "has_corrected_history": false,
       "notes": []
     },
@@ -542,30 +222,6 @@
       "notes": []
     },
     {
-      "name": "dhw_active_val",
-      "status": "usable",
-      "confidence": "low",
-      "sources": [
-        "mqtt"
-      ],
-      "log_values": [],
-      "mqtt_values": [
-        "val=off"
-      ],
-      "log_samples": 0,
-      "mqtt_samples": 23,
-      "parse_failures": [],
-      "related_frames": [],
-      "mqtt_children": [],
-      "temporal_consistency": "stable",
-      "recent_values": [
-        "val=off"
-      ],
-      "recency_bias": "stable_recent",
-      "has_corrected_history": false,
-      "notes": []
-    },
-    {
       "name": "dhw_actual_temperature",
       "status": "confirmed",
       "confidence": "high",
@@ -580,13 +236,13 @@
       "mqtt_values": [
         "val=8.0"
       ],
-      "log_samples": 126,
-      "mqtt_samples": 83,
+      "log_samples": 41,
+      "mqtt_samples": 39,
       "parse_failures": [],
       "related_frames": [
         "37fe201008dd940000de940000",
-        "00fe203a0129",
-        "70fe200006642662716371"
+        "03fe2001026426",
+        "00fe203a0129"
       ],
       "mqtt_children": [
         "dhw_actual_temperature_val"
@@ -613,7 +269,7 @@
         "val=8.0"
       ],
       "log_samples": 0,
-      "mqtt_samples": 40,
+      "mqtt_samples": 39,
       "parse_failures": [],
       "related_frames": [],
       "mqtt_children": [],
@@ -639,12 +295,11 @@
       "mqtt_values": [
         "val=35.0"
       ],
-      "log_samples": 125,
-      "mqtt_samples": 98,
+      "log_samples": 41,
+      "mqtt_samples": 49,
       "parse_failures": [],
       "related_frames": [
         "37fe201008dd940000de940000",
-        "70fe200006642662716371",
         "00fe203a0129"
       ],
       "mqtt_children": [
@@ -670,7 +325,7 @@
         "val=35.0"
       ],
       "log_samples": 0,
-      "mqtt_samples": 78,
+      "mqtt_samples": 49,
       "parse_failures": [],
       "related_frames": [],
       "mqtt_children": [],
@@ -710,55 +365,67 @@
     {
       "name": "dhw_setpoint_bc",
       "status": "confirmed",
-      "confidence": "medium",
+      "confidence": "high",
       "sources": [
         "ebusd_log",
         "mqtt"
       ],
       "log_values": [
-        "42.0"
+        "43.0",
+        "45.0",
+        "44.0",
+        "46.0"
       ],
       "mqtt_values": [
+        "val=43.0",
+        "val=45.0",
         "val=42.0"
       ],
-      "log_samples": 10,
-      "mqtt_samples": 18,
+      "log_samples": 6,
+      "mqtt_samples": 10,
       "parse_failures": [],
       "related_frames": [
+        "37fe201008dd940000de940000",
+        "00fe203a0129",
+        "37fe201010d3940000d4940000d5940000d6940000",
         "37fe20200c747646007576000076761900"
       ],
       "mqtt_children": [
         "dhw_setpoint_bc_val"
       ],
-      "temporal_consistency": "limited_variation",
+      "temporal_consistency": "variable",
       "recent_values": [
-        "val=42.0"
+        "val=43.0",
+        "val=45.0"
       ],
-      "recency_bias": "stable_recent",
-      "has_corrected_history": false,
+      "recency_bias": "recently_variable",
+      "has_corrected_history": true,
       "notes": []
     },
     {
       "name": "dhw_setpoint_bc_val",
       "status": "usable",
-      "confidence": "low",
+      "confidence": "medium",
       "sources": [
         "mqtt"
       ],
       "log_values": [],
       "mqtt_values": [
+        "val=43.0",
+        "val=45.0",
         "val=42.0"
       ],
       "log_samples": 0,
-      "mqtt_samples": 18,
+      "mqtt_samples": 10,
       "parse_failures": [],
       "related_frames": [],
       "mqtt_children": [],
-      "temporal_consistency": "stable",
+      "temporal_consistency": "variable",
       "recent_values": [
-        "val=42.0"
+        "val=43.0",
+        "val=45.0"
       ],
-      "recency_bias": "stable_recent",
+      "recency_bias": "recently_variable",
       "has_corrected_history": false,
       "notes": []
     },
@@ -792,7 +459,7 @@
         "val=on"
       ],
       "log_samples": 0,
-      "mqtt_samples": 40,
+      "mqtt_samples": 6,
       "parse_failures": [],
       "related_frames": [],
       "mqtt_children": [
@@ -818,7 +485,7 @@
         "val=on"
       ],
       "log_samples": 0,
-      "mqtt_samples": 20,
+      "mqtt_samples": 6,
       "parse_failures": [],
       "related_frames": [],
       "mqtt_children": [],
@@ -845,16 +512,16 @@
       "mqtt_values": [
         "val=19.0"
       ],
-      "log_samples": 124,
-      "mqtt_samples": 83,
+      "log_samples": 40,
+      "mqtt_samples": 39,
       "parse_failures": [],
       "related_frames": [
-        "37fe2020047e2b0001",
         "00fe203a0129",
+        "03fe203b0129",
+        "70fe2020046271d700",
         "70fe200006642662716371",
-        "37fe201010d3940000d4940000d5940000d6940000",
-        "70fe203b0175",
-        "03fe203b0129"
+        "70fe2020046271d200",
+        "37fe2020047e2b0001"
       ],
       "mqtt_children": [
         "exhaust_temperature_val"
@@ -881,7 +548,7 @@
         "val=19.0"
       ],
       "log_samples": 0,
-      "mqtt_samples": 40,
+      "mqtt_samples": 39,
       "parse_failures": [],
       "related_frames": [],
       "mqtt_children": [],
@@ -934,160 +601,48 @@
       "notes": []
     },
     {
-      "name": "fan_speed",
-      "status": "confirmed",
-      "confidence": "high",
-      "sources": [
-        "ebusd_log",
-        "mqtt"
-      ],
-      "log_values": [
-        "49153",
-        "49921",
-        "51969",
-        "45569"
-      ],
-      "mqtt_values": [
-        "val=1",
-        "val=45569",
-        "val=52737",
-        "val=49153",
-        "val=49921",
-        "val=51969",
-        "val=47361"
-      ],
-      "log_samples": 0,
-      "mqtt_samples": 25,
-      "parse_failures": [],
-      "related_frames": [],
-      "mqtt_children": [
-        "fan_speed_val"
-      ],
-      "temporal_consistency": "variable",
-      "recent_values": [
-        "val=45569",
-        "val=47361"
-      ],
-      "recency_bias": "recently_variable",
-      "has_corrected_history": true,
-      "notes": []
-    },
-    {
       "name": "fan_speed_raw",
-      "status": "confirmed",
-      "confidence": "high",
+      "status": "candidate",
+      "confidence": "low",
       "sources": [
-        "dump_report",
-        "ebusd_log"
+        "dump_report"
       ],
-      "log_values": [
-        "01 ab",
-        "01 9a",
-        "01 4a",
-        "01 94",
-        "01 f4",
-        "01 00",
-        "01 88",
-        "01 01",
-        "01 9c"
-      ],
+      "log_values": [],
       "mqtt_values": [],
       "log_samples": 0,
       "mqtt_samples": 0,
       "parse_failures": [],
       "related_frames": [],
       "mqtt_children": [],
-      "temporal_consistency": "variable",
+      "temporal_consistency": "unknown",
       "recent_values": [],
       "recency_bias": "unknown",
-      "has_corrected_history": true,
+      "has_corrected_history": false,
       "notes": [
         "listed as usable in reverse_engineering_report.json"
       ]
     },
     {
-      "name": "fan_speed_val",
-      "status": "usable",
-      "confidence": "high",
+      "name": "flame_state",
+      "status": "candidate",
+      "confidence": "low",
       "sources": [
-        "mqtt"
+        "dump_report"
       ],
       "log_values": [],
-      "mqtt_values": [
-        "val=1",
-        "val=45569",
-        "val=52737",
-        "val=49153",
-        "val=49921",
-        "val=51969",
-        "val=47361"
-      ],
+      "mqtt_values": [],
       "log_samples": 0,
-      "mqtt_samples": 25,
+      "mqtt_samples": 0,
       "parse_failures": [],
       "related_frames": [],
       "mqtt_children": [],
-      "temporal_consistency": "variable",
-      "recent_values": [
-        "val=45569",
-        "val=47361"
-      ],
-      "recency_bias": "recently_variable",
-      "has_corrected_history": false,
-      "notes": []
-    },
-    {
-      "name": "flame_state",
-      "status": "confirmed",
-      "confidence": "medium",
-      "sources": [
-        "dump_report",
-        "mqtt"
-      ],
-      "log_values": [],
-      "mqtt_values": [
-        "val=off"
-      ],
-      "log_samples": 0,
-      "mqtt_samples": 50,
-      "parse_failures": [],
-      "related_frames": [],
-      "mqtt_children": [
-        "flame_state_val"
-      ],
-      "temporal_consistency": "stable",
-      "recent_values": [
-        "val=off"
-      ],
-      "recency_bias": "stable_recent",
+      "temporal_consistency": "unknown",
+      "recent_values": [],
+      "recency_bias": "unknown",
       "has_corrected_history": false,
       "notes": [
         "listed as confirmed in reverse_engineering_report.json"
       ]
-    },
-    {
-      "name": "flame_state_val",
-      "status": "usable",
-      "confidence": "low",
-      "sources": [
-        "mqtt"
-      ],
-      "log_values": [],
-      "mqtt_values": [
-        "val=off"
-      ],
-      "log_samples": 0,
-      "mqtt_samples": 50,
-      "parse_failures": [],
-      "related_frames": [],
-      "mqtt_children": [],
-      "temporal_consistency": "stable",
-      "recent_values": [
-        "val=off"
-      ],
-      "recency_bias": "stable_recent",
-      "has_corrected_history": false,
-      "notes": []
     },
     {
       "name": "flame_target_temperature",
@@ -1103,16 +658,15 @@
       "mqtt_values": [
         "val=0.0"
       ],
-      "log_samples": 187,
-      "mqtt_samples": 83,
+      "log_samples": 39,
+      "mqtt_samples": 39,
       "parse_failures": [],
       "related_frames": [
         "00fe203a0129",
-        "37fe2020047e2b0001",
+        "03fe203b0129",
+        "70fe2020046271d700",
         "70fe200006642662716371",
-        "37fe201010d3940000d4940000d5940000d6940000",
-        "70fe203b0175",
-        "03fe203b0129"
+        "37fe2020047e2b0001"
       ],
       "mqtt_children": [
         "flame_target_temperature_val"
@@ -1137,7 +691,7 @@
         "val=0.0"
       ],
       "log_samples": 0,
-      "mqtt_samples": 40,
+      "mqtt_samples": 39,
       "parse_failures": [],
       "related_frames": [],
       "mqtt_children": [],
@@ -1151,31 +705,21 @@
     },
     {
       "name": "heating_active",
-      "status": "confirmed",
-      "confidence": "high",
+      "status": "candidate",
+      "confidence": "low",
       "sources": [
-        "dump_report",
-        "ebusd_log",
-        "mqtt"
+        "dump_report"
       ],
-      "log_values": [
-        "off"
-      ],
-      "mqtt_values": [
-        "val=off"
-      ],
+      "log_values": [],
+      "mqtt_values": [],
       "log_samples": 0,
-      "mqtt_samples": 25,
+      "mqtt_samples": 0,
       "parse_failures": [],
       "related_frames": [],
-      "mqtt_children": [
-        "heating_active_val"
-      ],
-      "temporal_consistency": "limited_variation",
-      "recent_values": [
-        "val=off"
-      ],
-      "recency_bias": "stable_recent",
+      "mqtt_children": [],
+      "temporal_consistency": "unknown",
+      "recent_values": [],
+      "recency_bias": "unknown",
       "has_corrected_history": false,
       "notes": [
         "listed as usable in reverse_engineering_report.json"
@@ -1196,11 +740,12 @@
       "mqtt_values": [
         "val=15"
       ],
-      "log_samples": 19,
-      "mqtt_samples": 53,
+      "log_samples": 12,
+      "mqtt_samples": 22,
       "parse_failures": [],
       "related_frames": [
-        "70fe200006642662716371"
+        "70fe200006642662716371",
+        "37fe200f04c6790200"
       ],
       "mqtt_children": [
         "heating_active_bc_val"
@@ -1227,7 +772,7 @@
         "val=15"
       ],
       "log_samples": 0,
-      "mqtt_samples": 53,
+      "mqtt_samples": 22,
       "parse_failures": [],
       "related_frames": [],
       "mqtt_children": [],
@@ -1249,27 +794,28 @@
         "mqtt"
       ],
       "log_values": [
-        "on"
+        "on",
+        "1"
       ],
       "mqtt_values": [
-        "val=on"
+        "val=on",
+        "val=1"
       ],
-      "log_samples": 7,
-      "mqtt_samples": 32,
+      "log_samples": 9,
+      "mqtt_samples": 16,
       "parse_failures": [],
       "related_frames": [
-        "70fe200006642662716371",
-        "37fe2000020120"
+        "70fe200006642662716371"
       ],
       "mqtt_children": [
         "heating_active_short_bc_val"
       ],
-      "temporal_consistency": "limited_variation",
+      "temporal_consistency": "variable",
       "recent_values": [
-        "val=on"
+        "val=1"
       ],
       "recency_bias": "stable_recent",
-      "has_corrected_history": false,
+      "has_corrected_history": true,
       "notes": [
         "listed as usable in reverse_engineering_report.json"
       ]
@@ -1277,46 +823,23 @@
     {
       "name": "heating_active_short_bc_val",
       "status": "usable",
-      "confidence": "low",
+      "confidence": "medium",
       "sources": [
         "mqtt"
       ],
       "log_values": [],
       "mqtt_values": [
-        "val=on"
+        "val=on",
+        "val=1"
       ],
       "log_samples": 0,
-      "mqtt_samples": 32,
+      "mqtt_samples": 16,
       "parse_failures": [],
       "related_frames": [],
       "mqtt_children": [],
-      "temporal_consistency": "stable",
+      "temporal_consistency": "limited_variation",
       "recent_values": [
-        "val=on"
-      ],
-      "recency_bias": "stable_recent",
-      "has_corrected_history": false,
-      "notes": []
-    },
-    {
-      "name": "heating_active_val",
-      "status": "usable",
-      "confidence": "low",
-      "sources": [
-        "mqtt"
-      ],
-      "log_values": [],
-      "mqtt_values": [
-        "val=off"
-      ],
-      "log_samples": 0,
-      "mqtt_samples": 25,
-      "parse_failures": [],
-      "related_frames": [],
-      "mqtt_children": [],
-      "temporal_consistency": "stable",
-      "recent_values": [
-        "val=off"
+        "val=1"
       ],
       "recency_bias": "stable_recent",
       "has_corrected_history": false,
@@ -1324,26 +847,21 @@
     },
     {
       "name": "heating_flame_mode",
-      "status": "confirmed",
-      "confidence": "medium",
+      "status": "candidate",
+      "confidence": "low",
       "sources": [
-        "dump_report",
-        "mqtt"
+        "dump_report"
       ],
       "log_values": [],
-      "mqtt_values": [
-        "val=on"
-      ],
+      "mqtt_values": [],
       "log_samples": 0,
-      "mqtt_samples": 40,
+      "mqtt_samples": 0,
       "parse_failures": [],
       "related_frames": [],
       "mqtt_children": [],
-      "temporal_consistency": "stable",
-      "recent_values": [
-        "val=on"
-      ],
-      "recency_bias": "stable_recent",
+      "temporal_consistency": "unknown",
+      "recent_values": [],
+      "recency_bias": "unknown",
       "has_corrected_history": false,
       "notes": [
         "listed as usable in reverse_engineering_report.json"
@@ -1364,13 +882,11 @@
       "mqtt_values": [
         "val=off"
       ],
-      "log_samples": 25,
-      "mqtt_samples": 80,
+      "log_samples": 2,
+      "mqtt_samples": 11,
       "parse_failures": [],
       "related_frames": [
-        "37fe2010057310ff7f00",
-        "37fe201010d3940000d4940000d5940000d6940000",
-        "00fe203a0129"
+        "37fe201010d3940000d4940000d5940000d6940000"
       ],
       "mqtt_children": [
         "heating_flame_mode_bc_val"
@@ -1397,7 +913,7 @@
         "val=off"
       ],
       "log_samples": 0,
-      "mqtt_samples": 40,
+      "mqtt_samples": 11,
       "parse_failures": [],
       "related_frames": [],
       "mqtt_children": [],
@@ -1419,18 +935,19 @@
         "mqtt"
       ],
       "log_values": [
-        "65.0;65.0;35.0",
-        "82.0;65.0;35.0"
+        "82.0;65.0;35.0",
+        "82.0;66.0;35.0"
       ],
       "mqtt_values": [
-        "primary_setpoint=65.0; circuit_setpoint=65.0; dhw_reference=35.0",
+        "primary_setpoint=82.0; circuit_setpoint=66.0; dhw_reference=35.0",
         "primary_setpoint=82.0; circuit_setpoint=65.0; dhw_reference=35.0"
       ],
-      "log_samples": 123,
-      "mqtt_samples": 231,
+      "log_samples": 41,
+      "mqtt_samples": 117,
       "parse_failures": [],
       "related_frames": [
-        "37fe201008dd940000de940000"
+        "37fe201008dd940000de940000",
+        "00fe203a0129"
       ],
       "mqtt_children": [
         "heating_setpoint_triplet_circuit_setpoint",
@@ -1456,11 +973,11 @@
       ],
       "log_values": [],
       "mqtt_values": [
-        "primary_setpoint=65.0; circuit_setpoint=65.0; dhw_reference=35.0",
+        "primary_setpoint=82.0; circuit_setpoint=66.0; dhw_reference=35.0",
         "primary_setpoint=82.0; circuit_setpoint=65.0; dhw_reference=35.0"
       ],
       "log_samples": 0,
-      "mqtt_samples": 77,
+      "mqtt_samples": 39,
       "parse_failures": [],
       "related_frames": [],
       "mqtt_children": [],
@@ -1481,11 +998,11 @@
       ],
       "log_values": [],
       "mqtt_values": [
-        "primary_setpoint=65.0; circuit_setpoint=65.0; dhw_reference=35.0",
+        "primary_setpoint=82.0; circuit_setpoint=66.0; dhw_reference=35.0",
         "primary_setpoint=82.0; circuit_setpoint=65.0; dhw_reference=35.0"
       ],
       "log_samples": 0,
-      "mqtt_samples": 77,
+      "mqtt_samples": 39,
       "parse_failures": [],
       "related_frames": [],
       "mqtt_children": [],
@@ -1506,11 +1023,11 @@
       ],
       "log_values": [],
       "mqtt_values": [
-        "primary_setpoint=65.0; circuit_setpoint=65.0; dhw_reference=35.0",
+        "primary_setpoint=82.0; circuit_setpoint=66.0; dhw_reference=35.0",
         "primary_setpoint=82.0; circuit_setpoint=65.0; dhw_reference=35.0"
       ],
       "log_samples": 0,
-      "mqtt_samples": 77,
+      "mqtt_samples": 39,
       "parse_failures": [],
       "related_frames": [],
       "mqtt_children": [],
@@ -1534,7 +1051,7 @@
         "val=on"
       ],
       "log_samples": 0,
-      "mqtt_samples": 39,
+      "mqtt_samples": 6,
       "parse_failures": [],
       "related_frames": [],
       "mqtt_children": [
@@ -1560,71 +1077,13 @@
         "val=on"
       ],
       "log_samples": 0,
-      "mqtt_samples": 19,
+      "mqtt_samples": 6,
       "parse_failures": [],
       "related_frames": [],
       "mqtt_children": [],
       "temporal_consistency": "stable",
       "recent_values": [
         "val=on"
-      ],
-      "recency_bias": "stable_recent",
-      "has_corrected_history": false,
-      "notes": []
-    },
-    {
-      "name": "ignition_cycles",
-      "status": "confirmed",
-      "confidence": "high",
-      "sources": [
-        "ebusd_log",
-        "mqtt"
-      ],
-      "log_values": [
-        "23041",
-        "23297"
-      ],
-      "mqtt_values": [
-        "val=23041",
-        "val=22529",
-        "val=22785"
-      ],
-      "log_samples": 0,
-      "mqtt_samples": 26,
-      "parse_failures": [],
-      "related_frames": [],
-      "mqtt_children": [
-        "ignition_cycles_val"
-      ],
-      "temporal_consistency": "variable",
-      "recent_values": [
-        "val=23041"
-      ],
-      "recency_bias": "stable_recent",
-      "has_corrected_history": true,
-      "notes": []
-    },
-    {
-      "name": "ignition_cycles_val",
-      "status": "usable",
-      "confidence": "medium",
-      "sources": [
-        "mqtt"
-      ],
-      "log_values": [],
-      "mqtt_values": [
-        "val=23041",
-        "val=22529",
-        "val=22785"
-      ],
-      "log_samples": 0,
-      "mqtt_samples": 26,
-      "parse_failures": [],
-      "related_frames": [],
-      "mqtt_children": [],
-      "temporal_consistency": "variable",
-      "recent_values": [
-        "val=23041"
       ],
       "recency_bias": "stable_recent",
       "has_corrected_history": false,
@@ -1645,20 +1104,18 @@
       "mqtt_values": [
         "val=70"
       ],
-      "log_samples": 191,
-      "mqtt_samples": 83,
+      "log_samples": 43,
+      "mqtt_samples": 39,
       "parse_failures": [],
       "related_frames": [
-        "37fe2000020120",
-        "37fe200f0406910000",
-        "37fe200f080591000006910000",
-        "37fe200f0402200100",
         "00fe203a0129",
-        "37fe20200b0681007071460071717800",
-        "37fe20200c6a7682006b765e016c763200",
         "37fe201008dd940000de940000",
-        "37fe200f0405200000",
-        "37fe20200b7571000076711900068200"
+        "37fe201010d3940000d4940000d5940000d6940000",
+        "70fe200006642662716371",
+        "03fe2001026426",
+        "70fe203b0175",
+        "70fe2020046271d700",
+        "37fe20200b7574000076741900068500"
       ],
       "mqtt_children": [
         "internal_flow_target_temperature_val"
@@ -1685,7 +1142,7 @@
         "val=70"
       ],
       "log_samples": 0,
-      "mqtt_samples": 40,
+      "mqtt_samples": 39,
       "parse_failures": [],
       "related_frames": [],
       "mqtt_children": [],
@@ -1712,16 +1169,15 @@
       "mqtt_values": [
         "val=19.0"
       ],
-      "log_samples": 123,
-      "mqtt_samples": 83,
+      "log_samples": 39,
+      "mqtt_samples": 39,
       "parse_failures": [],
       "related_frames": [
-        "37fe2020047e2b0001",
         "00fe203a0129",
+        "03fe203b0129",
+        "70fe2020046271d700",
         "70fe200006642662716371",
-        "37fe201010d3940000d4940000d5940000d6940000",
-        "70fe203b0175",
-        "03fe203b0129"
+        "37fe2020047e2b0001"
       ],
       "mqtt_children": [
         "main_flow_temperature_val"
@@ -1748,7 +1204,7 @@
         "val=19.0"
       ],
       "log_samples": 0,
-      "mqtt_samples": 40,
+      "mqtt_samples": 39,
       "parse_failures": [],
       "related_frames": [],
       "mqtt_children": [],
@@ -1815,12 +1271,11 @@
       "mqtt_values": [
         "val=82.0"
       ],
-      "log_samples": 125,
-      "mqtt_samples": 77,
+      "log_samples": 41,
+      "mqtt_samples": 39,
       "parse_failures": [],
       "related_frames": [
         "37fe201008dd940000de940000",
-        "70fe200006642662716371",
         "00fe203a0129"
       ],
       "mqtt_children": [
@@ -1848,7 +1303,7 @@
         "val=82.0"
       ],
       "log_samples": 0,
-      "mqtt_samples": 77,
+      "mqtt_samples": 39,
       "parse_failures": [],
       "related_frames": [],
       "mqtt_children": [],
@@ -1862,29 +1317,21 @@
     },
     {
       "name": "nominal_power_kw",
-      "status": "confirmed",
-      "confidence": "high",
+      "status": "candidate",
+      "confidence": "low",
       "sources": [
-        "dump_report",
-        "ebusd_log",
-        "mqtt"
+        "dump_report"
       ],
-      "log_values": [
-        "24.004"
-      ],
-      "mqtt_values": [
-        "val=24.004"
-      ],
+      "log_values": [],
+      "mqtt_values": [],
       "log_samples": 0,
-      "mqtt_samples": 41,
+      "mqtt_samples": 0,
       "parse_failures": [],
       "related_frames": [],
       "mqtt_children": [],
-      "temporal_consistency": "limited_variation",
-      "recent_values": [
-        "val=24.004"
-      ],
-      "recency_bias": "stable_recent",
+      "temporal_consistency": "unknown",
+      "recent_values": [],
+      "recency_bias": "unknown",
       "has_corrected_history": false,
       "notes": [
         "listed as confirmed in reverse_engineering_report.json"
@@ -1905,8 +1352,8 @@
       "mqtt_values": [
         "val=3276.7"
       ],
-      "log_samples": 28,
-      "mqtt_samples": 80,
+      "log_samples": 6,
+      "mqtt_samples": 14,
       "parse_failures": [],
       "related_frames": [
         "37fe2010057310ff7f00"
@@ -1936,119 +1383,13 @@
         "val=3276.7"
       ],
       "log_samples": 0,
-      "mqtt_samples": 40,
+      "mqtt_samples": 14,
       "parse_failures": [],
       "related_frames": [],
       "mqtt_children": [],
       "temporal_consistency": "stable",
       "recent_values": [
         "val=3276.7"
-      ],
-      "recency_bias": "stable_recent",
-      "has_corrected_history": false,
-      "notes": []
-    },
-    {
-      "name": "percentuale_fiamma",
-      "status": "confirmed",
-      "confidence": "medium",
-      "sources": [
-        "ebusd_log",
-        "mqtt"
-      ],
-      "log_values": [
-        "0.0"
-      ],
-      "mqtt_values": [
-        "val=0.0"
-      ],
-      "log_samples": 0,
-      "mqtt_samples": 23,
-      "parse_failures": [],
-      "related_frames": [],
-      "mqtt_children": [
-        "percentuale_fiamma_val"
-      ],
-      "temporal_consistency": "limited_variation",
-      "recent_values": [
-        "val=0.0"
-      ],
-      "recency_bias": "stable_recent",
-      "has_corrected_history": false,
-      "notes": []
-    },
-    {
-      "name": "percentuale_fiamma_val",
-      "status": "usable",
-      "confidence": "low",
-      "sources": [
-        "mqtt"
-      ],
-      "log_values": [],
-      "mqtt_values": [
-        "val=0.0"
-      ],
-      "log_samples": 0,
-      "mqtt_samples": 23,
-      "parse_failures": [],
-      "related_frames": [],
-      "mqtt_children": [],
-      "temporal_consistency": "stable",
-      "recent_values": [
-        "val=0.0"
-      ],
-      "recency_bias": "stable_recent",
-      "has_corrected_history": false,
-      "notes": []
-    },
-    {
-      "name": "pressione_poll",
-      "status": "confirmed",
-      "confidence": "medium",
-      "sources": [
-        "ebusd_log",
-        "mqtt"
-      ],
-      "log_values": [
-        "0.1"
-      ],
-      "mqtt_values": [
-        "val=0.1"
-      ],
-      "log_samples": 0,
-      "mqtt_samples": 24,
-      "parse_failures": [],
-      "related_frames": [],
-      "mqtt_children": [
-        "pressione_poll_val"
-      ],
-      "temporal_consistency": "limited_variation",
-      "recent_values": [
-        "val=0.1"
-      ],
-      "recency_bias": "stable_recent",
-      "has_corrected_history": false,
-      "notes": []
-    },
-    {
-      "name": "pressione_poll_val",
-      "status": "usable",
-      "confidence": "low",
-      "sources": [
-        "mqtt"
-      ],
-      "log_values": [],
-      "mqtt_values": [
-        "val=0.1"
-      ],
-      "log_samples": 0,
-      "mqtt_samples": 24,
-      "parse_failures": [],
-      "related_frames": [],
-      "mqtt_children": [],
-      "temporal_consistency": "stable",
-      "recent_values": [
-        "val=0.1"
       ],
       "recency_bias": "stable_recent",
       "has_corrected_history": false,
@@ -2069,20 +1410,18 @@
       "mqtt_values": [
         "val=0.075"
       ],
-      "log_samples": 191,
-      "mqtt_samples": 83,
+      "log_samples": 43,
+      "mqtt_samples": 39,
       "parse_failures": [],
       "related_frames": [
-        "37fe2000020120",
-        "37fe200f0406910000",
-        "37fe200f080591000006910000",
-        "37fe200e086275be0064002c01",
         "00fe203a0129",
-        "37fe20200b0681007071460071717800",
-        "37fe20200c6a7682006b765e016c763200",
         "37fe201008dd940000de940000",
-        "37fe200e086426320014009600",
-        "37fe20200b7571000076711900068200"
+        "37fe201010d3940000d4940000d5940000d6940000",
+        "70fe200006642662716371",
+        "03fe2001026426",
+        "70fe203b0175",
+        "70fe2020046271d700",
+        "37fe20200b7574000076741900068500"
       ],
       "mqtt_children": [
         "pressure_sensor_voltage_val"
@@ -2109,7 +1448,7 @@
         "val=0.075"
       ],
       "log_samples": 0,
-      "mqtt_samples": 40,
+      "mqtt_samples": 39,
       "parse_failures": [],
       "related_frames": [],
       "mqtt_children": [],
@@ -2136,20 +1475,18 @@
       "mqtt_values": [
         "val=150"
       ],
-      "log_samples": 191,
-      "mqtt_samples": 78,
+      "log_samples": 44,
+      "mqtt_samples": 39,
       "parse_failures": [],
       "related_frames": [
-        "37fe200e086426320014009600",
-        "37fe200f0406910000",
-        "37fe200f080591000006910000",
-        "37fe200e086276be0064002c01",
-        "37fe2000020120",
         "00fe203a0129",
-        "37fe20200b0681007071460071717800",
-        "37fe20200c6a7682006b765e016c763200",
         "37fe201008dd940000de940000",
-        "37fe20200b7571000076711900068200"
+        "37fe201010d3940000d4940000d5940000d6940000",
+        "70fe200006642662716371",
+        "03fe2001026426",
+        "70fe203b0175",
+        "70fe2020046271d700",
+        "37fe20200b7574000076741900068500"
       ],
       "mqtt_children": [
         "pump_modulation_val"
@@ -2176,7 +1513,7 @@
         "val=150"
       ],
       "log_samples": 0,
-      "mqtt_samples": 78,
+      "mqtt_samples": 39,
       "parse_failures": [],
       "related_frames": [],
       "mqtt_children": [],
@@ -2198,37 +1535,34 @@
         "mqtt"
       ],
       "log_values": [
-        "1",
         "0"
       ],
       "mqtt_values": [
-        "val=1",
         "val=0"
       ],
-      "log_samples": 602,
-      "mqtt_samples": 90,
+      "log_samples": 66,
+      "mqtt_samples": 30,
       "parse_failures": [],
       "related_frames": [
-        "37fe200e086426320014009600",
-        "37fe200e086276be0064002c01",
-        "37fe2000020120",
-        "37fe2020047e2b0001",
-        "37fe201010d3940000d4940000d5940000d6940000",
-        "00fe203a0129",
         "37fe201008dd940000de940000",
-        "37fe200f0405200000",
-        "37fe2010057310ff7f00",
-        "00fe203a012b"
+        "00fe203a0129",
+        "03fe203b0129",
+        "37fe201010d3940000d4940000d5940000d6940000",
+        "37fe203b013c",
+        "70fe200006642662716371",
+        "70fe203b0175",
+        "37fe200e086426320014009600",
+        "70fe2020046271d200"
       ],
       "mqtt_children": [
         "request_status_1_val"
       ],
-      "temporal_consistency": "variable",
+      "temporal_consistency": "limited_variation",
       "recent_values": [
         "val=0"
       ],
       "recency_bias": "stable_recent",
-      "has_corrected_history": true,
+      "has_corrected_history": false,
       "notes": [
         "listed as confirmed in reverse_engineering_report.json"
       ]
@@ -2236,21 +1570,20 @@
     {
       "name": "request_status_1_val",
       "status": "usable",
-      "confidence": "medium",
+      "confidence": "low",
       "sources": [
         "mqtt"
       ],
       "log_values": [],
       "mqtt_values": [
-        "val=0",
-        "val=1"
+        "val=0"
       ],
       "log_samples": 0,
-      "mqtt_samples": 40,
+      "mqtt_samples": 30,
       "parse_failures": [],
       "related_frames": [],
       "mqtt_children": [],
-      "temporal_consistency": "limited_variation",
+      "temporal_consistency": "stable",
       "recent_values": [
         "val=0"
       ],
@@ -2273,19 +1606,20 @@
       "mqtt_values": [
         "val=0"
       ],
-      "log_samples": 589,
-      "mqtt_samples": 90,
+      "log_samples": 207,
+      "mqtt_samples": 50,
       "parse_failures": [],
       "related_frames": [
-        "37fe2020047e2b0001",
-        "37fe201010d3940000d4940000d5940000d6940000",
-        "00fe203a0129",
         "37fe201008dd940000de940000",
-        "00fe203a012b",
-        "70fe200006642662716371",
-        "03fe203b0129",
+        "00fe203a0129",
         "37fe200e086426320014009600",
-        "37fe203b013c"
+        "03fe203b0129",
+        "37fe201010d3940000d4940000d5940000d6940000",
+        "37fe203b013c",
+        "70fe203b0175",
+        "70fe2020046271d200",
+        "03fe2001026426",
+        "70fe2020046271d700"
       ],
       "mqtt_children": [
         "request_status_2_val"
@@ -2312,7 +1646,7 @@
         "val=0"
       ],
       "log_samples": 0,
-      "mqtt_samples": 40,
+      "mqtt_samples": 50,
       "parse_failures": [],
       "related_frames": [],
       "mqtt_children": [],
@@ -2339,16 +1673,15 @@
       "mqtt_values": [
         "val=19.0"
       ],
-      "log_samples": 124,
-      "mqtt_samples": 83,
+      "log_samples": 39,
+      "mqtt_samples": 39,
       "parse_failures": [],
       "related_frames": [
-        "37fe2020047e2b0001",
         "00fe203a0129",
+        "03fe203b0129",
+        "70fe2020046271d700",
         "70fe200006642662716371",
-        "37fe201010d3940000d4940000d5940000d6940000",
-        "70fe203b0175",
-        "03fe203b0129"
+        "37fe2020047e2b0001"
       ],
       "mqtt_children": [
         "secondary_return_temperature_val"
@@ -2375,7 +1708,7 @@
         "val=19.0"
       ],
       "log_samples": 0,
-      "mqtt_samples": 40,
+      "mqtt_samples": 39,
       "parse_failures": [],
       "related_frames": [],
       "mqtt_children": [],
@@ -2399,7 +1732,7 @@
         "val=off"
       ],
       "log_samples": 0,
-      "mqtt_samples": 39,
+      "mqtt_samples": 6,
       "parse_failures": [],
       "related_frames": [],
       "mqtt_children": [
@@ -2415,30 +1748,23 @@
     },
     {
       "name": "sra_status_short_bc",
-      "status": "usable",
-      "confidence": "medium",
+      "status": "unknown",
+      "confidence": "low",
       "sources": [
-        "ebusd_log",
         "mqtt"
       ],
-      "log_values": [
-        "off"
-      ],
+      "log_values": [],
       "mqtt_values": [],
-      "log_samples": 1,
+      "log_samples": 0,
       "mqtt_samples": 0,
       "parse_failures": [],
-      "related_frames": [
-        "37fe2000020520"
-      ],
+      "related_frames": [],
       "mqtt_children": [
         "sra_status_short_bc_val"
       ],
-      "temporal_consistency": "stable",
-      "recent_values": [
-        "off"
-      ],
-      "recency_bias": "stable_recent",
+      "temporal_consistency": "unknown",
+      "recent_values": [],
+      "recency_bias": "unknown",
       "has_corrected_history": false,
       "notes": []
     },
@@ -2472,7 +1798,7 @@
         "val=off"
       ],
       "log_samples": 0,
-      "mqtt_samples": 19,
+      "mqtt_samples": 6,
       "parse_failures": [],
       "related_frames": [],
       "mqtt_children": [],
@@ -2485,23 +1811,157 @@
       "notes": []
     },
     {
-      "name": "test_corrente",
-      "status": "broken",
-      "confidence": "low",
+      "name": "status_request_1_flags",
+      "status": "confirmed",
+      "confidence": "medium",
       "sources": [
         "ebusd_log",
+        "mqtt"
+      ],
+      "log_values": [
+        "0;0;2;145"
+      ],
+      "mqtt_values": [
+        "heating_request=0; flag_0291=0; flag_0391=2; flag_0491=145"
+      ],
+      "log_samples": 138,
+      "mqtt_samples": 30,
+      "parse_failures": [],
+      "related_frames": [
+        "00fe203a0129",
+        "37fe203b013c",
+        "70fe200006642662716371",
+        "37fe201008dd940000de940000",
+        "37fe201010d3940000d4940000d5940000d6940000",
+        "03fe2001026426",
+        "70fe2020046271d700",
+        "03fe203b0129",
+        "37fe2020047e2b0001"
+      ],
+      "mqtt_children": [
+        "status_request_1_flags_heating_request"
+      ],
+      "temporal_consistency": "limited_variation",
+      "recent_values": [
+        "heating_request=0; flag_0291=0; flag_0391=2; flag_0491=145"
+      ],
+      "recency_bias": "stable_recent",
+      "has_corrected_history": false,
+      "notes": []
+    },
+    {
+      "name": "status_request_1_flags_flag_0291",
+      "status": "usable",
+      "confidence": "low",
+      "sources": [
+        "mqtt"
+      ],
+      "log_values": [],
+      "mqtt_values": [
+        "heating_request=0; flag_0291=0; flag_0391=2; flag_0491=145"
+      ],
+      "log_samples": 0,
+      "mqtt_samples": 30,
+      "parse_failures": [],
+      "related_frames": [],
+      "mqtt_children": [],
+      "temporal_consistency": "stable",
+      "recent_values": [
+        "heating_request=0; flag_0291=0; flag_0391=2; flag_0491=145"
+      ],
+      "recency_bias": "stable_recent",
+      "has_corrected_history": false,
+      "notes": []
+    },
+    {
+      "name": "status_request_1_flags_flag_0391",
+      "status": "usable",
+      "confidence": "low",
+      "sources": [
+        "mqtt"
+      ],
+      "log_values": [],
+      "mqtt_values": [
+        "heating_request=0; flag_0291=0; flag_0391=2; flag_0491=145"
+      ],
+      "log_samples": 0,
+      "mqtt_samples": 30,
+      "parse_failures": [],
+      "related_frames": [],
+      "mqtt_children": [],
+      "temporal_consistency": "stable",
+      "recent_values": [
+        "heating_request=0; flag_0291=0; flag_0391=2; flag_0491=145"
+      ],
+      "recency_bias": "stable_recent",
+      "has_corrected_history": false,
+      "notes": []
+    },
+    {
+      "name": "status_request_1_flags_flag_0491",
+      "status": "usable",
+      "confidence": "low",
+      "sources": [
+        "mqtt"
+      ],
+      "log_values": [],
+      "mqtt_values": [
+        "heating_request=0; flag_0291=0; flag_0391=2; flag_0491=145"
+      ],
+      "log_samples": 0,
+      "mqtt_samples": 30,
+      "parse_failures": [],
+      "related_frames": [],
+      "mqtt_children": [],
+      "temporal_consistency": "stable",
+      "recent_values": [
+        "heating_request=0; flag_0291=0; flag_0391=2; flag_0491=145"
+      ],
+      "recency_bias": "stable_recent",
+      "has_corrected_history": false,
+      "notes": []
+    },
+    {
+      "name": "status_request_1_flags_heating_request",
+      "status": "usable",
+      "confidence": "low",
+      "sources": [
+        "mqtt"
+      ],
+      "log_values": [],
+      "mqtt_values": [
+        "heating_request=0; flag_0291=0; flag_0391=2; flag_0491=145"
+      ],
+      "log_samples": 0,
+      "mqtt_samples": 30,
+      "parse_failures": [],
+      "related_frames": [],
+      "mqtt_children": [],
+      "temporal_consistency": "stable",
+      "recent_values": [
+        "heating_request=0; flag_0291=0; flag_0391=2; flag_0491=145"
+      ],
+      "recency_bias": "stable_recent",
+      "has_corrected_history": false,
+      "notes": []
+    },
+    {
+      "name": "thermoreg_profile72_curve_candidate_bc",
+      "status": "unknown",
+      "confidence": "low",
+      "sources": [
         "mqtt"
       ],
       "log_values": [],
       "mqtt_values": [],
       "log_samples": 0,
       "mqtt_samples": 0,
-      "parse_failures": [
-        "invalid position"
-      ],
+      "parse_failures": [],
       "related_frames": [],
       "mqtt_children": [
-        "test_corrente_val"
+        "thermoreg_profile72_curve_candidate_bc_max_water_temp",
+        "thermoreg_profile72_curve_candidate_bc_param1_temp",
+        "thermoreg_profile72_curve_candidate_bc_param2_temp"
       ],
       "temporal_consistency": "unknown",
       "recent_values": [],
@@ -2510,7 +1970,7 @@
       "notes": []
     },
     {
-      "name": "test_corrente_val",
+      "name": "thermoreg_profile72_curve_candidate_bc_max_water_temp",
       "status": "unknown",
       "confidence": "low",
       "sources": [],
@@ -2528,129 +1988,56 @@
       "notes": []
     },
     {
-      "name": "test_modulazione",
-      "status": "confirmed",
-      "confidence": "medium",
-      "sources": [
-        "ebusd_log",
-        "mqtt"
-      ],
-      "log_values": [
-        "0.0"
-      ],
-      "mqtt_values": [
-        "val=0.0"
-      ],
-      "log_samples": 0,
-      "mqtt_samples": 22,
-      "parse_failures": [],
-      "related_frames": [],
-      "mqtt_children": [
-        "test_modulazione_val"
-      ],
-      "temporal_consistency": "limited_variation",
-      "recent_values": [
-        "val=0.0"
-      ],
-      "recency_bias": "stable_recent",
-      "has_corrected_history": false,
-      "notes": []
-    },
-    {
-      "name": "test_modulazione_val",
-      "status": "usable",
+      "name": "thermoreg_profile72_curve_candidate_bc_param1_temp",
+      "status": "unknown",
       "confidence": "low",
-      "sources": [
-        "mqtt"
-      ],
+      "sources": [],
       "log_values": [],
-      "mqtt_values": [
-        "val=0.0"
-      ],
+      "mqtt_values": [],
       "log_samples": 0,
-      "mqtt_samples": 22,
+      "mqtt_samples": 0,
       "parse_failures": [],
       "related_frames": [],
       "mqtt_children": [],
-      "temporal_consistency": "stable",
-      "recent_values": [
-        "val=0.0"
-      ],
-      "recency_bias": "stable_recent",
+      "temporal_consistency": "unknown",
+      "recent_values": [],
+      "recency_bias": "unknown",
       "has_corrected_history": false,
       "notes": []
     },
     {
-      "name": "test_pwm_gas",
-      "status": "confirmed",
-      "confidence": "medium",
-      "sources": [
-        "ebusd_log",
-        "mqtt"
-      ],
-      "log_values": [
-        "0"
-      ],
-      "mqtt_values": [
-        "val=0"
-      ],
-      "log_samples": 0,
-      "mqtt_samples": 24,
-      "parse_failures": [],
-      "related_frames": [],
-      "mqtt_children": [
-        "test_pwm_gas_val"
-      ],
-      "temporal_consistency": "limited_variation",
-      "recent_values": [
-        "val=0"
-      ],
-      "recency_bias": "stable_recent",
-      "has_corrected_history": false,
-      "notes": []
-    },
-    {
-      "name": "test_pwm_gas_val",
-      "status": "usable",
+      "name": "thermoreg_profile72_curve_candidate_bc_param2_temp",
+      "status": "unknown",
       "confidence": "low",
-      "sources": [
-        "mqtt"
-      ],
+      "sources": [],
       "log_values": [],
-      "mqtt_values": [
-        "val=0"
-      ],
+      "mqtt_values": [],
       "log_samples": 0,
-      "mqtt_samples": 24,
+      "mqtt_samples": 0,
       "parse_failures": [],
       "related_frames": [],
       "mqtt_children": [],
-      "temporal_consistency": "stable",
-      "recent_values": [
-        "val=0"
-      ],
-      "recency_bias": "stable_recent",
+      "temporal_consistency": "unknown",
+      "recent_values": [],
+      "recency_bias": "unknown",
       "has_corrected_history": false,
       "notes": []
     },
     {
-      "name": "test_ventola",
-      "status": "broken",
+      "name": "thermoreg_profile72_extra_candidate_bc",
+      "status": "unknown",
       "confidence": "low",
       "sources": [
-        "ebusd_log",
         "mqtt"
       ],
       "log_values": [],
       "mqtt_values": [],
       "log_samples": 0,
       "mqtt_samples": 0,
-      "parse_failures": [
-        "invalid position"
-      ],
+      "parse_failures": [],
       "related_frames": [],
       "mqtt_children": [
-        "test_ventola_val"
+        "thermoreg_profile72_extra_candidate_bc_slope"
       ],
       "temporal_consistency": "unknown",
       "recent_values": [],
@@ -2659,7 +2046,174 @@
       "notes": []
     },
     {
-      "name": "test_ventola_val",
+      "name": "thermoreg_profile72_extra_candidate_bc_param0_temp",
+      "status": "unknown",
+      "confidence": "low",
+      "sources": [],
+      "log_values": [],
+      "mqtt_values": [],
+      "log_samples": 0,
+      "mqtt_samples": 0,
+      "parse_failures": [],
+      "related_frames": [],
+      "mqtt_children": [],
+      "temporal_consistency": "unknown",
+      "recent_values": [],
+      "recency_bias": "unknown",
+      "has_corrected_history": false,
+      "notes": []
+    },
+    {
+      "name": "thermoreg_profile72_extra_candidate_bc_param4_temp",
+      "status": "unknown",
+      "confidence": "low",
+      "sources": [],
+      "log_values": [],
+      "mqtt_values": [],
+      "log_samples": 0,
+      "mqtt_samples": 0,
+      "parse_failures": [],
+      "related_frames": [],
+      "mqtt_children": [],
+      "temporal_consistency": "unknown",
+      "recent_values": [],
+      "recency_bias": "unknown",
+      "has_corrected_history": false,
+      "notes": []
+    },
+    {
+      "name": "thermoreg_profile72_extra_candidate_bc_slope",
+      "status": "unknown",
+      "confidence": "low",
+      "sources": [],
+      "log_values": [],
+      "mqtt_values": [],
+      "log_samples": 0,
+      "mqtt_samples": 0,
+      "parse_failures": [],
+      "related_frames": [],
+      "mqtt_children": [],
+      "temporal_consistency": "unknown",
+      "recent_values": [],
+      "recency_bias": "unknown",
+      "has_corrected_history": false,
+      "notes": []
+    },
+    {
+      "name": "thermoreg_profile72_limits_candidate_bc",
+      "status": "unknown",
+      "confidence": "low",
+      "sources": [
+        "mqtt"
+      ],
+      "log_values": [],
+      "mqtt_values": [],
+      "log_samples": 0,
+      "mqtt_samples": 0,
+      "parse_failures": [],
+      "related_frames": [],
+      "mqtt_children": [
+        "thermoreg_profile72_limits_candidate_bc_min_water_temp",
+        "thermoreg_profile72_limits_candidate_bc_offset"
+      ],
+      "temporal_consistency": "unknown",
+      "recent_values": [],
+      "recency_bias": "unknown",
+      "has_corrected_history": false,
+      "notes": []
+    },
+    {
+      "name": "thermoreg_profile72_limits_candidate_bc_min_water_temp",
+      "status": "unknown",
+      "confidence": "low",
+      "sources": [],
+      "log_values": [],
+      "mqtt_values": [],
+      "log_samples": 0,
+      "mqtt_samples": 0,
+      "parse_failures": [],
+      "related_frames": [],
+      "mqtt_children": [],
+      "temporal_consistency": "unknown",
+      "recent_values": [],
+      "recency_bias": "unknown",
+      "has_corrected_history": false,
+      "notes": []
+    },
+    {
+      "name": "thermoreg_profile72_limits_candidate_bc_offset",
+      "status": "unknown",
+      "confidence": "low",
+      "sources": [],
+      "log_values": [],
+      "mqtt_values": [],
+      "log_samples": 0,
+      "mqtt_samples": 0,
+      "parse_failures": [],
+      "related_frames": [],
+      "mqtt_children": [],
+      "temporal_consistency": "unknown",
+      "recent_values": [],
+      "recency_bias": "unknown",
+      "has_corrected_history": false,
+      "notes": []
+    },
+    {
+      "name": "thermoreg_profile72_limits_candidate_bc_param3_temp",
+      "status": "unknown",
+      "confidence": "low",
+      "sources": [],
+      "log_values": [],
+      "mqtt_values": [],
+      "log_samples": 0,
+      "mqtt_samples": 0,
+      "parse_failures": [],
+      "related_frames": [],
+      "mqtt_children": [],
+      "temporal_consistency": "unknown",
+      "recent_values": [],
+      "recency_bias": "unknown",
+      "has_corrected_history": false,
+      "notes": []
+    },
+    {
+      "name": "thermoreg_profile72_sidecar_candidate_bc_bridge_param",
+      "status": "unknown",
+      "confidence": "low",
+      "sources": [],
+      "log_values": [],
+      "mqtt_values": [],
+      "log_samples": 0,
+      "mqtt_samples": 0,
+      "parse_failures": [],
+      "related_frames": [],
+      "mqtt_children": [],
+      "temporal_consistency": "unknown",
+      "recent_values": [],
+      "recency_bias": "unknown",
+      "has_corrected_history": false,
+      "notes": []
+    },
+    {
+      "name": "thermoreg_profile72_sidecar_candidate_bc_room_temp_influence",
+      "status": "unknown",
+      "confidence": "low",
+      "sources": [],
+      "log_values": [],
+      "mqtt_values": [],
+      "log_samples": 0,
+      "mqtt_samples": 0,
+      "parse_failures": [],
+      "related_frames": [],
+      "mqtt_children": [],
+      "temporal_consistency": "unknown",
+      "recent_values": [],
+      "recency_bias": "unknown",
+      "has_corrected_history": false,
+      "notes": []
+    },
+    {
+      "name": "thermoreg_profile72_sidecar_candidate_bc_thermoreg_type",
       "status": "unknown",
       "confidence": "low",
       "sources": [],
@@ -2679,30 +2233,25 @@
     {
       "name": "thermoreg_profile73_curve_bc",
       "status": "confirmed",
-      "confidence": "high",
+      "confidence": "medium",
       "sources": [
         "dump_report",
-        "ebusd_log",
         "mqtt"
       ],
-      "log_values": [
-        "30.0;1.30;35.0"
-      ],
+      "log_values": [],
       "mqtt_values": [
         "param1_temp=30.0; slope=1.3; param2_temp=35.0"
       ],
-      "log_samples": 2,
-      "mqtt_samples": 54,
+      "log_samples": 0,
+      "mqtt_samples": 18,
       "parse_failures": [],
-      "related_frames": [
-        "37fe20200c657334036673340367732c01"
-      ],
+      "related_frames": [],
       "mqtt_children": [
         "thermoreg_profile73_curve_bc_param1_temp",
         "thermoreg_profile73_curve_bc_param2_temp",
         "thermoreg_profile73_curve_bc_slope"
       ],
-      "temporal_consistency": "limited_variation",
+      "temporal_consistency": "stable",
       "recent_values": [
         "param1_temp=30.0; slope=1.3; param2_temp=35.0"
       ],
@@ -2724,7 +2273,7 @@
         "param1_temp=30.0; slope=1.3; param2_temp=35.0"
       ],
       "log_samples": 0,
-      "mqtt_samples": 18,
+      "mqtt_samples": 6,
       "parse_failures": [],
       "related_frames": [],
       "mqtt_children": [],
@@ -2748,7 +2297,7 @@
         "param1_temp=30.0; slope=1.3; param2_temp=35.0"
       ],
       "log_samples": 0,
-      "mqtt_samples": 18,
+      "mqtt_samples": 6,
       "parse_failures": [],
       "related_frames": [],
       "mqtt_children": [],
@@ -2772,7 +2321,7 @@
         "param1_temp=30.0; slope=1.3; param2_temp=35.0"
       ],
       "log_samples": 0,
-      "mqtt_samples": 18,
+      "mqtt_samples": 6,
       "parse_failures": [],
       "related_frames": [],
       "mqtt_children": [],
@@ -2787,30 +2336,25 @@
     {
       "name": "thermoreg_profile73_limits_bc",
       "status": "confirmed",
-      "confidence": "high",
+      "confidence": "medium",
       "sources": [
         "dump_report",
-        "ebusd_log",
         "mqtt"
       ],
-      "log_values": [
-        "82.0;35.0;0.0"
-      ],
+      "log_values": [],
       "mqtt_values": [
         "max_water_temp=82.0; min_water_temp=35.0; offset=0.0"
       ],
-      "log_samples": 2,
-      "mqtt_samples": 54,
+      "log_samples": 0,
+      "mqtt_samples": 18,
       "parse_failures": [],
-      "related_frames": [
-        "37fe20200cc07a01c27a0ac97a06008201"
-      ],
+      "related_frames": [],
       "mqtt_children": [
         "thermoreg_profile73_limits_bc_max_water_temp",
         "thermoreg_profile73_limits_bc_min_water_temp",
         "thermoreg_profile73_limits_bc_offset"
       ],
-      "temporal_consistency": "limited_variation",
+      "temporal_consistency": "stable",
       "recent_values": [
         "max_water_temp=82.0; min_water_temp=35.0; offset=0.0"
       ],
@@ -2832,7 +2376,7 @@
         "max_water_temp=82.0; min_water_temp=35.0; offset=0.0"
       ],
       "log_samples": 0,
-      "mqtt_samples": 18,
+      "mqtt_samples": 6,
       "parse_failures": [],
       "related_frames": [],
       "mqtt_children": [],
@@ -2856,7 +2400,7 @@
         "max_water_temp=82.0; min_water_temp=35.0; offset=0.0"
       ],
       "log_samples": 0,
-      "mqtt_samples": 18,
+      "mqtt_samples": 6,
       "parse_failures": [],
       "related_frames": [],
       "mqtt_children": [],
@@ -2880,7 +2424,7 @@
         "max_water_temp=82.0; min_water_temp=35.0; offset=0.0"
       ],
       "log_samples": 0,
-      "mqtt_samples": 18,
+      "mqtt_samples": 6,
       "parse_failures": [],
       "related_frames": [],
       "mqtt_children": [],
@@ -2947,32 +2491,312 @@
       "notes": []
     },
     {
-      "name": "thermoreg_profile75_curve_bc",
-      "status": "confirmed",
-      "confidence": "high",
+      "name": "thermoreg_profile74_curve_candidate_bc",
+      "status": "unknown",
+      "confidence": "low",
       "sources": [
-        "dump_report",
-        "ebusd_log",
         "mqtt"
       ],
-      "log_values": [
-        "30.0;1.30;35.0"
+      "log_values": [],
+      "mqtt_values": [],
+      "log_samples": 0,
+      "mqtt_samples": 0,
+      "parse_failures": [],
+      "related_frames": [],
+      "mqtt_children": [
+        "thermoreg_profile74_curve_candidate_bc_max_water_temp",
+        "thermoreg_profile74_curve_candidate_bc_param1_temp",
+        "thermoreg_profile74_curve_candidate_bc_param2_temp"
       ],
+      "temporal_consistency": "unknown",
+      "recent_values": [],
+      "recency_bias": "unknown",
+      "has_corrected_history": false,
+      "notes": []
+    },
+    {
+      "name": "thermoreg_profile74_curve_candidate_bc_max_water_temp",
+      "status": "unknown",
+      "confidence": "low",
+      "sources": [],
+      "log_values": [],
+      "mqtt_values": [],
+      "log_samples": 0,
+      "mqtt_samples": 0,
+      "parse_failures": [],
+      "related_frames": [],
+      "mqtt_children": [],
+      "temporal_consistency": "unknown",
+      "recent_values": [],
+      "recency_bias": "unknown",
+      "has_corrected_history": false,
+      "notes": []
+    },
+    {
+      "name": "thermoreg_profile74_curve_candidate_bc_param1_temp",
+      "status": "unknown",
+      "confidence": "low",
+      "sources": [],
+      "log_values": [],
+      "mqtt_values": [],
+      "log_samples": 0,
+      "mqtt_samples": 0,
+      "parse_failures": [],
+      "related_frames": [],
+      "mqtt_children": [],
+      "temporal_consistency": "unknown",
+      "recent_values": [],
+      "recency_bias": "unknown",
+      "has_corrected_history": false,
+      "notes": []
+    },
+    {
+      "name": "thermoreg_profile74_curve_candidate_bc_param2_temp",
+      "status": "unknown",
+      "confidence": "low",
+      "sources": [],
+      "log_values": [],
+      "mqtt_values": [],
+      "log_samples": 0,
+      "mqtt_samples": 0,
+      "parse_failures": [],
+      "related_frames": [],
+      "mqtt_children": [],
+      "temporal_consistency": "unknown",
+      "recent_values": [],
+      "recency_bias": "unknown",
+      "has_corrected_history": false,
+      "notes": []
+    },
+    {
+      "name": "thermoreg_profile74_extra_candidate_bc",
+      "status": "unknown",
+      "confidence": "low",
+      "sources": [
+        "mqtt"
+      ],
+      "log_values": [],
+      "mqtt_values": [],
+      "log_samples": 0,
+      "mqtt_samples": 0,
+      "parse_failures": [],
+      "related_frames": [],
+      "mqtt_children": [
+        "thermoreg_profile74_extra_candidate_bc_slope"
+      ],
+      "temporal_consistency": "unknown",
+      "recent_values": [],
+      "recency_bias": "unknown",
+      "has_corrected_history": false,
+      "notes": []
+    },
+    {
+      "name": "thermoreg_profile74_extra_candidate_bc_param0_temp",
+      "status": "unknown",
+      "confidence": "low",
+      "sources": [],
+      "log_values": [],
+      "mqtt_values": [],
+      "log_samples": 0,
+      "mqtt_samples": 0,
+      "parse_failures": [],
+      "related_frames": [],
+      "mqtt_children": [],
+      "temporal_consistency": "unknown",
+      "recent_values": [],
+      "recency_bias": "unknown",
+      "has_corrected_history": false,
+      "notes": []
+    },
+    {
+      "name": "thermoreg_profile74_extra_candidate_bc_param4_temp",
+      "status": "unknown",
+      "confidence": "low",
+      "sources": [],
+      "log_values": [],
+      "mqtt_values": [],
+      "log_samples": 0,
+      "mqtt_samples": 0,
+      "parse_failures": [],
+      "related_frames": [],
+      "mqtt_children": [],
+      "temporal_consistency": "unknown",
+      "recent_values": [],
+      "recency_bias": "unknown",
+      "has_corrected_history": false,
+      "notes": []
+    },
+    {
+      "name": "thermoreg_profile74_extra_candidate_bc_slope",
+      "status": "unknown",
+      "confidence": "low",
+      "sources": [],
+      "log_values": [],
+      "mqtt_values": [],
+      "log_samples": 0,
+      "mqtt_samples": 0,
+      "parse_failures": [],
+      "related_frames": [],
+      "mqtt_children": [],
+      "temporal_consistency": "unknown",
+      "recent_values": [],
+      "recency_bias": "unknown",
+      "has_corrected_history": false,
+      "notes": []
+    },
+    {
+      "name": "thermoreg_profile74_limits_candidate_bc",
+      "status": "unknown",
+      "confidence": "low",
+      "sources": [
+        "mqtt"
+      ],
+      "log_values": [],
+      "mqtt_values": [],
+      "log_samples": 0,
+      "mqtt_samples": 0,
+      "parse_failures": [],
+      "related_frames": [],
+      "mqtt_children": [
+        "thermoreg_profile74_limits_candidate_bc_min_water_temp",
+        "thermoreg_profile74_limits_candidate_bc_offset"
+      ],
+      "temporal_consistency": "unknown",
+      "recent_values": [],
+      "recency_bias": "unknown",
+      "has_corrected_history": false,
+      "notes": []
+    },
+    {
+      "name": "thermoreg_profile74_limits_candidate_bc_min_water_temp",
+      "status": "unknown",
+      "confidence": "low",
+      "sources": [],
+      "log_values": [],
+      "mqtt_values": [],
+      "log_samples": 0,
+      "mqtt_samples": 0,
+      "parse_failures": [],
+      "related_frames": [],
+      "mqtt_children": [],
+      "temporal_consistency": "unknown",
+      "recent_values": [],
+      "recency_bias": "unknown",
+      "has_corrected_history": false,
+      "notes": []
+    },
+    {
+      "name": "thermoreg_profile74_limits_candidate_bc_offset",
+      "status": "unknown",
+      "confidence": "low",
+      "sources": [],
+      "log_values": [],
+      "mqtt_values": [],
+      "log_samples": 0,
+      "mqtt_samples": 0,
+      "parse_failures": [],
+      "related_frames": [],
+      "mqtt_children": [],
+      "temporal_consistency": "unknown",
+      "recent_values": [],
+      "recency_bias": "unknown",
+      "has_corrected_history": false,
+      "notes": []
+    },
+    {
+      "name": "thermoreg_profile74_limits_candidate_bc_param3_temp",
+      "status": "unknown",
+      "confidence": "low",
+      "sources": [],
+      "log_values": [],
+      "mqtt_values": [],
+      "log_samples": 0,
+      "mqtt_samples": 0,
+      "parse_failures": [],
+      "related_frames": [],
+      "mqtt_children": [],
+      "temporal_consistency": "unknown",
+      "recent_values": [],
+      "recency_bias": "unknown",
+      "has_corrected_history": false,
+      "notes": []
+    },
+    {
+      "name": "thermoreg_profile74_sidecar_candidate_bc_bridge_param",
+      "status": "unknown",
+      "confidence": "low",
+      "sources": [],
+      "log_values": [],
+      "mqtt_values": [],
+      "log_samples": 0,
+      "mqtt_samples": 0,
+      "parse_failures": [],
+      "related_frames": [],
+      "mqtt_children": [],
+      "temporal_consistency": "unknown",
+      "recent_values": [],
+      "recency_bias": "unknown",
+      "has_corrected_history": false,
+      "notes": []
+    },
+    {
+      "name": "thermoreg_profile74_sidecar_candidate_bc_room_temp_influence",
+      "status": "unknown",
+      "confidence": "low",
+      "sources": [],
+      "log_values": [],
+      "mqtt_values": [],
+      "log_samples": 0,
+      "mqtt_samples": 0,
+      "parse_failures": [],
+      "related_frames": [],
+      "mqtt_children": [],
+      "temporal_consistency": "unknown",
+      "recent_values": [],
+      "recency_bias": "unknown",
+      "has_corrected_history": false,
+      "notes": []
+    },
+    {
+      "name": "thermoreg_profile74_sidecar_candidate_bc_thermoreg_type",
+      "status": "unknown",
+      "confidence": "low",
+      "sources": [],
+      "log_values": [],
+      "mqtt_values": [],
+      "log_samples": 0,
+      "mqtt_samples": 0,
+      "parse_failures": [],
+      "related_frames": [],
+      "mqtt_children": [],
+      "temporal_consistency": "unknown",
+      "recent_values": [],
+      "recency_bias": "unknown",
+      "has_corrected_history": false,
+      "notes": []
+    },
+    {
+      "name": "thermoreg_profile75_curve_bc",
+      "status": "confirmed",
+      "confidence": "medium",
+      "sources": [
+        "dump_report",
+        "mqtt"
+      ],
+      "log_values": [],
       "mqtt_values": [
         "param1_temp=30.0; slope=1.3; param2_temp=35.0"
       ],
-      "log_samples": 2,
-      "mqtt_samples": 54,
+      "log_samples": 0,
+      "mqtt_samples": 18,
       "parse_failures": [],
-      "related_frames": [
-        "37fe20200c65755e016675340367752c01"
-      ],
+      "related_frames": [],
       "mqtt_children": [
         "thermoreg_profile75_curve_bc_param1_temp",
         "thermoreg_profile75_curve_bc_param2_temp",
         "thermoreg_profile75_curve_bc_slope"
       ],
-      "temporal_consistency": "limited_variation",
+      "temporal_consistency": "stable",
       "recent_values": [
         "param1_temp=30.0; slope=1.3; param2_temp=35.0"
       ],
@@ -2994,7 +2818,7 @@
         "param1_temp=30.0; slope=1.3; param2_temp=35.0"
       ],
       "log_samples": 0,
-      "mqtt_samples": 18,
+      "mqtt_samples": 6,
       "parse_failures": [],
       "related_frames": [],
       "mqtt_children": [],
@@ -3018,7 +2842,7 @@
         "param1_temp=30.0; slope=1.3; param2_temp=35.0"
       ],
       "log_samples": 0,
-      "mqtt_samples": 18,
+      "mqtt_samples": 6,
       "parse_failures": [],
       "related_frames": [],
       "mqtt_children": [],
@@ -3042,7 +2866,7 @@
         "param1_temp=30.0; slope=1.3; param2_temp=35.0"
       ],
       "log_samples": 0,
-      "mqtt_samples": 18,
+      "mqtt_samples": 6,
       "parse_failures": [],
       "related_frames": [],
       "mqtt_children": [],
@@ -3057,30 +2881,25 @@
     {
       "name": "thermoreg_profile75_limits_bc",
       "status": "confirmed",
-      "confidence": "high",
+      "confidence": "medium",
       "sources": [
         "dump_report",
-        "ebusd_log",
         "mqtt"
       ],
-      "log_values": [
-        "82.0;35.0;0.0"
-      ],
+      "log_values": [],
       "mqtt_values": [
         "max_water_temp=82.0; min_water_temp=35.0; offset=0.0"
       ],
-      "log_samples": 2,
-      "mqtt_samples": 54,
+      "log_samples": 0,
+      "mqtt_samples": 18,
       "parse_failures": [],
-      "related_frames": [
-        "37fe20200cc07c01c27c0ac97c06008401"
-      ],
+      "related_frames": [],
       "mqtt_children": [
         "thermoreg_profile75_limits_bc_max_water_temp",
         "thermoreg_profile75_limits_bc_min_water_temp",
         "thermoreg_profile75_limits_bc_offset"
       ],
-      "temporal_consistency": "limited_variation",
+      "temporal_consistency": "stable",
       "recent_values": [
         "max_water_temp=82.0; min_water_temp=35.0; offset=0.0"
       ],
@@ -3102,7 +2921,7 @@
         "max_water_temp=82.0; min_water_temp=35.0; offset=0.0"
       ],
       "log_samples": 0,
-      "mqtt_samples": 18,
+      "mqtt_samples": 6,
       "parse_failures": [],
       "related_frames": [],
       "mqtt_children": [],
@@ -3126,7 +2945,7 @@
         "max_water_temp=82.0; min_water_temp=35.0; offset=0.0"
       ],
       "log_samples": 0,
-      "mqtt_samples": 18,
+      "mqtt_samples": 6,
       "parse_failures": [],
       "related_frames": [],
       "mqtt_children": [],
@@ -3150,7 +2969,7 @@
         "max_water_temp=82.0; min_water_temp=35.0; offset=0.0"
       ],
       "log_samples": 0,
-      "mqtt_samples": 18,
+      "mqtt_samples": 6,
       "parse_failures": [],
       "related_frames": [],
       "mqtt_children": [],
@@ -3217,25 +3036,431 @@
       "notes": []
     },
     {
-      "name": "zone1_current_setpoint",
-      "status": "broken",
+      "name": "thermoreg_profile76_curve_candidate_bc",
+      "status": "usable",
+      "confidence": "medium",
+      "sources": [
+        "ebusd_log",
+        "mqtt"
+      ],
+      "log_values": [
+        "82.0;30.0;30.0"
+      ],
+      "mqtt_values": [],
+      "log_samples": 1,
+      "mqtt_samples": 0,
+      "parse_failures": [],
+      "related_frames": [
+        "37fe20200ac97d0600850160763403"
+      ],
+      "mqtt_children": [
+        "thermoreg_profile76_curve_candidate_bc_max_water_temp",
+        "thermoreg_profile76_curve_candidate_bc_param1_temp",
+        "thermoreg_profile76_curve_candidate_bc_param2_temp"
+      ],
+      "temporal_consistency": "stable",
+      "recent_values": [
+        "82.0;30.0;30.0"
+      ],
+      "recency_bias": "stable_recent",
+      "has_corrected_history": false,
+      "notes": []
+    },
+    {
+      "name": "thermoreg_profile76_curve_candidate_bc_max_water_temp",
+      "status": "unknown",
+      "confidence": "low",
+      "sources": [],
+      "log_values": [],
+      "mqtt_values": [],
+      "log_samples": 0,
+      "mqtt_samples": 0,
+      "parse_failures": [],
+      "related_frames": [],
+      "mqtt_children": [],
+      "temporal_consistency": "unknown",
+      "recent_values": [],
+      "recency_bias": "unknown",
+      "has_corrected_history": false,
+      "notes": []
+    },
+    {
+      "name": "thermoreg_profile76_curve_candidate_bc_param1_temp",
+      "status": "unknown",
+      "confidence": "low",
+      "sources": [],
+      "log_values": [],
+      "mqtt_values": [],
+      "log_samples": 0,
+      "mqtt_samples": 0,
+      "parse_failures": [],
+      "related_frames": [],
+      "mqtt_children": [],
+      "temporal_consistency": "unknown",
+      "recent_values": [],
+      "recency_bias": "unknown",
+      "has_corrected_history": false,
+      "notes": []
+    },
+    {
+      "name": "thermoreg_profile76_curve_candidate_bc_param2_temp",
+      "status": "unknown",
+      "confidence": "low",
+      "sources": [],
+      "log_values": [],
+      "mqtt_values": [],
+      "log_samples": 0,
+      "mqtt_samples": 0,
+      "parse_failures": [],
+      "related_frames": [],
+      "mqtt_children": [],
+      "temporal_consistency": "unknown",
+      "recent_values": [],
+      "recency_bias": "unknown",
+      "has_corrected_history": false,
+      "notes": []
+    },
+    {
+      "name": "thermoreg_profile76_extra_candidate_bc",
+      "status": "usable",
+      "confidence": "medium",
+      "sources": [
+        "ebusd_log",
+        "mqtt"
+      ],
+      "log_values": [
+        "1.30;35.0;5.0"
+      ],
+      "mqtt_values": [],
+      "log_samples": 1,
+      "mqtt_samples": 0,
+      "parse_failures": [],
+      "related_frames": [
+        "37fe20200ac97d0600850160763403"
+      ],
+      "mqtt_children": [
+        "thermoreg_profile76_extra_candidate_bc_slope"
+      ],
+      "temporal_consistency": "stable",
+      "recent_values": [
+        "1.30;35.0;5.0"
+      ],
+      "recency_bias": "stable_recent",
+      "has_corrected_history": false,
+      "notes": []
+    },
+    {
+      "name": "thermoreg_profile76_extra_candidate_bc_param0_temp",
+      "status": "unknown",
+      "confidence": "low",
+      "sources": [],
+      "log_values": [],
+      "mqtt_values": [],
+      "log_samples": 0,
+      "mqtt_samples": 0,
+      "parse_failures": [],
+      "related_frames": [],
+      "mqtt_children": [],
+      "temporal_consistency": "unknown",
+      "recent_values": [],
+      "recency_bias": "unknown",
+      "has_corrected_history": false,
+      "notes": []
+    },
+    {
+      "name": "thermoreg_profile76_extra_candidate_bc_param4_temp",
+      "status": "unknown",
+      "confidence": "low",
+      "sources": [],
+      "log_values": [],
+      "mqtt_values": [],
+      "log_samples": 0,
+      "mqtt_samples": 0,
+      "parse_failures": [],
+      "related_frames": [],
+      "mqtt_children": [],
+      "temporal_consistency": "unknown",
+      "recent_values": [],
+      "recency_bias": "unknown",
+      "has_corrected_history": false,
+      "notes": []
+    },
+    {
+      "name": "thermoreg_profile76_extra_candidate_bc_slope",
+      "status": "unknown",
+      "confidence": "low",
+      "sources": [],
+      "log_values": [],
+      "mqtt_values": [],
+      "log_samples": 0,
+      "mqtt_samples": 0,
+      "parse_failures": [],
+      "related_frames": [],
+      "mqtt_children": [],
+      "temporal_consistency": "unknown",
+      "recent_values": [],
+      "recency_bias": "unknown",
+      "has_corrected_history": false,
+      "notes": []
+    },
+    {
+      "name": "thermoreg_profile76_limits_candidate_bc",
+      "status": "usable",
+      "confidence": "medium",
+      "sources": [
+        "ebusd_log",
+        "mqtt"
+      ],
+      "log_values": [
+        "35.0;0.0;35.0"
+      ],
+      "mqtt_values": [],
+      "log_samples": 1,
+      "mqtt_samples": 0,
+      "parse_failures": [],
+      "related_frames": [
+        "37fe20200ac97d0600850160763403"
+      ],
+      "mqtt_children": [
+        "thermoreg_profile76_limits_candidate_bc_min_water_temp",
+        "thermoreg_profile76_limits_candidate_bc_offset"
+      ],
+      "temporal_consistency": "stable",
+      "recent_values": [
+        "35.0;0.0;35.0"
+      ],
+      "recency_bias": "stable_recent",
+      "has_corrected_history": false,
+      "notes": []
+    },
+    {
+      "name": "thermoreg_profile76_limits_candidate_bc_min_water_temp",
+      "status": "unknown",
+      "confidence": "low",
+      "sources": [],
+      "log_values": [],
+      "mqtt_values": [],
+      "log_samples": 0,
+      "mqtt_samples": 0,
+      "parse_failures": [],
+      "related_frames": [],
+      "mqtt_children": [],
+      "temporal_consistency": "unknown",
+      "recent_values": [],
+      "recency_bias": "unknown",
+      "has_corrected_history": false,
+      "notes": []
+    },
+    {
+      "name": "thermoreg_profile76_limits_candidate_bc_offset",
+      "status": "unknown",
+      "confidence": "low",
+      "sources": [],
+      "log_values": [],
+      "mqtt_values": [],
+      "log_samples": 0,
+      "mqtt_samples": 0,
+      "parse_failures": [],
+      "related_frames": [],
+      "mqtt_children": [],
+      "temporal_consistency": "unknown",
+      "recent_values": [],
+      "recency_bias": "unknown",
+      "has_corrected_history": false,
+      "notes": []
+    },
+    {
+      "name": "thermoreg_profile76_limits_candidate_bc_param3_temp",
+      "status": "unknown",
+      "confidence": "low",
+      "sources": [],
+      "log_values": [],
+      "mqtt_values": [],
+      "log_samples": 0,
+      "mqtt_samples": 0,
+      "parse_failures": [],
+      "related_frames": [],
+      "mqtt_children": [],
+      "temporal_consistency": "unknown",
+      "recent_values": [],
+      "recency_bias": "unknown",
+      "has_corrected_history": false,
+      "notes": []
+    },
+    {
+      "name": "thermoreg_profile76_sidecar_candidate_bc",
+      "status": "usable",
       "confidence": "low",
       "sources": [
-        "dump_report",
-        "ebusd_log",
+        "ebusd_log"
+      ],
+      "log_values": [
+        "basic_on_off;194;126"
+      ],
+      "mqtt_values": [],
+      "log_samples": 1,
+      "mqtt_samples": 0,
+      "parse_failures": [],
+      "related_frames": [
+        "37fe20200ac97d0600850160763403"
+      ],
+      "mqtt_children": [],
+      "temporal_consistency": "stable",
+      "recent_values": [
+        "basic_on_off;194;126"
+      ],
+      "recency_bias": "stable_recent",
+      "has_corrected_history": false,
+      "notes": []
+    },
+    {
+      "name": "thermoreg_profile76_sidecar_candidate_bc_bridge_param",
+      "status": "unknown",
+      "confidence": "low",
+      "sources": [],
+      "log_values": [],
+      "mqtt_values": [],
+      "log_samples": 0,
+      "mqtt_samples": 0,
+      "parse_failures": [],
+      "related_frames": [],
+      "mqtt_children": [],
+      "temporal_consistency": "unknown",
+      "recent_values": [],
+      "recency_bias": "unknown",
+      "has_corrected_history": false,
+      "notes": []
+    },
+    {
+      "name": "thermoreg_profile76_sidecar_candidate_bc_room_temp_influence",
+      "status": "unknown",
+      "confidence": "low",
+      "sources": [],
+      "log_values": [],
+      "mqtt_values": [],
+      "log_samples": 0,
+      "mqtt_samples": 0,
+      "parse_failures": [],
+      "related_frames": [],
+      "mqtt_children": [],
+      "temporal_consistency": "unknown",
+      "recent_values": [],
+      "recency_bias": "unknown",
+      "has_corrected_history": false,
+      "notes": []
+    },
+    {
+      "name": "thermoreg_profile76_sidecar_candidate_bc_thermoreg_type",
+      "status": "unknown",
+      "confidence": "low",
+      "sources": [],
+      "log_values": [],
+      "mqtt_values": [],
+      "log_samples": 0,
+      "mqtt_samples": 0,
+      "parse_failures": [],
+      "related_frames": [],
+      "mqtt_children": [],
+      "temporal_consistency": "unknown",
+      "recent_values": [],
+      "recency_bias": "unknown",
+      "has_corrected_history": false,
+      "notes": []
+    },
+    {
+      "name": "z1_req_0f23_bc",
+      "status": "unknown",
+      "confidence": "low",
+      "sources": [
         "mqtt"
       ],
       "log_values": [],
       "mqtt_values": [],
       "log_samples": 0,
       "mqtt_samples": 0,
-      "parse_failures": [
-        "invalid position"
-      ],
+      "parse_failures": [],
       "related_frames": [],
       "mqtt_children": [
-        "zone1_current_setpoint_val"
+        "z1_req_0f23_bc_val"
       ],
+      "temporal_consistency": "unknown",
+      "recent_values": [],
+      "recency_bias": "unknown",
+      "has_corrected_history": false,
+      "notes": []
+    },
+    {
+      "name": "z1_req_0f23_bc_val",
+      "status": "unknown",
+      "confidence": "low",
+      "sources": [],
+      "log_values": [],
+      "mqtt_values": [],
+      "log_samples": 0,
+      "mqtt_samples": 0,
+      "parse_failures": [],
+      "related_frames": [],
+      "mqtt_children": [],
+      "temporal_consistency": "unknown",
+      "recent_values": [],
+      "recency_bias": "unknown",
+      "has_corrected_history": false,
+      "notes": []
+    },
+    {
+      "name": "z1_req_1023_bc",
+      "status": "unknown",
+      "confidence": "low",
+      "sources": [
+        "mqtt"
+      ],
+      "log_values": [],
+      "mqtt_values": [],
+      "log_samples": 0,
+      "mqtt_samples": 0,
+      "parse_failures": [],
+      "related_frames": [],
+      "mqtt_children": [
+        "z1_req_1023_bc_val"
+      ],
+      "temporal_consistency": "unknown",
+      "recent_values": [],
+      "recency_bias": "unknown",
+      "has_corrected_history": false,
+      "notes": []
+    },
+    {
+      "name": "z1_req_1023_bc_val",
+      "status": "unknown",
+      "confidence": "low",
+      "sources": [],
+      "log_values": [],
+      "mqtt_values": [],
+      "log_samples": 0,
+      "mqtt_samples": 0,
+      "parse_failures": [],
+      "related_frames": [],
+      "mqtt_children": [],
+      "temporal_consistency": "unknown",
+      "recent_values": [],
+      "recency_bias": "unknown",
+      "has_corrected_history": false,
+      "notes": []
+    },
+    {
+      "name": "zone1_current_setpoint",
+      "status": "candidate",
+      "confidence": "low",
+      "sources": [
+        "dump_report"
+      ],
+      "log_values": [],
+      "mqtt_values": [],
+      "log_samples": 0,
+      "mqtt_samples": 0,
+      "parse_failures": [],
+      "related_frames": [],
+      "mqtt_children": [],
       "temporal_consistency": "unknown",
       "recent_values": [],
       "recency_bias": "unknown",
@@ -3254,27 +3479,32 @@
         "mqtt"
       ],
       "log_values": [
-        "65.0"
+        "65.0",
+        "66.0",
+        "67.0"
       ],
       "mqtt_values": [
+        "val=66.0",
         "val=65.0"
       ],
-      "log_samples": 10,
-      "mqtt_samples": 19,
+      "log_samples": 6,
+      "mqtt_samples": 10,
       "parse_failures": [],
       "related_frames": [
-        "37fe20200c6071340361712c0164710000",
-        "37fe202003088600"
+        "37fe200e086426320014009600",
+        "00fe203a0129",
+        "37fe201010d3940000d4940000d5940000d6940000"
       ],
       "mqtt_children": [
         "zone1_current_setpoint_bc_val"
       ],
-      "temporal_consistency": "limited_variation",
+      "temporal_consistency": "variable",
       "recent_values": [
+        "val=66.0",
         "val=65.0"
       ],
-      "recency_bias": "stable_recent",
-      "has_corrected_history": false,
+      "recency_bias": "recently_variable",
+      "has_corrected_history": true,
       "notes": [
         "listed as confirmed in reverse_engineering_report.json"
       ]
@@ -3282,42 +3512,26 @@
     {
       "name": "zone1_current_setpoint_bc_val",
       "status": "usable",
-      "confidence": "low",
+      "confidence": "medium",
       "sources": [
         "mqtt"
       ],
       "log_values": [],
       "mqtt_values": [
+        "val=66.0",
         "val=65.0"
       ],
       "log_samples": 0,
-      "mqtt_samples": 19,
+      "mqtt_samples": 10,
       "parse_failures": [],
       "related_frames": [],
       "mqtt_children": [],
-      "temporal_consistency": "stable",
+      "temporal_consistency": "limited_variation",
       "recent_values": [
+        "val=66.0",
         "val=65.0"
       ],
-      "recency_bias": "stable_recent",
-      "has_corrected_history": false,
-      "notes": []
-    },
-    {
-      "name": "zone1_current_setpoint_val",
-      "status": "unknown",
-      "confidence": "low",
-      "sources": [],
-      "log_values": [],
-      "mqtt_values": [],
-      "log_samples": 0,
-      "mqtt_samples": 0,
-      "parse_failures": [],
-      "related_frames": [],
-      "mqtt_children": [],
-      "temporal_consistency": "unknown",
-      "recent_values": [],
-      "recency_bias": "unknown",
+      "recency_bias": "recently_variable",
       "has_corrected_history": false,
       "notes": []
     },
@@ -3331,13 +3545,15 @@
         "mqtt"
       ],
       "log_values": [
-        "21.0"
+        "21.0",
+        "21.5"
       ],
       "mqtt_values": [
+        "val=21.5",
         "val=21.0"
       ],
-      "log_samples": 16,
-      "mqtt_samples": 58,
+      "log_samples": 7,
+      "mqtt_samples": 12,
       "parse_failures": [],
       "related_frames": [
         "03fe2001026271"
@@ -3345,12 +3561,12 @@
       "mqtt_children": [
         "zone1_day_temperature_bc_val"
       ],
-      "temporal_consistency": "limited_variation",
+      "temporal_consistency": "variable",
       "recent_values": [
-        "val=21.0"
+        "val=21.5"
       ],
       "recency_bias": "stable_recent",
-      "has_corrected_history": false,
+      "has_corrected_history": true,
       "notes": [
         "listed as confirmed in reverse_engineering_report.json"
       ]
@@ -3358,22 +3574,23 @@
     {
       "name": "zone1_day_temperature_bc_val",
       "status": "usable",
-      "confidence": "low",
+      "confidence": "medium",
       "sources": [
         "mqtt"
       ],
       "log_values": [],
       "mqtt_values": [
+        "val=21.5",
         "val=21.0"
       ],
       "log_samples": 0,
-      "mqtt_samples": 18,
+      "mqtt_samples": 12,
       "parse_failures": [],
       "related_frames": [],
       "mqtt_children": [],
-      "temporal_consistency": "stable",
+      "temporal_consistency": "limited_variation",
       "recent_values": [
-        "val=21.0"
+        "val=21.5"
       ],
       "recency_bias": "stable_recent",
       "has_corrected_history": false,
@@ -3391,13 +3608,13 @@
         "79"
       ],
       "mqtt_values": [],
-      "log_samples": 43,
+      "log_samples": 15,
       "mqtt_samples": 0,
       "parse_failures": [],
       "related_frames": [
         "70fe200006642662716371",
-        "37fe2010057310ff7f00",
-        "00fe203a0129"
+        "37fe200f0f64263200006271d200006371a00000",
+        "37fe200f0f64263200006271d700006371a00000"
       ],
       "mqtt_children": [],
       "temporal_consistency": "stable",
@@ -3425,8 +3642,8 @@
       "mqtt_values": [
         "val=16.0"
       ],
-      "log_samples": 17,
-      "mqtt_samples": 58,
+      "log_samples": 7,
+      "mqtt_samples": 12,
       "parse_failures": [],
       "related_frames": [
         "03fe2001026371"
@@ -3456,7 +3673,7 @@
         "val=16.0"
       ],
       "log_samples": 0,
-      "mqtt_samples": 18,
+      "mqtt_samples": 12,
       "parse_failures": [],
       "related_frames": [],
       "mqtt_children": [],
@@ -3483,13 +3700,11 @@
       "mqtt_values": [
         "val=2"
       ],
-      "log_samples": 43,
-      "mqtt_samples": 80,
+      "log_samples": 12,
+      "mqtt_samples": 17,
       "parse_failures": [],
       "related_frames": [
-        "70fe200006642662716371",
-        "37fe2010057310ff7f00",
-        "00fe203a0129"
+        "70fe200006642662716371"
       ],
       "mqtt_children": [
         "zone1_request_mode_bc_val"
@@ -3516,7 +3731,7 @@
         "val=2"
       ],
       "log_samples": 0,
-      "mqtt_samples": 40,
+      "mqtt_samples": 17,
       "parse_failures": [],
       "related_frames": [],
       "mqtt_children": [],
@@ -3538,43 +3753,34 @@
         "mqtt"
       ],
       "log_values": [
-        "20.0",
-        "21.1",
-        "21.4",
         "21.5",
         "21.6",
-        "21.7",
-        "21.0",
-        "20.9"
+        "21.7"
       ],
       "mqtt_values": [
-        "val=21.1",
-        "val=20.0",
-        "val=21.0",
-        "val=20.9",
-        "val=21.4",
-        "val=21.5"
+        "val=21.5",
+        "val=21.6",
+        "val=21.7",
+        "val=21.4"
       ],
-      "log_samples": 43,
-      "mqtt_samples": 80,
+      "log_samples": 10,
+      "mqtt_samples": 19,
       "parse_failures": [],
       "related_frames": [
-        "37fe2000020120",
-        "37fe200f0405200000",
-        "37fe2010057310ff7f00",
         "37fe201008dd940000de940000",
-        "37fe2000020520",
-        "00fe203a0129",
-        "37fe201010d3460000cf9c0000d9950000da950000"
+        "70fe2020046271d700",
+        "37fe203b013c",
+        "00fe203a0129"
       ],
       "mqtt_children": [
         "zone1_room_temperature_val"
       ],
       "temporal_consistency": "variable",
       "recent_values": [
-        "val=21.5"
+        "val=21.6",
+        "val=21.7"
       ],
-      "recency_bias": "stable_recent",
+      "recency_bias": "recently_variable",
       "has_corrected_history": true,
       "notes": [
         "listed as confirmed in reverse_engineering_report.json"
@@ -3589,20 +3795,608 @@
       ],
       "log_values": [],
       "mqtt_values": [
-        "val=21.1",
-        "val=21.0",
-        "val=20.9",
-        "val=21.4",
-        "val=21.5"
+        "val=21.5",
+        "val=21.6",
+        "val=21.7",
+        "val=21.4"
       ],
       "log_samples": 0,
-      "mqtt_samples": 40,
+      "mqtt_samples": 19,
       "parse_failures": [],
       "related_frames": [],
       "mqtt_children": [],
       "temporal_consistency": "variable",
       "recent_values": [
-        "val=21.5"
+        "val=21.6",
+        "val=21.7"
+      ],
+      "recency_bias": "recently_variable",
+      "has_corrected_history": false,
+      "notes": []
+    },
+    {
+      "name": "zone1_secondary_antifreeze_bc",
+      "status": "usable",
+      "confidence": "low",
+      "sources": [
+        "ebusd_log"
+      ],
+      "log_values": [
+        "5.0;2.0;15.0"
+      ],
+      "mqtt_values": [],
+      "log_samples": 3,
+      "mqtt_samples": 0,
+      "parse_failures": [],
+      "related_frames": [
+        "03fe2001026426"
+      ],
+      "mqtt_children": [],
+      "temporal_consistency": "stable",
+      "recent_values": [
+        "5.0;2.0;15.0"
+      ],
+      "recency_bias": "stable_recent",
+      "has_corrected_history": false,
+      "notes": []
+    },
+    {
+      "name": "zone1_secondary_antifreeze_bc_mode_or_min",
+      "status": "usable",
+      "confidence": "low",
+      "sources": [
+        "mqtt"
+      ],
+      "log_values": [],
+      "mqtt_values": [
+        "setpoint_temp=5.0; mode_or_min=2.0; profile_or_max=15.0"
+      ],
+      "log_samples": 0,
+      "mqtt_samples": 3,
+      "parse_failures": [],
+      "related_frames": [],
+      "mqtt_children": [],
+      "temporal_consistency": "stable",
+      "recent_values": [
+        "setpoint_temp=5.0; mode_or_min=2.0; profile_or_max=15.0"
+      ],
+      "recency_bias": "stable_recent",
+      "has_corrected_history": false,
+      "notes": []
+    },
+    {
+      "name": "zone1_secondary_antifreeze_bc_profile_or_max",
+      "status": "usable",
+      "confidence": "low",
+      "sources": [
+        "mqtt"
+      ],
+      "log_values": [],
+      "mqtt_values": [
+        "setpoint_temp=5.0; mode_or_min=2.0; profile_or_max=15.0"
+      ],
+      "log_samples": 0,
+      "mqtt_samples": 3,
+      "parse_failures": [],
+      "related_frames": [],
+      "mqtt_children": [],
+      "temporal_consistency": "stable",
+      "recent_values": [
+        "setpoint_temp=5.0; mode_or_min=2.0; profile_or_max=15.0"
+      ],
+      "recency_bias": "stable_recent",
+      "has_corrected_history": false,
+      "notes": []
+    },
+    {
+      "name": "zone1_secondary_antifreeze_bc_setpoint_temp",
+      "status": "usable",
+      "confidence": "low",
+      "sources": [
+        "mqtt"
+      ],
+      "log_values": [],
+      "mqtt_values": [
+        "setpoint_temp=5.0; mode_or_min=2.0; profile_or_max=15.0"
+      ],
+      "log_samples": 0,
+      "mqtt_samples": 3,
+      "parse_failures": [],
+      "related_frames": [],
+      "mqtt_children": [],
+      "temporal_consistency": "stable",
+      "recent_values": [
+        "setpoint_temp=5.0; mode_or_min=2.0; profile_or_max=15.0"
+      ],
+      "recency_bias": "stable_recent",
+      "has_corrected_history": false,
+      "notes": []
+    },
+    {
+      "name": "zone1_secondary_antifreeze_candidate_bc",
+      "status": "usable",
+      "confidence": "low",
+      "sources": [
+        "ebusd_log"
+      ],
+      "log_values": [
+        "5.0;2.0;15.0"
+      ],
+      "mqtt_values": [],
+      "log_samples": 3,
+      "mqtt_samples": 0,
+      "parse_failures": [],
+      "related_frames": [
+        "03fe2001026426"
+      ],
+      "mqtt_children": [],
+      "temporal_consistency": "stable",
+      "recent_values": [
+        "5.0;2.0;15.0"
+      ],
+      "recency_bias": "stable_recent",
+      "has_corrected_history": false,
+      "notes": []
+    },
+    {
+      "name": "zone1_secondary_antifreeze_candidate_bc_mode_or_min",
+      "status": "usable",
+      "confidence": "low",
+      "sources": [
+        "mqtt"
+      ],
+      "log_values": [],
+      "mqtt_values": [
+        "setpoint_temp=5.0; mode_or_min=2.0; profile_or_max=15.0"
+      ],
+      "log_samples": 0,
+      "mqtt_samples": 3,
+      "parse_failures": [],
+      "related_frames": [],
+      "mqtt_children": [],
+      "temporal_consistency": "stable",
+      "recent_values": [
+        "setpoint_temp=5.0; mode_or_min=2.0; profile_or_max=15.0"
+      ],
+      "recency_bias": "stable_recent",
+      "has_corrected_history": false,
+      "notes": []
+    },
+    {
+      "name": "zone1_secondary_antifreeze_candidate_bc_profile_or_max",
+      "status": "usable",
+      "confidence": "low",
+      "sources": [
+        "mqtt"
+      ],
+      "log_values": [],
+      "mqtt_values": [
+        "setpoint_temp=5.0; mode_or_min=2.0; profile_or_max=15.0"
+      ],
+      "log_samples": 0,
+      "mqtt_samples": 3,
+      "parse_failures": [],
+      "related_frames": [],
+      "mqtt_children": [],
+      "temporal_consistency": "stable",
+      "recent_values": [
+        "setpoint_temp=5.0; mode_or_min=2.0; profile_or_max=15.0"
+      ],
+      "recency_bias": "stable_recent",
+      "has_corrected_history": false,
+      "notes": []
+    },
+    {
+      "name": "zone1_secondary_antifreeze_candidate_bc_setpoint_temp",
+      "status": "usable",
+      "confidence": "low",
+      "sources": [
+        "mqtt"
+      ],
+      "log_values": [],
+      "mqtt_values": [
+        "setpoint_temp=5.0; mode_or_min=2.0; profile_or_max=15.0"
+      ],
+      "log_samples": 0,
+      "mqtt_samples": 3,
+      "parse_failures": [],
+      "related_frames": [],
+      "mqtt_children": [],
+      "temporal_consistency": "stable",
+      "recent_values": [
+        "setpoint_temp=5.0; mode_or_min=2.0; profile_or_max=15.0"
+      ],
+      "recency_bias": "stable_recent",
+      "has_corrected_history": false,
+      "notes": []
+    },
+    {
+      "name": "zone1_secondary_comfort_bc",
+      "status": "usable",
+      "confidence": "low",
+      "sources": [
+        "ebusd_log"
+      ],
+      "log_values": [
+        "19.0;10.0;30.0"
+      ],
+      "mqtt_values": [],
+      "log_samples": 3,
+      "mqtt_samples": 0,
+      "parse_failures": [],
+      "related_frames": [
+        "03fe2001026272"
+      ],
+      "mqtt_children": [],
+      "temporal_consistency": "stable",
+      "recent_values": [
+        "19.0;10.0;30.0"
+      ],
+      "recency_bias": "stable_recent",
+      "has_corrected_history": false,
+      "notes": []
+    },
+    {
+      "name": "zone1_secondary_comfort_bc_mode_or_min",
+      "status": "usable",
+      "confidence": "low",
+      "sources": [
+        "mqtt"
+      ],
+      "log_values": [],
+      "mqtt_values": [
+        "setpoint_temp=19.0; mode_or_min=10.0; profile_or_max=30.0"
+      ],
+      "log_samples": 0,
+      "mqtt_samples": 3,
+      "parse_failures": [],
+      "related_frames": [],
+      "mqtt_children": [],
+      "temporal_consistency": "stable",
+      "recent_values": [
+        "setpoint_temp=19.0; mode_or_min=10.0; profile_or_max=30.0"
+      ],
+      "recency_bias": "stable_recent",
+      "has_corrected_history": false,
+      "notes": []
+    },
+    {
+      "name": "zone1_secondary_comfort_bc_profile_or_max",
+      "status": "usable",
+      "confidence": "low",
+      "sources": [
+        "mqtt"
+      ],
+      "log_values": [],
+      "mqtt_values": [
+        "setpoint_temp=19.0; mode_or_min=10.0; profile_or_max=30.0"
+      ],
+      "log_samples": 0,
+      "mqtt_samples": 3,
+      "parse_failures": [],
+      "related_frames": [],
+      "mqtt_children": [],
+      "temporal_consistency": "stable",
+      "recent_values": [
+        "setpoint_temp=19.0; mode_or_min=10.0; profile_or_max=30.0"
+      ],
+      "recency_bias": "stable_recent",
+      "has_corrected_history": false,
+      "notes": []
+    },
+    {
+      "name": "zone1_secondary_comfort_bc_setpoint_temp",
+      "status": "usable",
+      "confidence": "low",
+      "sources": [
+        "mqtt"
+      ],
+      "log_values": [],
+      "mqtt_values": [
+        "setpoint_temp=19.0; mode_or_min=10.0; profile_or_max=30.0"
+      ],
+      "log_samples": 0,
+      "mqtt_samples": 3,
+      "parse_failures": [],
+      "related_frames": [],
+      "mqtt_children": [],
+      "temporal_consistency": "stable",
+      "recent_values": [
+        "setpoint_temp=19.0; mode_or_min=10.0; profile_or_max=30.0"
+      ],
+      "recency_bias": "stable_recent",
+      "has_corrected_history": false,
+      "notes": []
+    },
+    {
+      "name": "zone1_secondary_comfort_candidate_bc",
+      "status": "usable",
+      "confidence": "low",
+      "sources": [
+        "ebusd_log"
+      ],
+      "log_values": [
+        "19.0;10.0;30.0"
+      ],
+      "mqtt_values": [],
+      "log_samples": 3,
+      "mqtt_samples": 0,
+      "parse_failures": [],
+      "related_frames": [
+        "03fe2001026272"
+      ],
+      "mqtt_children": [],
+      "temporal_consistency": "stable",
+      "recent_values": [
+        "19.0;10.0;30.0"
+      ],
+      "recency_bias": "stable_recent",
+      "has_corrected_history": false,
+      "notes": []
+    },
+    {
+      "name": "zone1_secondary_comfort_candidate_bc_mode_or_min",
+      "status": "usable",
+      "confidence": "low",
+      "sources": [
+        "mqtt"
+      ],
+      "log_values": [],
+      "mqtt_values": [
+        "setpoint_temp=19.0; mode_or_min=10.0; profile_or_max=30.0"
+      ],
+      "log_samples": 0,
+      "mqtt_samples": 3,
+      "parse_failures": [],
+      "related_frames": [],
+      "mqtt_children": [],
+      "temporal_consistency": "stable",
+      "recent_values": [
+        "setpoint_temp=19.0; mode_or_min=10.0; profile_or_max=30.0"
+      ],
+      "recency_bias": "stable_recent",
+      "has_corrected_history": false,
+      "notes": []
+    },
+    {
+      "name": "zone1_secondary_comfort_candidate_bc_profile_or_max",
+      "status": "usable",
+      "confidence": "low",
+      "sources": [
+        "mqtt"
+      ],
+      "log_values": [],
+      "mqtt_values": [
+        "setpoint_temp=19.0; mode_or_min=10.0; profile_or_max=30.0"
+      ],
+      "log_samples": 0,
+      "mqtt_samples": 3,
+      "parse_failures": [],
+      "related_frames": [],
+      "mqtt_children": [],
+      "temporal_consistency": "stable",
+      "recent_values": [
+        "setpoint_temp=19.0; mode_or_min=10.0; profile_or_max=30.0"
+      ],
+      "recency_bias": "stable_recent",
+      "has_corrected_history": false,
+      "notes": []
+    },
+    {
+      "name": "zone1_secondary_comfort_candidate_bc_setpoint_temp",
+      "status": "usable",
+      "confidence": "low",
+      "sources": [
+        "mqtt"
+      ],
+      "log_values": [],
+      "mqtt_values": [
+        "setpoint_temp=19.0; mode_or_min=10.0; profile_or_max=30.0"
+      ],
+      "log_samples": 0,
+      "mqtt_samples": 3,
+      "parse_failures": [],
+      "related_frames": [],
+      "mqtt_children": [],
+      "temporal_consistency": "stable",
+      "recent_values": [
+        "setpoint_temp=19.0; mode_or_min=10.0; profile_or_max=30.0"
+      ],
+      "recency_bias": "stable_recent",
+      "has_corrected_history": false,
+      "notes": []
+    },
+    {
+      "name": "zone1_secondary_reduced_bc",
+      "status": "usable",
+      "confidence": "low",
+      "sources": [
+        "ebusd_log"
+      ],
+      "log_values": [
+        "16.0;10.0;30.0"
+      ],
+      "mqtt_values": [],
+      "log_samples": 3,
+      "mqtt_samples": 0,
+      "parse_failures": [],
+      "related_frames": [
+        "03fe2001026372"
+      ],
+      "mqtt_children": [],
+      "temporal_consistency": "stable",
+      "recent_values": [
+        "16.0;10.0;30.0"
+      ],
+      "recency_bias": "stable_recent",
+      "has_corrected_history": false,
+      "notes": []
+    },
+    {
+      "name": "zone1_secondary_reduced_bc_mode_or_min",
+      "status": "usable",
+      "confidence": "low",
+      "sources": [
+        "mqtt"
+      ],
+      "log_values": [],
+      "mqtt_values": [
+        "setpoint_temp=16.0; mode_or_min=10.0; profile_or_max=30.0"
+      ],
+      "log_samples": 0,
+      "mqtt_samples": 3,
+      "parse_failures": [],
+      "related_frames": [],
+      "mqtt_children": [],
+      "temporal_consistency": "stable",
+      "recent_values": [
+        "setpoint_temp=16.0; mode_or_min=10.0; profile_or_max=30.0"
+      ],
+      "recency_bias": "stable_recent",
+      "has_corrected_history": false,
+      "notes": []
+    },
+    {
+      "name": "zone1_secondary_reduced_bc_profile_or_max",
+      "status": "usable",
+      "confidence": "low",
+      "sources": [
+        "mqtt"
+      ],
+      "log_values": [],
+      "mqtt_values": [
+        "setpoint_temp=16.0; mode_or_min=10.0; profile_or_max=30.0"
+      ],
+      "log_samples": 0,
+      "mqtt_samples": 3,
+      "parse_failures": [],
+      "related_frames": [],
+      "mqtt_children": [],
+      "temporal_consistency": "stable",
+      "recent_values": [
+        "setpoint_temp=16.0; mode_or_min=10.0; profile_or_max=30.0"
+      ],
+      "recency_bias": "stable_recent",
+      "has_corrected_history": false,
+      "notes": []
+    },
+    {
+      "name": "zone1_secondary_reduced_bc_setpoint_temp",
+      "status": "usable",
+      "confidence": "low",
+      "sources": [
+        "mqtt"
+      ],
+      "log_values": [],
+      "mqtt_values": [
+        "setpoint_temp=16.0; mode_or_min=10.0; profile_or_max=30.0"
+      ],
+      "log_samples": 0,
+      "mqtt_samples": 3,
+      "parse_failures": [],
+      "related_frames": [],
+      "mqtt_children": [],
+      "temporal_consistency": "stable",
+      "recent_values": [
+        "setpoint_temp=16.0; mode_or_min=10.0; profile_or_max=30.0"
+      ],
+      "recency_bias": "stable_recent",
+      "has_corrected_history": false,
+      "notes": []
+    },
+    {
+      "name": "zone1_secondary_reduced_candidate_bc",
+      "status": "usable",
+      "confidence": "low",
+      "sources": [
+        "ebusd_log"
+      ],
+      "log_values": [
+        "16.0;10.0;30.0"
+      ],
+      "mqtt_values": [],
+      "log_samples": 3,
+      "mqtt_samples": 0,
+      "parse_failures": [],
+      "related_frames": [
+        "03fe2001026372"
+      ],
+      "mqtt_children": [],
+      "temporal_consistency": "stable",
+      "recent_values": [
+        "16.0;10.0;30.0"
+      ],
+      "recency_bias": "stable_recent",
+      "has_corrected_history": false,
+      "notes": []
+    },
+    {
+      "name": "zone1_secondary_reduced_candidate_bc_mode_or_min",
+      "status": "usable",
+      "confidence": "low",
+      "sources": [
+        "mqtt"
+      ],
+      "log_values": [],
+      "mqtt_values": [
+        "setpoint_temp=16.0; mode_or_min=10.0; profile_or_max=30.0"
+      ],
+      "log_samples": 0,
+      "mqtt_samples": 3,
+      "parse_failures": [],
+      "related_frames": [],
+      "mqtt_children": [],
+      "temporal_consistency": "stable",
+      "recent_values": [
+        "setpoint_temp=16.0; mode_or_min=10.0; profile_or_max=30.0"
+      ],
+      "recency_bias": "stable_recent",
+      "has_corrected_history": false,
+      "notes": []
+    },
+    {
+      "name": "zone1_secondary_reduced_candidate_bc_profile_or_max",
+      "status": "usable",
+      "confidence": "low",
+      "sources": [
+        "mqtt"
+      ],
+      "log_values": [],
+      "mqtt_values": [
+        "setpoint_temp=16.0; mode_or_min=10.0; profile_or_max=30.0"
+      ],
+      "log_samples": 0,
+      "mqtt_samples": 3,
+      "parse_failures": [],
+      "related_frames": [],
+      "mqtt_children": [],
+      "temporal_consistency": "stable",
+      "recent_values": [
+        "setpoint_temp=16.0; mode_or_min=10.0; profile_or_max=30.0"
+      ],
+      "recency_bias": "stable_recent",
+      "has_corrected_history": false,
+      "notes": []
+    },
+    {
+      "name": "zone1_secondary_reduced_candidate_bc_setpoint_temp",
+      "status": "usable",
+      "confidence": "low",
+      "sources": [
+        "mqtt"
+      ],
+      "log_values": [],
+      "mqtt_values": [
+        "setpoint_temp=16.0; mode_or_min=10.0; profile_or_max=30.0"
+      ],
+      "log_samples": 0,
+      "mqtt_samples": 3,
+      "parse_failures": [],
+      "related_frames": [],
+      "mqtt_children": [],
+      "temporal_consistency": "stable",
+      "recent_values": [
+        "setpoint_temp=16.0; mode_or_min=10.0; profile_or_max=30.0"
       ],
       "recency_bias": "stable_recent",
       "has_corrected_history": false,
@@ -3618,29 +4412,30 @@
         "mqtt"
       ],
       "log_values": [
-        "5.0;21.0;16.0"
+        "5.0;21.0;16.0",
+        "5.0;21.5;16.0"
       ],
       "mqtt_values": [
+        "base_setpoint=5.0; day_temp=21.5; night_temp=16.0",
         "base_setpoint=5.0; day_temp=21.0; night_temp=16.0"
       ],
-      "log_samples": 32,
-      "mqtt_samples": 189,
+      "log_samples": 12,
+      "mqtt_samples": 51,
       "parse_failures": [],
       "related_frames": [
-        "70fe200006642662716371",
-        "00fe203a0129"
+        "70fe200006642662716371"
       ],
       "mqtt_children": [
         "zone1_setpoint_bundle_bc_base_setpoint",
         "zone1_setpoint_bundle_bc_day_temp",
         "zone1_setpoint_bundle_bc_night_temp"
       ],
-      "temporal_consistency": "limited_variation",
+      "temporal_consistency": "variable",
       "recent_values": [
-        "base_setpoint=5.0; day_temp=21.0; night_temp=16.0"
+        "base_setpoint=5.0; day_temp=21.5; night_temp=16.0"
       ],
       "recency_bias": "stable_recent",
-      "has_corrected_history": false,
+      "has_corrected_history": true,
       "notes": [
         "listed as confirmed in reverse_engineering_report.json"
       ]
@@ -3648,22 +4443,23 @@
     {
       "name": "zone1_setpoint_bundle_bc_base_setpoint",
       "status": "usable",
-      "confidence": "low",
+      "confidence": "medium",
       "sources": [
         "mqtt"
       ],
       "log_values": [],
       "mqtt_values": [
+        "base_setpoint=5.0; day_temp=21.5; night_temp=16.0",
         "base_setpoint=5.0; day_temp=21.0; night_temp=16.0"
       ],
       "log_samples": 0,
-      "mqtt_samples": 63,
+      "mqtt_samples": 17,
       "parse_failures": [],
       "related_frames": [],
       "mqtt_children": [],
-      "temporal_consistency": "stable",
+      "temporal_consistency": "limited_variation",
       "recent_values": [
-        "base_setpoint=5.0; day_temp=21.0; night_temp=16.0"
+        "base_setpoint=5.0; day_temp=21.5; night_temp=16.0"
       ],
       "recency_bias": "stable_recent",
       "has_corrected_history": false,
@@ -3672,22 +4468,23 @@
     {
       "name": "zone1_setpoint_bundle_bc_day_temp",
       "status": "usable",
-      "confidence": "low",
+      "confidence": "medium",
       "sources": [
         "mqtt"
       ],
       "log_values": [],
       "mqtt_values": [
+        "base_setpoint=5.0; day_temp=21.5; night_temp=16.0",
         "base_setpoint=5.0; day_temp=21.0; night_temp=16.0"
       ],
       "log_samples": 0,
-      "mqtt_samples": 63,
+      "mqtt_samples": 17,
       "parse_failures": [],
       "related_frames": [],
       "mqtt_children": [],
-      "temporal_consistency": "stable",
+      "temporal_consistency": "limited_variation",
       "recent_values": [
-        "base_setpoint=5.0; day_temp=21.0; night_temp=16.0"
+        "base_setpoint=5.0; day_temp=21.5; night_temp=16.0"
       ],
       "recency_bias": "stable_recent",
       "has_corrected_history": false,
@@ -3696,22 +4493,23 @@
     {
       "name": "zone1_setpoint_bundle_bc_night_temp",
       "status": "usable",
-      "confidence": "low",
+      "confidence": "medium",
       "sources": [
         "mqtt"
       ],
       "log_values": [],
       "mqtt_values": [
+        "base_setpoint=5.0; day_temp=21.5; night_temp=16.0",
         "base_setpoint=5.0; day_temp=21.0; night_temp=16.0"
       ],
       "log_samples": 0,
-      "mqtt_samples": 63,
+      "mqtt_samples": 17,
       "parse_failures": [],
       "related_frames": [],
       "mqtt_children": [],
-      "temporal_consistency": "stable",
+      "temporal_consistency": "limited_variation",
       "recent_values": [
-        "base_setpoint=5.0; day_temp=21.0; night_temp=16.0"
+        "base_setpoint=5.0; day_temp=21.5; night_temp=16.0"
       ],
       "recency_bias": "stable_recent",
       "has_corrected_history": false,
@@ -3719,141 +4517,48 @@
     },
     {
       "name": "zone1_state_triplet_bc",
-      "status": "mixed",
-      "confidence": "high",
+      "status": "candidate",
+      "confidence": "low",
       "sources": [
-        "dump_report",
-        "ebusd_log",
-        "mqtt"
+        "dump_report"
       ],
-      "log_values": [
-        "on;0;15"
-      ],
-      "mqtt_values": [
-        "heating_request=on; zone_call_state=0; zone_status_code=15"
-      ],
-      "log_samples": 13,
-      "mqtt_samples": 60,
-      "parse_failures": [
-        "invalid position"
-      ],
-      "related_frames": [
-        "70fe200006642662716371"
-      ],
-      "mqtt_children": [
-        "zone1_state_triplet_bc_heating_request",
-        "zone1_state_triplet_bc_zone_call_state",
-        "zone1_state_triplet_bc_zone_status_code"
-      ],
-      "temporal_consistency": "limited_variation",
-      "recent_values": [
-        "heating_request=on; zone_call_state=0; zone_status_code=15"
-      ],
-      "recency_bias": "stable_recent",
+      "log_values": [],
+      "mqtt_values": [],
+      "log_samples": 0,
+      "mqtt_samples": 0,
+      "parse_failures": [],
+      "related_frames": [],
+      "mqtt_children": [],
+      "temporal_consistency": "unknown",
+      "recent_values": [],
+      "recency_bias": "unknown",
       "has_corrected_history": false,
       "notes": [
         "listed as usable in reverse_engineering_report.json"
       ]
     },
     {
-      "name": "zone1_state_triplet_bc_heating_request",
-      "status": "usable",
-      "confidence": "low",
-      "sources": [
-        "mqtt"
-      ],
-      "log_values": [],
-      "mqtt_values": [
-        "heating_request=on; zone_call_state=0; zone_status_code=15"
-      ],
-      "log_samples": 0,
-      "mqtt_samples": 20,
-      "parse_failures": [],
-      "related_frames": [],
-      "mqtt_children": [],
-      "temporal_consistency": "stable",
-      "recent_values": [
-        "heating_request=on; zone_call_state=0; zone_status_code=15"
-      ],
-      "recency_bias": "stable_recent",
-      "has_corrected_history": false,
-      "notes": []
-    },
-    {
-      "name": "zone1_state_triplet_bc_zone_call_state",
-      "status": "usable",
-      "confidence": "low",
-      "sources": [
-        "mqtt"
-      ],
-      "log_values": [],
-      "mqtt_values": [
-        "heating_request=on; zone_call_state=0; zone_status_code=15"
-      ],
-      "log_samples": 0,
-      "mqtt_samples": 20,
-      "parse_failures": [],
-      "related_frames": [],
-      "mqtt_children": [],
-      "temporal_consistency": "stable",
-      "recent_values": [
-        "heating_request=on; zone_call_state=0; zone_status_code=15"
-      ],
-      "recency_bias": "stable_recent",
-      "has_corrected_history": false,
-      "notes": []
-    },
-    {
-      "name": "zone1_state_triplet_bc_zone_status_code",
-      "status": "usable",
-      "confidence": "low",
-      "sources": [
-        "mqtt"
-      ],
-      "log_values": [],
-      "mqtt_values": [
-        "heating_request=on; zone_call_state=0; zone_status_code=15"
-      ],
-      "log_samples": 0,
-      "mqtt_samples": 20,
-      "parse_failures": [],
-      "related_frames": [],
-      "mqtt_children": [],
-      "temporal_consistency": "stable",
-      "recent_values": [
-        "heating_request=on; zone_call_state=0; zone_status_code=15"
-      ],
-      "recency_bias": "stable_recent",
-      "has_corrected_history": false,
-      "notes": []
-    },
-    {
       "name": "zone1_thermoreg_curve_bc",
       "status": "confirmed",
-      "confidence": "high",
+      "confidence": "medium",
       "sources": [
         "dump_report",
-        "ebusd_log",
         "mqtt"
       ],
-      "log_values": [
-        "30.0;1.30;35.0"
-      ],
+      "log_values": [],
       "mqtt_values": [
         "param1_temp=30.0; slope=1.3; param2_temp=35.0"
       ],
-      "log_samples": 6,
-      "mqtt_samples": 54,
+      "log_samples": 0,
+      "mqtt_samples": 18,
       "parse_failures": [],
-      "related_frames": [
-        "37fe202003088600"
-      ],
+      "related_frames": [],
       "mqtt_children": [
         "zone1_thermoreg_curve_bc_param1_temp",
         "zone1_thermoreg_curve_bc_param2_temp",
         "zone1_thermoreg_curve_bc_slope"
       ],
-      "temporal_consistency": "limited_variation",
+      "temporal_consistency": "stable",
       "recent_values": [
         "param1_temp=30.0; slope=1.3; param2_temp=35.0"
       ],
@@ -3875,7 +4580,7 @@
         "param1_temp=30.0; slope=1.3; param2_temp=35.0"
       ],
       "log_samples": 0,
-      "mqtt_samples": 18,
+      "mqtt_samples": 6,
       "parse_failures": [],
       "related_frames": [],
       "mqtt_children": [],
@@ -3899,7 +4604,7 @@
         "param1_temp=30.0; slope=1.3; param2_temp=35.0"
       ],
       "log_samples": 0,
-      "mqtt_samples": 18,
+      "mqtt_samples": 6,
       "parse_failures": [],
       "related_frames": [],
       "mqtt_children": [],
@@ -3923,7 +4628,7 @@
         "param1_temp=30.0; slope=1.3; param2_temp=35.0"
       ],
       "log_samples": 0,
-      "mqtt_samples": 18,
+      "mqtt_samples": 6,
       "parse_failures": [],
       "related_frames": [],
       "mqtt_children": [],
@@ -3938,36 +4643,30 @@
     {
       "name": "zone1_thermoreg_limits_bc",
       "status": "confirmed",
-      "confidence": "high",
+      "confidence": "medium",
       "sources": [
         "dump_report",
-        "ebusd_log",
         "mqtt"
       ],
-      "log_values": [
-        "82.0;2902.5;30.0",
-        "82.0;30.0;0.0"
-      ],
+      "log_values": [],
       "mqtt_values": [
         "max_water_temp=82.0; min_water_temp=30.0; offset=0.0"
       ],
-      "log_samples": 9,
-      "mqtt_samples": 54,
+      "log_samples": 0,
+      "mqtt_samples": 18,
       "parse_failures": [],
-      "related_frames": [
-        "37fe202003088600"
-      ],
+      "related_frames": [],
       "mqtt_children": [
         "zone1_thermoreg_limits_bc_max_water_temp",
         "zone1_thermoreg_limits_bc_min_water_temp",
         "zone1_thermoreg_limits_bc_offset"
       ],
-      "temporal_consistency": "variable",
+      "temporal_consistency": "stable",
       "recent_values": [
         "max_water_temp=82.0; min_water_temp=30.0; offset=0.0"
       ],
       "recency_bias": "stable_recent",
-      "has_corrected_history": true,
+      "has_corrected_history": false,
       "notes": [
         "listed as confirmed in reverse_engineering_report.json"
       ]
@@ -3984,7 +4683,7 @@
         "max_water_temp=82.0; min_water_temp=30.0; offset=0.0"
       ],
       "log_samples": 0,
-      "mqtt_samples": 18,
+      "mqtt_samples": 6,
       "parse_failures": [],
       "related_frames": [],
       "mqtt_children": [],
@@ -4008,7 +4707,7 @@
         "max_water_temp=82.0; min_water_temp=30.0; offset=0.0"
       ],
       "log_samples": 0,
-      "mqtt_samples": 18,
+      "mqtt_samples": 6,
       "parse_failures": [],
       "related_frames": [],
       "mqtt_children": [],
@@ -4032,7 +4731,7 @@
         "max_water_temp=82.0; min_water_temp=30.0; offset=0.0"
       ],
       "log_samples": 0,
-      "mqtt_samples": 18,
+      "mqtt_samples": 6,
       "parse_failures": [],
       "related_frames": [],
       "mqtt_children": [],
