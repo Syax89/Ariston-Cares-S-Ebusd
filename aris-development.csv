@@ -311,9 +311,12 @@ b,aris,thermoreg_profile75_room_influence_bc,Thermoreg Profile 75 Room Influence
 #   `6172/6472/6572`, `6672/6772/6972`, `6a72/6b72/6c72`
 #   `6174/6474/6574`, `6674/6774/6974`, `6a74/6b74/6c74`
 #   `6176/6476/6576`, `6676/6776/6976`, `6a76/6b76/6c76`
+# NOTE: the branch numbers 71..76 correspond to Zone 1..Zone 6 per external Ariston CSV.
+# This means our "hidden branches" 72/74/76 are actually Zone 2/4/6 thermoreg configs,
+# while 71/73/75 are Zone 1/3/5. The sidecar bridge params 122/124/126 are zone identifiers.
 # Passive hidden-branch rows enabled for live observation only.
 # MQTT now fills these rows end-to-end with stable payloads:
-# - `72`: `35.0 ; 0.0 ; 35.0`, `82.0 ; 30.0 ; 30.0`, `1.30 ; 35.0 ; 5.0`, sidecar `basic_on_off ; 194 ; 122`
+# - Zone 2 (72): `35.0 ; 0.0 ; 35.0`, `82.0 ; 30.0 ; 30.0`, `1.30 ; 35.0 ; 5.0`, sidecar `basic_on_off ; 194 ; 122`
 # - `74`: `35.0 ; 0.0 ; 35.0`, `82.0 ; 30.0 ; 30.0`, `1.30 ; 35.0 ; 5.0`, sidecar `basic_on_off ; 194 ; 124`
 # - `76`: `35.0 ; 0.0 ; 35.0`, `82.0 ; 30.0 ; 30.0`, `1.30 ; 35.0 ; 5.0`, sidecar `basic_on_off ; 194 ; 126`
 # Keep internal row names conservative for compatibility with existing MQTT/evidence history.

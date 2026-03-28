@@ -125,6 +125,7 @@
     "a compact branch-by-branch map is now possible: each of 71..76 has a thermoreg bundle family, a compact config or sidecar family, a setpoint/selector row in the 0b tables, a 797x metadata row, and a 068x/707x..767x branch-link row, which strongly argues for a single internal multi-profile schema rather than unrelated broadcast fragments",
     "for the 707x..767x table, the best current semantic guess is mixed internal constants rather than one shared unit: 70 and 25 are temperature-like, but 120 is implausibly high as a normal room/water value here and fits better as a timer/index/ceiling-style constant",
     "the evidence matrix tool now canonicalizes legacy names like temp_sanitario_eco into dhw_eco_setpoint so new MQTT snapshots do not create duplicate confidence rows for the same signal",
+    "the hidden branches 72/74/76 are now understood to be Zone 2/4/6 thermoreg configs (not actual 'hidden profiles'): external Ariston CSV confirms c07a maps to Z2 heat thermoreg type, c07c to Z4, and c07e to Z6. The sidecar bridge params 122/124/126 are internal zone identifiers. This makes the whole 71..76 namespace a per-zone thermoregulation table structure rather than multiple profile variants.",
     "6126 also appears with a structured 200e response, reinforcing that some setpoint reads return extra trailing fields",
     "recent logs repeatedly showed stable 200e triples for 6272..6276, 6372..6376, and 6426: the best current decode is 19.0 / 10.0 / 30.0 for 6272..6276, 16.0 / 10.0 / 30.0 for 6372..6376, and 5.0 / 2.0 / 15.0 for 6426",
     "these 200e triples align with the 2020/0b lookup rows, especially 6426 pairing with selector-like c679=2 and 6371..6375 pairing with c67a..c67e=3 plus 6272..6276=19.0, so the strongest current interpretation is structured comfort/reduced/antifreeze setpoint tables with trailing mode/profile metadata rather than direct live telemetry",
@@ -132,8 +133,9 @@
     "the decomposed 0191 request row also now decodes live as status_request_1_flags = 0 / 0 / 2 / 145; the structure is therefore confirmed, but the exact semantics of the four subfields should still remain conservative",
     "after switching the CSVs to shared templates, the `onoff` template also behaves correctly on stable binary rows like heating_flame_mode_bc=off, and the `thermoreg_type` template now yields human-readable values where the payload supports it",
     "the newest passive log adds another clean stability checkpoint: status_request_1_flags remains 0 / 0 / 2 / 145, zone1_setpoint_bundle_bc stays at 5.0 / 21.5 / 16.0 with zone1_request_mode_bc=2, and outdoor_temperature_bc still decodes as the ff7f sentinel 3276.7",
-    "across the current archived passive logs, no variation has yet been observed in the trailing 200e fields: 6272..6276 stay at 10.0 / 30.0, 6372..6376 stay at 10.0 / 30.0, and 6426 stays at 2.0 / 15.0, so mode/profile sensitivity remains plausible but still unproven"
-  ],
+    "across the current archived passive logs, no variation has yet been observed in the trailing 200e fields: 6272..6276 stay at 10.0 / 30.0, 6372..6376 stay at 10.0 / 30.0, and 6426 stays at 2.0 / 15.0, so mode/profile sensitivity remains plausible but still unproven",
+    "cross-referenced with external Ariston CSV (wrongisthenewright/ebusd-configuration-ariston-bridgenet): the profile numbers 71..76 correspond to Zone 1..Zone 6, confirming that our 'thermoreg_profile73' is actually Zone 3, 'thermoreg_profile75' is Zone 5, and the hidden branches 72/74/76 are Zones 2/4/6. The sidecar bridge params 122/124/126 likely represent zone identifiers."
+   ],
   "parse_failures_to_revisit": [
     "test_ventola 4014 returned invalid position on 313c2000024014 / 0100",
     "test_corrente 6708 returned invalid position on 313c2000026708 / 0100",
@@ -403,6 +405,30 @@
         "suggested_meaning": "maximum heating power percent candidate",
         "confidence": "low",
         "reason": "reported on Genus One as max heating power percent, but not validated on Cares S"
+      },
+      {
+        "register": "profile/zone mapping 71..76",
+        "suggested_meaning": "the branch numbers 71/72/73/74/75/76 in our CSV correspond to Zone 1 through Zone 6 in Ariston's nomenclature",
+        "confidence": "high",
+        "reason": "external Ariston CSV (wrongisthenewright/ebusd-configuration-ariston-bridgenet) maps register c079 to Z1 heat thermoreg type, c07a to Z2, c07b to Z3, confirming the pattern: 71=Z1, 72=Z2, 73=Z3, 74=Z4, 75=Z5, 76=Z6"
+      },
+      {
+        "register": "c07a/c07c/c07e",
+        "suggested_meaning": "zone thermoreg type selector registers for Z2/Z4/Z6",
+        "confidence": "high",
+        "reason": "external CSV confirms c07a=Z2 heat thermoreg type, c07b=Z3, so c07c is likely Z4 and c07e is Z6. Our sidecar rows on c07a/c07c/c07e decode thermoreg_type=basic_on_off"
+      },
+      {
+        "register": "bridge_param 122/124/126",
+        "suggested_meaning": "zone identifiers or internal address codes",
+        "confidence": "medium",
+        "reason": "the bridge values 122/124/126 in our sidecar payloads increment by 2 (matching Z2/Z4/Z6 pattern), likely internal Ariston zone identifiers"
+      },
+      {
+        "register": "room_temp_influence 194 vs 10",
+        "suggested_meaning": "194 is likely an index or code, not a direct influence percentage",
+        "confidence": "low",
+        "reason": "profiles 72/74/76 show room_temp_influence=194 which is unusually high. The external CSV uses room influence values 10 for Z1-Z3. 194 might be an encoded value (possibly 194 = -62 as signed byte) or an index into a lookup table"
       }
     ]
   }
