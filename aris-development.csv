@@ -219,7 +219,10 @@ b,aris,zone1_night_temperature_bc,Zone 1 Night Temperature,37,fe,200e,6371,val,s
 # USABLE: validated from dump pattern, cross-source suggests day/night temperatures.
 # Observed: 6426=5.0°C (antifreeze), 6271=21.0°C (day), 6371=16.0°C (night).
 # Bundle frame (70 fe 20 00) contains register IDs only; values via 200f broadcast or 200e polled.
+# Also observed: 70 fe 20 00 06 64 26 62 71 63 71 - same data via PBSB=2000 (direct request format)
 b,aris,zone1_setpoint_bundle_bc,Zone 1 Setpoint Bundle,37,fe,200f,6426,base_setpoint,s,UIN,10,°C,,ign1,s,IGN:3,,,,day_temp,s,UIN,10,°C,,ign2,s,IGN:3,,,,night_temp,s,UIN,10,°C,
+# Unmatched frame: 70 fe 20 00 06 64 26 62 71 63 71 - same zone bundle via PBSB=2000
+b,aris,zone1_setpoint_bundle_request_bc,Zone 1 Setpoint Bundle Request,70,fe,2000,6426,base_setpoint,s,UIN,10,°C,,register_6271,s,HEX:2,,,,day_temp_value,s,HEX:2,,,register_6371,s,HEX:2,,,,night_temp_value,s,HEX:2,,,
 # Cross-source thermoreg parameters from Ariston/Chaffoteaux CSV comparison
 # UPDATE from live ebusd logs: the 2020 thermoreg family is now visible on this hardware, e.g.
 # - `37fe20200c6071340361712c0164710000` -> plausible `6071=82.0`, `6171=30.0`, `6471=0.0`
@@ -361,6 +364,46 @@ b,aris,sra_status_short_bc,SRA Status (Short 200f),37,fe,200f,0520,val,s,onoff,,
 # b,aris,z1_curve_627x_pair_bc,Candidato Curva Z1 627x,37,fe,200e,6271,val,s,UIN,10,,ref_6400,s,UIN,10,,
 # b,aris,z1_curve_637x_pair_bc,Candidato Curva Z1 637x,37,fe,200e,6371,val,s,UIN,10,,ref_6400,s,UIN,10,,
 # b,aris,z1_setpoint_pair_bc,Candidato Setpoint Z1 6426,37,fe,200e,6426,val,s,UIN,10,,ref_1400,s,UIN,10,,
+
+# Unmatched frame analysis: zone day temp read requests and broadcasts
+# These appear in heating mode and contain zone-specific temperature/curve data:
+#   03 fe 20 01 02 62 71 b3   -> direct read request for 6271 (Z1 day temp)
+#   03 fe 20 01 02 62 72 b0   -> direct read request for 6272 (Z2 day temp)
+#   03 fe 20 01 02 62 73 b1   -> direct read request for 6273 (Z3 day temp)
+#   03 fe 20 01 02 62 74 b6   -> direct read request for 6274 (Z4 day temp)
+#   03 fe 20 01 02 62 75 b7   -> direct read request for 6275 (Z5 day temp)
+#   03 fe 20 01 02 62 76 b4   -> direct read request for 6276 (Z6 day temp)
+# Adding as commented read rows for documentation:
+# r,energymgr,z1_day_temp_read,Z1 Day Temp Read,,18,2000,6271,,s,IGN:1,,,,val,s,SIN,10,°C
+# r,energymgr,z2_day_temp_read,Z2 Day Temp Read,,18,2000,6272,,s,IGN:1,,,,val,s,SIN,10,°C
+# r,energymgr,z3_day_temp_read,Z3 Day Temp Read,,18,2000,6273,,s,IGN:1,,,,val,s,SIN,10,°C
+# r,energymgr,z4_day_temp_read,Z4 Day Temp Read,,18,2000,6274,,s,IGN:1,,,,val,s,SIN,10,°C
+# r,energymgr,z5_day_temp_read,Z5 Day Temp Read,,18,2000,6275,,s,IGN:1,,,,val,s,SIN,10,°C
+# r,energymgr,z6_day_temp_read,Z6 Day Temp Read,,18,2000,6276,,s,IGN:1,,,,val,s,SIN,10,°C
+
+# Zone curve/slope broadcasts observed in heating mode:
+#   37 fe 20 0e 08 62 72 be 00 64 00 2c 01 d5   -> 6272 zone data (Z2)
+#   37 fe 20 0e 08 62 73 be 00 64 00 2c 01 28   -> 6273 zone data (Z3)
+#   37 fe 20 0e 08 62 74 be 00 64 00 2c 01 76   -> 6274 zone data (Z4)
+#   37 fe 20 0e 08 62 75 be 00 64 00 2c 01 8b   -> 6275 zone data (Z5)
+# These appear to be zone-specific heating curve parameters with extra data beyond simple temperature.
+# Adding as candidate broadcast rows:
+b,aris,zone2_day_temp_curve_bc,Zone 2 Day Temp Curve Data,37,fe,200e,6272,day_temp,s,UIN,10,°C,,extra1,s,UIN,,,,extra2,s,UIN,,,
+b,aris,zone3_day_temp_curve_bc,Zone 3 Day Temp Curve Data,37,fe,200e,6273,day_temp,s,UIN,10,°C,,extra1,s,UIN,,,,extra2,s,UIN,,,
+b,aris,zone4_day_temp_curve_bc,Zone 4 Day Temp Curve Data,37,fe,200e,6274,day_temp,s,UIN,10,°C,,extra1,s,UIN,,,,extra2,s,UIN,,,
+b,aris,zone5_day_temp_curve_bc,Zone 5 Day Temp Curve Data,37,fe,200e,6275,day_temp,s,UIN,10,°C,,extra1,s,UIN,,,,extra2,s,UIN,,,
+
+# Hybrid/heat pump diagnostic broadcasts (len=16 frames) observed in all dumps:
+#   37 fe 20 10 10 d3 46 00 00 cf 9c 00 00 d9 95 00 00 da 95 00 00 43
+#   37 fe 20 10 10 db 95 00 00 dc 95 00 00 dd 95 00 00 de 95 00 00 a0
+#   37 fe 20 10 10 d9 94 00 00 da 94 00 00 db 94 00 00 dc 94 00 00 af
+# Format: register(1) + value(2) repeated. Values like 149=21.0C suggest temp sensors.
+# These registers (d3, cf, d9-da-db-dc, dd-de) are likely hybrid system temps not present in boiler-only setup.
+# Adding as candidate rows for completeness:
+b,aris,hybrid_diag_d3_cf_bc,Hybrid Diagnostic Register D3-CF,37,fe,2010,d3,reg_d3,s,UIN,,,,val_d3,s,UIN,,,,cf,s,UIN,,,,val_cf,s,UIN,,,,
+b,aris,hybrid_diag_d9_da_bc,Hybrid Diagnostic Register D9-DA,37,fe,2010,d9,reg_d9,s,UIN,,,,temp_d9,s,SIN,10,°C,,da,s,UIN,,,,temp_da,s,SIN,10,°C,,,,
+b,aris,hybrid_diag_db_dc_bc,Hybrid Diagnostic Register DB-DC,37,fe,2010,db,reg_db,s,UIN,,,,temp_db,s,SIN,10,°C,,dc,s,UIN,,,,temp_dc,s,SIN,10,°C,,,,
+b,aris,hybrid_diag_dd_de_bc,Hybrid Diagnostic Register DD-DE,37,fe,2010,dd,reg_dd,s,UIN,,,,temp_dd,s,SIN,10,°C,,de,s,UIN,,,,temp_de,s,SIN,10,°C,,,,
 
 # Diagnostic/flag blocks recurring in the dumps, stable and almost certainly unrelated to temperatures/setpoints/power:
 # il comportamento visto finora suggerisce flag diagnostici/interi interni, spesso tutti a zero in condizioni normali.
