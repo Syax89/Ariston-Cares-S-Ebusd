@@ -413,6 +413,54 @@
         "reason": "external Ariston CSV (wrongisthenewright/ebusd-configuration-ariston-bridgenet) maps register c079 to Z1 heat thermoreg type, c07a to Z2, c07b to Z3, confirming the pattern: 71=Z1, 72=Z2, 73=Z3, 74=Z4, 75=Z5, 76=Z6"
       },
       {
+        "register": "0191/0291/0391",
+        "suggested_meaning": "zone heating request flags (Z1/Z2/Z3)",
+        "confidence": "high",
+        "reason": "external CSV confirms 0191=z1_heat_request, 0291=z2_heat_request, 0391=z3_heat_request. Our status_request_1_flags decomposes 0191."
+      },
+      {
+        "register": "0120/0220",
+        "suggested_meaning": "heating and DHW status broadcasts",
+        "confidence": "high",
+        "reason": "external CSV confirms 0120=heating_status (onoff), 0220=dhw_status (onoff). We have heating_active_bc from 0120."
+      },
+      {
+        "register": "0f23",
+        "suggested_meaning": "cooling status",
+        "confidence": "high",
+        "reason": "external CSV confirms 0f23=cooling_status (onoff). We have z1_req_0f23_bc for this."
+      },
+      {
+        "register": "6126/6226",
+        "suggested_meaning": "DHW comfort and economy temperatures",
+        "confidence": "high",
+        "reason": "external CSV confirms 6126=dhw_comfort_temp, 6226=dhw_economy_temp. We have dhw_eco_setpoint from 6126."
+      },
+      {
+        "register": "c028",
+        "suggested_meaning": "DHW comfort mode selector",
+        "confidence": "high",
+        "reason": "external CSV confirms c028=dhw_comfort_mode with values 0=off, 1=timed, 2=always_on. Not currently in our CSV."
+      },
+      {
+        "register": "6071/6171/6471/6a71",
+        "suggested_meaning": "Z1 thermoreg: max water temp, min water temp, offset, slope",
+        "confidence": "high",
+        "reason": "external CSV confirms 6071=z1_heat_water_max_temp, 6171=z1_heat_water_min_temp, 6471=z1_heat_offset, 6a71=z1_heat_slope"
+      },
+      {
+        "register": "c279",
+        "suggested_meaning": "Z1 room temperature influence",
+        "confidence": "high",
+        "reason": "external CSV confirms c279=z1_heat_room_temp_influence. We have this in zone1_thermoreg_room_influence_bc."
+      },
+      {
+        "register": "0781/7971/7a71",
+        "suggested_meaning": "Z1 summer/winter changeover settings",
+        "confidence": "high",
+        "reason": "external CSV confirms 0781=z1_summer_winter_auto_switch, 7971=z1_summer_winter_temp_thresh, 7a71=z1_summer_winter_switch_delay_time. Not currently in our CSV."
+      },
+      {
         "register": "c07a/c07c/c07e",
         "suggested_meaning": "zone thermoreg type selector registers for Z2/Z4/Z6",
         "confidence": "high",
