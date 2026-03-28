@@ -1,93 +1,82 @@
-# type (r[1-9];w;u),circuit,name,comment,QQ,ZZ,PBSB,ID,field,part (m/s),type / templates,divider / values,unit,comment,field,part (m/s),type / templates,divider / values,unit,comment,field,part (m/s),type / templates,divider / values,unit,comment,field,part (m/s),type / templates,divider / values,unit,comment
-# Ariston Cares S production config
-# This file contains only confirmed, production-safe rows.
-# Use `aris-development.csv` for reverse engineering, candidate rows, and extended notes.
-# Active poll rows remain disabled to keep the bus passive-only.
+# Ariston Cares S - Production CSV
+# Passive monitoring only. Active polls commented.
+# Internal function comments in Italian for clarity.
 
-# --- SYSTEM ---
-# `ebus_reset` is the standard bus reset write entry kept for normal ebusd compatibility.
-w,broadcast,ebus_reset,Reset ebus,,fe,2034,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-# `boiler_operating_mode` is the main high-level operating state of the boiler.
-# The value map in the row is kept intentionally explicit because it is one of the most useful production entities.
-b,aris,boiler_operating_mode,Operating Mode,37,fe,2010,c04b,val,s,UCH,1,,0=Initialization;1=Standby;2=Heating;3=DHW;4=Tank;5=Post-Circulation;8=Antifreeze;23=Test;24=Comfort;36=Calibration;51=Low Pressure;52=No Flame,,,,,,
+# === SYSTEM ===
+w,broadcast,ebus_reset,Reset bus,,fe,2034,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 
-# --- DOMESTIC HOT WATER ---
-# `dhw_actual_temperature` is the measured domestic hot water temperature.
-b,aris,dhw_actual_temperature,DHW Actual Temperature,37,fe,2010,6147,val,s,U3N,10,°C,,,,,,,
-# `dhw_eco_setpoint` is the confirmed DHW eco target.
+# === BOILER STATUS ===
+# Main operating state: standby/heating/dhw/tank/post-circulation
+b,aris,boiler_mode,Boiler Mode,37,fe,2010,c04b,val,s,UCH,1,,0=Init;1=Standby;2=Heating;3=DHW;4=Tank;5=PostCirc;8=Antifreeze;23=Test;24=Comfort;36=Calib;51=LowPress;52=NoFlame,,,,,,
+
+# === DHW (Hot Water) ===
+# Measured DHW temperature
+b,aris,dhw_temp,DHW Temp,37,fe,2010,6147,val,s,U3N,10,°C,,,,,,,
+# DHW setpoint (write)
+w,aris,dhw_setpoint,DHW Setpoint,,fe,2020,6126,val,s,UIN,10,°C,,
+# DHW setpoint (broadcast)
+b,aris,dhw_setpoint_bc,DHW Setpoint BC,37,fe,2020,6126,val,s,UIN,10,°C,
+# DHW eco setpoint (confirmed)
 b,aris,dhw_eco_setpoint,DHW Eco Setpoint,37,fe,2010,6697,val,s,UIN,10,°C,,,,,,
-# `dhw_setpoint` is the confirmed writable DHW target register.
-# `dhw_setpoint_bc` is the passive broadcast mirror of the same value.
-w,aris,dhw_setpoint,DHW Setpoint (Broadcast),,fe,2020,6126,val,s,UIN,10,°C,,
-b,aris,dhw_setpoint_bc,DHW Setpoint (Passive Broadcast),37,fe,2020,6126,val,s,UIN,10,°C,
 
-# --- HEATING TARGETS ---
-# `heating_setpoint_triplet` exposes the confirmed 2010 triplet:
-# - `primary_setpoint`: the dynamic heating target seen changing with operating state
-# - `circuit_setpoint`: the circuit target carried in the same frame
-# - `dhw_reference`: the DHW-related reference value carried in the same frame
-b,aris,heating_setpoint_triplet,Heating Setpoint Triplet,37,fe,2010,6047,primary_setpoint,s,UIN,10,°C,,skip1,s,IGN:3,,,,circuit_setpoint,s,UIN,10,°C,,skip2,s,IGN:3,,,,dhw_reference,s,UIN,10,°C,
-# `flame_target_temperature` is the internal flow/flame target temperature used by the controller.
-b,aris,flame_target_temperature,Flame Target Temperature,37,fe,2010,d742,val,s,UIN,10,°C,,,,,,
-# `max_heating_setpoint` is the confirmed maximum heating setpoint.
+# === HEATING ===
+# Primary heating target
+b,aris,heating_setpoint,Heating Setpoint,37,fe,2010,6047,primary,s,UIN,10,°C,,skip1,s,IGN:3,,,,circuit,s,UIN,10,°C,,skip2,s,IGN:3,,,,dhw_ref,s,UIN,10,°C,
+# Flame target temperature
+b,aris,flame_target,Flame Target Temp,37,fe,2010,d742,val,s,UIN,10,°C,,,,,,
+# Max heating setpoint
 b,aris,max_heating_setpoint,Max Heating Setpoint,37,fe,2010,6397,val,s,UIN,10,°C,,,,,,
-# `internal_flow_target_temperature` is the controller internal flow target.
-b,aris,internal_flow_target_temperature,Internal Flow Target Temperature,37,fe,2010,de,val,s,UCH,1,°C,,,,,,
+# Internal flow target
+b,aris,flow_target,Flow Target Temp,37,fe,2010,de,val,s,UCH,1,°C,,,,,,
 
-# --- MEASURED TEMPERATURES ---
-# `main_flow_temperature` is the main heating flow temperature leaving the boiler.
-b,aris,main_flow_temperature,Main Flow Temperature,37,fe,2010,6a96,val,s,UIN,10,°C,,,,,,
-# `exhaust_temperature` is the flue/exhaust temperature.
-b,aris,exhaust_temperature,Exhaust Temperature,37,fe,2010,6d96,val,s,UIN,10,°C,,,,,,
-# `aux_probe_temperature` is an embedded temperature frame with two internal bytes skipped before the real value.
-b,aris,aux_probe_temperature,Aux Probe Temperature (Embedded),37,fe,2010,c194,ign1,s,IGN:2,,,,ign2,s,IGN:2,,,,val,s,UIN,10,°C,
-# `secondary_return_temperature` is another embedded temperature frame with internal bytes skipped before the real value.
-b,aris,secondary_return_temperature,Secondary Return Temperature (Embedded),37,fe,2010,c494,ign1,s,IGN:2,,,,ign2,s,IGN:2,,,,val,s,UIN,10,°C,
-# `outdoor_temperature_bc` is valid when an outdoor probe exists; `3276.7` usually means raw `ff7f`, i.e. sensor absent/invalid.
-b,aris,outdoor_temperature_bc,Outdoor Temperature (Broadcast),37,fe,2010,7647,val,s,SIN,10,°C,
+# === TEMPERATURES ===
+# Main flow temperature
+b,aris,flow_temp,Flow Temperature,37,fe,2010,6a96,val,s,UIN,10,°C,,,,,,
+# Exhaust/flue temperature
+b,aris,exhaust_temp,Exhaust Temperature,37,fe,2010,6d96,val,s,UIN,10,°C,,,,,,
+# Auxiliary probe temperature
+b,aris,aux_temp,Aux Temperature,37,fe,2010,c194,ign1,s,IGN:2,,,,ign2,s,IGN:2,,,,val,s,UIN,10,°C,
+# Return temperature
+b,aris,return_temp,Return Temperature,37,fe,2010,c494,ign1,s,IGN:2,,,,ign2,s,IGN:2,,,,val,s,UIN,10,°C,
+# Outdoor temperature (ff7f = sensor absent)
+b,aris,outdoor_temp,Outdoor Temperature,37,fe,2010,7647,val,s,SIN,10,°C,
 
-# --- HYDRAULIC AND SENSOR SIGNALS ---
-# `pump_modulation` is the pump modulation level reported by the boiler.
-b,aris,pump_modulation,Pump Modulation,37,fe,2010,da46,val,s,UCH,,,
-# `pressure_sensor_voltage` is the raw pressure sensor voltage exposed as volts.
-b,aris,pressure_sensor_voltage,Pressure Sensor Voltage,37,fe,2010,dc46,val,s,UIN,1000,V,,,,,,
+# === PUMP & PRESSURE ===
+# Pump modulation level
+b,aris,pump_mod,Pump Modulation,37,fe,2010,da46,val,s,UCH,,,
+# Pressure sensor voltage
+b,aris,pressure_voltage,Pressure Voltage,37,fe,2010,dc46,val,s,UIN,1000,V,,,,,,
 
-# --- ZONE 1 ROOM AND SETPOINTS ---
-# `zone1_room_temperature` is the confirmed room temperature reported for zone 1.
-b,aris,zone1_room_temperature,Zone 1 Room Temperature,70,fe,2010,7118,val,s,UIN,10,°C,
-# `zone1_current_setpoint_bc` is the current heating setpoint requested by zone 1.
-b,aris,zone1_current_setpoint_bc,Zone 1 Current Setpoint (Broadcast),37,fe,2020,6571,val,s,UIN,10,°C,
-# `zone1_day_temperature_bc` and `zone1_night_temperature_bc` are the most useful scalar reads from a structured `200e` setpoint family.
-# Dumps still show that `6271` can also appear as a full triple (`23.0 / 10.0 / 30.0`) during heating-related captures, so treat these rows as practical mirrors, not the full family definition.
-b,aris,zone1_day_temperature_bc,Zone 1 Day Temperature,37,fe,200e,6271,val,s,UIN,10,°C,
-b,aris,zone1_night_temperature_bc,Zone 1 Night Temperature,37,fe,200e,6371,val,s,UIN,10,°C,
-# `zone1_setpoint_bundle_bc` is the confirmed bundle of antifreeze, day, and night temperatures.
-# Field meanings: `base_setpoint` = antifreeze/base target, `day_temp` = comfort target, `night_temp` = reduced target.
-b,aris,zone1_setpoint_bundle_bc,Zone 1 Setpoint Bundle,37,fe,200f,6426,base_setpoint,s,UIN,10,°C,,ign1,s,IGN:3,,,,day_temp,s,UIN,10,°C,,ign2,s,IGN:3,,,,night_temp,s,UIN,10,°C,
+# === ZONE 1 ===
+# Room temperature
+b,aris,z1_room_temp,Z1 Room Temp,70,fe,2010,7118,val,s,UIN,10,°C,
+# Current heating setpoint
+b,aris,z1_setpoint,Z1 Setpoint,37,fe,2020,6571,val,s,UIN,10,°C,
+# Day/Night temperatures
+b,aris,z1_day_temp,Z1 Day Temp,37,fe,200e,6271,val,s,UIN,10,°C,
+b,aris,z1_night_temp,Z1 Night Temp,37,fe,200e,6371,val,s,UIN,10,°C,
+# Setpoint bundle: antifreeze, day, night
+b,aris,z1_bundle,Z1 Setpoint Bundle,37,fe,200f,6426,base,s,UIN,10,°C,,ign1,s,IGN:3,,,,day,s,UIN,10,°C,,ign2,s,IGN:3,,,,night,s,UIN,10,°C,
+# Heat request from zone
+b,aris,z1_request,Z1 Heat Request,70,fe,2000,c6,val,s,HEX:1,,,,
+# Zone request mode
+b,aris,z1_mode,Z1 Request Mode,37,fe,200f,c679,val,s,UCH,,,
 
-# --- ZONE 1 STATUS ---
-# `zone1_heat_request_raw` is a confirmed raw request marker. It is kept raw on purpose because the exact semantics are still byte-level.
-b,aris,zone1_heat_request_raw,Zone 1 Heat Request Raw,70,fe,2000,c6,val,s,HEX:1,,,,
-# `heating_active_bc` is the confirmed passive `0120` status field from `03/fe/2000`.
-# Dumps show `0120` belongs to a wider grouped status/request family, so keep it as a raw status-like field rather than a pure boolean sensor.
-b,aris,heating_active_bc,Heating Status Field (Broadcast),03,fe,2000,0120,val,s,UCH,,,
-# `request_status_1` and `request_status_2` are confirmed heating-related status bytes from the 2010 family.
-b,aris,request_status_1,Request Status 1,37,fe,2010,0191,val,s,UCH,,,,,,,
-b,aris,request_status_2,Request Status 2,37,fe,2010,0591,val,s,UCH,,,,,,,
-# `heating_flame_mode_bc` is a confirmed logical heating-flame indicator; it should not be confused with physical burner flame proof.
-b,aris,heating_flame_mode_bc,Heating Flame Mode (Broadcast),37,fe,2010,0c19,val,s,onoff,,,
-# `zone1_request_mode_bc` is the confirmed request-mode code reported with the zone setpoint family.
-b,aris,zone1_request_mode_bc,Zone 1 Request Mode (Broadcast),37,fe,200f,c679,val,s,UCH,,,
-# `heating_active_short_bc` exposes the short `200f` packet carrying the same `0120` field.
-# Keep it raw as well: dump evidence does not support a stable boolean interpretation for the wider `0120/0f23/1023` family.
-b,aris,heating_active_short_bc,Heating Status Field (Short 200f),37,fe,200f,0120,val,s,UCH,,,
+# === HEATING STATUS ===
+# Heating active (broadcast)
+b,aris,heating_active,Heating Active,03,fe,2000,0120,val,s,UCH,,,
+# Short form
+b,aris,heating_active_short,Heating Active Short,37,fe,200f,0120,val,s,UCH,,,
+# Request status bytes
+b,aris,req_status1,Request Status 1,37,fe,2010,0191,val,s,UCH,,,,,,,
+b,aris,req_status2,Request Status 2,37,fe,2010,0591,val,s,UCH,,,,,,,
+# Flame mode indicator
+b,aris,flame_mode,Flame Mode,37,fe,2010,0c19,val,s,onoff,,,
 
-# --- THERMOREG (CONFIRMED ONLY) ---
-# `zone1_thermoreg_limits_bc` is the confirmed live thermoreg limits bundle for the main zone.
-# Field meanings: `max_water_temp`, `min_water_temp`, `offset`.
-b,aris,zone1_thermoreg_limits_bc,Zone 1 Thermoreg Limits,37,fe,2020,6071,max_water_temp,s,UIN,10,°C,,ign1,s,IGN:2,,,,min_water_temp,s,UIN,10,°C,,ign2,s,IGN:2,,,,offset,s,SIN,10,°C,
-# `thermoreg_profile73_limits_bc` and `thermoreg_profile75_limits_bc` are confirmed parallel thermoreg limit bundles observed live.
-b,aris,thermoreg_profile73_limits_bc,Thermoreg Profile 73 Limits,37,fe,2020,6073,max_water_temp,s,UIN,10,°C,,ign1,s,IGN:2,,,,min_water_temp,s,UIN,10,°C,,ign2,s,IGN:2,,,,offset,s,SIN,10,°C,
-b,aris,thermoreg_profile75_limits_bc,Thermoreg Profile 75 Limits,37,fe,2020,6075,max_water_temp,s,UIN,10,°C,,ign1,s,IGN:2,,,,min_water_temp,s,UIN,10,°C,,ign2,s,IGN:2,,,,offset,s,SIN,10,°C,
-
-# End of production file. Any candidate rows, hidden branches, structured 200e experiments, or partially decoded bundles live in `aris-development.csv`.
+# === THERMOREG ZONES ===
+# Zone 1 thermoreg limits
+b,aris,z1_therm_limits,Z1 Thermoreg Limits,37,fe,2020,6071,max_temp,s,UIN,10,°C,,ign1,s,IGN:2,,,,min_temp,s,UIN,10,°C,,ign2,s,IGN:2,,,,offset,s,SIN,10,°C,
+# Zone 3 thermoreg limits
+b,aris,z3_therm_limits,Z3 Thermoreg Limits,37,fe,2020,6073,max_temp,s,UIN,10,°C,,ign1,s,IGN:2,,,,min_temp,s,UIN,10,°C,,ign2,s,IGN:2,,,,offset,s,SIN,10,°C,
+# Zone 5 thermoreg limits
+b,aris,z5_therm_limits,Z5 Thermoreg Limits,37,fe,2020,6075,max_temp,s,UIN,10,°C,,ign1,s,IGN:2,,,,min_temp,s,UIN,10,°C,,ign2,s,IGN:2,,,,offset,s,SIN,10,°C,
