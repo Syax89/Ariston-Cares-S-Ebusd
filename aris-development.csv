@@ -392,6 +392,14 @@ b,aris,zone2_day_temp_curve_bc,Zone 2 Day Temp Curve Data,37,fe,200e,6272,day_te
 b,aris,zone3_day_temp_curve_bc,Zone 3 Day Temp Curve Data,37,fe,200e,6273,day_temp,s,UIN,10,°C,,extra1,s,UIN,,,,extra2,s,UIN,,,
 b,aris,zone4_day_temp_curve_bc,Zone 4 Day Temp Curve Data,37,fe,200e,6274,day_temp,s,UIN,10,°C,,extra1,s,UIN,,,,extra2,s,UIN,,,
 b,aris,zone5_day_temp_curve_bc,Zone 5 Day Temp Curve Data,37,fe,200e,6275,day_temp,s,UIN,10,°C,,extra1,s,UIN,,,,extra2,s,UIN,,,
+b,aris,zone6_day_temp_curve_bc,Zone 6 Day Temp Curve Data,37,fe,200e,6276,day_temp,s,UIN,10,°C,,extra1,s,UIN,,,,extra2,s,UIN,,,
+
+# Additional unmatched frames found in specific dumps:
+# Dump2: 70 fe 20 20 04 62 71 e6 00 ea - zone request with different PBSB format
+# Dump3: 70 fe 20 3b 01 75 c6 - zone controller poll
+# Dump3: 03 fe 20 3b 01 29 d5 - zone controller response
+# Adding as commented candidates for now:
+# b,aris,zone1_request_alt_bc,Zone 1 Request Alt,70,fe,2020,6271,val,s,UIN,,,,
 
 # Hybrid/heat pump diagnostic broadcasts (len=16 frames) observed in all dumps:
 #   37 fe 20 10 10 d3 46 00 00 cf 9c 00 00 d9 95 00 00 da 95 00 00 43

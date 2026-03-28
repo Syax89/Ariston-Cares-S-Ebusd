@@ -491,6 +491,24 @@
         "reason": "len=16 frames with registers d3/d4/d5/d6 and d9/da/db/dc containing temperature-like values (149=21.0C). These appear to be hybrid/heatpump related registers not present in our boiler-only system. Registers d9xx might be additional temp sensors."
       },
       {
+        "register": "unmatched: 70 3c 20 00 04 0e 11 d1 40 da",
+        "suggested_meaning": "boiler internal polling for flame status and config counter",
+        "confidence": "high",
+        "reason": "regular polling 7-9x per dump. Requests 0e11 (flame) and d140 (config counter). This is boiler internal polling, NOT useful broadcast data. Does not need CSV entry."
+      },
+      {
+        "register": "unmatched: 00 fe 20 3a 01 29 77",
+        "suggested_meaning": "bus scan/discovery request",
+        "confidence": "high",
+        "reason": "appears 3-5x per dump at start of communication. Bus initialization, not actual data. Does not need CSV entry."
+      },
+      {
+        "register": "unmatched: 37 fe 20 10 05 73 10 ff 7f 00 31",
+        "suggested_meaning": "outdoor temperature sensor absent",
+        "confidence": "high",
+        "reason": "1x per dump. ff7f = 32767 = sensor not present. Same data as outdoor_temperature_bc shows (ff7f). Already covered by existing row."
+      },
+      {
         "register": "c07a/c07c/c07e",
         "suggested_meaning": "zone thermoreg type selector registers for Z2/Z4/Z6",
         "confidence": "high",
