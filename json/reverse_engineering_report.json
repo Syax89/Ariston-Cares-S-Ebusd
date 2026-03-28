@@ -461,6 +461,36 @@
         "reason": "external CSV confirms 0781=z1_summer_winter_auto_switch, 7971=z1_summer_winter_temp_thresh, 7a71=z1_summer_winter_switch_delay_time. Not currently in our CSV."
       },
       {
+        "register": "unmatched frame: 70 3c 20 00 04 0e 11 d1 40 da",
+        "suggested_meaning": "boiler polling request for flame status and config counter",
+        "confidence": "high",
+        "reason": "repeated in all dumps, boiler (3c) polls its own registers 0e11 (flame) and d140 (config counter). Not actual data, just internal polling."
+      },
+      {
+        "register": "unmatched frame: 70 fe 20 00 06 64 26 62 71 63 71 e8",
+        "suggested_meaning": "zone parameter bundle broadcast (6426, 6271, 6371)",
+        "confidence": "high",
+        "reason": "this is actually the zone setpoint bundle we already have: antifreeze (6426=22), day temp (6271=21), night temp (6371=21). Parser didn't match because our CSV expects 200f not 2000 for this specific format."
+      },
+      {
+        "register": "unmatched frame: 03 fe 20 01 02 62 7x",
+        "suggested_meaning": "direct read requests for zone day temperatures (6271-6276)",
+        "confidence": "high",
+        "reason": "the 627x range is zone day temperatures. These are read requests from the thermostat to the energy manager, not broadcasts. 6271=Z1, 6272=Z2, 6273=Z3, 6274=Z4, 6275=Z5, 6276=Z6."
+      },
+      {
+        "register": "unmatched frame: 37 fe 20 0e 08 62 7x",
+        "suggested_meaning": "zone temperature curve/slope broadcasts",
+        "confidence": "medium",
+        "reason": "seen only in heating mode dumps. Contains register 627x plus additional temp data (be 00 64 00 2c 01). Likely zone-specific heating curve parameters."
+      },
+      {
+        "register": "unmatched frame: 37 fe 20 10 10 d3..de (len=16)",
+        "suggested_meaning": "hybrid system diagnostic broadcast (multiple registers)",
+        "confidence": "low",
+        "reason": "len=16 frames with registers d3/d4/d5/d6 and d9/da/db/dc containing temperature-like values (149=21.0C). These appear to be hybrid/heatpump related registers not present in our boiler-only system. Registers d9xx might be additional temp sensors."
+      },
+      {
         "register": "c07a/c07c/c07e",
         "suggested_meaning": "zone thermoreg type selector registers for Z2/Z4/Z6",
         "confidence": "high",
