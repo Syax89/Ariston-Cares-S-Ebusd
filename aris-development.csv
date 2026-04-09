@@ -60,19 +60,19 @@ b,aris,z1_heat_request_mode,Z1 Heat Request Mode,37,fe,200f,c679,mode,s,heat_req
 b,aris,heating_status_registers,Heating Status Register IDs,03,fe,2000,0120,cooling,s,HEX:2,,,,available,s,HEX:2,,,,
 r,aris,flame_active,Flame Active,,3c,2000,0e11,ign,s,IGN:1,,,,active,s,onoff,,,
 r,aris,z1_bundle_registers,Z1 Bundle Register IDs,70,fe,2000,6426,day,s,HEX:2,,,,night,s,HEX:2,,,,
-r,aris,z1_day_temp,Z1 Day Temp,18,2000,6271,,s,IGN:1,,,,,,SIN,10,°C
+r,aris,z1_day_temp,Z1 Day Temp,,18,2000,6271,,s,IGN:1,,,,,,SIN,10,°C
 # r,aris,z2_day_temp_register,Z2 Day Temp Register,03,fe,2001,6272,register,s,HEX:1,,,
 # r,aris,z3_day_temp_register,Z3 Day Temp Register,03,fe,2001,6273,register,s,HEX:1,,,
 # r,aris,z4_day_temp_register,Z4 Day Temp Register,03,fe,2001,6274,register,s,HEX:1,,,
 # r,aris,z5_day_temp_register,Z5 Day Temp Register,03,fe,2001,6275,register,s,HEX:1,,,
 # r,aris,z6_day_temp_register,Z6 Day Temp Register,03,fe,2001,6276,register,s,HEX:1,,,
-r,aris,z1_night_temp,Z1 Night Temp,18,2000,6371,,s,IGN:1,,,,,,SIN,10,°C
+r,aris,z1_night_temp,Z1 Night Temp,,18,2000,6371,,s,IGN:1,,,,,,SIN,10,°C
 # r,aris,z2_night_temp_register,Z2 Night Temp Register,03,fe,2001,6372,register,s,HEX:1,,,
 # r,aris,z3_night_temp_register,Z3 Night Temp Register,03,fe,2001,6373,register,s,HEX:1,,,
 # r,aris,z4_night_temp_register,Z4 Night Temp Register,03,fe,2001,6374,register,s,HEX:1,,,
 # r,aris,z5_night_temp_register,Z5 Night Temp Register,03,fe,2001,6375,register,s,HEX:1,,,
 # r,aris,z6_night_temp_register,Z6 Night Temp Register,03,fe,2001,6376,register,s,HEX:1,,,
-r,aris,antifreeze_temp,Antifreeze Temp,18,2000,6426,,s,IGN:1,,,,,,SIN,10,°C
+r,aris,antifreeze_temp,Antifreeze Temp,,18,2000,6426,,s,IGN:1,,,,,,SIN,10,°C
 # dump sample frame 37fe200f0c012001000f23000010230000 shows raw 0/0, while the root HA MQTT export later showed 35/16; keep 0120 as on/off but expose 0f23/1023 conservatively as raw codes
 b,aris,heating_status_bundle_short,Heating Status Bundle Short,37,fe,200f,0120,heating,s,onoff,,,,_0f23,s,IGN:2,,,,cooling,s,UIN,,,,_1023,s,IGN:2,,,,available,s,UIN,,,,
 # b,aris,heat_request_status_2,Heat Request Status 2,37,fe,2010,0591,z5,s,BCD:2,0=off;1=on,,,_0691,s,IGN:2,,,,z6,s,BCD:2,0=off;1=on,,,,,,,,,,,,
