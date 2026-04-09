@@ -1,154 +1,104 @@
-# Ariston Cares S eBUSd Configuration
+# Ariston Cares S eBUS
 
-[![GitHub Release](https://img.shields.io/github/v/release/Syax89/Ariston-Cares-S-Ebusd?style=for-the-badge)](https://github.com/Syax89/Ariston-Cares-S-Ebusd/releases)
-[![ebusd](https://img.shields.io/badge/ebusd-Compatible-blue?style=for-the-badge)](https://github.com/john30/ebusd)
-
-Reverse-engineered `ebusd` configuration for **Ariston Cares S** boilers and closely related Galileo-platform models.
-
-This project started as a custom `aris.csv` to make an Ariston Cares S usable with `ebusd`, and evolved into a dump-driven reverse-engineering effort based on:
-
-- real packet captures (`dump.pcapng`, `dump2.pcapng`, `dump3.pcapng`)
-- live validation through `ebusd`
-- MQTT observation during real boiler activity
-
-## Project goal
+This repository is used to reverse-engineer the eBUS protocol of an Ariston Cares S boiler and build a usable `ebusd` configuration.
 
 The goal is simple:
 
-- map as many Ariston eBUS messages as possible
-- keep only the rows that are logically validated
-- expose useful entities for MQTT / Home Assistant
-- document what is confirmed, what is usable, and what is still experimental
+- identify as many registers and bundles as possible
+- give them names that match real behavior on the bus
+- keep names conservative when the evidence is weak
+- document what is confirmed and what is still uncertain
 
-## Current status
+## Main Files
 
-The repository is already usable in practice.
+- `aris-development.csv`
+  Current working `ebusd` config.
 
-What is working well right now:
+- `_templates.csv`
+  Shared templates used by the config.
 
-- boiler operating mode
-- request/status groups
-- DHW setpoint and DHW actual temperature
-- heating setpoint broadcasts
-- main flow / return / exhaust / auxiliary temperatures
-- pressure sensor voltage and pump modulation
-- room and zone setpoints
-- zone day/night temperatures and setpoint bundle (validated from dumps and live MQTT)
-- secondary `200e` setpoint tables for comfort / reduced / antifreeze modes
-- stable passive thermoreg families on branches `71/73/75`, plus structured hidden branches `72/74/76`
+- `REGISTERS.md`
+  Short register map with confidence notes and protocol observations.
 
-What is still experimental / unverified:
+- `Dump/`
+  Packet captures used as ground truth.
 
-- exact semantics of some hidden-profile fields in the `2020` families, especially bridge/selector sidecars
-- diagnostic flag blocks (`d3..de` families)
-- exact meaning of some zone-state bytes
+- `json/`
+  Generated reports, snapshots, and analysis outputs.
 
-What is still being refined:
+- `tools/`
+  Small scripts used to parse dumps, compare captures, extract MQTT snapshots, and audit the CSV.
 
-- exact meaning of some zone-state bytes
-- diagnostic flag blocks (`d3..de` families)
-- final interpretation of a few heating-related logical flags
+## What We Are Doing
 
-## Recommended files
+We take real eBUS traffic and try to answer these questions:
 
-- Production config: [`aris.csv`](aris.csv)
-- Development config: [`aris-development.csv`](aris-development.csv)
-- Shared templates: [`_templates.csv`](_templates.csv)
-- Reverse-engineering summary: [`json/reverse_engineering_report.json`](json/reverse_engineering_report.json)
+- which register or bundle is this?
+- is the current CSV name correct?
+- does the value format make sense?
+- is the same interpretation stable across multiple captures?
 
-Current evidence snapshot from the archived logs and MQTT exports:
+When a name is well supported, it is kept in the CSV.
+When a name is only partly supported, it stays conservative.
+When the meaning is still unclear, it stays documented as unresolved instead of being guessed.
 
-- `confirmed: 37`
-- `usable: 134`
-- `candidate: 9`
-- `unknown: 13`
+## Workflow
 
-## Installation
+The usual workflow in this repo is:
 
-For normal use, copy `aris.csv` and `_templates.csv` into your `ebusd` config path.
+1. parse captures from `Dump/`
+2. compare repeated frames and state changes
+3. check the same register against logs, MQTT snapshots, and reference CSVs
+4. update `aris-development.csv` only when the naming is justified
+5. record open questions in the documentation or backlog files
 
-Use `aris-development.csv` only when you want the exploratory layout with candidate rows, extended reverse-engineering notes, and partially decoded families. If you want to test it with `ebusd`, rename it to `aris.csv` in your config path.
+## Useful Commands
 
-Example:
+Parse a dump against the current CSV:
 
 ```bash
-ebusd --scanconfig=0 --configpath=/etc/ebusd --device=/dev/ttyUSB0
+python3 tools/parse_dump.py "Dump/dump3.pcapng" --csv aris-development.csv --summary-only
 ```
 
-For ENS/TCP adapters:
+Compare two dumps:
+
+```bash
+python3 tools/compare_dumps.py "Dump/dump2.pcapng" "Dump/dump3.pcapng" --csv aris-development.csv
+```
+
+Extract a Home Assistant MQTT snapshot:
+
+```bash
+python3 tools/extract_mqtt_snapshot.py "mqtt-....json"
+```
+
+Audit the CSV against the captures we already have:
+
+```bash
+python3 tools/audit_csv_against_captures.py
+```
+
+## Using The CSV With ebusd
+
+The active config in this repo is `aris-development.csv`.
+
+If you want to test it with `ebusd`, place `aris-development.csv` and `_templates.csv` in your config path.
+
+Example:
 
 ```bash
 ebusd --scanconfig=0 --configpath=/config/Ariston --device=ens:192.168.4.74:9999
 ```
 
-`--scanconfig=0` is recommended so `ebusd` does not load generic Ariston CSV files instead of this one.
+`--scanconfig=0` is recommended so `ebusd` does not prefer generic Ariston definitions over this repository's file.
 
-The production file intentionally excludes rows that are still useful for research but not yet clean enough for a stable day-to-day setup.
+## Notes
 
-## Best entities to watch first
-
-If you just want the most useful MQTT entities first, start with:
-
-- `boiler_operating_mode`
-- `flame_state`
-- `request_status_1`
-- `dhw_setpoint`
-- `dhw_actual_temperature`
-- `zone1_current_setpoint_bc`
-- `zone1_day_temperature_bc`
-- `zone1_night_temperature_bc` (polled via 200e, not broadcast)
-- `zone1_setpoint_bundle_bc`
-- `zone1_secondary_comfort_bc`
-- `zone1_secondary_reduced_bc`
-- `zone1_secondary_antifreeze_bc`
-- `heating_setpoint_triplet`
-- `internal_flow_target_temperature`
-- `main_flow_temperature`
-- `current_power_level`
-
-## Validation philosophy
-
-This repository does not treat a frame as valid just because it decodes once.
-
-A row is promoted only when it is supported by one or more of these:
-
-- repeated appearance across multiple dumps
-- temporal consistency with real user actions
-- plausible numeric range and unit
-- confirmation from live `ebusd` logs
-
-That is why some rows are active, some are documented as usable, and others remain commented or experimental.
-
-## Technical notes
-
-Some useful conclusions already established:
-
-- `request_status_1` is the strongest heating-demand indicator found so far
-- `dhw_setpoint` and `zone1_current_setpoint_bc` were validated by real setpoint changes
-- `zone1_setpoint_bundle_bc` is now confirmed live in MQTT as `base_setpoint=5.0`, `day_temp=21.0`, `night_temp=16.0`
-- `zone1_current_setpoint_bc` is now confirmed live in ebusd logs at `65.0`
-- `status_request_1_flags` is now structurally confirmed and remains stable at `0 / 0 / 2 / 145` in recent passive captures
-- `zone1_state_triplet_bc` now decodes live as `on;0;15`, so the third field is not a boolean
-- `heating_active_bc` can reach `15`, so it should be treated as a status-like raw field, not a pure on/off sensor
-- `fan_speed_raw` tracks burner activity, but values like `45569/49153/49921/52737` are not credible physical RPM yet
-- the thermoreg family `6071/6171/6471/6a71/c079/c279` is now visible live in the `2020` broadcast family, and the current CSV keeps only evidence-backed fields active
-- newer `200e` triples around `6272..6276`, `6372..6376`, and `6426` are stable across recent passive logs and currently decode best as `19.0/10.0/30.0`, `16.0/10.0/30.0`, and `5.0/2.0/15.0`
-- those newer `200e` triples align with the `2020/0b` lookup rows, so they are currently treated as secondary comfort/reduced/antifreeze setpoint tables with trailing mode/profile metadata
-- hidden thermoreg branches `72/74/76` now publish stable MQTT payloads too, including sidecars decoded as `basic_on_off ; 194 ; 122/124/126`
-- corrected room-influence rows on branches `73/75` now publish real payloads `5.0 ; basic_on_off ; 10` instead of staying `unknown`
-- `outdoor_temperature_bc = 3276.7` typically means raw `ff7f`, i.e. invalid / sensor absent
-- `current_power_level` now looks much more credible than in the first iterations, because it changes under real load
-
-For the full reverse-engineering state, use [`json/reverse_engineering_report.json`](json/reverse_engineering_report.json).
-
-## Contributing
-
-If you want to help, the most useful contributions are:
-
-- new `pcapng` captures
-- raw `ebusd` log snippets
-- notes describing what physically changed on the boiler during the capture
+- The CSV is intentionally conservative.
+- Not every row is fully confirmed yet.
+- Reference CSVs are useful, but local captures always have priority.
+- If a value is still uncertain, it is better to keep a neutral name than a wrong name.
 
 ## License
 
-MIT License.
+MIT
