@@ -1,43 +1,20 @@
-# disabled: ebusd rejects this exploratory reset row as invalid CSV syntax
-# w,broadcast,ebus_reset,Reset bus,,fe,2034,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-# param.224 (manuale): Termoregolazione AUTO; enum from wrongisthenewright: 1=standby;2=heating;3=heating hot water;4=water tank;5=circulating;23=manual test;24=comfort;31=gas_circuit_deaeration;36=auto_calibration;51=low_water_pressure;52=no_flame
-# param.224 (manuale): Termoregolazione AUTO; enum from wrongisthenewright: 1=standby;2=heating;3=heating hot water;4=water tank;5=circulating;23=manual test;24=comfort;31=gas_circuit_deaeration;36=auto_calibration;51=low_water_pressure;52=no_flame
+# Ariston Cares S - ebusd CSV
 b,aris,boiler_status,Boiler Status,37,fe,2010,c04b,mode,s,boiler_status,,,,,,
-# d746 companion confirmed live in same frame: 37/fe/2010 payload 6147 500000 d746 0000 — d746 = dhw_comfort_mode_status (forum/ysard: BCD:2, 0=off;2=on)
 b,aris,dhw_current_target_temp,DHW Current Target Temp,37,fe,2010,6147,target,s,U3N,10,°C,,_d746,s,IGN:2,,,,comfort,s,BCD:2,0=off;2=on,
-# writable path intentionally disabled for now: only z1_setpoint_temp stays writable in HA on this installation
-# w,aris,dhw_setpoint,DHW Setpoint,,fe,2020,6126,val,s,SIN,10,°C,,
-# current local dataset has both short 6126-only replies/write-readbacks and one extended 6126/6226/7d26 DHW-tail snapshot; keep the active broadcast row short until both shapes can be modeled safely in ebusd
-# 6226=10.0 and 7d26=60.0 are tail-only snapshot companions; 6226 mapped as dhw_economy_temp per wrongisthenewright reference; 7d26=60.0 matches CARES S sanitary max
-# b,aris,dhw_setpoint,DHW Setpoint,,fe,2020,6126,val,s,SIN,10,°C,,
 b,aris,dhw_setpoint,DHW Setpoint,37,fe,2020,6126,val,s,SIN,10,°C,
 b,aris,dhw_economy_temp,DHW Economy Temp,37,fe,2020,6226,val,s,SIN,10,°C,
 b,aris,dhw_max_temp,DHW Max Temp,37,fe,2020,7d26,val,s,SIN,10,°C,
 b,aris,dhw_eco_setpoint,DHW Eco Setpoint,37,fe,2010,6697,val,s,UIN,10,°C,,,,,,
 r,aris,dhw_comfort_temp,DHW Comfort Temp,,18,2000,6126,val,s,SIN,10,°C,
-# translated to the live DHW status bundle below so the entity publishes values instead of staying unknown
-# r,aris,status_0f20,0F20 Status,,18,2000,0f20,status,s,onoff,,,
-# translated to the live 0520/602b/7426 bundle-backed row below so the entity publishes values instead of staying unknown
-# r,aris,ext_temp_offset,External Temp Offset,,18,2000,7426,offset,s,SIN,10,°C,
-# translated to the live 0520/602b/7426 bundle-backed row below so the entity publishes values instead of staying unknown
-# r,aris,boost_time,Boost Time,,18,2000,602b,time,s,UIN,,s,
 r,aris,flame_power_kw,Flame Power kW,,3c,2000,6847,,s,IGN:1,,,,,,UIN,10,kW
-# user live-test note: 6829 returned a stable 24 kW value matching the boiler manual nominal power, while 6847 behaved like an instantaneous kW value; keep both as conservative read-only rows until captured in the current dump set
 r,aris,nominal_power,Nominal Power,,3c,2000,6829,ign,s,IGN:1,,,,,s,UCH,,kW
 b,aris,heating_setpoint,Heating Setpoint,37,fe,2010,6047,primary,s,UIN,10,°C,,circuit_companion,s,IGN:3,,,,circuit,s,UIN,10,°C,,dhw_ref_companion,s,IGN:3,,,,dhw,s,UIN,10,°C,
 b,aris,flame_target,Flame Target Temp,37,fe,2010,d742,target,s,UIN,10,°C,,,,,,
 b,aris,max_heating_setpoint,Max Heating Setpoint,37,fe,2010,6397,setpoint,s,UIN,10,°C,,,,,,
-# legacy one-byte shorthand layered over the first payload byte of the recurring de46 runtime frame; keep for entity stability, but do not treat as a strongly confirmed standalone register semantic
 b,aris,flow_target,Flow Target Temp,37,fe,2010,de,target,s,UCH,1,°C,,,,,,
-# local installation uses only z1; keep the 6a96 ... c394 ... 6b96 family documented elsewhere, but do not expose z2/z3 setpoint entities in the active CSV.
-# b,aris,z2_setpoint_temp,Current Setpoint Temp,37,fe,2010,6a96,z2,s,SIN,10,°C,,_z3_prefix,s,IGN:7,,,,z3,s,SIN,10,°C,,_tail_zero,s,IGN:1,,,
-# ebusd is still publishing the absent-probe sentinel as scaled 3276.7 when this stays a temperature field; keep only the raw 32767 enum map and drop the unit so HA can accept the textual not_installed state.
 b,aris,ext_temp,External Temp,37,fe,2010,7310,temp,s,SIN,10,,32767=not_installed,,,,,,
-# 6d96=19.0 in ALL captures (standby/heating/DHW), never varies; no reference CSV maps it; treat as fixed factory setpoint rather than dynamic runtime value
 b,aris,fixed_setpoint_6d96,Fixed Setpoint 6D96,37,fe,2010,6d96,val,s,SIN,10,°C,,,,,,
-# c194 is the live wrapper that carries the current z1 setpoint-family payload with fixed sidecars; hide the wrapper bytes and expose only the actual value under the semantic row name
 b,aris,z1_setpoint_temp,Z1 Current Setpoint Temp,37,fe,2010,c194,_header_status,s,IGN:2,,,,_6996,s,IGN:2,,,,val,s,SIN,10,°C,,_zero_pad,s,IGN:1,,,,_c294,s,IGN:2,,,,_tail_status,s,IGN:2,
-# local write evidence exists on 70fe2020/6271, and the resulting runtime loop tracks the same z1 current-setpoint values (21.0/23.0), so expose z1_setpoint_temp as the single writable room-setpoint alias for now.
 w,aris,z1_setpoint_temp,Z1 Current Setpoint Temp,70,fe,2020,6271,val,s,SIN,10,°C,
 b,aris,runtime_c494,Runtime C494 Bundle,37,fe,2010,c494,header_status,s,IGN:2,,,,_6c96,s,IGN:2,,,,val,s,SIN,10,°C,,zero_pad,s,IGN:1,,,,_c594,s,IGN:2,,,,tail_status,s,IGN:2,
 b,aris,outdoor_temp,Outdoor Temperature,37,fe,2010,7647,temp,s,SIN,10,,32767=not_installed
@@ -45,43 +22,22 @@ b,aris,runtime_da46,Runtime DA46,37,fe,2010,da46,val,s,UIN,150=UKN,,
 b,aris,runtime_dc46,Runtime DC46,37,fe,2010,dc46,val,s,UIN,75=UKN,,
 b,aris,z1_room_temp,Z1 Room Temp,70,fe,2010,7118,temp,s,UIN,10,°C,
 b,aris,z1_fixed_temp,Z1 Fixed Temp,37,fe,2020,6571,fixed,s,SIN,10,°C,,_6671,s,IGN:2,,,,snap2,s,UIN,10,°C,,_6771,s,IGN:2,,,,snap3,s,UIN,10,°C,
-# translated to the live 2020 bundle-backed rows below so the entities publish values instead of staying unknown
-# b,aris,z1_thermoreg_offset,Z1 Thermoreg Offset,37,fe,200f,6471,offset,s,SIN,10,°C,
-# b,aris,z1_thermoreg_slope,Z1 Thermoreg Slope,70,fe,2020,6a71,slope,s,UIN,100,,
 b,aris,z1_day_temp,Z1 Day Temp,37,fe,200e,6271,setpoint,s,SIN,10,°C,
-# writable path is intentionally exposed only via z1_setpoint_temp for HA/UI simplicity on this installation
-# w,aris,z1_day_temp,Z1 Day Temp,70,fe,2020,6271,setpoint,s,SIN,10,°C,
 b,aris,z1_night_temp,Z1 Night Temp,37,fe,200e,6371,night_temp,s,SIN,10,°C,
-# exact local frame shape: 37fe200f0f64263200006271d200006371a00000 -> 6426=5.0, then hidden/sidecar bytes before 6271=21.0 and 6371=16.0; the old MQTT 2902.6 came from decoding hidden id 6271 as a temperature
 b,aris,z1_bundle,Z1 Antifreeze/Day/Night Bundle,37,fe,200f,6426,antifreeze,s,SIN,10,°C,,_6271_prefix,s,IGN:3,,,,day,s,SIN,10,°C,,_6371_prefix,s,IGN:3,,,,night,s,SIN,10,°C,
-# standalone c6 still has weak local evidence; current short-family captures strongly favor c679 as the real recurring register
 b,aris,z1_request,Z1 Heat Request Register,70,fe,2000,c6,val,s,HEX:1,,,,
 b,aris,z1_heat_request_mode,Z1 Heat Request Mode,37,fe,200f,c679,mode,s,heat_request_mode,,,
 b,aris,heating_status_registers,Heating Status Register IDs,03,fe,2000,0120,cooling,s,HEX:2,,,,available,s,HEX:2,,,,
 r,aris,flame_active,Flame Active,,3c,2000,0e11,ign,s,IGN:1,,,,active,s,onoff,,,
 r,aris,z1_bundle_registers,Z1 Bundle Register IDs,70,fe,2000,6426,day,s,HEX:2,,,,night,s,HEX:2,,,,
 r,aris,z1_day_temp,Z1 Day Temp,,18,2000,6271,,s,IGN:1,,,,,,SIN,10,°C
-# r,aris,z2_day_temp_register,Z2 Day Temp Register,03,fe,2001,6272,register,s,HEX:1,,,
-# r,aris,z3_day_temp_register,Z3 Day Temp Register,03,fe,2001,6273,register,s,HEX:1,,,
-# r,aris,z4_day_temp_register,Z4 Day Temp Register,03,fe,2001,6274,register,s,HEX:1,,,
-# r,aris,z5_day_temp_register,Z5 Day Temp Register,03,fe,2001,6275,register,s,HEX:1,,,
-# r,aris,z6_day_temp_register,Z6 Day Temp Register,03,fe,2001,6276,register,s,HEX:1,,,
 r,aris,z1_night_temp,Z1 Night Temp,,18,2000,6371,,s,IGN:1,,,,,,SIN,10,°C
-# r,aris,z2_night_temp_register,Z2 Night Temp Register,03,fe,2001,6372,register,s,HEX:1,,,
-# r,aris,z3_night_temp_register,Z3 Night Temp Register,03,fe,2001,6373,register,s,HEX:1,,,
-# r,aris,z4_night_temp_register,Z4 Night Temp Register,03,fe,2001,6374,register,s,HEX:1,,,
-# r,aris,z5_night_temp_register,Z5 Night Temp Register,03,fe,2001,6375,register,s,HEX:1,,,
-# r,aris,z6_night_temp_register,Z6 Night Temp Register,03,fe,2001,6376,register,s,HEX:1,,,
 r,aris,antifreeze_temp,Antifreeze Temp,,18,2000,6426,,s,IGN:1,,,,,,SIN,10,°C
-# dump sample frame 37fe200f0c012001000f23000010230000 shows raw 0/0, while the root HA MQTT export later showed 35/16; keep 0120 as on/off but expose 0f23/1023 conservatively as raw codes
 b,aris,heating_status_bundle_short,Heating Status Bundle Short,37,fe,200f,0120,heating,s,onoff,,,,_0f23,s,IGN:2,,,,cooling,s,UIN,,,,_1023,s,IGN:2,,,,available,s,UIN,,,,
-# b,aris,heat_request_status_2,Heat Request Status 2,37,fe,2010,0591,z5,s,BCD:2,0=off;1=on,,,_0691,s,IGN:2,,,,z6,s,BCD:2,0=off;1=on,,,,,,,,,,,,
 b,aris,bus_control,System Bus Control,,fe,2038,,selector,s,HEX:1,,,,data,s,HEX:3,,,,
 r,aris,bus_address_discovery_request,BUS Address Discovery Request,00,fe,203a,,addr,m,HEX:1,,,
 r,aris,bus_address_reply,Bus Scan Reply / Cast Slave Address,,fe,203b,,slave_addr,m,HEX,,,
 b,aris,settings_change_counter,Settings Change Counter,37,fe,2010,d140,counter,s,UIN,,,,,,,
-# 0c19 does NOT appear in any 37/fe/2010 broadcast on this Ariston model; all reference CSVs map it as a READ poll on 3c/2000. The broadcast row was producing only zero values. Switched to read poll to match forum/ysard/wrongisthenewright evidence.
-# r,aris,heating_flame,Heating In Progress,37,fe,2010,0c19,,s,IGN:2,,,,active,s,UCH
 b,aris,heat_request_status_extra,Heat Request Status Extra,37,fe,2010,0591,req,s,onoff,,,
 b,aris,runtime_status_extra,Runtime Status Extra,37,fe,2010,d346,mod,s,UCH,,,
 b,aris,dhw_status_extra,DHW Status Extra,37,fe,2010,d994,mod,s,UCH,,,
@@ -89,194 +45,41 @@ b,aris,heating_status_extra,Heating Status Extra,37,fe,2010,dd94,mod,s,UCH,,,
 b,aris,z1_heat_request_mode_bc,Z1 Heat Request Mode BC,37,fe,2020,c679,mode,s,UCH,,,
 r,aris,heating_flame,Heating In Progress,,3c,2000,0c19,,s,IGN:1,,,,active,s,onoff,,,
 b,aris,heat_request_status_1,Heat Request Status 1,37,fe,2010,0191,z1,s,BCD:2,0=off;1=on,,,_remaining,s,IGN:9,,,,
-# manual anchors for the active high-temp z1 installation: 0081=high_temp, c079=thermoreg_type, 6a71=slope, 6471=offset, c279=room_infl, 6071=max_temp
-# active z1 odd-zone snapshot stack from the local 37fe2020 burst: 37fe20200c6071340361712c0164710000 -> 37fe20200c65718a026671340367712c01 -> 37fe20200c69712c016a7182006b715e01 -> 37fe20200a6c713200c07901c2790a
-# 6171=30.0 on active Z1 vs 6172..6176=35.0 on inactive zones; all reference CSVs map 617x as water_min_temp. The 30.0 on Z1 is likely a user-set or low-temp-mode minimum, while 35.0 is the factory default for unconfigured zones.
-# local DHW matrix note: 6c71=5.0 matches the standalone 6426=5.0 antifreeze/base value in the same burst, so treat this bridge-head temperature as antifreeze/base-like rather than a generic anchor
-# current best manual-compatible reading: 6b71=35.0 stays the cleaner local param.426 candidate than 6171=30.0
-# tracked-capture note: 617x/677x/697x/6b7x/6c7x only appear inside the mixed 37fe2020 state burst on this installation, not as standalone read/write traffic
-# odd-zone 657x snapshot companions are not uniform (6571=65.0, 6573=82.0, 6575=35.0), so do not project standalone fixed-temp semantics onto every mixed 2020 burst position
 b,aris,z1_thermoreg_offset,Z1 Thermoreg Offset,37,fe,2020,6071,max,s,UIN,10,°C,,_6171,s,IGN:2,,,,min,s,UIN,10,°C,,_6471,s,IGN:2,,,,offset,s,SIN,10,°C,
 b,aris,z1_thermoreg_slope,Z1 Thermoreg Slope,37,fe,2020,6971,curve1,s,UIN,10,°C,,_6a71,s,IGN:2,,,,slope,s,UIN,100,,,_6b71,s,IGN:2,,,,curve2,s,UIN,10,°C,
 b,aris,z1_room_influence,Z1 Thermoreg Bridge Head,37,fe,2020,6c71,base,s,UIN,10,°C,,_c079,s,IGN:2,,,,type,s,thermoreg_type,,,,_c279,s,IGN:2,,,,influence,s,UCH,,,
-# b,aris,z3_therm_limits,Z3 Thermoreg Limits,37,fe,2020,6073,max,s,UIN,10,°C,,_6173,s,IGN:2,,,,min,s,UIN,10,°C,,_6473,s,IGN:2,,,,offset,s,SIN,10,°C,
-# b,aris,z3_therm_curve,Z3 Thermoreg Curve,37,fe,2020,6973,curve1,s,UIN,10,°C,,_6a73,s,IGN:2,,,,slope,s,UIN,100,,,_6b73,s,IGN:2,,,,curve2,s,UIN,10,°C,
-# b,aris,z3_room_influence,Z3 Thermoreg Bridge Head,37,fe,2020,6c73,base,s,UIN,10,°C,,_c07b,s,IGN:2,,,,type,s,thermoreg_type,,,,_c27b,s,IGN:2,,,,influence,s,UCH,,,
-# b,aris,z5_therm_limits,Z5 Thermoreg Limits,37,fe,2020,6075,max,s,UIN,10,°C,,_6175,s,IGN:2,,,,min,s,UIN,10,°C,,_6475,s,IGN:2,,,,offset,s,SIN,10,°C,
-# b,aris,z5_therm_curve,Z5 Thermoreg Curve,37,fe,2020,6975,curve1,s,UIN,10,°C,,_6a75,s,IGN:2,,,,slope,s,UIN,100,,,_6b75,s,IGN:2,,,,curve2,s,UIN,10,°C,
-# b,aris,z5_room_influence,Z5 Thermoreg Bridge Head,37,fe,2020,6c75,base,s,UIN,10,°C,,_c07d,s,IGN:2,,,,type,s,thermoreg_type,,,,_c27d,s,IGN:2,,,,influence,s,UCH,,,
-# odd-zone 657x snapshot frames are structurally real but semantically irregular; expose only the first value as fixed_temp and keep the trailing 667x/677x companions neutral
-# b,aris,z3_fixed_temp_snapshot,Z3 Fixed Temp Snapshot,37,fe,2020,6573,fixed,s,SIN,10,°C,,_6673,s,IGN:2,,,,snap2,s,UIN,10,°C,,_6773,s,IGN:2,,,,snap3,s,UIN,10,°C,
-# b,aris,z5_fixed_temp_snapshot,Z5 Fixed Temp Snapshot,37,fe,2020,6575,fixed,s,SIN,10,°C,,_6675,s,IGN:2,,,,snap2,s,UIN,10,°C,,_6775,s,IGN:2,,,,snap3,s,UIN,10,°C,
-# b,aris,z2_therm_limits,Z2 Thermoreg Limits,37,fe,2020,6172,min,s,UIN,10,°C,,_6472,s,IGN:2,,,,offset,s,SIN,10,°C,,_6572,s,IGN:2,,,,fixed,s,UIN,10,°C,
-# b,aris,z2_therm_curve,Z2 Thermoreg Curve,37,fe,2020,6672,max,s,UIN,10,°C,,_6772,s,IGN:2,,,,curve1,s,UIN,10,°C,,_6972,s,IGN:2,,,,curve2,s,UIN,10,°C,
-# b,aris,z2_therm_slope_block,Z2 Thermoreg Slope Block,37,fe,2020,6a72,slope,s,UIN,100,,,_6b72,s,IGN:2,,,,v1,s,UIN,10,°C,,_6c72,s,IGN:2,,,,v2,s,UIN,10,°C,
-# b,aris,z2_heat_temp_range,Z2 Heat Temp Range,37,fe,2020,c07a,type,s,thermoreg_type,,,,_c27a,s,IGN:2,,,,influence,s,UCH,,,,_c97a,s,IGN:2,,,,code,s,UCH,,,,_0082,s,IGN:2,,,,range,s,heat_temp_range,,,
-# b,aris,z4_therm_limits,Z4 Thermoreg Limits,37,fe,2020,6174,min,s,UIN,10,°C,,_6474,s,IGN:2,,,,offset,s,SIN,10,°C,,_6574,s,IGN:2,,,,fixed,s,UIN,10,°C,
-# b,aris,z4_therm_curve,Z4 Thermoreg Curve,37,fe,2020,6674,max,s,UIN,10,°C,,_6774,s,IGN:2,,,,curve1,s,UIN,10,°C,,_6974,s,IGN:2,,,,curve2,s,UIN,10,°C,
-# b,aris,z4_therm_slope_block,Z4 Thermoreg Slope Block,37,fe,2020,6a74,slope,s,UIN,100,,,_6b74,s,IGN:2,,,,v1,s,UIN,10,°C,,_6c74,s,IGN:2,,,,v2,s,UIN,10,°C,
-# b,aris,z4_heat_temp_range,Z4 Heat Temp Range,37,fe,2020,c07c,type,s,thermoreg_type,,,,_c27c,s,IGN:2,,,,influence,s,UCH,,,,_c97c,s,IGN:2,,,,code,s,UCH,,,,_0084,s,IGN:2,,,,range,s,heat_temp_range,,,
-# b,aris,z6_therm_limits,Z6 Thermoreg Limits,37,fe,2020,6176,min,s,UIN,10,°C,,_6476,s,IGN:2,,,,offset,s,SIN,10,°C,,_6576,s,IGN:2,,,,fixed,s,UIN,10,°C,
-# b,aris,z6_therm_curve,Z6 Thermoreg Curve,37,fe,2020,6676,max,s,UIN,10,°C,,_6776,s,IGN:2,,,,curve1,s,UIN,10,°C,,_6976,s,IGN:2,,,,curve2,s,UIN,10,°C,
-# b,aris,z6_therm_slope_block,Z6 Thermoreg Slope Block,37,fe,2020,6a76,slope,s,UIN,100,,,_6b76,s,IGN:2,,,,v1,s,UIN,10,°C,,_6c76,s,IGN:2,,,,v2,s,UIN,10,°C,
-# b,aris,z6_heat_temp_range,Z6 Heat Temp Range,37,fe,2020,c07e,type,s,thermoreg_type,,,,_c27e,s,IGN:2,,,,influence,s,UCH,,,,_c97e,s,IGN:2,,,,code,s,UCH,,,,_0086,s,IGN:2,,,,range,s,heat_temp_range,,,
-# b,aris,z2_day_triplet,Z2 Day Triplet,37,fe,200e,6272,day,s,UIN,10,°C,,min,s,UIN,10,°C,,max,s,UIN,10,°C,
-# b,aris,z2_night_triplet,Z2 Night Triplet,37,fe,200e,6372,night,s,UIN,10,°C,,min,s,UIN,10,°C,,max,s,UIN,10,°C,
 b,aris,z1_antifreeze_triplet,Z1 Antifreeze Triplet,37,fe,200e,6426,antifreeze,s,UIN,10,°C,,min,s,UIN,10,°C,,max,s,UIN,10,°C,
-# standalone short status rows removed: these IDs are already covered by bundle rows and ebusd rejects duplicate IDs
-# translated to the live short-status bundle above so the entity publishes values instead of staying unknown
-# b,aris,cooling_status,Cooling Status,37,fe,200e,0f23,status,s,onoff,,,
-# b,aris,z3_day_triplet,Z3 Day Triplet,37,fe,200e,6273,day,s,UIN,10,°C,,min,s,UIN,10,°C,,max,s,UIN,10,°C,
-# b,aris,z4_day_triplet,Z4 Day Triplet,37,fe,200e,6274,day,s,UIN,10,°C,,min,s,UIN,10,°C,,max,s,UIN,10,°C,
-# b,aris,z5_day_triplet,Z5 Day Triplet,37,fe,200e,6275,day,s,UIN,10,°C,,min,s,UIN,10,°C,,max,s,UIN,10,°C,
-# b,aris,z6_day_triplet,Z6 Day Triplet,37,fe,200e,6276,day,s,UIN,10,°C,,min,s,UIN,10,°C,,max,s,UIN,10,°C,
-# b,aris,z3_night_triplet,Z3 Night Triplet,37,fe,200e,6373,night,s,UIN,10,°C,,min,s,UIN,10,°C,,max,s,UIN,10,°C,
-# b,aris,z4_night_triplet,Z4 Night Triplet,37,fe,200e,6374,night,s,UIN,10,°C,,min,s,UIN,10,°C,,max,s,UIN,10,°C,
-# b,aris,z5_night_triplet,Z5 Night Triplet,37,fe,200e,6375,night,s,UIN,10,°C,,min,s,UIN,10,°C,,max,s,UIN,10,°C,
-# b,aris,z6_night_triplet,Z6 Night Triplet,37,fe,200e,6376,night,s,UIN,10,°C,,min,s,UIN,10,°C,,max,s,UIN,10,°C,
 r,aris,z1_heat_temp_range,Z1 Heat Temp Range,,18,2000,0081,range,s,heat_temp_range,,,
-# translated to the live bridge-block row above so the entity publishes values instead of staying unknown
-# r,aris,z2_heat_temp_range,Z2 Heat Temp Range,,18,2000,0082,range,s,heat_temp_range,,,
-# local installation only uses z1; the active CSV now comments every z2..z6 row or field exposure so HA stays strictly single-zone.
-# r,aris,z3_heat_temp_range,Z3 Heat Temp Range,,18,2000,0083,range,s,heat_temp_range,,,
-# translated to the live bridge-block row above so the entity publishes values instead of staying unknown
-# r,aris,z4_heat_temp_range,Z4 Heat Temp Range,,18,2000,0084,range,s,heat_temp_range,,,
-# r,aris,z5_heat_temp_range,Z5 Heat Temp Range,,18,2000,0085,range,s,heat_temp_range,,,
-# translated to the live bridge-block row above so the entity publishes values instead of staying unknown
-# r,aris,z6_heat_temp_range,Z6 Heat Temp Range,,18,2000,0086,range,s,heat_temp_range,,,
-# b,aris,heat_temp_ranges_1,Heat Temp Ranges 1,37,fe,2020,0081,z1,s,heat_temp_range,,,,z2_range_companion,s,IGN:2,,,,z2,s,heat_temp_range,,,,z3_range_companion,s,IGN:2,,,,z3,s,heat_temp_range,,,,z4_range_companion,s,IGN:2,,,,z4,s,heat_temp_range,,,
 r,aris,z1_cool_temp_range,Z1 Cool Temp Range,,18,2000,0681,range,s,cool_temp_range,,,
-# r,aris,z2_cool_temp_range,Z2 Cool Temp Range,,18,2000,0682,range,s,cool_temp_range,,,
-# r,aris,z3_cool_temp_range,Z3 Cool Temp Range,,18,2000,0683,range,s,cool_temp_range,,,
-# r,aris,z4_cool_temp_range,Z4 Cool Temp Range,,18,2000,0684,range,s,cool_temp_range,,,
-# r,aris,z5_cool_temp_range,Z5 Cool Temp Range,,18,2000,0685,range,s,cool_temp_range,,,
-# r,aris,z6_cool_temp_range,Z6 Cool Temp Range,,18,2000,0686,range,s,cool_temp_range,,,
 r,aris,z1_summer_winter_auto_switch,Z1 Summer Winter Auto Switch,,18,2000,0781,enabled,s,onoff,,,
-# r,aris,z2_summer_winter_auto_switch,Z2 Summer Winter Auto Switch,,18,2000,0782,enabled,s,onoff,,,
-# r,aris,z3_summer_winter_auto_switch,Z3 Summer Winter Auto Switch,,18,2000,0783,enabled,s,onoff,,,
-# r,aris,z4_summer_winter_auto_switch,Z4 Summer Winter Auto Switch,,18,2000,0784,enabled,s,onoff,,,
-# r,aris,z5_summer_winter_auto_switch,Z5 Summer Winter Auto Switch,,18,2000,0785,enabled,s,onoff,,,
-# r,aris,z6_summer_winter_auto_switch,Z6 Summer Winter Auto Switch,,18,2000,0786,enabled,s,onoff,,,
 r,aris,z1_summer_winter_temp_threshold,Z1 Summer Winter Temp Threshold,,18,2000,7971,threshold,s,SIN,10,°C,
-# r,aris,z2_summer_winter_threshold,Z2 Summer Winter Threshold,,18,2000,7972,threshold,s,SIN,10,°C,
-# r,aris,z3_summer_winter_threshold,Z3 Summer Winter Threshold,,18,2000,7973,threshold,s,SIN,10,°C,
-# r,aris,z4_summer_winter_threshold,Z4 Summer Winter Threshold,,18,2000,7974,threshold,s,SIN,10,°C,
-# r,aris,z5_summer_winter_threshold,Z5 Summer Winter Threshold,,18,2000,7975,threshold,s,SIN,10,°C,
-# r,aris,z6_summer_winter_threshold,Z6 Summer Winter Threshold,,18,2000,7976,threshold,s,SIN,10,°C,
 r,aris,z1_summer_winter_switch_delay,Z1 Summer Winter Switch Delay,,18,2000,7a71,delay,s,UIN,,min,
-# r,aris,z2_summer_winter_delay,Z2 Summer Winter Delay,,18,2000,7a72,delay,s,UIN,,min,
-# r,aris,z3_summer_winter_delay,Z3 Summer Winter Delay,,18,2000,7a73,delay,s,UIN,,min,
-# r,aris,z4_summer_winter_delay,Z4 Summer Winter Delay,,18,2000,7a74,delay,s,UIN,,min,
-# r,aris,z5_summer_winter_delay,Z5 Summer Winter Delay,,18,2000,7a75,delay,s,UIN,,min,
-# r,aris,z6_summer_winter_delay,Z6 Summer Winter Delay,,18,2000,7a76,delay,s,UIN,,min,
 r,aris,z1_cool_setpoint,Z1 Cool Setpoint,,18,2000,7071,setpoint,s,SIN,10,°C,
-# r,aris,z2_cool_setpoint,Z2 Cool Setpoint,,18,2000,7072,setpoint,s,SIN,10,°C,
-# r,aris,z3_cool_setpoint,Z3 Cool Setpoint,,18,2000,7073,setpoint,s,SIN,10,°C,
-# r,aris,z4_cool_setpoint,Z4 Cool Setpoint,,18,2000,7074,setpoint,s,SIN,10,°C,
-# r,aris,z5_cool_setpoint,Z5 Cool Setpoint,,18,2000,7075,setpoint,s,SIN,10,°C,
-# r,aris,z6_cool_setpoint,Z6 Cool Setpoint,,18,2000,7076,setpoint,s,SIN,10,°C,
 r,aris,z1_fixed_temp,Z1 Fixed Temp,,18,2000,6571,fixed_temp,s,SIN,10,°C,
-# translated to the live zone snapshots / thermoreg bundles already present in this CSV, so the standalone entities do not stay unknown in HA
-# r,aris,z2_fixed_temp,Z2 Fixed Temp,,18,2000,6572,fixed_temp,s,SIN,10,°C,
-# r,aris,z3_fixed_temp,Z3 Fixed Temp,,18,2000,6573,fixed_temp,s,SIN,10,°C,
-# r,aris,z4_fixed_temp,Z4 Fixed Temp,,18,2000,6574,fixed_temp,s,SIN,10,°C,
-# r,aris,z5_fixed_temp,Z5 Fixed Temp,,18,2000,6575,fixed_temp,s,SIN,10,°C,
-# r,aris,z6_fixed_temp,Z6 Fixed Temp,,18,2000,6576,fixed_temp,s,SIN,10,°C,
-# writable path is intentionally exposed only via z1_setpoint_temp for HA/UI simplicity on this installation
-# w,aris,z1_fixed_temp,Z1 Fixed Temp,,fe,2020,6571,fixed_temp,s,SIN,10,°C,
-# current local DHW burst shows ce79..ce7e all at 0; keep this controller-side setting family distinct from runtime/broadcast c679=2 on active Z1 and c67a..c67e=3 on extra slots
 r,aris,z1_heat_request_mode,Z1 Heat Request Mode,,18,2000,ce79,mode,s,heat_request_mode_setting,,,
-# translated to the live multi-zone settings bundle below so the entities publish values instead of staying unknown
-# r,aris,z2_heat_request_mode_setting,Z2 Heat Request Mode Setting,,18,2000,ce7a,mode,s,heat_request_mode_setting,,,
-# r,aris,z3_heat_request_mode_setting,Z3 Heat Request Mode Setting,,18,2000,ce7b,mode,s,heat_request_mode_setting,,,
-# r,aris,z4_heat_request_mode_setting,Z4 Heat Request Mode Setting,,18,2000,ce7c,mode,s,heat_request_mode_setting,,,
-# r,aris,z5_heat_request_mode_setting,Z5 Heat Request Mode Setting,,18,2000,ce7d,mode,s,heat_request_mode_setting,,,
-# r,aris,z6_heat_request_mode_setting,Z6 Heat Request Mode Setting,,18,2000,ce7e,mode,s,heat_request_mode_setting,,,
-# b,aris,heat_request_mode_settings_1,Heat Request Mode Settings 1,37,fe,2020,ce7a,z2,s,heat_request_mode_setting,,,,_ce7b,s,IGN:2,,,,z3,s,heat_request_mode_setting,,,,_ce7c,s,IGN:2,,,,z4,s,heat_request_mode_setting,,,,_ce7d,s,IGN:2,,,,z5,s,heat_request_mode_setting,,,
 r,aris,z1_cool_water_max_temp,Z1 Cool Water Max Temp,,18,2000,7171,max_temp,s,SIN,10,°C,
-# r,aris,z2_cool_water_max_temp,Z2 Cool Water Max Temp,,18,2000,7172,max_temp,s,SIN,10,°C,
-# r,aris,z3_cool_water_max_temp,Z3 Cool Water Max Temp,,18,2000,7173,max_temp,s,SIN,10,°C,
-# r,aris,z4_cool_water_max_temp,Z4 Cool Water Max Temp,,18,2000,7174,max_temp,s,SIN,10,°C,
-# r,aris,z5_cool_water_max_temp,Z5 Cool Water Max Temp,,18,2000,7175,max_temp,s,SIN,10,°C,
-# r,aris,z6_cool_water_max_temp,Z6 Cool Water Max Temp,,18,2000,7176,max_temp,s,SIN,10,°C,
 r,aris,z1_cool_water_min_temp,Z1 Cool Water Min Temp,,18,2000,7371,min_temp,s,SIN,10,°C,
-# r,aris,z2_cool_water_min_temp,Z2 Cool Water Min Temp,,18,2000,7372,min_temp,s,SIN,10,°C,
-# r,aris,z3_cool_water_min_temp,Z3 Cool Water Min Temp,,18,2000,7373,min_temp,s,SIN,10,°C,
-# r,aris,z4_cool_water_min_temp,Z4 Cool Water Min Temp,,18,2000,7374,min_temp,s,SIN,10,°C,
-# r,aris,z5_cool_water_min_temp,Z5 Cool Water Min Temp,,18,2000,7375,min_temp,s,SIN,10,°C,
-# r,aris,z6_cool_water_min_temp,Z6 Cool Water Min Temp,,18,2000,7376,min_temp,s,SIN,10,°C,
 r,aris,z1_cool_offset,Z1 Cool Offset,,18,2000,7571,offset,s,SIN,10,°C,
-# r,aris,z2_cool_offset,Z2 Cool Offset,,18,2000,7572,offset,s,SIN,10,°C,
-# r,aris,z3_cool_offset,Z3 Cool Offset,,18,2000,7573,offset,s,SIN,10,°C,
-# r,aris,z4_cool_offset,Z4 Cool Offset,,18,2000,7574,offset,s,SIN,10,°C,
-# r,aris,z5_cool_offset,Z5 Cool Offset,,18,2000,7575,offset,s,SIN,10,°C,
-# r,aris,z6_cool_offset,Z6 Cool Offset,,18,2000,7576,offset,s,SIN,10,°C,
 r,aris,z1_cool_slope,Z1 Cool Slope,,18,2000,7671,slope,s,UIN,100,,
-# r,aris,z2_cool_slope,Z2 Cool Slope,,18,2000,7672,slope,s,UIN,100,,
-# r,aris,z3_cool_slope,Z3 Cool Slope,,18,2000,7673,slope,s,UIN,100,,
-# r,aris,z4_cool_slope,Z4 Cool Slope,,18,2000,7674,slope,s,UIN,100,,
-# r,aris,z5_cool_slope,Z5 Cool Slope,,18,2000,7675,slope,s,UIN,100,,
-# r,aris,z6_cool_slope,Z6 Cool Slope,,18,2000,7676,slope,s,UIN,100,,
-# removed misleading prefix-alias rows for d3/d9/db/dd: local captures only show the concrete long IDs d346, d994, db95, and dd94
-# --- new 2010 loop companions confirmed in live captures 2026-03-29 ---
-# da46/dc46/de46 appear in the runtime 2010 loop with stable values 150/75/75; reference CSVs mark these sentinel values as UKN, so keep them conservative
 b,aris,runtime_de46,Runtime DE46,37,fe,2010,de46,val,s,UIN,75=UKN,,
-# new 2010 diagnostic blocks seen at freq 12x/cycle in all states; all values zero in current captures; no reference CSV maps these — commented out to hide from HA
-# b,aris,diag_block_d346_cf9c,Diagnostic Block D346/CF9C,37,fe,2010,d346,d346,s,UIN,,,,_cf9c,s,IGN:2,,,,cf9c,s,UIN,,,,_d995,s,IGN:2,,,,d995,s,UIN,,,,_da95,s,IGN:2,,,,da95,s,UIN,,,
-# b,aris,diag_block_db95,Diagnostic Block DB95,37,fe,2010,db95,db95,s,UIN,,,,_dc95,s,IGN:2,,,,dc95,s,UIN,,,,_dd95,s,IGN:2,,,,dd95,s,UIN,,,,_de95,s,IGN:2,,,,de95,s,UIN,,,
-# b,aris,diag_block_d994,Diagnostic Block D994,37,fe,2010,d994,d994,s,UIN,,,,_da94,s,IGN:2,,,,da94,s,UIN,,,,_db94,s,IGN:2,,,,db94,s,UIN,,,,_dc94,s,IGN:2,,,,dc94,s,UIN,,,
-# b,aris,diag_block_dd94,Diagnostic Block DD94,37,fe,2010,dd94,dd94,s,UIN,,,,_de94,s,IGN:2,,,,de94,s,UIN,,,
-# b,aris,diag_block_d394,Diagnostic Block D394,37,fe,2010,d394,d394,s,UIN,,,,_d494,s,IGN:2,,,,d494,s,UIN,,,,_d594,s,IGN:2,,,,d594,s,UIN,,,,_d694,s,IGN:2,,,,d694,s,UIN,,,
-# --- current setpoint temps: reference CSVs map 6996/6a96/6b96 to z1/z2/z3 current setpoints; local 2010 runtime frames are compatible with that family ---
-# translated to the live z1 bundle-backed row above (`c194 -> z1_setpoint_temp`); the extra-zone candidates stay documented here but commented because this installation is single-zone
-# r,aris,z1_setpoint_temp,Z1 Current Setpoint Temp,,18,2000,6996,val,s,SIN,10,°C,
-# r,aris,z2_setpoint_temp,Z2 Current Setpoint Temp,,18,2000,6a96,val,s,SIN,10,°C,
-# r,aris,z3_setpoint_temp,Z3 Current Setpoint Temp,,18,2000,6b96,val,s,SIN,10,°C,
-# --- 2020 status-related bundles confirmed in local DHW capture 2026-03-29 ---
-# Local frames split this family into separate bundles rather than a single 0120/0220/0520/0b20 panel.
-# The 0120/d02a/d12a frame 37fe202009012001d02a02d12a00 is a compact 9-byte DHW-only status bundle made of three 1-byte values, so d02a/d12a are treated as selectors/codes rather than temp-like fields.
 b,aris,heating_status,Heating Status,37,fe,2020,0120,heating,s,onoff,,,,_d02a,s,IGN:2,,,,heating_status_code,s,UCH,,,,_d12a,s,IGN:2,,,,dhw_aux_code,s,UCH,,,
 b,aris,dhw_status,DHW Status,37,fe,2020,0220,status,s,onoff,,,,_0b20,s,IGN:2,,,,thermal_cleansing,s,onoff,,,,_0f20,s,IGN:2,,,,celectic_status,s,onoff,,,
 b,aris,boost_time,Boost Time,37,fe,2020,0520,status,s,onoff,,,,_602b,s,IGN:2,,,,time,s,UIN,,s,,_7426,s,IGN:2,,,,offset,s,SIN,10,°C,
-# current local DHW tail order is fixed as 0220 -> 6126 -> 712b -> 7e2b with frames 37fe2020090220010b20010f2000 / 37fe20200c6126c201622664007d265802 / 37fe20200a712bbc70c02800ca2a06 / 37fe2020047e2b0001
-# 712b bundle: 712b=bc70 raw (le=28860, be=48240), c028=0, ca2a=6; 712b kept as HEX:2 — no reference CSV maps it and no numeric interpretation makes physical sense
 b,aris,dhw_status_word,DHW Status Word,37,fe,2020,712b,raw,s,HEX:2,,,,_c028,s,IGN:2,,,,comfort,s,dhw_comfort_mode,,,,_ca2a,s,IGN:2,,,,dhw_aux_code,s,UCH,,,
-# 7e2b is the stable short tail word that follows the local 712b/c028/ca2a cluster; keep as HEX until semantics are confirmed (raw 0001, le=256, be=1)
 b,aris,dhw_tail_word,DHW Tail Word,37,fe,2020,7e2b,payload_hex,s,HEX:2,,,
-# da27/db27 block 37fe202009da2703db2703078100 is a compact 1-byte preamble (da27=3, db27=3, 0781=0) immediately before the 797x/7a7x/078x seasonal table; DHW-only lead-in flags
 b,aris,seasonal_preamble,Seasonal Changeover Preamble,37,fe,2020,da27,lead_flag_a,s,UCH,,,,_db27,s,IGN:2,,,,lead_flag_b,s,UCH,,,
-# --- zone flags 0281-0286: one-byte on/off fields seen locally between ce7e and the 088x/068x cooling sequence; all observed as 1 (zone enabled) on this single-zone installation ---
 r,aris,z1_zone_enabled_281,Z1 Zone Enabled,,18,2000,0281,enabled,s,onoff,,,
-# r,aris,z2_zone_enabled_282,Z2 Zone Enabled,,18,2000,0282,enabled,s,onoff,,,
-# r,aris,z3_zone_enabled_283,Z3 Zone Enabled,,18,2000,0283,enabled,s,onoff,,,
-# r,aris,z4_zone_enabled_284,Z4 Zone Enabled,,18,2000,0284,enabled,s,onoff,,,
-# r,aris,z5_zone_enabled_285,Z5 Zone Enabled,,18,2000,0285,enabled,s,onoff,,,
-# r,aris,z6_zone_enabled_286,Z6 Zone Enabled,,18,2000,0286,enabled,s,onoff,,,
-# --- zone flags 0881-0886: trailing one-byte on/off fields that complete the local ce7e -> 028x -> 088x bridge into the cooling families; all observed as 0 (zone not active) ---
 r,aris,z1_zone_active_881,Z1 Zone Active,,18,2000,0881,active,s,onoff,,,
-# r,aris,z2_zone_active_882,Z2 Zone Active,,18,2000,0882,active,s,onoff,,,
-# r,aris,z3_zone_active_883,Z3 Zone Active,,18,2000,0883,active,s,onoff,,,
-# r,aris,z4_zone_active_884,Z4 Zone Active,,18,2000,0884,active,s,onoff,,,
-# r,aris,z5_zone_active_885,Z5 Zone Active,,18,2000,0885,active,s,onoff,,,
-# r,aris,z6_zone_active_886,Z6 Zone Active,,18,2000,0886,active,s,onoff,,,
-# --- cooling companion 727x: local-only temperature family interleaved between 717x and 737x; mirrors 717x (cool water max) on this system — likely a redundant/duplicated max-temp field ---
 r,aris,z1_cool_water_max_temp_2,Z1 Cool Water Max Temp 2,,18,2000,7271,max_temp,s,SIN,10,°C,
-# r,aris,z2_cool_water_max_temp_2,Z2 Cool Water Max Temp 2,,18,2000,7272,max_temp,s,SIN,10,°C,
-# r,aris,z3_cool_water_max_temp_2,Z3 Cool Water Max Temp 2,,18,2000,7273,max_temp,s,SIN,10,°C,
-# r,aris,z4_cool_water_max_temp_2,Z4 Cool Water Max Temp 2,,18,2000,7274,max_temp,s,SIN,10,°C,
-# r,aris,z5_cool_water_max_temp_2,Z5 Cool Water Max Temp 2,,18,2000,7275,max_temp,s,SIN,10,°C,
-# r,aris,z6_cool_water_max_temp_2,Z6 Cool Water Max Temp 2,,18,2000,7276,max_temp,s,SIN,10,°C,
-# --- cooling companion 747x: local-only temperature family interleaved between 737x and 757x; mirrors 737x (cool water min) on this system — likely a redundant/duplicated min-temp field ---
 r,aris,z1_cool_water_min_temp_2,Z1 Cool Water Min Temp 2,,18,2000,7471,min_temp,s,SIN,10,°C,
-# r,aris,z2_cool_water_min_temp_2,Z2 Cool Water Min Temp 2,,18,2000,7472,min_temp,s,SIN,10,°C,
-# r,aris,z3_cool_water_min_temp_2,Z3 Cool Water Min Temp 2,,18,2000,7473,min_temp,s,SIN,10,°C,
-# r,aris,z4_cool_water_min_temp_2,Z4 Cool Water Min Temp 2,,18,2000,7474,min_temp,s,SIN,10,°C,
-# r,aris,z5_cool_water_min_temp_2,Z5 Cool Water Min Temp 2,,18,2000,7475,min_temp,s,SIN,10,°C,
-# r,aris,z6_cool_water_min_temp_2,Z6 Cool Water Min Temp 2,,18,2000,7476,min_temp,s,SIN,10,°C,
-# --- c979/c97e are stable one-byte bridge companion codes (value 6 in all 2020 bursts); forum/ysard map them in thermoregulation_6/7 bundles; likely a protocol version or thermoregulation subtype code ---
 r,aris,z1_thermoreg_code,Z1 Thermoreg Code,,18,2000,c979,code,s,UCH,,,
-# r,aris,z2_thermoreg_code,Z2 Thermoreg Code,,18,2000,c97a,code,s,UCH,,,
-# r,aris,z3_thermoreg_code,Z3 Thermoreg Code,,18,2000,c97b,code,s,UCH,,,
-# r,aris,z4_thermoreg_code,Z4 Thermoreg Code,,18,2000,c97c,code,s,UCH,,,
-# r,aris,z5_thermoreg_code,Z5 Thermoreg Code,,18,2000,c97d,code,s,UCH,,,
-# r,aris,z6_thermoreg_code,Z6 Thermoreg Code,,18,2000,c97e,code,s,UCH,,,
+# Commented rows (kept for reference)
+# w,broadcast,ebus_reset,Reset bus,,fe,2034,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+# param.224 (manuale): Termoregolazione AUTO; enum from wrongisthenewright: 1=standby;2=heating;3=heating hot water;4=water tank;5=circulating;23=manual test;24=comfort;31=gas_circuit_deaeration;36=auto_calibration;51=low_water_pressure;52=no_flame
+# w,aris,dhw_setpoint,DHW Setpoint,,fe,2020,6126,val,s,SIN,10,°C,,
+# r,aris,status_0f20,0F20 Status,,18,2000,0f20,status,s,onoff,,,
+# r,aris,ext_temp_offset,External Temp Offset,,18,2000,7426,offset,s,SIN,10,°C,
+# r,aris,boost_time,Boost Time,,18,2000,602b,time,s,UIN,,s,
+# r,aris,z2_setpoint_temp,Z2 Current Setpoint Temp,,18,2000,6a96,val,s,SIN,10,°C,
+# r,aris,z3_setpoint_temp,Z3 Current Setpoint Temp,,18,2000,6b96,val,s,SIN,10,°C,
+# r,aris,z1_setpoint_temp,Z1 Current Setpoint Temp,,18,2000,6996,val,s,SIN,10,°C,
