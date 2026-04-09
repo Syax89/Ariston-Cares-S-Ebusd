@@ -82,16 +82,11 @@ r,aris,bus_address_reply,Bus Scan Reply / Cast Slave Address,,fe,203b,,slave_add
 b,aris,settings_change_counter,Settings Change Counter,37,fe,2010,d140,counter,s,UIN,,,,,,,
 # 0c19 does NOT appear in any 37/fe/2010 broadcast on this Ariston model; all reference CSVs map it as a READ poll on 3c/2000. The broadcast row was producing only zero values. Switched to read poll to match forum/ysard/wrongisthenewright evidence.
 # r,aris,heating_flame,Heating In Progress,37,fe,2010,0c19,,s,IGN:2,,,,active,s,UCH
-b,aris,heating_flame,Heating In Progress,37,fe,2010,0c19,,s,onoff,,,
 b,aris,heat_request_status_extra,Heat Request Status Extra,37,fe,2010,0591,req,s,onoff,,,
 b,aris,runtime_status_extra,Runtime Status Extra,37,fe,2010,d346,mod,s,UCH,,,
 b,aris,dhw_status_extra,DHW Status Extra,37,fe,2010,d994,mod,s,UCH,,,
 b,aris,heating_status_extra,Heating Status Extra,37,fe,2010,dd94,mod,s,UCH,,,
-b,aris,heating_status_2,Heating Status 2,37,fe,2010,0c19,ch,s,onoff,,,,,
 b,aris,z1_heat_request_mode_bc,Z1 Heat Request Mode BC,37,fe,2020,c679,mode,s,UCH,,,
-b,aris,z1_temp_settings_bc,Z1 Temp Settings BC,37,fe,2020,6071,max,s,UIN,10,°C,,min,s,UIN,10,°C,,offset,s,SIN,10,°C
-b,aris,z1_thermoreg_bc,Z1 Thermoreg BC,37,fe,2020,6a71,slope,s,UIN,100,,offset,s,SIN,10,°C
-b,aris,z1_room_influence_bc,Z1 Room Influence BC,37,fe,2020,c279,influence,s,UIN,,,,heat_type,s,UCH,,,
 r,aris,heating_flame,Heating In Progress,,3c,2000,0c19,,s,IGN:1,,,,active,s,onoff,,,
 b,aris,heat_request_status_1,Heat Request Status 1,37,fe,2010,0191,z1,s,BCD:2,0=off;1=on,,,_remaining,s,IGN:9,,,,
 # manual anchors for the active high-temp z1 installation: 0081=high_temp, c079=thermoreg_type, 6a71=slope, 6471=offset, c279=room_infl, 6071=max_temp
