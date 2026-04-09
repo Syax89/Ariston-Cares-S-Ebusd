@@ -82,6 +82,7 @@ r,aris,bus_address_reply,Bus Scan Reply / Cast Slave Address,,fe,203b,,slave_add
 b,aris,settings_change_counter,Settings Change Counter,37,fe,2010,d140,counter,s,UIN,,,,,,,
 # 0c19 does NOT appear in any 37/fe/2010 broadcast on this Ariston model; all reference CSVs map it as a READ poll on 3c/2000. The broadcast row was producing only zero values. Switched to read poll to match forum/ysard/wrongisthenewright evidence.
 # r,aris,heating_flame,Heating In Progress,37,fe,2010,0c19,,s,IGN:2,,,,active,s,UCH
+b,aris,heating_flame,Heating In Progress,37,fe,2010,0c19,,s,onoff,,,
 r,aris,heating_flame,Heating In Progress,,3c,2000,0c19,,s,IGN:1,,,,active,s,onoff,,,
 b,aris,heat_request_status_1,Heat Request Status 1,37,fe,2010,0191,z1,s,BCD:2,0=off;1=on,,,_remaining,s,IGN:9,,,,
 # manual anchors for the active high-temp z1 installation: 0081=high_temp, c079=thermoreg_type, 6a71=slope, 6471=offset, c279=room_infl, 6071=max_temp
