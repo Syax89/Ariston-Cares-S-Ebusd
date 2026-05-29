@@ -1,103 +1,63 @@
-# Ariston Cares S eBUS
+# Ariston Cares S — eBUS BridgeNet Configuration
 
-This repository is used to reverse-engineer the eBUS protocol of an Ariston Cares S boiler and build a usable `ebusd` configuration.
+Decode the eBUS BridgeNet protocol of Ariston Cares S (and compatible) boilers.
 
-The goal is simple:
+This repository provides a complete [ebusd](https://github.com/john30/ebusd) configuration for reading live boiler data via MQTT into Home Assistant — temperatures, setpoints, operating modes, diagnostics, and maintenance counters. Zone 2–6 registers are documented but commented (single-zone thermostat only).
 
-- identify as many registers and bundles as possible
-- give them names that match real behavior on the bus
-- keep names conservative when the evidence is weak
-- document what is confirmed and what is still uncertain
-
-## Main Files
-
-- `aris-development.csv`
-  Current working `ebusd` config.
-
-- `_templates.csv`
-  Shared templates used by the config.
-
-- `REGISTERS.md`
-  Short register map with confidence notes and protocol observations.
-
-- `Dump/`
-  Packet captures used as ground truth.
-
-- `json/`
-  Generated reports, snapshots, and analysis outputs.
-
-- `tools/`
-  Small scripts used to parse dumps, compare captures, extract MQTT snapshots, and audit the CSV.
-
-## What We Are Doing
-
-We take real eBUS traffic and try to answer these questions:
-
-- which register or bundle is this?
-- is the current CSV name correct?
-- does the value format make sense?
-- is the same interpretation stable across multiple captures?
-
-When a name is well supported, it is kept in the CSV.
-When a name is only partly supported, it stays conservative.
-When the meaning is still unclear, it stays documented as unresolved instead of being guessed.
-
-## Workflow
-
-The usual workflow in this repo is:
-
-1. parse captures from `Dump/`
-2. compare repeated frames and state changes
-3. check the same register against logs, MQTT snapshots, and reference CSVs
-4. update `aris-development.csv` only when the naming is justified
-5. record open questions in the documentation or backlog files
-
-## Useful Commands
-
-Parse a dump against the current CSV:
+## Quick Start
 
 ```bash
-python3 tools/parse_dump.py "Dump/dump3.pcapng" --csv aris-development.csv --summary-only
-```
-
-Compare two dumps:
-
-```bash
-python3 tools/compare_dumps.py "Dump/dump2.pcapng" "Dump/dump3.pcapng" --csv aris-development.csv
-```
-
-Extract a Home Assistant MQTT snapshot:
-
-```bash
-python3 tools/extract_mqtt_snapshot.py "mqtt-....json"
-```
-
-Audit the CSV against the captures we already have:
-
-```bash
-python3 tools/audit_csv_against_captures.py
-```
-
-## Using The CSV With ebusd
-
-The active config in this repo is `aris-development.csv`.
-
-If you want to test it with `ebusd`, place `aris-development.csv` and `_templates.csv` in your config path.
-
-Example:
-
-```bash
+# Place the CSV files in your ebusd config path
 ebusd --scanconfig=0 --configpath=/config/Ariston --device=ens:192.168.4.74:9999
 ```
 
-`--scanconfig=0` is recommended so `ebusd` does not prefer generic Ariston definitions over this repository's file.
+`--scanconfig=0` prevents ebusd from preferring generic Ariston definitions over this file.
 
-## Notes
+## What You Get
 
-- The CSV is intentionally conservative.
-- Not every row is fully confirmed yet.
-- Reference CSVs are useful, but local captures always have priority.
-- If a value is still uncertain, it is better to keep a neutral name than a wrong name.
+### 📊 Active sensors (Zone 1, published)
+- **Boiler status**: operating mode, flame state, heating/DHW active
+- **Temperatures**: flow, return, DHW, external, flame target, outdoor
+- **Setpoints**: heating (primary/circuit/DHW), DHW, max heating, eco
+- **Thermoregulation**: max/min water temp, slope, offset, room influence, antifreeze
+- **Diagnostics**: pump modulation, pressure sensor, fan speed, settings counter
+- **Maintenance counters**: burner hours (CH + DHW), pump hours, ignition/fan/diverter cycles, boiler lifetime
+- **Cooling config**: setpoint, temp range, max/min water, slope, offset
+
+### 🗂️ Documented but commented (Zones 2–6)
+Complete register maps for zones 2–6 (`#` commented — not published). Covers day/night temp, thermoregulation curves, cooling params, summer/winter changeover, zone state.
+
+## Protocol Notes
+
+Ariston BridgeNet is a proprietary eBUS variant. The boiler broadcasts register values on PBSB 0x2010 while ebusd polls individual registers on PBSB 0x2000. The CSV uses shared templates from `_templates.csv` for boiler status enums, error codes, and thermoreg types.
+
+## Repository Structure
+
+| File | Purpose |
+|---|---|
+| `aris-development.csv` | Active ebusd configuration (dev branch) |
+| `aris.csv` | Stable release version |
+| `_templates.csv` | Shared field type templates (onoff, boiler_status, error_code, etc.) |
+| `mqtt-hassio.cfg` | Home Assistant MQTT auto-discovery config |
+| `tools/` | Analysis scripts: | | |
+| `validate_ebusd_csv.py` | CSV format validator | |
+| `audit_csv_against_captures.py` | Cross-check CSV against pcap dumps | |
+| `build_evidence_matrix.py` | Build confidence matrix from logs + MQTT | |
+| `parse_dump.py` | Parse raw eBUS packet captures | |
+| `compare_dumps.py` | Compare register values across captures | |
+| … | Many more reverse-engineering tools | |
+| `json/` | Generated reports and analysis outputs |
+| `logs/` | Runtime ebusd log archives |
+
+## Files You Need
+
+Only `aris-development.csv` and `_templates.csv` are required for ebusd. Add `mqtt-hassio.cfg` for automatic Home Assistant entity discovery.
+
+## Validation
+
+```bash
+python3 tools/validate_ebusd_csv.py aris-development.csv
+```
 
 ## License
 

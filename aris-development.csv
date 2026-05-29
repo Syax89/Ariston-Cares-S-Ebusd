@@ -1,54 +1,89 @@
 # Ariston Cares S - ebusd CSV
+# Active lines (no #) = decoded and published to MQTT
+# Commented lines (#) = known registers, documented but NOT published (zones 2-6 not active)
+
+# ==============================================================================
+# BOILER STATUS & MODE
+# ==============================================================================
 b,aris,boiler_status,Boiler Status,37,fe,2010,c04b,mode,s,boiler_status,,,,,,
+b,aris,heating_status,Heating Status,37,fe,2020,0120,heating,s,onoff,,,,_d02a,s,IGN:2,,,,heating_status_code,s,UCH,,,,_d12a,s,IGN:2,,,,dhw_aux_code,s,UCH,,,
+b,aris,dhw_status,DHW Status,37,fe,2020,0220,status,s,onoff,,,,_0b20,s,IGN:2,,,,thermal_cleansing,s,onoff,,,,_0f20,s,IGN:2,,,,celectic_status,s,onoff,,,
+b,aris,heating_status_bundle_short,Heating Status Bundle Short,37,fe,200f,0120,heating,s,onoff,,,,_0f23,s,IGN:2,,,,cooling,s,UIN,,,,_1023,s,IGN:2,,,,available,s,UIN,,,,
+b,aris,heating_status_registers,Heating Status Register IDs,03,fe,2000,0120,cooling,s,HEX:2,,,,available,s,HEX:2,,,,
+b,aris,boost_time,Boost Time,37,fe,2020,0520,status,s,onoff,,,,_602b,s,IGN:2,,,,time,s,UIN,,s,,_7426,s,IGN:2,,,,offset,s,SIN,10,°C,
+b,aris,seasonal_preamble,Seasonal Changeover Preamble,37,fe,2020,da27,lead_flag_a,s,UCH,,,,_db27,s,IGN:2,,,,lead_flag_b,s,UCH,,,
+r,aris,flame_active,Flame Active,,3c,2000,0e11,ign,s,IGN:1,,,,active,s,onoff,,,
+r,aris,heating_flame,Heating In Progress,,3c,2000,0c19,,s,IGN:1,,,,active,s,onoff,,,
+
+# Boiler diagnostics and counters (direct read)
+r,aris,boiler_pressure,Boiler Circuit Pressure,,3c,2000,7547,ign,s,IGN:1,,,,boiler_pressure,,UCH,10,bar
+r,aris,flame_power_kw,Flame Power kW,,3c,2000,6847,,s,IGN:1,,,,,,UIN,10,kW
+r,aris,nominal_power,Nominal Power,,3c,2000,6829,ign,s,IGN:1,,,,,s,UCH,,kW
+r,aris,flame_lift_offs,Flame Lift Offs,,3c,2000,46d1,ign,s,IGN:1,,,,,,UIN
+r,aris,hours_burner_on_CH,Hours Burner On CH,,3c,2000,4bd1,ign,s,IGN:1,,,,,,UIN,,hours
+r,aris,hours_burner_on_DHW,Hours Burner On DHW,,3c,2000,4cd1,ign,s,IGN:1,,,,,,UIN,,hours
+r,aris,boiler_life_time,Boiler Life Time,,3c,2000,50d9,ign,s,IGN:1,,,,,,UIN,,min
+r,aris,ignition_cycles,Ignition Cycles,,3c,2000,42d8,ign,s,IGN:1,,,,,,UIN
+r,aris,diverter_cycles,Diverter Valve Cycles,,3c,2000,40d2,ign,s,IGN:1,,,,,,UIN
+r,aris,hours_pump_on,Pump Hours On,,3c,2000,42d2,ign,s,IGN:1,,,,,,UIN,,hours
+r,aris,circulation_cycles,Circulation Cycles,,3c,2000,44d2,ign,s,IGN:1,,,,,,UIN
+r,aris,fan_cycles,Fan Cycles,,3c,2000,4cd2,ign,s,IGN:1,,,,,,UIN
+r,aris,boiler_current_modulation,Boiler Current Gas Modulation,,3c,2000,c404,ign,s,IGN:1,,,,,,UCH,,pct
+r,aris,pump_current_modulation,Pump Current Modulation,,3c,2000,c300,ign,s,IGN:1,,,,,,UIN,,pct
+r,aris,fan_speed,Boiler Fan Speed,,3c,2000,4013,,s,IGN:1,,,,,,UIN,,rpm
+r,aris,diverter_valve,Boiler Diverter Valve,,3c,2000,c012,ign,s,IGN:1,,,,,,BCD,0=dhw;1=heating
+r,aris,boiler_type,Boiler Type,,3c,2000,c428,ign,s,IGN:1,,,,,,UCH,0=mixed_instant;1=ext_tank;6=storage
+
+# ==============================================================================
+# TEMPERATURES & FLOW (broadcast 2010)
+# ==============================================================================
+b,aris,heating_setpoint,Heating Setpoint,37,fe,2010,6047,primary,s,UIN,10,°C,,circuit_companion,s,IGN:3,,,,circuit,s,UIN,10,°C,,dhw_ref_companion,s,IGN:3,,,,dhw,s,UIN,10,°C,
+b,aris,max_heating_setpoint,Max Heating Setpoint,37,fe,2010,6397,setpoint,s,UIN,10,°C,,,,,,
+b,aris,flame_target,Flame Target Temp,37,fe,2010,d742,target,s,UIN,10,°C,,,,,,
+b,aris,flow_target,Flow Target Temp,37,fe,2010,de,target,s,UCH,1,°C,,,,,,
+b,aris,ext_temp,External Temp,37,fe,2010,7310,temp,s,SIN,10,,32767=not_installed,,,,,,
+b,aris,outdoor_temp,Outdoor Temperature,37,fe,2010,7647,temp,s,SIN,10,,32767=not_installed
+b,aris,fixed_setpoint_6d96,Fixed Setpoint 6D96,37,fe,2010,6d96,val,s,SIN,10,°C,,,,,,
+
+# ==============================================================================
+# DHW (Domestic Hot Water)
+# ==============================================================================
 b,aris,dhw_current_target_temp,DHW Current Target Temp,37,fe,2010,6147,target,s,U3N,10,°C,,_d746,s,IGN:2,,,,comfort,s,BCD:2,0=off;2=on,
 b,aris,dhw_setpoint,DHW Setpoint,37,fe,2020,6126,val,s,SIN,10,°C,
 b,aris,dhw_economy_temp,DHW Economy Temp,37,fe,2020,6226,val,s,SIN,10,°C,
 b,aris,dhw_max_temp,DHW Max Temp,37,fe,2020,7d26,val,s,SIN,10,°C,
 b,aris,dhw_eco_setpoint,DHW Eco Setpoint,37,fe,2010,6697,val,s,UIN,10,°C,,,,,,
 r,aris,dhw_comfort_temp,DHW Comfort Temp,,18,2000,6126,val,s,SIN,10,°C,
-r,aris,flame_power_kw,Flame Power kW,,3c,2000,6847,,s,IGN:1,,,,,,UIN,10,kW
-r,aris,nominal_power,Nominal Power,,3c,2000,6829,ign,s,IGN:1,,,,,s,UCH,,kW
-b,aris,heating_setpoint,Heating Setpoint,37,fe,2010,6047,primary,s,UIN,10,°C,,circuit_companion,s,IGN:3,,,,circuit,s,UIN,10,°C,,dhw_ref_companion,s,IGN:3,,,,dhw,s,UIN,10,°C,
-b,aris,flame_target,Flame Target Temp,37,fe,2010,d742,target,s,UIN,10,°C,,,,,,
-b,aris,max_heating_setpoint,Max Heating Setpoint,37,fe,2010,6397,setpoint,s,UIN,10,°C,,,,,,
-b,aris,flow_target,Flow Target Temp,37,fe,2010,de,target,s,UCH,1,°C,,,,,,
-b,aris,ext_temp,External Temp,37,fe,2010,7310,temp,s,SIN,10,,32767=not_installed,,,,,,
-b,aris,fixed_setpoint_6d96,Fixed Setpoint 6D96,37,fe,2010,6d96,val,s,SIN,10,°C,,,,,,
+b,aris,dhw_status_word,DHW Status Word,37,fe,2020,712b,raw,s,HEX:2,,,,_c028,s,IGN:2,,,,comfort,s,dhw_comfort_mode,,,,_ca2a,s,IGN:2,,,,dhw_aux_code,s,UCH,,,
+b,aris,dhw_tail_word,DHW Tail Word,37,fe,2020,7e2b,payload_hex,s,HEX:2,,,
+
+# ==============================================================================
+# ZONE 1 HEATING (ACTIVE - single zone thermostat)
+# ==============================================================================
+b,aris,z1_room_temp,Z1 Room Temp,70,fe,2010,7118,temp,s,UIN,10,°C,
 b,aris,z1_setpoint_temp,Z1 Current Setpoint Temp,37,fe,2010,c194,_header_status,s,IGN:2,,,,_6996,s,IGN:2,,,,val,s,SIN,10,°C,,_zero_pad,s,IGN:1,,,,_c294,s,IGN:2,,,,_tail_status,s,IGN:2,
 w,aris,z1_setpoint_temp,Z1 Current Setpoint Temp,70,fe,2020,6271,val,s,SIN,10,°C,
-b,aris,runtime_c494,Runtime C494 Bundle,37,fe,2010,c494,header_status,s,IGN:2,,,,_6c96,s,IGN:2,,,,val,s,SIN,10,°C,,zero_pad,s,IGN:1,,,,_c594,s,IGN:2,,,,tail_status,s,IGN:2,
-b,aris,outdoor_temp,Outdoor Temperature,37,fe,2010,7647,temp,s,SIN,10,,32767=not_installed
-b,aris,runtime_da46,Runtime DA46,37,fe,2010,da46,val,s,UIN,150=UKN,,
-b,aris,runtime_dc46,Runtime DC46,37,fe,2010,dc46,val,s,UIN,75=UKN,,
-b,aris,z1_room_temp,Z1 Room Temp,70,fe,2010,7118,temp,s,UIN,10,°C,
 b,aris,z1_fixed_temp,Z1 Fixed Temp,37,fe,2020,6571,fixed,s,SIN,10,°C,,_6671,s,IGN:2,,,,snap2,s,UIN,10,°C,,_6771,s,IGN:2,,,,snap3,s,UIN,10,°C,
 b,aris,z1_day_temp,Z1 Day Temp,37,fe,200e,6271,setpoint,s,SIN,10,°C,
 b,aris,z1_night_temp,Z1 Night Temp,37,fe,200e,6371,night_temp,s,SIN,10,°C,
 b,aris,z1_bundle,Z1 Antifreeze/Day/Night Bundle,37,fe,200f,6426,antifreeze,s,SIN,10,°C,,_6271_prefix,s,IGN:3,,,,day,s,SIN,10,°C,,_6371_prefix,s,IGN:3,,,,night,s,SIN,10,°C,
 b,aris,z1_request,Z1 Heat Request Register,70,fe,2000,c6,val,s,HEX:1,,,,
 b,aris,z1_heat_request_mode,Z1 Heat Request Mode,37,fe,200f,c679,mode,s,heat_request_mode,,,
-b,aris,heating_status_registers,Heating Status Register IDs,03,fe,2000,0120,cooling,s,HEX:2,,,,available,s,HEX:2,,,,
-r,aris,flame_active,Flame Active,,3c,2000,0e11,ign,s,IGN:1,,,,active,s,onoff,,,
-r,aris,z1_bundle_registers,Z1 Bundle Register IDs,70,fe,2000,6426,day,s,HEX:2,,,,night,s,HEX:2,,,,
-r,aris,z1_day_temp,Z1 Day Temp,,18,2000,6271,,s,IGN:1,,,,,,SIN,10,°C
-r,aris,z1_night_temp,Z1 Night Temp,,18,2000,6371,,s,IGN:1,,,,,,SIN,10,°C
-r,aris,antifreeze_temp,Antifreeze Temp,,18,2000,6426,,s,IGN:1,,,,,,SIN,10,°C
-b,aris,heating_status_bundle_short,Heating Status Bundle Short,37,fe,200f,0120,heating,s,onoff,,,,_0f23,s,IGN:2,,,,cooling,s,UIN,,,,_1023,s,IGN:2,,,,available,s,UIN,,,,
-b,aris,bus_control,System Bus Control,,fe,2038,,selector,s,HEX:1,,,,data,s,HEX:3,,,,
-r,aris,bus_address_discovery_request,BUS Address Discovery Request,00,fe,203a,,addr,m,HEX:1,,,
-r,aris,bus_address_reply,Bus Scan Reply / Cast Slave Address,,fe,203b,,slave_addr,m,HEX,,,
-b,aris,settings_change_counter,Settings Change Counter,37,fe,2010,d140,counter,s,UIN,,,,,,,
-b,aris,heat_request_status_extra,Heat Request Status Extra,37,fe,2010,0591,req,s,onoff,,,
-b,aris,runtime_status_extra,Runtime Status Extra,37,fe,2010,d346,mod,s,UCH,,,
-b,aris,dhw_status_extra,DHW Status Extra,37,fe,2010,d994,mod,s,UCH,,,
-b,aris,heating_status_extra,Heating Status Extra,37,fe,2010,dd94,mod,s,UCH,,,
 b,aris,z1_heat_request_mode_bc,Z1 Heat Request Mode BC,37,fe,2020,c679,mode,s,UCH,,,
-r,aris,heating_flame,Heating In Progress,,3c,2000,0c19,,s,IGN:1,,,,active,s,onoff,,,
 b,aris,heat_request_status_1,Heat Request Status 1,37,fe,2010,0191,z1,s,BCD:2,0=off;1=on,,,_remaining,s,IGN:9,,,,
+b,aris,heat_request_status_extra,Heat Request Status Extra,37,fe,2010,0591,req,s,onoff,,,
+
+# Z1 Thermoregulation
 b,aris,z1_thermoreg_offset,Z1 Thermoreg Offset,37,fe,2020,6071,max,s,UIN,10,°C,,_6171,s,IGN:2,,,,min,s,UIN,10,°C,,_6471,s,IGN:2,,,,offset,s,SIN,10,°C,
 b,aris,z1_thermoreg_slope,Z1 Thermoreg Slope,37,fe,2020,6971,curve1,s,UIN,10,°C,,_6a71,s,IGN:2,,,,slope,s,UIN,100,,,_6b71,s,IGN:2,,,,curve2,s,UIN,10,°C,
 b,aris,z1_room_influence,Z1 Thermoreg Bridge Head,37,fe,2020,6c71,base,s,UIN,10,°C,,_c079,s,IGN:2,,,,type,s,thermoreg_type,,,,_c279,s,IGN:2,,,,influence,s,UCH,,,
 b,aris,z1_antifreeze_triplet,Z1 Antifreeze Triplet,37,fe,200e,6426,antifreeze,s,UIN,10,°C,,min,s,UIN,10,°C,,max,s,UIN,10,°C,
+
+# Z1 Settings (read-only config)
+r,aris,z1_day_temp,Z1 Day Temp,,18,2000,6271,,s,IGN:1,,,,,,SIN,10,°C
+r,aris,z1_night_temp,Z1 Night Temp,,18,2000,6371,,s,IGN:1,,,,,,SIN,10,°C
+r,aris,antifreeze_temp,Antifreeze Temp,,18,2000,6426,,s,IGN:1,,,,,,SIN,10,°C
+r,aris,z1_bundle_registers,Z1 Bundle Register IDs,70,fe,2000,6426,day,s,HEX:2,,,,night,s,HEX:2,,,,
 r,aris,z1_heat_temp_range,Z1 Heat Temp Range,,18,2000,0081,range,s,heat_temp_range,,,
 r,aris,z1_cool_temp_range,Z1 Cool Temp Range,,18,2000,0681,range,s,cool_temp_range,,,
 r,aris,z1_summer_winter_auto_switch,Z1 Summer Winter Auto Switch,,18,2000,0781,enabled,s,onoff,,,
@@ -61,105 +96,240 @@ r,aris,z1_cool_water_max_temp,Z1 Cool Water Max Temp,,18,2000,7171,max_temp,s,SI
 r,aris,z1_cool_water_min_temp,Z1 Cool Water Min Temp,,18,2000,7371,min_temp,s,SIN,10,°C,
 r,aris,z1_cool_offset,Z1 Cool Offset,,18,2000,7571,offset,s,SIN,10,°C,
 r,aris,z1_cool_slope,Z1 Cool Slope,,18,2000,7671,slope,s,UIN,100,,
-b,aris,runtime_de46,Runtime DE46,37,fe,2010,de46,val,s,UIN,75=UKN,,
-b,aris,heating_status,Heating Status,37,fe,2020,0120,heating,s,onoff,,,,_d02a,s,IGN:2,,,,heating_status_code,s,UCH,,,,_d12a,s,IGN:2,,,,dhw_aux_code,s,UCH,,,
-b,aris,dhw_status,DHW Status,37,fe,2020,0220,status,s,onoff,,,,_0b20,s,IGN:2,,,,thermal_cleansing,s,onoff,,,,_0f20,s,IGN:2,,,,celectic_status,s,onoff,,,
-b,aris,boost_time,Boost Time,37,fe,2020,0520,status,s,onoff,,,,_602b,s,IGN:2,,,,time,s,UIN,,s,,_7426,s,IGN:2,,,,offset,s,SIN,10,°C,
-b,aris,dhw_status_word,DHW Status Word,37,fe,2020,712b,raw,s,HEX:2,,,,_c028,s,IGN:2,,,,comfort,s,dhw_comfort_mode,,,,_ca2a,s,IGN:2,,,,dhw_aux_code,s,UCH,,,
-b,aris,dhw_tail_word,DHW Tail Word,37,fe,2020,7e2b,payload_hex,s,HEX:2,,,
-b,aris,seasonal_preamble,Seasonal Changeover Preamble,37,fe,2020,da27,lead_flag_a,s,UCH,,,,_db27,s,IGN:2,,,,lead_flag_b,s,UCH,,,
-r,aris,z1_zone_enabled_281,Z1 Zone Enabled,,18,2000,0281,enabled,s,onoff,,,
-r,aris,z1_zone_active_881,Z1 Zone Active,,18,2000,0881,active,s,onoff,,,
 r,aris,z1_cool_water_max_temp_2,Z1 Cool Water Max Temp 2,,18,2000,7271,max_temp,s,SIN,10,°C,
 r,aris,z1_cool_water_min_temp_2,Z1 Cool Water Min Temp 2,,18,2000,7471,min_temp,s,SIN,10,°C,
 r,aris,z1_thermoreg_code,Z1 Thermoreg Code,,18,2000,c979,code,s,UCH,,,
-# Commented rows (kept for reference)
+r,aris,z1_zone_enabled_281,Z1 Zone Enabled,,18,2000,0281,enabled,s,onoff,,,
+r,aris,z1_zone_active_881,Z1 Zone Active,,18,2000,0881,active,s,onoff,,,
+r,aris,z1_setpoint_temp,Z1 Current Setpoint Temp,,18,2000,6996,val,s,SIN,10,°C,
+
+# ==============================================================================
+# RUNTIME & DIAGNOSTIC (broadcast 2010 - internal boiler counters)
+# ==============================================================================
+b,aris,runtime_c494,Runtime C494 Bundle,37,fe,2010,c494,header_status,s,IGN:2,,,,_6c96,s,IGN:2,,,,val,s,SIN,10,°C,,zero_pad,s,IGN:1,,,,_c594,s,IGN:2,,,,tail_status,s,IGN:2,
+b,aris,runtime_da46,Runtime DA46,37,fe,2010,da46,val,s,UIN,150=UKN,,
+b,aris,runtime_dc46,Runtime DC46,37,fe,2010,dc46,val,s,UIN,75=UKN,,
+b,aris,runtime_de46,Runtime DE46,37,fe,2010,de46,val,s,UIN,75=UKN,,
+b,aris,runtime_status_extra,Runtime Status Extra,37,fe,2010,d346,mod,s,UCH,,,
+b,aris,dhw_status_extra,DHW Status Extra,37,fe,2010,d994,mod,s,UCH,,,
+b,aris,heating_status_extra,Heating Status Extra,37,fe,2010,dd94,mod,s,UCH,,,
+b,aris,settings_change_counter,Settings Change Counter,37,fe,2010,d140,counter,s,UIN,,,,,,,
+
+# ==============================================================================
+# BUS CONTROL
+# ==============================================================================
+b,aris,bus_control,System Bus Control,,fe,2038,,selector,s,HEX:1,,,,data,s,HEX:3,,,,
+r,aris,bus_address_discovery_request,BUS Address Discovery Request,00,fe,203a,,addr,m,HEX:1,,,
+r,aris,bus_address_reply,Bus Scan Reply / Cast Slave Address,,fe,203b,,slave_addr,m,HEX,,,
+
+# ==============================================================================
+# ZONE 2 (COMMENTED - documented but not active on Z1-only installation)
+# Heating temp, thermoreg, cooling, summer/winter, zone enabled/active
+# ==============================================================================
+# --- Z2: Basic temps ---
+# r,aris,z2_day_temp,Z2 Day Temp,,18,2000,6272,,s,IGN:1,,,,,,SIN,10,°C
+# b,aris,z2_day_temp,Z2 Day Temp,37,fe,200e,6272,setpoint,s,SIN,10,°C
+# r,aris,z2_night_temp,Z2 Night Temp,,18,2000,6372,,s,IGN:1,,,,,,SIN,10,°C
+# b,aris,z2_night_temp,Z2 Night Temp,37,fe,200e,6372,night_temp,s,SIN,10,°C
+# r,aris,z2_heat_setpoint_temp_set,Z2 Heat Set Temp,,18,2000,6572,,s,IGN:1,,,,,,SIN,10,°C
+# b,aris,z2_fixed_temp,Z2 Fixed Temp,37,fe,2020,6572,fixed,s,SIN,10,°C,,,s,IGN:2,,,,snap2,s,UIN,10,°C,,,s,IGN:2,,,,snap3,s,UIN,10,°C,
+# r,aris,z2_room_temp,Z2 Room Temp,,18,2000,7218,,s,IGN:1,,,,,,SIN,10,°C
+# --- Z2: Thermoregulation ---
+# r,aris,z2_heat_therm_type_selection,Z2 Heating Thermoreg Type,,18,2000,c07a,,s,IGN:1,,,,,,BCD,0=fixed;1=basic_on_off;2=outdoor;3=room;4=outdoor_room
+# b,aris,z2_room_influence,Z2 Thermoreg Bridge Head,37,fe,2020,6c72,base,s,UIN,10,°C,,_c07a,s,IGN:2,,,,type,s,thermoreg_type,,,,_c27a,s,IGN:2,,,,influence,s,UCH,,,
+# r,aris,z2_heat_room_temp_infl,Z2 Heating Room Temp Influence,,18,2000,c27a,,s,IGN:1,,,,,,UCH
+# r,aris,z2_heat_water_max_temp,Z2 Heating Max Water Temp,,18,2000,6072,,s,IGN:1,,,,,,SIN,10,°C
+# b,aris,z2_thermoreg_offset,Z2 Thermoreg Offset,37,fe,2020,6072,max,s,UIN,10,°C,,_6172,s,IGN:2,,,,min,s,UIN,10,°C,,_6472,s,IGN:2,,,,offset,s,SIN,10,°C,
+# r,aris,z2_heat_water_min_temp,Z2 Heating Min Water Temp,,18,2000,6172,,s,IGN:1,,,,,,SIN,10,°C
+# r,aris,z2_heat_slope,Z2 Heat Thermoreg Slope,,18,2000,6a72,,s,IGN:1,,,,,,UIN,100
+# b,aris,z2_thermoreg_slope,Z2 Thermoreg Slope,37,fe,2020,6972,curve1,s,UIN,10,°C,,_6a72,s,IGN:2,,,,slope,s,UIN,100,,,_6b72,s,IGN:2,,,,curve2,s,UIN,10,°C,
+# r,aris,z2_heat_offset,Z2 Heat Thermoreg Offset,,18,2000,6472,,s,IGN:1,,,,,,SCH,10
+# r,aris,z2_heat_request_mode,Z2 Heating Request Mode,,18,2000,ce7a,,s,IGN:1,,,,,,BCD,0=standard;1=no_time;2=forced
+# r,aris,z2_heat_temp_range,Z2 Heat Temp Range,,18,2000,0082,range,s,heat_temp_range,,,
+# --- Z2: Cooling ---
+# r,aris,z2_cool_setpoint,Z2 Cool Setpoint,,18,2000,7072,setpoint,s,SIN,10,°C,
+# r,aris,z2_cool_temp_range,Z2 Cool Temp Range,,18,2000,0682,range,s,cool_temp_range,,,
+# r,aris,z2_cool_water_max_temp,Z2 Cool Water Max Temp,,18,2000,7172,max_temp,s,SIN,10,°C,
+# r,aris,z2_cool_water_min_temp,Z2 Cool Water Min Temp,,18,2000,7372,min_temp,s,SIN,10,°C,
+# r,aris,z2_cool_offset,Z2 Cool Offset,,18,2000,7572,offset,s,SIN,10,°C,
+# r,aris,z2_cool_slope,Z2 Cool Slope,,18,2000,7672,slope,s,UIN,100,,
+# --- Z2: Summer/Winter ---
+# r,aris,z2_summer_winter_auto_switch,Z2 Summer Winter Auto Switch,,18,2000,0782,enabled,s,onoff,,,
+# r,aris,z2_summer_winter_temp_threshold,Z2 Summer Winter Temp Threshold,,18,2000,7972,threshold,s,SIN,10,°C,
+# r,aris,z2_summer_winter_switch_delay,Z2 Summer Winter Switch Delay,,18,2000,7a72,delay,s,UIN,,min,
+# --- Z2: Zone state ---
+# r,aris,z2_zone_enabled,Z2 Zone Enabled,,18,2000,0282,enabled,s,onoff,,,
+# r,aris,z2_zone_active,Z2 Zone Active,,18,2000,0882,active,s,onoff,,,
+# r,aris,z2_thermoreg_code,Z2 Thermoreg Code,,18,2000,c97a,code,s,UCH,,,
+
+# ==============================================================================
+# ZONE 3 (COMMENTED)
+# ==============================================================================
+# --- Z3: Basic temps ---
+# r,aris,z3_day_temp,Z3 Day Temp,,18,2000,6273,,s,IGN:1,,,,,,SIN,10,°C
+# b,aris,z3_day_temp,Z3 Day Temp,37,fe,200e,6273,setpoint,s,SIN,10,°C
+# r,aris,z3_night_temp,Z3 Night Temp,,18,2000,6373,,s,IGN:1,,,,,,SIN,10,°C
+# b,aris,z3_night_temp,Z3 Night Temp,37,fe,200e,6373,night_temp,s,SIN,10,°C
+# r,aris,z3_heat_setpoint_temp_set,Z3 Heat Set Temp,,18,2000,6573,,s,IGN:1,,,,,,SIN,10,°C
+# b,aris,z3_fixed_temp,Z3 Fixed Temp,37,fe,2020,6573,fixed,s,SIN,10,°C,,,s,IGN:2,,,,snap2,s,UIN,10,°C,,,s,IGN:2,,,,snap3,s,UIN,10,°C,
+# r,aris,z3_room_temp,Z3 Room Temp,,18,2000,7318,,s,IGN:1,,,,,,SIN,10,°C
+# --- Z3: Thermoregulation ---
+# r,aris,z3_heat_therm_type_selection,Z3 Heating Thermoreg Type,,18,2000,c07b,,s,IGN:1,,,,,,BCD,0=fixed;1=basic_on_off;2=outdoor;3=room;4=outdoor_room
+# b,aris,z3_room_influence,Z3 Thermoreg Bridge Head,37,fe,2020,6c73,base,s,UIN,10,°C,,_c07b,s,IGN:2,,,,type,s,thermoreg_type,,,,_c27b,s,IGN:2,,,,influence,s,UCH,,,
+# r,aris,z3_heat_room_temp_infl,Z3 Heating Room Temp Influence,,18,2000,c27b,,s,IGN:1,,,,,,UCH
+# r,aris,z3_heat_water_max_temp,Z3 Heating Max Water Temp,,18,2000,6073,,s,IGN:1,,,,,,SIN,10,°C
+# b,aris,z3_thermoreg_offset,Z3 Thermoreg Offset,37,fe,2020,6073,max,s,UIN,10,°C,,_6173,s,IGN:2,,,,min,s,UIN,10,°C,,_6473,s,IGN:2,,,,offset,s,SIN,10,°C,
+# r,aris,z3_heat_water_min_temp,Z3 Heating Min Water Temp,,18,2000,6173,,s,IGN:1,,,,,,SIN,10,°C
+# r,aris,z3_heat_slope,Z3 Heat Thermoreg Slope,,18,2000,6a73,,s,IGN:1,,,,,,UIN,100
+# b,aris,z3_thermoreg_slope,Z3 Thermoreg Slope,37,fe,2020,6973,curve1,s,UIN,10,°C,,_6a73,s,IGN:2,,,,slope,s,UIN,100,,,_6b73,s,IGN:2,,,,curve2,s,UIN,10,°C,
+# r,aris,z3_heat_offset,Z3 Heat Thermoreg Offset,,18,2000,6473,,s,IGN:1,,,,,,SCH,10
+# r,aris,z3_heat_request_mode,Z3 Heating Request Mode,,18,2000,ce7b,,s,IGN:1,,,,,,BCD,0=standard;1=no_time;2=forced
+# r,aris,z3_heat_temp_range,Z3 Heat Temp Range,,18,2000,0083,range,s,heat_temp_range,,,
+# --- Z3: Cooling ---
+# r,aris,z3_cool_setpoint,Z3 Cool Setpoint,,18,2000,7073,setpoint,s,SIN,10,°C,
+# r,aris,z3_cool_temp_range,Z3 Cool Temp Range,,18,2000,0683,range,s,cool_temp_range,,,
+# r,aris,z3_cool_water_max_temp,Z3 Cool Water Max Temp,,18,2000,7173,max_temp,s,SIN,10,°C,
+# r,aris,z3_cool_water_min_temp,Z3 Cool Water Min Temp,,18,2000,7373,min_temp,s,SIN,10,°C,
+# r,aris,z3_cool_offset,Z3 Cool Offset,,18,2000,7573,offset,s,SIN,10,°C,
+# r,aris,z3_cool_slope,Z3 Cool Slope,,18,2000,7673,slope,s,UIN,100,,
+# --- Z3: Summer/Winter ---
+# r,aris,z3_summer_winter_auto_switch,Z3 Summer Winter Auto Switch,,18,2000,0783,enabled,s,onoff,,,
+# r,aris,z3_summer_winter_temp_threshold,Z3 Summer Winter Temp Threshold,,18,2000,7973,threshold,s,SIN,10,°C,
+# r,aris,z3_summer_winter_switch_delay,Z3 Summer Winter Switch Delay,,18,2000,7a73,delay,s,UIN,,min,
+# --- Z3: Zone state ---
+# r,aris,z3_zone_enabled,Z3 Zone Enabled,,18,2000,0283,enabled,s,onoff,,,
+# r,aris,z3_zone_active,Z3 Zone Active,,18,2000,0883,active,s,onoff,,,
+# r,aris,z3_thermoreg_code,Z3 Thermoreg Code,,18,2000,c97b,code,s,UCH,,,
+
+# ==============================================================================
+# ZONE 4 (COMMENTED)
+# ==============================================================================
+# --- Z4: Basic temps ---
+# r,aris,z4_day_temp,Z4 Day Temp,,18,2000,6274,,s,IGN:1,,,,,,SIN,10,°C
+# b,aris,z4_day_temp,Z4 Day Temp,37,fe,200e,6274,setpoint,s,SIN,10,°C
+# r,aris,z4_night_temp,Z4 Night Temp,,18,2000,6374,,s,IGN:1,,,,,,SIN,10,°C
+# b,aris,z4_night_temp,Z4 Night Temp,37,fe,200e,6374,night_temp,s,SIN,10,°C
+# r,aris,z4_heat_setpoint_temp_set,Z4 Heat Set Temp,,18,2000,6574,,s,IGN:1,,,,,,SIN,10,°C
+# b,aris,z4_fixed_temp,Z4 Fixed Temp,37,fe,2020,6574,fixed,s,SIN,10,°C,,,s,IGN:2,,,,snap2,s,UIN,10,°C,,,s,IGN:2,,,,snap3,s,UIN,10,°C,
+# r,aris,z4_room_temp,Z4 Room Temp,,18,2000,7418,,s,IGN:1,,,,,,SIN,10,°C
+# --- Z4: Thermoregulation ---
+# r,aris,z4_heat_therm_type_selection,Z4 Heating Thermoreg Type,,18,2000,c07c,,s,IGN:1,,,,,,BCD,0=fixed;1=basic_on_off;2=outdoor;3=room;4=outdoor_room
+# b,aris,z4_room_influence,Z4 Thermoreg Bridge Head,37,fe,2020,6c74,base,s,UIN,10,°C,,_c07c,s,IGN:2,,,,type,s,thermoreg_type,,,,_c27c,s,IGN:2,,,,influence,s,UCH,,,
+# r,aris,z4_heat_room_temp_infl,Z4 Heating Room Temp Influence,,18,2000,c27c,,s,IGN:1,,,,,,UCH
+# r,aris,z4_heat_water_max_temp,Z4 Heating Max Water Temp,,18,2000,6074,,s,IGN:1,,,,,,SIN,10,°C
+# b,aris,z4_thermoreg_offset,Z4 Thermoreg Offset,37,fe,2020,6074,max,s,UIN,10,°C,,_6174,s,IGN:2,,,,min,s,UIN,10,°C,,_6474,s,IGN:2,,,,offset,s,SIN,10,°C,
+# r,aris,z4_heat_water_min_temp,Z4 Heating Min Water Temp,,18,2000,6174,,s,IGN:1,,,,,,SIN,10,°C
+# r,aris,z4_heat_slope,Z4 Heat Thermoreg Slope,,18,2000,6a74,,s,IGN:1,,,,,,UIN,100
+# b,aris,z4_thermoreg_slope,Z4 Thermoreg Slope,37,fe,2020,6974,curve1,s,UIN,10,°C,,_6a74,s,IGN:2,,,,slope,s,UIN,100,,,_6b74,s,IGN:2,,,,curve2,s,UIN,10,°C,
+# r,aris,z4_heat_offset,Z4 Heat Thermoreg Offset,,18,2000,6474,,s,IGN:1,,,,,,SCH,10
+# r,aris,z4_heat_request_mode,Z4 Heating Request Mode,,18,2000,ce7c,,s,IGN:1,,,,,,BCD,0=standard;1=no_time;2=forced
+# r,aris,z4_heat_temp_range,Z4 Heat Temp Range,,18,2000,0084,range,s,heat_temp_range,,,
+# --- Z4: Cooling ---
+# r,aris,z4_cool_setpoint,Z4 Cool Setpoint,,18,2000,7074,setpoint,s,SIN,10,°C,
+# r,aris,z4_cool_temp_range,Z4 Cool Temp Range,,18,2000,0684,range,s,cool_temp_range,,,
+# r,aris,z4_cool_water_max_temp,Z4 Cool Water Max Temp,,18,2000,7174,max_temp,s,SIN,10,°C,
+# r,aris,z4_cool_water_min_temp,Z4 Cool Water Min Temp,,18,2000,7374,min_temp,s,SIN,10,°C,
+# r,aris,z4_cool_offset,Z4 Cool Offset,,18,2000,7574,offset,s,SIN,10,°C,
+# r,aris,z4_cool_slope,Z4 Cool Slope,,18,2000,7674,slope,s,UIN,100,,
+# --- Z4: Summer/Winter ---
+# r,aris,z4_summer_winter_auto_switch,Z4 Summer Winter Auto Switch,,18,2000,0784,enabled,s,onoff,,,
+# r,aris,z4_summer_winter_temp_threshold,Z4 Summer Winter Temp Threshold,,18,2000,7974,threshold,s,SIN,10,°C,
+# r,aris,z4_summer_winter_switch_delay,Z4 Summer Winter Switch Delay,,18,2000,7a74,delay,s,UIN,,min,
+# --- Z4: Zone state ---
+# r,aris,z4_zone_enabled,Z4 Zone Enabled,,18,2000,0284,enabled,s,onoff,,,
+# r,aris,z4_zone_active,Z4 Zone Active,,18,2000,0884,active,s,onoff,,,
+# r,aris,z4_thermoreg_code,Z4 Thermoreg Code,,18,2000,c97c,code,s,UCH,,,
+
+# ==============================================================================
+# ZONE 5 (COMMENTED)
+# ==============================================================================
+# --- Z5: Basic temps ---
+# r,aris,z5_day_temp,Z5 Day Temp,,18,2000,6275,,s,IGN:1,,,,,,SIN,10,°C
+# b,aris,z5_day_temp,Z5 Day Temp,37,fe,200e,6275,setpoint,s,SIN,10,°C
+# r,aris,z5_night_temp,Z5 Night Temp,,18,2000,6375,,s,IGN:1,,,,,,SIN,10,°C
+# b,aris,z5_night_temp,Z5 Night Temp,37,fe,200e,6375,night_temp,s,SIN,10,°C
+# r,aris,z5_heat_setpoint_temp_set,Z5 Heat Set Temp,,18,2000,6575,,s,IGN:1,,,,,,SIN,10,°C
+# b,aris,z5_fixed_temp,Z5 Fixed Temp,37,fe,2020,6575,fixed,s,SIN,10,°C,,,s,IGN:2,,,,snap2,s,UIN,10,°C,,,s,IGN:2,,,,snap3,s,UIN,10,°C,
+# r,aris,z5_room_temp,Z5 Room Temp,,18,2000,7518,,s,IGN:1,,,,,,SIN,10,°C
+# --- Z5: Thermoregulation ---
+# r,aris,z5_heat_therm_type_selection,Z5 Heating Thermoreg Type,,18,2000,c07d,,s,IGN:1,,,,,,BCD,0=fixed;1=basic_on_off;2=outdoor;3=room;4=outdoor_room
+# b,aris,z5_room_influence,Z5 Thermoreg Bridge Head,37,fe,2020,6c75,base,s,UIN,10,°C,,_c07d,s,IGN:2,,,,type,s,thermoreg_type,,,,_c27d,s,IGN:2,,,,influence,s,UCH,,,
+# r,aris,z5_heat_room_temp_infl,Z5 Heating Room Temp Influence,,18,2000,c27d,,s,IGN:1,,,,,,UCH
+# r,aris,z5_heat_water_max_temp,Z5 Heating Max Water Temp,,18,2000,6075,,s,IGN:1,,,,,,SIN,10,°C
+# b,aris,z5_thermoreg_offset,Z5 Thermoreg Offset,37,fe,2020,6075,max,s,UIN,10,°C,,_6175,s,IGN:2,,,,min,s,UIN,10,°C,,_6475,s,IGN:2,,,,offset,s,SIN,10,°C,
+# r,aris,z5_heat_water_min_temp,Z5 Heating Min Water Temp,,18,2000,6175,,s,IGN:1,,,,,,SIN,10,°C
+# r,aris,z5_heat_slope,Z5 Heat Thermoreg Slope,,18,2000,6a75,,s,IGN:1,,,,,,UIN,100
+# b,aris,z5_thermoreg_slope,Z5 Thermoreg Slope,37,fe,2020,6975,curve1,s,UIN,10,°C,,_6a75,s,IGN:2,,,,slope,s,UIN,100,,,_6b75,s,IGN:2,,,,curve2,s,UIN,10,°C,
+# r,aris,z5_heat_offset,Z5 Heat Thermoreg Offset,,18,2000,6475,,s,IGN:1,,,,,,SCH,10
+# r,aris,z5_heat_request_mode,Z5 Heating Request Mode,,18,2000,ce7d,,s,IGN:1,,,,,,BCD,0=standard;1=no_time;2=forced
+# r,aris,z5_heat_temp_range,Z5 Heat Temp Range,,18,2000,0085,range,s,heat_temp_range,,,
+# --- Z5: Cooling ---
+# r,aris,z5_cool_setpoint,Z5 Cool Setpoint,,18,2000,7075,setpoint,s,SIN,10,°C,
+# r,aris,z5_cool_temp_range,Z5 Cool Temp Range,,18,2000,0685,range,s,cool_temp_range,,,
+# r,aris,z5_cool_water_max_temp,Z5 Cool Water Max Temp,,18,2000,7175,max_temp,s,SIN,10,°C,
+# r,aris,z5_cool_water_min_temp,Z5 Cool Water Min Temp,,18,2000,7375,min_temp,s,SIN,10,°C,
+# r,aris,z5_cool_offset,Z5 Cool Offset,,18,2000,7575,offset,s,SIN,10,°C,
+# r,aris,z5_cool_slope,Z5 Cool Slope,,18,2000,7675,slope,s,UIN,100,,
+# --- Z5: Summer/Winter ---
+# r,aris,z5_summer_winter_auto_switch,Z5 Summer Winter Auto Switch,,18,2000,0785,enabled,s,onoff,,,
+# r,aris,z5_summer_winter_temp_threshold,Z5 Summer Winter Temp Threshold,,18,2000,7975,threshold,s,SIN,10,°C,
+# r,aris,z5_summer_winter_switch_delay,Z5 Summer Winter Switch Delay,,18,2000,7a75,delay,s,UIN,,min,
+# --- Z5: Zone state ---
+# r,aris,z5_zone_enabled,Z5 Zone Enabled,,18,2000,0285,enabled,s,onoff,,,
+# r,aris,z5_zone_active,Z5 Zone Active,,18,2000,0885,active,s,onoff,,,
+# r,aris,z5_thermoreg_code,Z5 Thermoreg Code,,18,2000,c97d,code,s,UCH,,,
+
+# ==============================================================================
+# ZONE 6 (COMMENTED)
+# ==============================================================================
+# --- Z6: Basic temps ---
+# r,aris,z6_day_temp,Z6 Day Temp,,18,2000,6276,,s,IGN:1,,,,,,SIN,10,°C
+# b,aris,z6_day_temp,Z6 Day Temp,37,fe,200e,6276,setpoint,s,SIN,10,°C
+# r,aris,z6_night_temp,Z6 Night Temp,,18,2000,6376,,s,IGN:1,,,,,,SIN,10,°C
+# b,aris,z6_night_temp,Z6 Night Temp,37,fe,200e,6376,night_temp,s,SIN,10,°C
+# r,aris,z6_heat_setpoint_temp_set,Z6 Heat Set Temp,,18,2000,6576,,s,IGN:1,,,,,,SIN,10,°C
+# b,aris,z6_fixed_temp,Z6 Fixed Temp,37,fe,2020,6576,fixed,s,SIN,10,°C,,,s,IGN:2,,,,snap2,s,UIN,10,°C,,,s,IGN:2,,,,snap3,s,UIN,10,°C,
+# r,aris,z6_room_temp,Z6 Room Temp,,18,2000,7618,,s,IGN:1,,,,,,SIN,10,°C
+# --- Z6: Thermoregulation ---
+# r,aris,z6_heat_therm_type_selection,Z6 Heating Thermoreg Type,,18,2000,c07e,,s,IGN:1,,,,,,BCD,0=fixed;1=basic_on_off;2=outdoor;3=room;4=outdoor_room
+# b,aris,z6_room_influence,Z6 Thermoreg Bridge Head,37,fe,2020,6c76,base,s,UIN,10,°C,,_c07e,s,IGN:2,,,,type,s,thermoreg_type,,,,_c27e,s,IGN:2,,,,influence,s,UCH,,,
+# r,aris,z6_heat_room_temp_infl,Z6 Heating Room Temp Influence,,18,2000,c27e,,s,IGN:1,,,,,,UCH
+# r,aris,z6_heat_water_max_temp,Z6 Heating Max Water Temp,,18,2000,6076,,s,IGN:1,,,,,,SIN,10,°C
+# b,aris,z6_thermoreg_offset,Z6 Thermoreg Offset,37,fe,2020,6076,max,s,UIN,10,°C,,_6176,s,IGN:2,,,,min,s,UIN,10,°C,,_6476,s,IGN:2,,,,offset,s,SIN,10,°C,
+# r,aris,z6_heat_water_min_temp,Z6 Heating Min Water Temp,,18,2000,6176,,s,IGN:1,,,,,,SIN,10,°C
+# r,aris,z6_heat_slope,Z6 Heat Thermoreg Slope,,18,2000,6a76,,s,IGN:1,,,,,,UIN,100
+# b,aris,z6_thermoreg_slope,Z6 Thermoreg Slope,37,fe,2020,6976,curve1,s,UIN,10,°C,,_6a76,s,IGN:2,,,,slope,s,UIN,100,,,_6b76,s,IGN:2,,,,curve2,s,UIN,10,°C,
+# r,aris,z6_heat_offset,Z6 Heat Thermoreg Offset,,18,2000,6476,,s,IGN:1,,,,,,SCH,10
+# r,aris,z6_heat_request_mode,Z6 Heating Request Mode,,18,2000,ce7e,,s,IGN:1,,,,,,BCD,0=standard;1=no_time;2=forced
+# r,aris,z6_heat_temp_range,Z6 Heat Temp Range,,18,2000,0086,range,s,heat_temp_range,,,
+# --- Z6: Cooling ---
+# r,aris,z6_cool_setpoint,Z6 Cool Setpoint,,18,2000,7076,setpoint,s,SIN,10,°C,
+# r,aris,z6_cool_temp_range,Z6 Cool Temp Range,,18,2000,0686,range,s,cool_temp_range,,,
+# r,aris,z6_cool_water_max_temp,Z6 Cool Water Max Temp,,18,2000,7176,max_temp,s,SIN,10,°C,
+# r,aris,z6_cool_water_min_temp,Z6 Cool Water Min Temp,,18,2000,7376,min_temp,s,SIN,10,°C,
+# r,aris,z6_cool_offset,Z6 Cool Offset,,18,2000,7576,offset,s,SIN,10,°C,
+# r,aris,z6_cool_slope,Z6 Cool Slope,,18,2000,7676,slope,s,UIN,100,,
+# --- Z6: Summer/Winter ---
+# r,aris,z6_summer_winter_auto_switch,Z6 Summer Winter Auto Switch,,18,2000,0786,enabled,s,onoff,,,
+# r,aris,z6_summer_winter_temp_threshold,Z6 Summer Winter Temp Threshold,,18,2000,7976,threshold,s,SIN,10,°C,
+# r,aris,z6_summer_winter_switch_delay,Z6 Summer Winter Switch Delay,,18,2000,7a76,delay,s,UIN,,min,
+# --- Z6: Zone state ---
+# r,aris,z6_zone_enabled,Z6 Zone Enabled,,18,2000,0286,enabled,s,onoff,,,
+# r,aris,z6_zone_active,Z6 Zone Active,,18,2000,0886,active,s,onoff,,,
+# r,aris,z6_thermoreg_code,Z6 Thermoreg Code,,18,2000,c97e,code,s,UCH,,,
+
+# ==============================================================================
+# REFERENCE (commented - boiler enums, write commands, etc.)
+# ==============================================================================
 # --- Boiler status enums ---
 # w,broadcast,ebus_reset,Reset bus,,fe,2034,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-# param.224 (manuale): Termoregolazione AUTO; enum from wrongisthenewright: 1=standby;2=heating;3=heating hot water;4=water tank;5=circulating;23=manual test;24=comfort;31=gas_circuit_deaeration;36=auto_calibration;51=low_water_pressure;52=no_flame
+# param.224 (manuale): Termoregolazione AUTO; enum from wrongisthenewright:
+# 1=standby;2=heating;3=heating hot water;4=water tank;5=circulating;23=manual test;24=comfort;31=gas_circuit_deaeration;36=auto_calibration;51=low_water_pressure;52=no_flame
 # --- DHCP/comfort values ---
 # w,aris,dhw_setpoint,DHW Setpoint,,fe,2020,6126,val,s,SIN,10,°C,,
 # r,aris,status_0f20,0F20 Status,,18,2000,0f20,status,s,onoff,,,
 # r,aris,ext_temp_offset,External Temp Offset,,18,2000,7426,offset,s,SIN,10,°C,
 # r,aris,boost_time,Boost Time,,18,2000,602b,time,s,UIN,,s,
-# --- Multi-zone setpoints (not active on this Z1-only installation) ---
-# r,aris,z1_setpoint_temp,Z1 Current Setpoint Temp,,18,2000,6996,val,s,SIN,10,°C,
+# --- Multi-zone setpoints ---
 # r,aris,z2_setpoint_temp,Z2 Current Setpoint Temp,,18,2000,6a96,val,s,SIN,10,°C,
 # r,aris,z3_setpoint_temp,Z3 Current Setpoint Temp,,18,2000,6b96,val,s,SIN,10,°C,
-# --- Zone 2-6 registers (not active on this installation) ---
-# r,aris,z2_day_temp_register,Z2 Day Temp Register,03,fe,2001,6272,register,s,HEX:1,,,
-# r,aris,z3_day_temp_register,Z3 Day Temp Register,03,fe,2001,6273,register,s,HEX:1,,,
-# r,aris,z4_day_temp_register,Z4 Day Temp Register,03,fe,2001,6274,register,s,HEX:1,,,
-# r,aris,z5_day_temp_register,Z5 Day Temp Register,03,fe,2001,6275,register,s,HEX:1,,,
-# r,aris,z6_day_temp_register,Z6 Day Temp Register,03,fe,2001,6276,register,s,HEX:1,,,
-# r,aris,z2_night_temp_register,Z2 Night Temp Register,03,fe,2001,6372,register,s,HEX:1,,,
-# r,aris,z3_night_temp_register,Z3 Night Temp Register,03,fe,2001,6373,register,s,HEX:1,,,
-# r,aris,z4_night_temp_register,Z4 Night Temp Register,03,fe,2001,6374,register,s,HEX:1,,,
-# r,aris,z5_night_temp_register,Z5 Night Temp Register,03,fe,2001,6375,register,s,HEX:1,,,
-# r,aris,z6_night_temp_register,Z6 Night Temp Register,03,fe,2001,6376,register,s,HEX:1,,,
-# --- Zone 2-6 temp settings (not active) ---
-# r,aris,z2_heat_temp_range,Z2 Heat Temp Range,,18,2000,0082,range,s,heat_temp_range,,,
-# r,aris,z3_heat_temp_range,Z3 Heat Temp Range,,18,2000,0083,range,s,heat_temp_range,,,
-# r,aris,z4_heat_temp_range,Z4 Heat Temp Range,,18,2000,0084,range,s,heat_temp_range,,,
-# r,aris,z5_heat_temp_range,Z5 Heat Temp Range,,18,2000,0085,range,s,heat_temp_range,,,
-# r,aris,z6_heat_temp_range,Z6 Heat Temp Range,,18,2000,0086,range,s,heat_temp_range,,,
-# r,aris,z2_cool_temp_range,Z2 Cool Temp Range,,18,2000,0682,range,s,cool_temp_range,,,
-# r,aris,z3_cool_temp_range,Z3 Cool Temp Range,,18,2000,0683,range,s,cool_temp_range,,,
-# r,aris,z4_cool_temp_range,Z4 Cool Temp Range,,18,2000,0684,range,s,cool_temp_range,,,
-# r,aris,z5_cool_temp_range,Z5 Cool Temp Range,,18,2000,0685,range,s,cool_temp_range,,,
-# r,aris,z6_cool_temp_range,Z6 Cool Temp Range,,18,2000,0686,range,s,cool_temp_range,,,
-# r,aris,z2_summer_winter_auto_switch,Z2 Summer Winter Auto Switch,,18,2000,0782,enabled,s,onoff,,,
-# r,aris,z3_summer_winter_auto_switch,Z3 Summer Winter Auto Switch,,18,2000,0783,enabled,s,onoff,,,
-# r,aris,z4_summer_winter_auto_switch,Z4 Summer Winter Auto Switch,,18,2000,0784,enabled,s,onoff,,,
-# r,aris,z5_summer_winter_auto_switch,Z5 Summer Winter Auto Switch,,18,2000,0785,enabled,s,onoff,,,
-# r,aris,z6_summer_winter_auto_switch,Z6 Summer Winter Auto Switch,,18,2000,0786,enabled,s,onoff,,,
-# r,aris,z2_cool_setpoint,Z2 Cool Setpoint,,18,2000,7072,setpoint,s,SIN,10,°C,
-# r,aris,z3_cool_setpoint,Z3 Cool Setpoint,,18,2000,7073,setpoint,s,SIN,10,°C,
-# r,aris,z4_cool_setpoint,Z4 Cool Setpoint,,18,2000,7074,setpoint,s,SIN,10,°C,
-# r,aris,z5_cool_setpoint,Z5 Cool Setpoint,,18,2000,7075,setpoint,s,SIN,10,°C,
-# r,aris,z6_cool_setpoint,Z6 Cool Setpoint,,18,2000,7076,setpoint,s,SIN,10,°C,
-# r,aris,z2_fixed_temp,Z2 Fixed Temp,,18,2000,6572,fixed_temp,s,SIN,10,°C,
-# r,aris,z3_fixed_temp,Z3 Fixed Temp,,18,2000,6573,fixed_temp,s,SIN,10,°C,
-# r,aris,z4_fixed_temp,Z4 Fixed Temp,,18,2000,6574,fixed_temp,s,SIN,10,°C,
-# r,aris,z5_fixed_temp,Z5 Fixed Temp,,18,2000,6575,fixed_temp,s,SIN,10,°C,
-# r,aris,z6_fixed_temp,Z6 Fixed Temp,,18,2000,6576,fixed_temp,s,SIN,10,°C,
-# r,aris,z2_heat_request_mode_setting,Z2 Heat Request Mode Setting,,18,2000,ce7a,mode,s,heat_request_mode_setting,,,
-# r,aris,z3_heat_request_mode_setting,Z3 Heat Request Mode Setting,,18,2000,ce7b,mode,s,heat_request_mode_setting,,,
-# r,aris,z4_heat_request_mode_setting,Z4 Heat Request Mode Setting,,18,2000,ce7c,mode,s,heat_request_mode_setting,,,
-# r,aris,z5_heat_request_mode_setting,Z5 Heat Request Mode Setting,,18,2000,ce7d,mode,s,heat_request_mode_setting,,,
-# r,aris,z6_heat_request_mode_setting,Z6 Heat Request Mode Setting,,18,2000,ce7e,mode,s,heat_request_mode_setting,,,
-# r,aris,z2_cool_water_max_temp,Z2 Cool Water Max Temp,,18,2000,7172,max_temp,s,SIN,10,°C,
-# r,aris,z3_cool_water_max_temp,Z3 Cool Water Max Temp,,18,2000,7173,max_temp,s,SIN,10,°C,
-# r,aris,z4_cool_water_max_temp,Z4 Cool Water Max Temp,,18,2000,7174,max_temp,s,SIN,10,°C,
-# r,aris,z5_cool_water_max_temp,Z5 Cool Water Max Temp,,18,2000,7175,max_temp,s,SIN,10,°C,
-# r,aris,z6_cool_water_max_temp,Z6 Cool Water Max Temp,,18,2000,7176,max_temp,s,SIN,10,°C,
-# r,aris,z2_cool_water_min_temp,Z2 Cool Water Min Temp,,18,2000,7372,min_temp,s,SIN,10,°C,
-# r,aris,z3_cool_water_min_temp,Z3 Cool Water Min Temp,,18,2000,7373,min_temp,s,SIN,10,°C,
-# r,aris,z4_cool_water_min_temp,Z4 Cool Water Min Temp,,18,2000,7374,min_temp,s,SIN,10,°C,
-# r,aris,z5_cool_water_min_temp,Z5 Cool Water Min Temp,,18,2000,7375,min_temp,s,SIN,10,°C,
-# r,aris,z6_cool_water_min_temp,Z6 Cool Water Min Temp,,18,2000,7376,min_temp,s,SIN,10,°C,
-# r,aris,z2_cool_offset,Z2 Cool Offset,,18,2000,7572,offset,s,SIN,10,°C,
-# r,aris,z3_cool_offset,Z3 Cool Offset,,18,2000,7573,offset,s,SIN,10,°C,
-# r,aris,z4_cool_offset,Z4 Cool Offset,,18,2000,7574,offset,s,SIN,10,°C,
-# r,aris,z5_cool_offset,Z5 Cool Offset,,18,2000,7575,offset,s,SIN,10,°C,
-# r,aris,z6_cool_offset,Z6 Cool Offset,,18,2000,7576,offset,s,SIN,10,°C,
-# r,aris,z2_cool_slope,Z2 Cool Slope,,18,2000,7672,slope,s,UIN,100,,
-# r,aris,z3_cool_slope,Z3 Cool Slope,,18,2000,7673,slope,s,UIN,100,,
-# r,aris,z4_cool_slope,Z4 Cool Slope,,18,2000,7674,slope,s,UIN,100,,
-# r,aris,z5_cool_slope,Z5 Cool Slope,,18,2000,7675,slope,s,UIN,100,,
-# r,aris,z6_cool_slope,Z6 Cool Slope,,18,2000,7676,slope,s,UIN,100,,
-# r,aris,z2_zone_enabled_282,Z2 Zone Enabled,,18,2000,0282,enabled,s,onoff,,,
-# r,aris,z3_zone_enabled_283,Z3 Zone Enabled,,18,2000,0283,enabled,s,onoff,,,
-# r,aris,z4_zone_enabled_284,Z4 Zone Enabled,,18,2000,0284,enabled,s,onoff,,,
-# r,aris,z5_zone_enabled_285,Z5 Zone Enabled,,18,2000,0285,enabled,s,onoff,,,
-# r,aris,z6_zone_enabled_286,Z6 Zone Enabled,,18,2000,0286,enabled,s,onoff,,,
-# r,aris,z2_zone_active_882,Z2 Zone Active,,18,2000,0882,active,s,onoff,,,
-# r,aris,z3_zone_active_883,Z3 Zone Active,,18,2000,0883,active,s,onoff,,,
-# r,aris,z4_zone_active_884,Z4 Zone Active,,18,2000,0884,active,s,onoff,,,
-# r,aris,z5_zone_active_885,Z5 Zone Active,,18,2000,0885,active,s,onoff,,,
-# r,aris,z6_zone_active_886,Z6 Zone Active,,18,2000,0886,active,s,onoff,,,
-# r,aris,z2_thermoreg_code,Z2 Thermoreg Code,,18,2000,c97a,code,s,UCH,,,
-# r,aris,z3_thermoreg_code,Z3 Thermoreg Code,,18,2000,c97b,code,s,UCH,,,
-# r,aris,z4_thermoreg_code,Z4 Thermoreg Code,,18,2000,c97c,code,s,UCH,,,
-# r,aris,z5_thermoreg_code,Z5 Thermoreg Code,,18,2000,c97d,code,s,UCH,,,
-# r,aris,z6_thermoreg_code,Z6 Thermoreg Code,,18,2000,c97e,code,s,UCH,,,
