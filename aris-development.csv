@@ -6,7 +6,7 @@
 # BOILER STATUS & MODE
 # ==============================================================================
 b,aris,boiler_status,Boiler Status,37,fe,2010,c04b,mode,s,boiler_status,,,,,,
-b,aris,heating_status,Heating Status,37,fe,2020,0120,heating,s,onoff,,,,_d02a,s,IGN:2,,,,heating_status_code,s,UCH,,,,_d12a,s,IGN:2,,,,dhw_aux_code,s,UCH,,,
+b,aris,heating_status,Heating Status,37,fe,2020,0120,heating,s,onoff,,,,_d02a,s,IGN:2,,,,heating_status_code,s,UCH,0=off;1=Standby;2=Heating;3=DHW;4=Tank,,,_d12a,s,IGN:2,,,,dhw_aux_code,s,UCH,0=heating_only;1=blocked;2=delayed;3=priority;4=parallel;5=thermal;6=dhw_active;7=legionella,,
 b,aris,dhw_status,DHW Status,37,fe,2020,0220,status,s,onoff,,,,_0b20,s,IGN:2,,,,thermal_cleansing,s,onoff,,,,_0f20,s,IGN:2,,,,electric_aux,s,onoff,,,
 b,aris,heating_status_bundle_short,Heating Status Bundle Short,37,fe,200f,0120,heating,s,onoff,,,,_0f23,s,IGN:2,,,,cooling,s,onoff,,,,_1023,s,IGN:2,,,,available,s,onoff,,,
 b,aris,heating_status_registers,Heating Status Register IDs,03,fe,2000,0120,cooling,s,HEX:2,,,,available,s,HEX:2,,,,
@@ -54,7 +54,7 @@ b,aris,dhw_economy_temp,DHW Economy Temp,37,fe,2020,6226,val,s,SIN,10,°C,
 b,aris,dhw_max_temp,DHW Max Temp,37,fe,2020,7d26,val,s,SIN,10,°C,
 b,aris,dhw_eco_setpoint,DHW Eco Setpoint,37,fe,2010,6697,val,s,UIN,10,°C,,,,,,
 r,aris,dhw_comfort_temp,DHW Comfort Temp,,18,2000,6126,val,s,SIN,10,°C,
-b,aris,dhw_status_word,DHW Status Word,37,fe,2020,712b,raw,s,HEX:2,,,,_c028,s,IGN:2,,,,comfort,s,dhw_comfort_mode,,,,_ca2a,s,IGN:2,,,,dhw_aux_code,s,UCH,,,
+b,aris,dhw_status_word,DHW Status Word,37,fe,2020,712b,raw,s,HEX:2,,,,_c028,s,IGN:2,,,,comfort,s,dhw_comfort_mode,,,,_ca2a,s,IGN:2,,,,dhw_aux_code,s,UCH,0=heating_only;1=blocked;2=delayed;3=priority;4=parallel;5=thermal;6=dhw_active;7=legionella,,
 b,aris,dhw_tail_word,DHW Tail Word,37,fe,2020,7e2b,payload_hex,s,HEX:2,,,
 
 # ==============================================================================
