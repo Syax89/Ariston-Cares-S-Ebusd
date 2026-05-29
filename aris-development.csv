@@ -105,11 +105,12 @@ r,aris,z1_setpoint_temp,Z1 Current Setpoint Temp,,18,2000,6996,val,s,SIN,10,°C,
 
 # ==============================================================================
 # RUNTIME & DIAGNOSTIC (broadcast 2010 - internal boiler counters)
+# Note: da46/dc46/de46 registers not verified - raw diagnostic values
 # ==============================================================================
 b,aris,runtime_c494,Runtime C494 Bundle,37,fe,2010,c494,header_status,s,IGN:2,,,,_6c96,s,IGN:2,,,,val,s,SIN,10,°C,,zero_pad,s,IGN:1,,,,_c594,s,IGN:2,,,,tail_status,s,IGN:2,
-b,aris,runtime_da46,Runtime DA46,37,fe,2010,da46,val,s,UIN,150=UKN,,
-b,aris,runtime_dc46,Runtime DC46,37,fe,2010,dc46,val,s,UIN,75=UKN,,
-b,aris,runtime_de46,Runtime DE46,37,fe,2010,de46,val,s,UIN,75=UKN,,
+b,aris,runtime_da46,Runtime Diag DA46,37,fe,2010,da46,val,s,UIN,,,
+b,aris,runtime_dc46,Runtime Diag DC46,37,fe,2010,dc46,val,s,UIN,,,
+b,aris,runtime_de46,Runtime Diag DE46,37,fe,2010,de46,val,s,UIN,,,
 b,aris,runtime_status_extra,Runtime Status Extra,37,fe,2010,d346,mod,s,UCH,,,
 b,aris,dhw_status_extra,DHW Status Extra,37,fe,2010,d994,mod,s,UCH,,,
 b,aris,heating_status_extra,Heating Status Extra,37,fe,2010,dd94,mod,s,UCH,,,
