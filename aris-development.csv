@@ -6,9 +6,9 @@
 # BOILER STATUS & MODE
 # ==============================================================================
 b,aris,boiler_status,Boiler Status,37,fe,2010,c04b,mode,s,boiler_status,,,,,,
-b,aris,heating_status,Heating Status,37,fe,2020,0120,heating,s,onoff,,,,_d02a,s,IGN:2,,,,heating_status_code,s,UCH,0=off;1=Standby;2=Heating;3=DHW;4=Tank,,,_d12a,s,IGN:2,,,,dhw_aux_code,s,UCH,0=heating_only;1=blocked;2=delayed;3=priority;4=parallel;5=thermal;6=dhw_active;7=legionella,,
+b,aris,heating_status,Boiler Mode,37,fe,2020,0120,heating,s,onoff,,,,_d02a,s,IGN:2,,,,heating_status_code,s,UCH,0=off;1=Standby;2=Heating;3=DHW;4=Tank,,,_d12a,s,IGN:2,,,,dhw_aux_code,s,UCH,0=heating_only;1=blocked;2=delayed;3=priority;4=parallel;5=thermal;6=dhw_active;7=legionella,,
 b,aris,dhw_status,DHW Status,37,fe,2020,0220,status,s,onoff,,,,_0b20,s,IGN:2,,,,thermal_cleansing,s,onoff,,,,_0f20,s,IGN:2,,,,electric_aux,s,onoff,,,
-b,aris,heating_status_bundle_short,Heating Status Bundle Short,37,fe,200f,0120,heating,s,onoff,,,,_0f23,s,IGN:2,,,,cooling,s,UCH,,,,_1023,s,IGN:2,,,,available,s,UCH,,,
+b,aris,heating_status_bundle_short,Heating Status Bundle Short,37,fe,200f,0120,heating,s,onoff,,,,_0f23,s,IGN:2,,,,_nrg_cool_offset,s,IGN:1,,,,_1023,s,IGN:2,,,,_nrg_avail_offset,s,IGN:1,,,,
 b,aris,heating_status_registers,Heating Status Register IDs,03,fe,2000,0120,cooling,s,HEX:2,,,,available,s,HEX:2,,,,
 b,aris,boost_time,Boost Time,37,fe,2020,0520,status,s,onoff,,,,_602b,s,IGN:2,,,,time,s,UIN,,s,,_7426,s,IGN:2,,,,offset,s,SIN,10,°C,
 b,aris,seasonal_preamble,Seasonal Changeover Preamble,37,fe,2020,da27,lead_flag_a,s,UCH,0=winter;1=summer;2=heating_only;3=auto,,,_db27,s,IGN:2,,,,lead_flag_b,s,UCH,0=winter;1=summer;2=heating_only;3=auto,,,
@@ -70,8 +70,8 @@ b,aris,z1_bundle,Z1 Antifreeze/Day/Night Bundle,37,fe,200f,6426,antifreeze,s,SIN
 b,aris,z1_request,Z1 Heat Request Register,70,fe,2000,c6,val,s,HEX:1,,,,
 b,aris,z1_heat_request_mode,Z1 Heat Request Mode,37,fe,200f,c679,mode,s,heat_request_mode,,,
 b,aris,z1_heat_request_mode_bc,Z1 Heat Request Mode BC,37,fe,2020,c679,mode,s,UCH,,,
-b,aris,heat_request_status_1,Heat Request Status 1,37,fe,2010,0191,z1,s,BCD:2,0=off;1=on,,,_remaining,s,IGN:9,,,,
-b,aris,heat_request_status_extra,Heat Request Status Extra,37,fe,2010,0591,req,s,onoff,,,
+b,aris,heat_request_status_1,Heat Request,37,fe,2010,0191,active,s,BCD:2,0=off;1=on,,,_remaining,s,IGN:9,,,,
+b,aris,heat_request_aux,Heat Request Aux,37,fe,2010,0591,req,s,onoff,,,
 
 # Z1 Thermoregulation
 b,aris,z1_thermoreg_offset,Z1 Thermoreg Offset,37,fe,2020,6071,max,s,UIN,10,°C,,_6171,s,IGN:2,,,,min,s,UIN,10,°C,,_6471,s,IGN:2,,,,offset,s,SIN,10,°C,
@@ -109,11 +109,11 @@ r,aris,z1_setpoint_temp,Z1 Current Setpoint Temp,,18,2000,6996,val,s,SIN,10,°C,
 # ==============================================================================
 b,aris,runtime_c494,Runtime C494 Bundle,37,fe,2010,c494,header_status,s,IGN:2,,,,_6c96,s,IGN:2,,,,val,s,SIN,10,°C,,zero_pad,s,IGN:1,,,,_c594,s,IGN:2,,,,tail_status,s,IGN:2,
 b,aris,runtime_da46,Runtime Diag DA46,37,fe,2010,da46,val,s,HEX:2,,,
-b,aris,runtime_dc46,Runtime Diag DC46,37,fe,2010,dc46,val,s,HEX:2,,,
-b,aris,runtime_de46,Runtime Diag DE46,37,fe,2010,de46,val,s,HEX:2,,,
-b,aris,runtime_status_extra,Runtime Status Extra,37,fe,2010,d346,mod,s,UCH,,,
-b,aris,dhw_status_extra,DHW Status Extra,37,fe,2010,d994,mod,s,UCH,,,
-b,aris,heating_status_extra,Heating Status Extra,37,fe,2010,dd94,mod,s,UCH,,,
+# b,aris,runtime_dc46,Runtime Diag DC46,37,fe,2010,dc46,val,s,HEX:2,,,
+# b,aris,runtime_de46,Runtime Diag DE46,37,fe,2010,de46,val,s,HEX:2,,,
+b,aris,runtime_status_extra,Runtime Flags,37,fe,2010,d346,flags,s,UCH,,,
+b,aris,dhw_status_extra,DHW Flags,37,fe,2010,d994,flags,s,UCH,,,
+b,aris,heating_status_extra,Heating Flags,37,fe,2010,dd94,flags,s,UCH,,,
 b,aris,settings_change_counter,Settings Change Counter,37,fe,2010,d140,counter,s,UIN,,,,,,,
 
 # ==============================================================================
