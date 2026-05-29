@@ -7,13 +7,13 @@
 # ==============================================================================
 b,aris,boiler_status,Boiler Status,37,fe,2010,c04b,mode,s,boiler_status,,,,,,
 b,aris,heating_status,Heating Status,37,fe,2020,0120,heating,s,onoff,,,,_d02a,s,IGN:2,,,,heating_status_code,s,UCH,,,,_d12a,s,IGN:2,,,,dhw_aux_code,s,UCH,,,
-b,aris,dhw_status,DHW Status,37,fe,2020,0220,status,s,onoff,,,,_0b20,s,IGN:2,,,,thermal_cleansing,s,onoff,,,,_0f20,s,IGN:2,,,,celectic_status,s,onoff,,,
+b,aris,dhw_status,DHW Status,37,fe,2020,0220,status,s,onoff,,,,_0b20,s,IGN:2,,,,thermal_cleansing,s,onoff,,,,_0f20,s,IGN:2,,,,electric_aux,s,onoff,,,
 b,aris,heating_status_bundle_short,Heating Status Bundle Short,37,fe,200f,0120,heating,s,onoff,,,,_0f23,s,IGN:2,,,,cooling,s,onoff,,,,_1023,s,IGN:2,,,,available,s,onoff,,,
 b,aris,heating_status_registers,Heating Status Register IDs,03,fe,2000,0120,cooling,s,HEX:2,,,,available,s,HEX:2,,,,
 b,aris,boost_time,Boost Time,37,fe,2020,0520,status,s,onoff,,,,_602b,s,IGN:2,,,,time,s,UIN,,s,,_7426,s,IGN:2,,,,offset,s,SIN,10,°C,
 b,aris,seasonal_preamble,Seasonal Changeover Preamble,37,fe,2020,da27,lead_flag_a,s,seasonal_mode,,,,_db27,s,IGN:2,,,,lead_flag_b,s,seasonal_mode,,,
 r,aris,flame_active,Flame Active,,3c,2000,0e11,ign,s,IGN:1,,,,active,s,onoff,,,
-r,aris,heating_flame,Heating In Progress,,3c,2000,0c19,,s,IGN:1,,,,active,s,onoff,,,
+r,aris,heating_flame,Burner Flame In Progress,,3c,2000,0c19,,s,IGN:1,,,,active,s,onoff,,,
 
 # Boiler diagnostics and counters (direct read)
 r,aris,boiler_pressure,Boiler Circuit Pressure,,3c,2000,7547,ign,s,IGN:1,,,,boiler_pressure,,UCH,10,bar
@@ -28,7 +28,7 @@ r,aris,diverter_cycles,Diverter Valve Cycles,,3c,2000,40d2,ign,s,IGN:1,,,,,,UIN
 r,aris,hours_pump_on,Pump Hours On,,3c,2000,42d2,ign,s,IGN:1,,,,,,UIN,,hours
 r,aris,circulation_cycles,Circulation Cycles,,3c,2000,44d2,ign,s,IGN:1,,,,,,UIN
 r,aris,fan_cycles,Fan Cycles,,3c,2000,4cd2,ign,s,IGN:1,,,,,,UIN
-r,aris,boiler_current_modulation,Boiler Current Gas Modulation,,3c,2000,c404,ign,s,IGN:1,,,,,,UCH,,pct
+r,aris,boiler_gas_modulation,Boiler Gas Modulation,,3c,2000,c404,ign,s,IGN:1,,,,,,UCH,,pct
 r,aris,pump_current_modulation,Pump Current Modulation,,3c,2000,c300,ign,s,IGN:1,,,,,,UIN,,pct
 r,aris,fan_speed,Boiler Fan Speed,,3c,2000,4013,,s,IGN:1,,,,,,UIN,,rpm
 r,aris,diverter_valve,Boiler Diverter Valve,,3c,2000,c012,ign,s,IGN:1,,,,,,BCD,0=dhw;1=heating
@@ -43,7 +43,7 @@ b,aris,flame_target,Flame Target Temp,37,fe,2010,d742,target,s,UIN,10,°C,,,,,,
 b,aris,flow_target,Flow Target Temp,37,fe,2010,de,target,s,UCH,1,°C,,,,,,
 b,aris,ext_temp,External Temp,37,fe,2010,7310,temp,s,SIN,10,,32767=not_installed,,,,,,
 b,aris,outdoor_temp,Outdoor Temperature,37,fe,2010,7647,temp,s,SIN,10,,32767=not_installed
-b,aris,fixed_setpoint_6d96,Fixed Setpoint 6D96,37,fe,2010,6d96,val,s,SIN,10,°C,,,,,,
+b,aris,fixed_setpoint,Fixed Setpoint,37,fe,2010,6d96,val,s,SIN,10,°C,,,,,,
 
 # ==============================================================================
 # DHW (Domestic Hot Water)
@@ -63,7 +63,7 @@ b,aris,dhw_tail_word,DHW Tail Word,37,fe,2020,7e2b,payload_hex,s,HEX:2,,,
 b,aris,z1_room_temp,Z1 Room Temp,70,fe,2010,7118,temp,s,UIN,10,°C,
 b,aris,z1_setpoint_temp,Z1 Current Setpoint Temp,37,fe,2010,c194,_header_status,s,IGN:2,,,,_6996,s,IGN:2,,,,val,s,SIN,10,°C,,_zero_pad,s,IGN:1,,,,_c294,s,IGN:2,,,,_tail_status,s,IGN:2,
 w,aris,z1_setpoint_temp,Z1 Current Setpoint Temp,70,fe,2020,6271,val,s,SIN,10,°C,
-b,aris,z1_fixed_temp,Z1 Fixed Temp,37,fe,2020,6571,fixed,s,SIN,10,°C,,_6671,s,IGN:2,,,,snap2,s,UIN,10,°C,,_6771,s,IGN:2,,,,snap3,s,UIN,10,°C,
+b,aris,z1_fixed_temp,Z1 Fixed Temp,37,fe,2020,6571,fixed,s,SIN,10,°C,,_6671,s,IGN:2,,,,high_offset,s,UIN,10,°C,,_6771,s,IGN:2,,,,low_offset,s,UIN,10,°C,
 b,aris,z1_day_temp,Z1 Day Temp,37,fe,200e,6271,setpoint,s,SIN,10,°C,
 b,aris,z1_night_temp,Z1 Night Temp,37,fe,200e,6371,night_temp,s,SIN,10,°C,
 b,aris,z1_bundle,Z1 Antifreeze/Day/Night Bundle,37,fe,200f,6426,antifreeze,s,SIN,10,°C,,_6271_prefix,s,IGN:3,,,,day,s,SIN,10,°C,,_6371_prefix,s,IGN:3,,,,night,s,SIN,10,°C,
