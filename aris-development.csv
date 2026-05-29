@@ -11,7 +11,7 @@ b,aris,dhw_status,DHW Status,37,fe,2020,0220,status,s,onoff,,,,_0b20,s,IGN:2,,,,
 b,aris,heating_status_bundle_short,Heating Status Bundle Short,37,fe,200f,0120,heating,s,onoff,,,,_0f23,s,IGN:2,,,,cooling,s,onoff,,,,_1023,s,IGN:2,,,,available,s,onoff,,,
 b,aris,heating_status_registers,Heating Status Register IDs,03,fe,2000,0120,cooling,s,HEX:2,,,,available,s,HEX:2,,,,
 b,aris,boost_time,Boost Time,37,fe,2020,0520,status,s,onoff,,,,_602b,s,IGN:2,,,,time,s,UIN,,s,,_7426,s,IGN:2,,,,offset,s,SIN,10,°C,
-b,aris,seasonal_preamble,Seasonal Changeover Preamble,37,fe,2020,da27,lead_flag_a,s,seasonal_mode,,,,_db27,s,IGN:2,,,,lead_flag_b,s,seasonal_mode,,,
+b,aris,seasonal_preamble,Seasonal Changeover Preamble,37,fe,2020,da27,lead_flag_a,s,UCH,0=winter;1=summer;2=heating_only;3=auto,,,_db27,s,IGN:2,,,,lead_flag_b,s,UCH,0=winter;1=summer;2=heating_only;3=auto,,,
 r,aris,flame_active,Flame Active,,3c,2000,0e11,ign,s,IGN:1,,,,active,s,onoff,,,
 r,aris,heating_flame,Burner Flame In Progress,,3c,2000,0c19,,s,IGN:1,,,,active,s,onoff,,,
 
