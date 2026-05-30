@@ -133,8 +133,8 @@ b,aris,runtime_d694,Runtime D694,37,fe,2010,d694,val,s,UIN,,,
 # BUS CONTROL
 # ==============================================================================
 b,aris,bus_control,System Bus Control,,fe,2038,,selector,s,HEX:1,,,,data,s,HEX:3,,,,
-r3,aris,bus_address_discovery_request,BUS Address Discovery Request,00,fe,203a,,addr,m,HEX:1,,,
-r3,aris,bus_address_reply,Bus Scan Reply / Cast Slave Address,,fe,203b,,slave_addr,m,HEX,,,
+r9,aris,bus_address_discovery_request,BUS Address Discovery Request,00,fe,203a,,addr,m,HEX:1,,,
+r9,aris,bus_address_reply,Bus Scan Reply / Cast Slave Address,,fe,203b,,slave_addr,m,HEX,,,
 
 # ==============================================================================
 # ZONE 2 (COMMENTED - documented but not active on Z1-only installation)
