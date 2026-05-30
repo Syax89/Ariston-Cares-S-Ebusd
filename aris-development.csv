@@ -108,13 +108,21 @@ r,aris,z1_setpoint_temp,Z1 Current Setpoint Temp,,18,2000,6996,val,s,SIN,10,°C,
 # Note: da46/dc46/de46 registers not verified - raw diagnostic values
 # ==============================================================================
 b,aris,runtime_c494,Runtime C494 Bundle,37,fe,2010,c494,header_status,s,IGN:2,,,,_6c96,s,IGN:2,,,,val,s,SIN,10,°C,,zero_pad,s,IGN:1,,,,_c594,s,IGN:2,,,,tail_status,s,IGN:2,
-b,aris,runtime_da46,Runtime Diag DA46,37,fe,2010,da46,val,s,HEX:2,,,
-# b,aris,runtime_dc46,Runtime Diag DC46,37,fe,2010,dc46,val,s,HEX:2,,,
-# b,aris,runtime_de46,Runtime Diag DE46,37,fe,2010,de46,val,s,HEX:2,,,
+b,aris,runtime_da46,Runtime Diag DA46,37,fe,2010,da46,val,s,UIN,,,
+b,aris,runtime_dc46,Runtime Diag DC46,37,fe,2010,dc46,val,s,UIN,,,
+b,aris,runtime_de46,Runtime Diag DE46,37,fe,2010,de46,val,s,UIN,,,
 b,aris,runtime_status_extra,Runtime Flags,37,fe,2010,d346,flags,s,UCH,,,
 b,aris,dhw_status_extra,DHW Flags,37,fe,2010,d994,flags,s,UCH,,,
 b,aris,heating_status_extra,Heating Flags,37,fe,2010,dd94,flags,s,UCH,,,
 b,aris,settings_change_counter,Settings Change Counter,37,fe,2010,d140,counter,s,UIN,,,,,,,
+b,aris,runtime_db95,Runtime DB95,37,fe,2010,db95,val,s,UIN,,,
+b,aris,runtime_dc95,Runtime DC95,37,fe,2010,dc95,val,s,UIN,,,
+b,aris,runtime_dd95,Runtime DD95,37,fe,2010,dd95,val,s,UIN,,,
+b,aris,runtime_de95,Runtime DE95,37,fe,2010,de95,val,s,UIN,,,
+b,aris,runtime_d394,Runtime D394,37,fe,2010,d394,val,s,UIN,,,
+b,aris,runtime_d494,Runtime D494,37,fe,2010,d494,val,s,UIN,,,
+b,aris,runtime_d594,Runtime D594,37,fe,2010,d594,val,s,UIN,,,
+b,aris,runtime_d694,Runtime D694,37,fe,2010,d694,val,s,UIN,,,
 
 # ==============================================================================
 # BUS CONTROL
