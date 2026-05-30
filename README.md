@@ -8,25 +8,33 @@ This repository provides a complete [ebusd](https://github.com/john30/ebusd) con
 
 This configuration was developed and tested on a system where eBUSd is connected **in parallel** to the original **Ariston thermostat (address 0x70)**.
 
-The thermostat is the primary bus master and continuously polls these registers:
+### How it works
+
+The thermostat is the primary bus master and continuously polls registers like:
 - `flame_active` (0e11)
-- `boiler_status` (c04b)
+- `boiler_status` (c04b)  
 - zone temperatures and setpoints
 - heating/DHW requests
 
-eBUSd **intercepts these responses** — it doesn't need to request them. This is why `poll: 0` in the eBUSd status is normal for broadcast messages.
+eBUSd **intercepts these responses passively** — it doesn't need to request them. This is why seeing `poll: 0` in eBUSd status is normal for `b,` (broadcast) messages — they're already on the bus!
+
+However, `r,` (direct read) registers like `hours_burner_on_CH`, `boiler_pressure`, etc. are **NOT** requested by the thermostat. To read these, eBUSd needs to actively poll them.
+
+### Configuration
+
+**With v2.7.1+**, the `mqtt-hassio.cfg` has `filter-seen = 5` which **automatically enables polling** for all `r,` registers with priority ≤ 5. No extra steps needed — just use the provided files.
 
 ### If you DON'T have the thermostat
 
-Without the thermostat (0x70), **nobody polls the boiler for direct read registers**. You need to:
+Without the thermostat (0x70), **nobody triggers the broadcast messages** that eBUSd intercepts. You still need:
 
-1. **Enable polling**: In `mqtt-hassio.cfg`, set `filter-seen = 5` (already in v2.7.1+). This tells eBUSd to automatically poll `r,` type messages with priority ≤ 5.
-2. **Set poll interval**: `--pollinterval=10` (every 10 seconds)
-3. **Use `ens:` device prefix**: The ESP32 with eBUS Adapter Shield rev2 requires the `ens:` prefix (`ens:192.168.4.74:9999`)
+1. **`filter-seen = 5`** in `mqtt-hassio.cfg` (default in v2.7.1+) — enables auto-polling
+2. **`--pollinterval=10`** — poll every 10 seconds  
+3. **`ens:` device prefix** — `ens:192.168.4.74:9999` (mandatory for ESP32 rev2)
 
-### If you HAVE the thermostat (like me)
+### ⚠️ Known issue: boiler reset during heavy polling
 
-The thermostat already polls the most important registers. eBUSd just listens. The `filter-seen = 5` setting still helps for registers the thermostat doesn't request (like `hours_burner_on_CH`, `boiler_pressure`, etc.).
+If you force-read many registers (`-f` flag) while the boiler is actively burning (DHW/heating), the bus traffic may cause the boiler to interpret a communication error as a fault and **restart** itself. This is rare but observed during development. Normal operation with `filter-seen = 5` and `pollinterval=10` should NOT trigger this.
 
 ## Quick Start
 
