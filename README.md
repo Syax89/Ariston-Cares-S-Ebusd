@@ -22,19 +22,23 @@ However, `r,` (direct read) registers like `hours_burner_on_CH`, `boiler_pressur
 
 ### Configuration
 
-**With v2.7.1+**, the `mqtt-hassio.cfg` has `filter-seen = 5` which **automatically enables polling** for all `r,` registers with priority ≤ 5. No extra steps needed — just use the provided files.
+**With v2.8.6+**, polling is controlled via **poll priorities in the CSV** (`r1`, `r3`, `r5`) rather than `filter-seen`. The `mqtt-hassio.cfg` uses `filter-seen = 1` (no auto-poll). Only registers with explicit priority in `aris.csv` are polled.
+
+**⚠️ CRITICAL**: Never add `bus_address_reply` to the poll list or set `filter-seen > 1`. These trigger a full bus address scan that overloads the bus and causes the boiler to crash/reboot.
 
 ### If you DON'T have the thermostat
 
 Without the thermostat (0x70), **nobody triggers the broadcast messages** that eBUSd intercepts. You still need:
 
-1. **`filter-seen = 5`** in `mqtt-hassio.cfg` (default in v2.7.1+) — enables auto-polling
-2. **`--pollinterval=10`** — poll every 10 seconds  
-3. **`ens:` device prefix** — `ens:192.168.4.74:9999` (mandatory for ESP32 rev2)
+1. **`--pollinterval=10`** — poll every 10 seconds
+2. **`ens:` device prefix** — `ens:192.168.4.74:9999` (mandatory for ESP32 rev2)
+3. Set appropriate poll priorities in the CSV (`r1`/`r3`/`r5`)
 
-### ⚠️ Known issue: boiler reset during heavy polling
+### ⚠️ Known issue: boiler reset due to `bus_address_reply` polling
 
-If you force-read many registers (`-f` flag) while the boiler is actively burning (DHW/heating), the bus traffic may cause the boiler to interpret a communication error as a fault and **restart** itself. This is rare but observed during development. Normal operation with `filter-seen = 5` and `pollinterval=10` should NOT trigger this.
+⚠️ **IMPORTANT**: If `bus_address_reply` (203b) is polled by eBUSd, or if `filter-seen` is set to `> 1`, the boiler may initiate a **full bus address scan** that floods the bus with messages and causes the boiler to **crash and reboot**. This is a confirmed issue on the Cares S.
+
+**Fix**: Keep `filter-seen = 1` in `mqtt-hassio.cfg` (default since v2.8.6). Never poll `bus_address_reply`.
 
 ## Quick Start
 
@@ -80,7 +84,7 @@ Use `hours_burner_on_CH` + `nominal_power` (24 kW) to estimate average consumpti
 |---|---|
 | `aris.csv` | **Single active ebusd config** (rename from aris-development.csv) |
 | `_templates.csv` | Shared field type templates (onoff, boiler_status, error_code, etc.) |
-| `mqtt-hassio.cfg` | Home Assistant MQTT auto-discovery config (v2.7.1+: filter-seen=5) |
+| `mqtt-hassio.cfg` | Home Assistant MQTT auto-discovery config (v2.8.6+: filter-seen=1) |
 | `tools/` | Analysis, validation, and reverse-engineering scripts |
 | `json/` | Generated reports and analysis outputs |
 | `logs/` | Runtime ebusd log archives |
