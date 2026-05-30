@@ -18,7 +18,7 @@ r3,aris,heating_flame,Burner Flame In Progress,,3c,2000,0c19,,s,IGN:1,,,,active,
 # Boiler diagnostics and counters (direct read)
 r3,aris,boiler_pressure,Boiler Circuit Pressure,,3c,2000,7547,ign,s,IGN:1,,,,boiler_pressure,,UCH,10,bar
 r9,aris,flame_power_kw,Flame Power kW,,3c,2000,6847,,s,IGN:1,,,,,,UIN,10,kW
-r9,aris,nominal_power,Nominal Power,,3c,2000,6829,ign,s,IGN:1,,,,,s,UCH,,kW
+r5,aris,nominal_power,Nominal Power,,3c,2000,6829,ign,s,IGN:1,,,,,s,UCH,,kW
 r5,aris,flame_lift_offs,Flame Lift Offs,,3c,2000,46d1,ign,s,IGN:1,,,,,,UIN
 r5,aris,hours_burner_on_CH,Hours Burner On CH,,3c,2000,4bd1,ign,s,IGN:1,,,,,,UIN,,hours
 r5,aris,hours_burner_on_DHW,Hours Burner On DHW,,3c,2000,4cd1,ign,s,IGN:1,,,,,,UIN,,hours
@@ -28,9 +28,9 @@ r5,aris,diverter_cycles,Diverter Valve Cycles,,3c,2000,40d2,ign,s,IGN:1,,,,,,UIN
 r5,aris,hours_pump_on,Pump Hours On,,3c,2000,42d2,ign,s,IGN:1,,,,,,UIN,,hours
 r5,aris,circulation_cycles,Circulation Cycles,,3c,2000,44d2,ign,s,IGN:1,,,,,,UIN
 r5,aris,fan_cycles,Fan Cycles,,3c,2000,4cd2,ign,s,IGN:1,,,,,,UIN
-r9,aris,boiler_gas_modulation,Boiler Gas Modulation,,3c,2000,c404,ign,s,IGN:1,,,,,,UCH,,pct
+r5,aris,boiler_gas_modulation,Boiler Gas Modulation,,3c,2000,c404,ign,s,IGN:1,,,,,,UCH,,pct
 # r9,aris,pump_current_modulation,Pump Current Modulation,,3c,2000,c300,ign,s,IGN:1,,,,,,UIN,,pct  # ERR: invalid position
-r9,aris,fan_speed,Boiler Fan Speed,,3c,2000,4013,,s,IGN:1,,,,,,UIN,,rpm
+r5,aris,fan_speed,Boiler Fan Speed,,3c,2000,4013,,s,IGN:1,,,,,,UIN,,rpm
 r9,aris,diverter_valve,Boiler Diverter Valve,,3c,2000,c012,ign,s,IGN:1,,,,,,BCD,0=dhw;1=heating
 r9,aris,boiler_type,Boiler Type,,3c,2000,c428,ign,s,IGN:1,,,,,,UCH,0=mixed_instant;1=ext_tank;6=storage
 r3,aris,water_temp_out,Water Departure Temp,,3c,2000,6810,,s,IGN:1,,,,,,SIN,10,°C
