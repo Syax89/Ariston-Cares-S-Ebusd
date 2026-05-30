@@ -96,7 +96,7 @@ r9,aris,z1_summer_winter_temp_threshold,Z1 Summer Winter Temp Threshold,,18,2000
 r9,aris,z1_summer_winter_switch_delay,Z1 Summer Winter Switch Delay,,18,2000,7a71,delay,s,UIN,,min,
 r9,aris,z1_cool_setpoint,Z1 Cool Setpoint,,18,2000,7071,setpoint,s,SIN,10,°C,
 r9,aris,z1_fixed_temp,Z1 Fixed Temp,,18,2000,6571,fixed_temp,s,SIN,10,°C,
-r1,aris,z1_heat_request_mode,Z1 Heat Request Mode,,18,2000,ce79,mode,s,heat_request_mode_setting,,,
+r9,aris,z1_heat_request_mode,Z1 Heat Request Mode,,18,2000,ce79,mode,s,heat_request_mode_setting,,,
 r9,aris,z1_cool_water_max_temp,Z1 Cool Water Max Temp,,18,2000,7171,max_temp,s,SIN,10,°C,
 r9,aris,z1_cool_water_min_temp,Z1 Cool Water Min Temp,,18,2000,7371,min_temp,s,SIN,10,°C,
 r9,aris,z1_cool_offset,Z1 Cool Offset,,18,2000,7571,offset,s,SIN,10,°C,
@@ -106,7 +106,7 @@ r9,aris,z1_cool_water_min_temp_2,Z1 Cool Water Min Temp 2,,18,2000,7471,min_temp
 r9,aris,z1_thermoreg_code,Z1 Thermoreg Code,,18,2000,c979,code,s,UCH,,,
 r9,aris,z1_zone_enabled_281,Z1 Zone Enabled,,18,2000,0281,enabled,s,onoff,,,
 r9,aris,z1_zone_active_881,Z1 Zone Active,,18,2000,0881,active,s,onoff,,,
-r3,aris,z1_setpoint_temp,Z1 Current Setpoint Temp,,18,2000,6996,val,s,SIN,10,°C,
+r9,aris,z1_setpoint_temp,Z1 Current Setpoint Temp,,18,2000,6996,val,s,SIN,10,°C,
 
 # ==============================================================================
 # RUNTIME & DIAGNOSTIC (broadcast 2010 - internal boiler counters)
